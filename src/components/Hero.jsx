@@ -5,15 +5,15 @@ import Image from "next/image";
 import Button from "./Button";
 import { BsPlayCircle } from "react-icons/bs";
 import playStore from "@/images/playStore.png";
-import ExtraLogos from "./ExtraLogos";
 import BackgroundDesign from "./BackgroundDesign";
 import { dboy } from "@/images";
+import ExtraLogos from "./ExtraLogos";
 
 const Hero = () => {
   return (
     <section
       id="home"
-      className="h-screen py-20 overflow-hidden sm:py-32 lg:pb-32 xl:pb-36"
+      className="h-screen py-10 overflow-hidden sm:py-20 lg:pb-32 xl:pb-36"
     >
       <Container>
         <div className="lg:grid lg:grid-cols-12 lg:gap-x-8 lg:gap-y-20">
@@ -48,6 +48,7 @@ const Hero = () => {
             </div>
           </div>
         </div>
+        <ExtraLogos />
       </Container>
     </section>
   );

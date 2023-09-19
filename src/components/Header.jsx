@@ -41,7 +41,7 @@ const Header = () => {
   return (
     <header
       className={`w-full sticky top-0 z-50 bg-white  ${
-        isScrolled && "shadow-xl shadow-blue-100"
+        isScrolled && "shadow-xl"
       }`}
     >
       <nav>
@@ -101,7 +101,7 @@ const Header = () => {
                           }}
                           className="absolute inset-x-0 top-0 z-0 px-6 pt-32 pb-6 origin-top shadow-2xl rounded-b-2xl bg-gray-50 shadow-gray-900/20"
                         >
-                          <div className="space-y-4">
+                          <div className="space-y-4 text-center">
                             {navData.map(({ _id, title, href }) => (
                               <MobileNavLink href={href} key={_id}>
                                 {title}
