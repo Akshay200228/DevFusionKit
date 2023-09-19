@@ -35,17 +35,21 @@ To get started with DevFusionKit, follow these steps:
 4. Open your browser and visit http://localhost:3000 to access the DevFusionKit website.
 
 ## Usage
-    🧭 Navigate and search for web components, code snippets, animations, and backend APIs effortlessly with our user-friendly interface.
+    
+🧭 Navigate and search for web components, code snippets, animations, and backend APIs effortlessly with our user-friendly interface.
 
-    💡 Click on any item to unveil its secrets, access code, or integrate resources directly into your projects.
+💡 Click on any item to unveil its secrets, access code, or integrate resources directly into your projects.
 
 ## Contributing
-    🤝 We're thrilled to have you join us in making DevFusionKit even better! 
+
+🤝 We're thrilled to have you join us in making DevFusionKit even better! 
 
 ## License
-    This project is licensed under the MIT License.
+
+This project is licensed under the MIT License.
 
 ## Contact
-    Got questions, suggestions, or feedback? Reach out to us at akshayrs096.com. We'd love to hear from you!
 
-    Happy coding and let your creativity fuse with DevFusionKit! 🚀
+Got questions, suggestions, or feedback? Reach out to us at akshayrs096.com. We'd love to hear from you!
+
+Happy coding and let your creativity fuse with DevFusionKit! 🚀
