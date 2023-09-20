@@ -154,13 +154,13 @@ function InviteScreen({ custom, animated = false }) {
             ].map((field) => (
               <div key={field.label}>
                 <div className="text-sm text-gray-500">{field.label}</div>
-                <div className="mt-2 border-b border-gray-200 pb-2 text-sm text-gray-900">
+                <div className="pb-2 mt-2 text-sm text-gray-900 border-b border-gray-200">
                   {field.value}
                 </div>
               </div>
             ))}
           </div>
-          <div className="mt-6 rounded-lg bg-blue-600 px-3 py-2 text-center text-sm font-semibold text-white">
+          <div className="px-3 py-2 mt-6 text-sm font-semibold text-center text-white bg-blue-600 rounded-lg">
             Invite person
           </div>
         </div>
@@ -176,7 +176,7 @@ function StocksScreen({ custom, animated = false }) {
         <AppScreen.Subtitle>March 9, 2022</AppScreen.Subtitle>
       </MotionAppScreenHeader>
       <MotionAppScreenBody {...(animated ? { ...bodyAnimation, custom } : {})}>
-        <div className="divide-y divide-gray-100 flex flex-col gap-4">
+        <div className="flex flex-col gap-4 divide-y divide-gray-100">
           {[
             {
               name: "Laravel",
@@ -240,7 +240,7 @@ function StocksScreen({ custom, animated = false }) {
                 className="flex-none rounded-full"
                 style={{ backgroundColor: stock.color }}
               >
-                <stock.logo className="h-10 w-10" />
+                <stock.logo className="w-10 h-10" />
               </div>
               <div className="flex-auto text-sm text-gray-900">
                 {stock.name}
@@ -287,7 +287,7 @@ function InvestScreen({ custom, animated = false }) {
                 value: (
                   <div className="flex">
                     $34.28
-                    <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
+                    <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
                       <path
                         d="M17 15V7H9M17 7 7 17"
                         stroke="#2563eb"
@@ -303,7 +303,7 @@ function InvestScreen({ custom, animated = false }) {
             ].map((item) => (
               <div
                 key={item.label}
-                className="flex justify-between border-b border-gray-100 pb-4"
+                className="flex justify-between pb-4 border-b border-gray-100"
               >
                 <div className="text-sm text-gray-500">{item.label}</div>
                 <div className="text-sm font-semibold text-gray-900">
@@ -311,7 +311,7 @@ function InvestScreen({ custom, animated = false }) {
                 </div>
               </div>
             ))}
-            <div className="rounded-lg bg-blue-600 px-3 py-2 text-center text-sm font-semibold text-white">
+            <div className="px-3 py-2 text-sm font-semibold text-center text-white bg-blue-600 rounded-lg">
               Buy shares
             </div>
           </div>
@@ -323,23 +323,23 @@ function InvestScreen({ custom, animated = false }) {
 
 export const features = [
   {
-    name: "Invite friends for better returns",
+    name: "Creative Web Components",
     description:
-      "For every friend you invite to Investa, you get insider notifications 5 seconds sooner. And it is 10 seconds if you invite an insider.",
+      "Explore a rich library of creative web application components that will make your projects stand out. From interactive widgets to stunning UI elements, DevFusionKit has you covered.",
     icon: DeviceUserIcon,
     screen: InviteScreen,
   },
   {
-    name: "Notifications on stock dips",
+    name: "Professional Code Snippets",
     description:
-      "Get a push notification every time we find out something that is going to lower the share price on your holdings so you can sell before the information hits the public markets.",
+      "Access a repository of professional code snippets crafted by experienced developers. Whether you need frontend magic or backend logic, our code snippets are your coding companions.",
     icon: DeviceNotificationIcon,
     screen: StocksScreen,
   },
   {
-    name: "Invest what you want",
+    name: "Seamless Animations",
     description:
-      "We hide your stock purchases behind thousands of anonymous trading accounts, so suspicious activity can never be traced back to you.",
+      "Elevate your web applications with seamless animations. Our animation collection adds flair and interactivity to your projects, making them visually engaging and dynamic.",
     icon: DeviceTouchIcon,
     screen: InvestScreen,
   },

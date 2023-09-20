@@ -11,9 +11,10 @@ const Logo = ({ className, props }) => {
         )}
         {...props}
       >
-        Dev
+        DevFusionKit
+        {/* Dev
         <span className="text-stroke">Fusion</span>
-        Kit
+        Kit */}
       </h2>
       <style jsx>{`
         .text-[#6e8157] {
