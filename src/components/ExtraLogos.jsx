@@ -21,12 +21,12 @@ const ExtraLogos = () => {
   ];
   return (
     <div className="relative -mt-4 lg:col-span-7 lg:mt-0 xl:col-span-6">
-      <p className="text-center text-sm font-semibold text-gray-900 lg:text-left">
+      <p className="text-sm font-semibold text-center text-gray-900 lg:text-left">
         As featured in
       </p>
       <ul
         role="list"
-        className="mx-auto mt-8 flex max-w-xl flex-wrap justify-center gap-x-10 gap-y-8 lg:mx-0 lg:justify-start"
+        className="flex flex-wrap justify-center max-w-xl mx-auto mt-8 gap-x-10 gap-y-8 lg:mx-0 lg:justify-start"
       >
         {logos.map(({ title, logo }) => (
           <li key={title}>

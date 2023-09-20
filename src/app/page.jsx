@@ -9,8 +9,8 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      <CodeEditor />
       <Feature />
+      <CodeEditor />
       <Reviews />
       <Account />
       <CallToAction />
