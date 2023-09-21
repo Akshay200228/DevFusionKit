@@ -45,7 +45,7 @@ const Header = () => {
       }`}
     >
       <nav>
-        <Container className="relative z-50 flex justify-between py-8">
+        <Container className="relative z-50 flex justify-between py-4">
           {/* Logo */}
           <div className="relative z-10 flex items-center gap-16">
             <Logo />

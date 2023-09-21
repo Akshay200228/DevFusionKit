@@ -7,21 +7,19 @@ const CallToAction = () => {
   return (
     <section
       id="get-free-shares-today"
-      className="relative overflow-hidden bg-gray-900 py-20 sm:py-28"
+      className="relative py-20 overflow-hidden bg-gray-900 sm:py-28"
     >
-      <div className="absolute left-20 top-1/2 -translate-y-1/2 sm:left-1/2 sm:-translate-x-1/2">
+      <div className="absolute -translate-y-1/2 left-20 top-1/2 sm:left-1/2 sm:-translate-x-1/2">
         <CircleBackground color="#fff" className="animate-spin-slower" />
       </div>
       <Container className="relative">
-        <div className="mx-auto max-w-md sm:text-center">
+        <div className="max-w-md mx-auto sm:text-center">
           <Title
-            title="Get your first tips today"
+            title="Supercharge Your Web Development"
             className="text-3xl text-white sm:text-4xl"
           />
           <p className="mt-4 text-lg text-gray-300">
-            It takes 30 seconds to sign up. Download the app and create an
-            account today and we will send you a tip guaranteed to double your
-            first investment.
+            DevFusionKit provides a comprehensive collection of web application components, code snippets, animations, and backend APIs to streamline your web development projects. Sign up now to access these valuable resources and accelerate your web development journey.
           </p>
         </div>
       </Container>

@@ -43,6 +43,7 @@ const Hero = () => {
                   width={800}
                   height={600}
                   loading="lazy"
+                  priority={false}
                   className="sm:max-w-screen-sm max-h-[600px]"
                 />
               </div>

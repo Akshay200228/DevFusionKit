@@ -13,12 +13,11 @@ const Account = () => {
       >
         <div className="max-w-2xl mx-auto sm:text-center">
           <Title
-            title="Now is the time to open your Account."
+            title="Unleash the Power of Your Web Projects."
             className="text-2xl"
           />
           <p className="mt-2 text-lg text-gray-600">
-            With typical market returns, you have to start young to secure your
-            future. With Investa, it is never too late to build your nest egg.
+            With DevFusionKit, you have everything you need to bring your web projects to life. It's never too late to create stunning and functional web applications.
           </p>
         </div>
         <ul

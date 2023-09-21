@@ -32,39 +32,39 @@ export const navData = [
 
 export const accountData = [
   {
-    name: "Invest any amount",
+    name: "Frontend Animation Library",
     description:
-      "Whether it is $1 or $1,000,000, we can put your money to work for you.",
+      "Explore a comprehensive frontend animation library designed to simplify the process of adding interactive animations to your web projects.",
     icon: DeviceArrowIcon,
   },
   {
-    name: "Build a balanced profile",
+    name: "Customizable Web Components",
     description:
-      "Invest in different industries to find the most opportunities to win huge.",
+      "Enhance the interactivity and aesthetics of your websites with a wide range of customizable web components and UI elements.",
     icon: DeviceCardsIcon,
   },
   {
-    name: "Trade in real-time",
+    name: "Real-Time Collaboration Tools",
     description:
-      "Get insider tips on big stock moves and act on them within seconds.",
+      "Collaborate seamlessly with fellow developers in real-time, facilitating the integration of animations and effects into your web applications.",
     icon: DeviceClockIcon,
   },
   {
-    name: "Profit from your network",
+    name: "Engage with a Vibrant Developer Community",
     description:
-      "Invite new insiders to get tips faster and beat even other Investa users.",
+      "Join a thriving developer community where you can exchange ideas, share advanced animation techniques, and collaborate on cutting-edge web projects.",
     icon: DeviceListIcon,
   },
   {
-    name: "Encrypted and anonymized",
+    name: "Prioritize Security in Web Development",
     description:
-      "Cutting-edge security technology that even the NSA does not know about keeps you hidden.",
+      "Adopt a security-first approach with our web development resources to ensure the protection of your animations and frontend assets.",
     icon: DeviceLockIcon,
   },
   {
-    name: "Progress tracking",
+    name: "Optimize Performance with Analytics",
     description:
-      "Watch your investments grow exponentially, leaving other investors in the dust.",
+      "Analyze the performance of your animations using detailed tracking and optimization tools, enabling you to create lightning-fast web experiences.",
     icon: DeviceChartIcon,
   },
 ];
@@ -153,5 +153,98 @@ export const reviews = [
     body: "Unless you want to have the best life ever! I am literally writing this from a yacht.",
     author: "JeffBezos",
     rating: 3,
+  },
+];
+
+export const cardData = [
+  {
+    id: 1,
+    title: 'Card Title 1',
+    content: 'Card content goes here 1.',
+    imageUrl: '/next.svg',
+  },
+  {
+    id: 2,
+    title: 'Card Title 2',
+    content: 'Card content goes here 2.',
+    imageUrl: '/next.svg',
+  },
+  {
+    id: 3,
+    title: 'Card Title 3',
+    content: 'Card content goes here 3.',
+    imageUrl: '/next.svg',
+  },
+  {
+    id: 4,
+    title: 'Card Title 4',
+    content: 'Card content goes here 4.',
+    imageUrl: '/next.svg',
+  },
+  {
+    id: 5,
+    title: 'Card Title 5',
+    content: 'Card content goes here 5.',
+    imageUrl: '/next.svg',
+  },
+  {
+    id: 6,
+    title: 'Card Title 6',
+    content: 'Card content goes here 6.',
+    imageUrl: '/next.svg',
+  },
+  {
+    id: 7,
+    title: 'Card Title 7',
+    content: 'Card content goes here 7.',
+    imageUrl: '/next.svg',
+  },
+  {
+    id: 8,
+    title: 'Card Title 8',
+    content: 'Card content goes here 8.',
+    imageUrl: '/next.svg',
+  },
+  {
+    id: 9,
+    title: 'Card Title 9',
+    content: 'Card content goes here 9.',
+    imageUrl: '/next.svg',
+  },
+  {
+    id: 10,
+    title: 'Card Title 10',
+    content: 'Card content goes here 10.',
+    imageUrl: '/next.svg',
+  },
+  {
+    id: 11,
+    title: 'Card Title 10',
+    content: 'Card content goes here 10.',
+    imageUrl: '/next.svg',
+  },
+  {
+    id: 12,
+    title: 'Card Title 10',
+    content: 'Card content goes here 10.',
+    imageUrl: '/next.svg',
+  },
+  {
+    id: 13,
+    title: 'Card Title 10',
+    content: 'Card content goes here 10.',
+    imageUrl: '/next.svg',
+  },
+  {
+    id: 14,
+    title: 'Card Title 10',
+    content: 'Card content goes here 10.',
+    imageUrl: '/next.svg',
+  },
+  {
+    id: 15,
+    title: 'Card Title 10',
+    content: 'Card content goes here 10.',
+    imageUrl: '/next.svg',
   },
 ];
