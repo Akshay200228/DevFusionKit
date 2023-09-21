@@ -1,3 +1,4 @@
+import React from "react";
 import Container from "./Container";
 import Title from "./Title";
 import Image from "next/image";
