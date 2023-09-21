@@ -1,6 +1,5 @@
 "use client"
 import { cardData } from '@/constants';
-import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
@@ -18,7 +17,7 @@ export default function Component() {
       {/* Left Sidebar */}
       <div
         className={`${isSidebarOpen ? 'block' : 'hidden'
-          } md:block p-4 w-52 bg-slate-400`}
+          } md:block p-4 w-52 bg-[#F5F5F5]`}
       >
         <ul className='font-serif text-xl font-bold'>
           <li className="mb-2">
@@ -109,17 +108,15 @@ export default function Component() {
 
       {/* Right Showcase Work */}
       <div
-        className="w-full overflow-y-auto text-white bg-slate-300 scrollbar-thin scrollbar-thumb-slate-400 scrollbar-track-gray-300 scrollbar-thumb-rounded-full"
+        className="w-full overflow-y-auto text-white bg-gray-100 scrollbar-thin scrollbar-thumb-slate-400 scrollbar-track-gray-300 scrollbar-thumb-rounded-full"
         style={{ maxHeight: 'calc(100vh - 80px)' }}
       >
         <div className="grid grid-cols-1 gap-4 p-4 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
           {cardData.map((card) => (
             <div key={card.id} className="p-4 bg-white rounded-lg shadow-md">
-              <Image
+              <img
                 src={card.imageUrl}
                 alt={`Card Image ${card.id}`}
-                width={400}
-                height={300}
                 className="object-fill w-full h-40 mb-2 rounded-lg"
               />
               <h2 className="mb-2 text-xl font-semibold">{card.title}</h2>

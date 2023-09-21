@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "./Container";
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
@@ -45,7 +45,7 @@ const Header = () => {
       }`}
     >
       <nav>
-        <Container className="relative z-50 flex justify-between py-4">
+        <Container className="relative z-40 flex justify-between py-4">
           {/* Logo */}
           <div className="relative z-10 flex items-center gap-16">
             <Logo />
