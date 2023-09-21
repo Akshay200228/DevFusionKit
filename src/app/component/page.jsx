@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { Popover } from '@headlessui/react';
+import { HiSearch } from 'react-icons/hi'
 
 export default function Component() {
   // Define a state variable to track the sidebar's visibility
@@ -113,7 +114,7 @@ export default function Component() {
           </>
         )}
       </Popover>
-      
+
       {/* Desktop Sidebar content */}
       <div className="p-4 w-52 bg-[#F5F5F5] hidden md:block">
         <ul className="font-serif text-xl font-bold">
@@ -177,25 +178,41 @@ export default function Component() {
       </div>
 
       {/* Right Showcase Work */}
-      <div
-        className="w-full overflow-y-auto text-white bg-gray-100 scrollbar-thin scrollbar-thumb-slate-400 scrollbar-track-gray-300 scrollbar-thumb-rounded-full"
-        style={{ maxHeight: 'calc(100vh - 80px)' }}
-      >
-        <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {cardData.map((card) => (
-            <div key={card.id} className="p-4 bg-white rounded-lg shadow-md">
-              <Image
-                src={card.imageUrl}
-                alt={`Card Image ${card.id}`}
-                width={400}
-                height={300}
-                priority
-                className="object-fill w-full h-40 mb-2 rounded-lg"
-              />
-              <h2 className="mb-2 text-xl font-semibold">{card.title}</h2>
-              <p className="text-gray-600">{card.content}</p>
+      <div className="w-full bg-gray-100" style={{ maxHeight: 'calc(100vh - 80px)' }}>
+
+        {/* Fixed Search Input */}
+        <div className="flex items-center justify-center m-4">
+          <div className="relative">
+            <input
+              type="text"
+              className="w-full py-2 pl-10 pr-4 text-gray-700 placeholder-gray-500 placeholder-opacity-75 bg-white border border-gray-300 rounded-lg focus:border-blue-500 focus:ring focus:ring-blue-200 hover:border-blue-600 focus:outline-none"
+              placeholder="Search"
+            />
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <HiSearch className="text-gray-400" />
             </div>
-          ))}
+          </div>
+        </div>
+
+
+        {/* Scrollable Cards */}
+        <div className="w-full overflow-y-auto text-white scrollbar-thin scrollbar-thumb-slate-400 scrollbar-track-gray-300 scrollbar-thumb-rounded-full" style={{ maxHeight: 'calc(100vh - 80px)' }}>
+          <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {cardData.map((card) => (
+              <div key={card.id} className="p-4 bg-white rounded-lg shadow-md">
+                <Image
+                  src={card.imageUrl}
+                  alt={`Card Image ${card.id}`}
+                  width={400}
+                  height={300}
+                  priority
+                  className="object-fill w-full h-40 mb-2 rounded-lg"
+                />
+                <h2 className="mb-2 text-xl font-semibold text-gray-600">{card.title}</h2>
+                <p className="text-gray-600">{card.content}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
