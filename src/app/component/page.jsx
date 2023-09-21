@@ -1,5 +1,6 @@
 "use client"
 import { cardData } from '@/constants';
+import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
@@ -114,9 +115,11 @@ export default function Component() {
         <div className="grid grid-cols-1 gap-4 p-4 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
           {cardData.map((card) => (
             <div key={card.id} className="p-4 bg-white rounded-lg shadow-md">
-              <img
+              <Image
                 src={card.imageUrl}
                 alt={`Card Image ${card.id}`}
+                width={400}
+                height={300}
                 className="object-fill w-full h-40 mb-2 rounded-lg"
               />
               <h2 className="mb-2 text-xl font-semibold">{card.title}</h2>
