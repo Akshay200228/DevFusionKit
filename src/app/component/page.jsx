@@ -1,7 +1,7 @@
 "use client"
 import { cardData } from '@/constants';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default function Component() {
   // Define a state variable to track the sidebar's visibility
