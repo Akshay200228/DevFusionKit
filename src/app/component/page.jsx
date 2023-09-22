@@ -16,7 +16,7 @@ export default function Component() {
   };
 
   return (
-    <div className="flex h-auto">
+    <div className="flex h-[100vh]">
       <Popover className="relative z-50">
         {({ open }) => (
           <>
@@ -178,7 +178,7 @@ export default function Component() {
       </div>
 
       {/* Right Showcase Work */}
-      <div className="w-full bg-gray-100" style={{ maxHeight: 'calc(100vh - 80px)' }}>
+      <div className="w-full bg-gray-100">
 
         {/* Fixed Search Input */}
         <div className="flex items-center justify-center m-4">
@@ -193,7 +193,6 @@ export default function Component() {
             </div>
           </div>
         </div>
-
 
         {/* Scrollable Cards */}
         <div className="w-full overflow-y-auto text-white scrollbar-thin scrollbar-thumb-slate-400 scrollbar-track-gray-300 scrollbar-thumb-rounded-full" style={{ maxHeight: 'calc(100vh - 80px)' }}>

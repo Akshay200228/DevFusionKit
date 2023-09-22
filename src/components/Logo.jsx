@@ -6,7 +6,7 @@ import { devLogo } from "@/images";
 const Logo = ({ className, props }) => {
   return (
     <Link href={"/"}>
-      <div className="flex justify-center items-center">
+      <div className="flex items-center justify-center">
         <Image
           src={devLogo}
           alt="Logo"
@@ -20,9 +20,6 @@ const Logo = ({ className, props }) => {
           {...props}
         >
           DevFusionKit
-          {/* Dev
-        <span className="text-stroke">Fusion</span>
-        Kit */}
         </h2>
         <style jsx>{`
         .text-[#6e8157] {
