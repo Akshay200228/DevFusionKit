@@ -167,7 +167,7 @@ export const cardData = [
     id: 2,
     title: 'Card Title 2',
     content: 'Card content goes here 2.',
-    imageUrl: '/next.svg',
+    imageUrl: '/2.png',
   },
   {
     id: 3,

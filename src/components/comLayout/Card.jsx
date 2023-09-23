@@ -39,7 +39,7 @@ export default function CardComponent() {
 
             {popupData && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="relative flex flex-col max-w-4xl p-4 mx-4 bg-white rounded-lg md:flex-row">
+                    <div className="relative flex flex-col max-w-4xl p-10 mx-4 bg-white rounded-lg md:flex-row">
                         <button
                             onClick={closePopup}
                             className="absolute top-2 right-2 md:hidden hover:text-gray-700 focus:outline-none"
@@ -59,7 +59,7 @@ export default function CardComponent() {
                                 width={400}
                                 height={300}
                                 priority
-                                className="object-fill w-full h-40 mb-2 rounded-lg cursor-pointer"
+                                className="object-fill max-w-full mb-2 rounded-lg cursor-pointer h-72"
                             />
                         </div>
                         <div className="mt-4 ml-0 md:ml-4 md:mt-0">
