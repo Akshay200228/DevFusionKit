@@ -1,4 +1,4 @@
-import Card from '@/components/comLayout/card';
+import Card from '../../components/comLayout/Card';
 
 export default function Component() {
 
