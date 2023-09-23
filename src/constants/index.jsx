@@ -20,8 +20,8 @@ export const navData = [
   },
   {
     _id: 103,
-    title: "Code Snippets",
-    href: "/code-snippets",
+    title: "Templates",
+    href: "/templates",
   },
   {
     _id: 104,

@@ -7,6 +7,8 @@ const baseStyles = {
     "inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold outline-2 outline-offset-2 transition-colors",
   outline:
     "inline-flex justify-center rounded-lg border py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-sm outline-2 outline-offset-2 transition-colors",
+  blueOutline:
+    "inline-flex justify-center rounded-lg border border-blue-500 py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-sm outline-2 outline-offset-2 transition-colors",
 };
 
 const variantStyles = {
@@ -19,10 +21,14 @@ const variantStyles = {
   outline: {
     gray: "border-gray-300 text-gray-700 hover:border-gray-400 active:bg-gray-100 active:text-gray-700/80",
   },
+  blueOutline: {
+    primary: "text-white bg-blue-500",
+    secondary: "text-white bg-gray-500",
+  },
 };
 
 const Button = forwardRef(function Button(
-  { variant = "solid", color = "gray", className, href, ...props },
+  { variant = "solid", color = "blue", className, href, ...props },
   ref
 ) {
   className = clsx(

@@ -24,8 +24,12 @@ const Hero = () => {
               Unlock the full potential of web development with DevFusionKit. Our extensive collection of web components, code snippets, and animations will elevate your projects to new heights. Maximize creativity and efficiency with our high-quality resources.
             </p>
             <div className="flex flex-wrap items-center gap-4 mt-8 gap-x-6">
-              <Image className="w-32 h-auto" src={playStore} alt="playImg" />
-              <Button variant="outline" href="https://youtu.be/vviFia-Stqk">
+              {/* <Image className="w-32 h-auto" src={playStore} alt="playImg" /> */}
+              <Button variant="solid" href="/component">
+                <BsPlayCircle className="text-xl" />
+                <span className="ml-2.5">Get Started</span>
+              </Button>
+              <Button variant="outline" href="/">
                 <BsPlayCircle className="text-xl" />
                 <span className="ml-2.5">Watch the video</span>
               </Button>
