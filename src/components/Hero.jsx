@@ -4,7 +4,6 @@ import Title from "./Title";
 import Image from "next/image";
 import Button from "./Button";
 import { BsPlayCircle } from "react-icons/bs";
-import playStore from "@/images/playStore.png";
 import BackgroundDesign from "./BackgroundDesign";
 import { dboy } from "@/images";
 import ExtraLogos from "./ExtraLogos";
@@ -24,11 +23,12 @@ const Hero = () => {
               Unlock the full potential of web development with DevFusionKit. Our extensive collection of web components, code snippets, and animations will elevate your projects to new heights. Maximize creativity and efficiency with our high-quality resources.
             </p>
             <div className="flex flex-wrap items-center gap-4 mt-8 gap-x-6">
-              {/* <Image className="w-32 h-auto" src={playStore} alt="playImg" /> */}
+              {/* Btn 1 */}
               <Button variant="solid" href="/component">
                 <BsPlayCircle className="text-xl" />
                 <span className="ml-2.5">Get Started</span>
               </Button>
+              {/* Btn 2 */}
               <Button variant="outline" href="/">
                 <BsPlayCircle className="text-xl" />
                 <span className="ml-2.5">Watch the video</span>
