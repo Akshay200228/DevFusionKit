@@ -1,7 +1,9 @@
 
 export default function Loaders() {
     return (
-      <div>page</div>
+      <div className="flex items-center justify-center h-screen">
+      <div className="font-serif text-4xl text-center">Loaders</div>
+    </div>
     )
   }
   
