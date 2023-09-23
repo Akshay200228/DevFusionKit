@@ -3,10 +3,22 @@ import { Popover } from '@headlessui/react'
 import Link from 'next/link';
 import { useState } from 'react';
 
+// Define an array of link objects
+const links = [
+    { href: '/component', text: 'All' },
+    { href: '/component/buttons', text: 'Buttons' },
+    { href: '/component/cards', text: 'Cards' },
+    { href: '/component/form', text: 'Form' },
+    { href: '/component/toast', text: 'Toast' },
+    { href: '/component/loaders', text: 'Loaders' },
+    { href: '/component/inputs', text: 'Inputs' },
+];
+
 export default function Sidebar() {
+
     // Define a state variable to track the sidebar's visibility
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    
+
     // Function to toggle the sidebar's visibility
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
@@ -19,8 +31,7 @@ export default function Sidebar() {
                     <>
                         {/* Toggle Button at the bottom */}
                         <Popover.Button
-                            className={`fixed p-2 text-white bg-blue-500 md:hidden bottom-4 left-4 rounded-full ${isSidebarOpen ? 'rotate-90' : ''
-                                }`}
+                            className={`fixed p-2 text-white bg-blue-500 md:hidden bottom-4 left-4 rounded-full ${isSidebarOpen ? 'rotate-90' : ''}`}
                             onClick={toggleSidebar}
                         >
                             <div className="flex items-center p-2">
@@ -50,62 +61,17 @@ export default function Sidebar() {
                         >
                             {/* Sidebar content */}
                             <ul className="font-serif text-xl font-bold">
-                                <li className="mb-2">
-                                    <Link
-                                        href="/component"
-                                        className="block px-4 py-2 transition-colors rounded-lg hover:bg-gray-600 hover:text-white"
-                                    >
-                                        All
-                                    </Link>
-                                </li>
-                                <li className="mb-2">
-                                    <Link
-                                        href="/component/buttons"
-                                        className="block px-4 py-2 transition-colors rounded-lg hover:bg-gray-600 hover:text-white"
-                                    >
-                                        Buttons
-                                    </Link>
-                                </li>
-                                <li className="mb-2">
-                                    <Link
-                                        href="/component/cards"
-                                        className="block px-4 py-2 transition-colors rounded-lg hover:bg-gray-600 hover:text-white"
-                                    >
-                                        Cards
-                                    </Link>
-                                </li>
-                                <li className="mb-2">
-                                    <Link
-                                        href="/component/form"
-                                        className="block px-4 py-2 transition-colors rounded-lg hover:bg-gray-600 hover:text-white"
-                                    >
-                                        Form
-                                    </Link>
-                                </li>
-                                <li className="mb-2">
-                                    <Link
-                                        href="/component/toggle"
-                                        className="block px-4 py-2 transition-colors rounded-lg hover:bg-gray-600 hover:text-white"
-                                    >
-                                        Toggle
-                                    </Link>
-                                </li>
-                                <li className="mb-2">
-                                    <Link
-                                        href="/component/loaders"
-                                        className="block px-4 py-2 transition-colors rounded-lg hover:bg-gray-600 hover:text-white"
-                                    >
-                                        Loaders
-                                    </Link>
-                                </li>
-                                <li className="mb-2">
-                                    <Link
-                                        href="/component/inputs"
-                                        className="block px-4 py-2 transition-colors rounded-lg hover:bg-gray-600 hover:text-white"
-                                    >
-                                        Inputs
-                                    </Link>
-                                </li>
+                                {links.map((link, index) => (
+                                    <li key={index} className="mb-2">
+                                        <Link
+                                            href={link.href}
+                                            passHref
+                                            className="block px-4 py-2 transition-colors rounded-lg hover:bg-gray-600 hover:text-white"
+                                        >
+                                            {link.text}
+                                        </Link>
+                                    </li>
+                                ))}
                             </ul>
                         </Popover.Panel>
                     </>
@@ -115,62 +81,17 @@ export default function Sidebar() {
             {/* Desktop Sidebar content */}
             <div className="p-4 w-52 bg-[#F5F5F5] hidden md:block">
                 <ul className="font-serif text-xl font-bold">
-                    <li className="mb-2">
-                        <Link
-                            href="/component"
-                            className="block px-4 py-2 transition-colors rounded-lg hover:bg-gray-600 hover:text-white"
-                        >
-                            All
-                        </Link>
-                    </li>
-                    <li className="mb-2">
-                        <Link
-                            href="/component/buttons"
-                            className="block px-4 py-2 transition-colors rounded-lg hover:bg-gray-600 hover:text-white"
-                        >
-                            Buttons
-                        </Link>
-                    </li>
-                    <li className="mb-2">
-                        <Link
-                            href="/component/cards"
-                            className="block px-4 py-2 transition-colors rounded-lg hover:bg-gray-600 hover:text-white"
-                        >
-                            Cards
-                        </Link>
-                    </li>
-                    <li className="mb-2">
-                        <Link
-                            href="/component/form"
-                            className="block px-4 py-2 transition-colors rounded-lg hover:bg-gray-600 hover:text-white"
-                        >
-                            Form
-                        </Link>
-                    </li>
-                    <li className="mb-2">
-                        <Link
-                            href="/component/toggle"
-                            className="block px-4 py-2 transition-colors rounded-lg hover:bg-gray-600 hover:text-white"
-                        >
-                            Toggle
-                        </Link>
-                    </li>
-                    <li className="mb-2">
-                        <Link
-                            href="/component/loaders"
-                            className="block px-4 py-2 transition-colors rounded-lg hover:bg-gray-600 hover:text-white"
-                        >
-                            Loaders
-                        </Link>
-                    </li>
-                    <li className="mb-2">
-                        <Link
-                            href="/component/inputs"
-                            className="block px-4 py-2 transition-colors rounded-lg hover:bg-gray-600 hover:text-white"
-                        >
-                            Inputs
-                        </Link>
-                    </li>
+                    {links.map((link, index) => (
+                        <li key={index} className="mb-2">
+                            <Link
+                                href={link.href}
+                                passHref
+                                className="block px-4 py-2 transition-colors rounded-lg hover:bg-gray-600 hover:text-white"
+                            >
+                                {link.text}
+                            </Link>
+                        </li>
+                    ))}
                 </ul>
             </div>
         </>
