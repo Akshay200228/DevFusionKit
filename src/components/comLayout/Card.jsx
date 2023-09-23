@@ -15,7 +15,7 @@ export default function Card() {
                                 alt={`Card Image ${card.id}`}
                                 width={400}
                                 height={300}
-                                priority
+                                priority    
                                 className="object-fill w-full h-40 mb-2 rounded-lg"
                             />
                             <h2 className="mb-2 text-xl font-semibold text-gray-600">{card.title}</h2>
