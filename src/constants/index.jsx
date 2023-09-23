@@ -179,7 +179,7 @@ export const cardData = [
     id: 4,
     title: 'Card Title 4',
     content: 'Card content goes here 4.',
-    imageUrl: '/next.svg',
+    imageUrl: '/2.png',
   },
   {
     id: 5,
@@ -191,7 +191,7 @@ export const cardData = [
     id: 6,
     title: 'Card Title 6',
     content: 'Card content goes here 6.',
-    imageUrl: '/next.svg',
+    imageUrl: '/2.png',
   },
   {
     id: 7,
@@ -203,7 +203,7 @@ export const cardData = [
     id: 8,
     title: 'Card Title 8',
     content: 'Card content goes here 8.',
-    imageUrl: '/next.svg',
+    imageUrl: '/2.png',
   },
   {
     id: 9,
@@ -215,7 +215,7 @@ export const cardData = [
     id: 10,
     title: 'Card Title 10',
     content: 'Card content goes here 10.',
-    imageUrl: '/next.svg',
+    imageUrl: '/2.png',
   },
   {
     id: 11,
@@ -227,7 +227,7 @@ export const cardData = [
     id: 12,
     title: 'Card Title 12',
     content: 'Card content goes here 12.',
-    imageUrl: '/next.svg',
+    imageUrl: '/2.png',
   },
   {
     id: 13,
@@ -239,7 +239,7 @@ export const cardData = [
     id: 14,
     title: 'Card Title 14',
     content: 'Card content goes here 14.',
-    imageUrl: '/next.svg',
+    imageUrl: '/2.png',
   },
   {
     id: 15,
@@ -251,7 +251,7 @@ export const cardData = [
     id: 16,
     title: 'Card Title 16',
     content: 'Card content goes here 16.',
-    imageUrl: '/next.svg',
+    imageUrl: '/2.png',
   },
   {
     id: 17,
@@ -263,7 +263,7 @@ export const cardData = [
     id: 18,
     title: 'Card Title 18',
     content: 'Card content goes here 18.',
-    imageUrl: '/next.svg',
+    imageUrl: '/2.png',
   },
   {
     id: 19,
@@ -275,7 +275,7 @@ export const cardData = [
     id: 20,
     title: 'Card Title 20',
     content: 'Card content goes here 20.',
-    imageUrl: '/next.svg',
+    imageUrl: '/2.png',
   },
   {
     id: 21,
@@ -287,7 +287,7 @@ export const cardData = [
     id: 22,
     title: 'Card Title 22',
     content: 'Card content goes here 22.',
-    imageUrl: '/next.svg',
+    imageUrl: '/2.png',
   },
   {
     id: 23,
@@ -299,7 +299,7 @@ export const cardData = [
     id: 24,
     title: 'Card Title 24',
     content: 'Card content goes here 24.',
-    imageUrl: '/next.svg',
+    imageUrl: '/2.png',
   },
   {
     id: 25,

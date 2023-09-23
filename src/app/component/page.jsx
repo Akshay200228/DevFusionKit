@@ -1,3 +1,4 @@
+
 import Card from '../../components/comLayout/Card';
 
 export default function Component() {
