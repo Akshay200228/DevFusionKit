@@ -19,7 +19,7 @@ const CallToAction = () => {
             className="text-3xl text-white sm:text-4xl"
           />
           <p className="mt-4 text-lg text-gray-300">
-            DevFusionKit provides a comprehensive collection of web application components, code snippets, animations, and backend APIs to streamline your web development projects. Sign up now to access these valuable resources and accelerate your web development journey.
+            DevNexus provides a comprehensive collection of web application components, code snippets, animations, and backend APIs to streamline your web development projects. Sign up now to access these valuable resources and accelerate your web development journey.
           </p>
         </div>
       </Container>

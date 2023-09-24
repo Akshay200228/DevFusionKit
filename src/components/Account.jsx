@@ -16,7 +16,7 @@ const Account = () => {
             className="text-2xl"
           />
           <p className="mt-2 text-lg text-gray-600">
-            With DevFusionKit, you have everything you need to bring your web projects to life. It never too late to create stunning and functional web applications.
+            With DevNexus, you have everything you need to bring your web projects to life. It never too late to create stunning and functional web applications.
           </p>
         </div>
         <ul

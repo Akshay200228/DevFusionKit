@@ -20,7 +20,7 @@ const Hero = () => {
           <div className="relative z-10 max-w-2xl mx-auto lg:col-span-7 lg:max-w-none lg:pt-6 xl:col-span-6">
             <Title title="Supercharge Your Web Development" className="text-4xl md:text-5xl" />
             <p className="mt-6 text-lg text-gray-600">
-              Unlock the full potential of web development with DevFusionKit. Our extensive collection of web components, code snippets, and animations will elevate your projects to new heights. Maximize creativity and efficiency with our high-quality resources.
+              Unlock the full potential of web development with DevNexus. Our extensive collection of web components, code snippets, and animations will elevate your projects to new heights. Maximize creativity and efficiency with our high-quality resources.
             </p>
             <div className="flex flex-wrap items-center gap-4 mt-8 gap-x-6">
               {/* Btn 1 */}

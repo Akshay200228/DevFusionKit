@@ -19,7 +19,7 @@ const Logo = ({ className, props }) => {
           )}
           {...props}
         >
-          DevFusionKit
+          DevNexus
         </h2>
         <style jsx>{`
         .text-[#6e8157] {

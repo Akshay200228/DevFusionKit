@@ -325,7 +325,7 @@ export const features = [
   {
     name: "Creative Web Components",
     description:
-      "Explore a rich library of creative web application components that will make your projects stand out. From interactive widgets to stunning UI elements, DevFusionKit has you covered.",
+      "Explore a rich library of creative web application components that will make your projects stand out. From interactive widgets to stunning UI elements, DevNexus has you covered.",
     icon: DeviceUserIcon,
     screen: InviteScreen,
   },
