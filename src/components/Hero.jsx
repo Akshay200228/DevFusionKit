@@ -12,7 +12,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="h-auto py-10 overflow-hidden mb-28 xl:h-screen md:mb-0 sm:py-20 lg:pb-32 xl:pb-36"
+      className="h-auto py-10 overflow-hidden mb-28 md:mb-0 sm:py-20 lg:pb-32 xl:pb-36"
     >
       <Container>
         <div className="lg:grid lg:grid-cols-12 lg:gap-x-8 lg:gap-y-28">
