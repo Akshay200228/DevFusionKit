@@ -6,12 +6,13 @@ import { useState } from 'react';
 // Define an array of link objects
 const links = [
     { href: '/component', text: 'All' },
+    { href: '/component/accordion', text: 'Accordion' },
     { href: '/component/buttons', text: 'Buttons' },
     { href: '/component/cards', text: 'Cards' },
     { href: '/component/form', text: 'Form' },
-    { href: '/component/toast', text: 'Toast' },
-    { href: '/component/loaders', text: 'Loaders' },
     { href: '/component/inputs', text: 'Inputs' },
+    { href: '/component/loaders', text: 'Loaders' },
+    { href: '/component/toast', text: 'Toast' },
 ];
 
 export default function Sidebar() {

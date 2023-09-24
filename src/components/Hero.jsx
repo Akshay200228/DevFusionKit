@@ -18,7 +18,7 @@ const Hero = () => {
         <div className="lg:grid lg:grid-cols-12 lg:gap-x-8 lg:gap-y-28">
           {/* Right side */}
           <div className="relative z-10 max-w-2xl mx-auto lg:col-span-7 lg:max-w-none lg:pt-6 xl:col-span-6">
-            <Title title="Supercharge Your Web Development" className="text-4xl" />
+            <Title title="Supercharge Your Web Development" className="text-4xl md:text-5xl" />
             <p className="mt-6 text-lg text-gray-600">
               Unlock the full potential of web development with DevFusionKit. Our extensive collection of web components, code snippets, and animations will elevate your projects to new heights. Maximize creativity and efficiency with our high-quality resources.
             </p>
@@ -42,7 +42,8 @@ const Hero = () => {
               <div className="flex items-center justify-center h-auto overflow-hidden">
                 {/* Image */}
                 <Image
-                  src={dboy}
+                  // src={dboy}
+                  src="https:/res.cloudinary.com/daqvbo5ys/image/upload/v1695541478/samples/spdb4vgqawqsietfkfch.png"
                   alt="Hero Image"
                   width={800}
                   height={600}
