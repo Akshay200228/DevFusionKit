@@ -10,7 +10,7 @@ export const metadata = {
   description: 'Explore a world of web development possibilities with DevNexus. Discover web application components, code snippets, animations, and backend APIs to supercharge your projects.',
   keywords: ['web development, web components, code snippets, animations, backend APIs, DevNexus'],
   author: 'Akshay Sankpal',
-  siteUrl: 'https://dev-fusion-kit.vercel.app/',
+  siteUrl: 'https://dev-nexus.vercel.app/',
 };
 
 export default function RootLayout({ children }) {

@@ -9,6 +9,7 @@ const links = [
     { href: '/component/accordion', text: 'Accordion' },
     { href: '/component/buttons', text: 'Buttons' },
     { href: '/component/cards', text: 'Cards' },
+    { href: '/component/carousel', text: 'Carousel' },
     { href: '/component/form', text: 'Form' },
     { href: '/component/inputs', text: 'Inputs' },
     { href: '/component/loaders', text: 'Loaders' },
