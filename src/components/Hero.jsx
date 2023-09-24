@@ -42,8 +42,7 @@ const Hero = () => {
               <div className="flex items-center justify-center h-auto overflow-hidden">
                 {/* Image */}
                 <Image
-                  // src={dboy}
-                  src="https:/res.cloudinary.com/daqvbo5ys/image/upload/v1695541478/samples/spdb4vgqawqsietfkfch.png"
+                  src={dboy}
                   alt="Hero Image"
                   width={800}
                   height={600}
