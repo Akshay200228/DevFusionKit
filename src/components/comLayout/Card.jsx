@@ -61,7 +61,7 @@ export default function CardComponent() {
                                     width={400}
                                     height={300}
                                     priority
-                                    className="object-fill w-full mb-2 rounded-lg cursor-pointer h-60"
+                                    className="object-fill w-full mb-4 rounded-lg cursor-pointer h-60"
                                 />
                                 <h2 className="mb-2 text-xl font-semibold text-gray-600">{card.title}</h2>
                                 <p className="text-gray-600">{card.content}</p>
