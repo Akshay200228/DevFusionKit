@@ -4,9 +4,11 @@ import Sidebar from "@/components/comLayout/Sidebar";
 import { Link } from "next/link";
 import { usePathname } from "next/navigation";
 
+
 export default function Layout({ children }) {
   const pathName = usePathname();
   const isComponentPage = pathName.startsWith("/component");
+
 
   return (
     <>
