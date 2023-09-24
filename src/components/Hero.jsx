@@ -15,7 +15,7 @@ const Hero = () => {
       className="h-auto py-10 overflow-hidden mb-28 xl:h-screen md:mb-0 sm:py-20 lg:pb-32 xl:pb-36"
     >
       <Container>
-        <div className="lg:grid lg:grid-cols-12 lg:gap-x-8 lg:gap-y-20">
+        <div className="lg:grid lg:grid-cols-12 lg:gap-x-8 lg:gap-y-28">
           {/* Right side */}
           <div className="relative z-10 max-w-2xl mx-auto lg:col-span-7 lg:max-w-none lg:pt-6 xl:col-span-6">
             <Title title="Supercharge Your Web Development" className="text-4xl" />
