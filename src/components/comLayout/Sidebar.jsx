@@ -2,6 +2,7 @@
 import { Popover } from '@headlessui/react'
 import Link from 'next/link';
 import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 
 // Define an array of link objects
 const links = [
@@ -24,6 +25,10 @@ export default function Sidebar() {
     // Function to toggle the sidebar's visibility
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
+    };
+
+    const closeSidebar = () => {
+        setIsSidebarOpen(false);
     };
 
     return (
@@ -57,25 +62,42 @@ export default function Sidebar() {
                         </Popover.Button>
 
                         {/* Popover Content */}
-                        <Popover.Panel
-                            className={`fixed top-0 right-0 w-1/2 h-full bg-[#F5F5F5] overflow-y-auto ${open ? '' : 'hidden'
-                                } md:block p-4`}
-                        >
-                            {/* Sidebar content */}
-                            <ul className="font-serif text-xl font-bold">
-                                {links.map((link, index) => (
-                                    <li key={index} className="mb-2">
-                                        <Link
-                                            href={link.href}
-                                            passHref
-                                            className="block px-4 py-2 transition-colors rounded-lg hover:bg-gray-600 hover:text-white"
-                                        >
-                                            {link.text}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </Popover.Panel>
+                        <AnimatePresence>
+                            {open && (
+                                <motion.div
+                                    className="fixed top-0 right-0 w-1/2 h-full bg-[#F5F5F5] overflow-y-auto md:block p-4"
+                                    style={{ width: '75%', maxWidth: '400px' }}
+                                    initial={{ opacity: 0, translateX: '100%' }}
+                                    animate={{ opacity: 1, translateX: '0%' }}
+                                    exit={{ opacity: 0, translateX: '100%' }}
+                                    transition={{ duration: 0.3 }}
+                                >
+                                    {/* Sidebar content */}
+                                    <ul className="font-serif text-xl font-bold">
+                                        {links.map((link, index) => (
+                                            <motion.li
+                                                key={index}
+                                                initial={{ opacity: 0, translateX: '50%' }}
+                                                animate={{ opacity: 1, translateX: '0%' }}
+                                                exit={{ opacity: 0, translateX: '50%' }}
+                                                transition={{ duration: 0.3, delay: index * 0.1 }}
+                                                className="mb-2"
+                                            >
+                                                <Link
+                                                    href={link.href}
+                                                    passHref
+                                                    className="block px-4 py-2 transition-colors rounded-lg hover:bg-gray-600 hover:text-white"
+                                                    onClick={closeSidebar}
+                                                >
+                                                    {link.text}
+                                                </Link>
+                                            </motion.li>
+                                        ))}
+                                    </ul>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+
                     </>
                 )}
             </Popover>
