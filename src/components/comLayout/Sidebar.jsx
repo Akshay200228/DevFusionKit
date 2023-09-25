@@ -65,7 +65,7 @@ export default function Sidebar() {
                         <AnimatePresence>
                             {open && (
                                 <motion.div
-                                    className="fixed top-0 right-0 w-1/2 h-full bg-[#F5F5F5] overflow-y-auto md:block p-4"
+                                    className="fixed top-0 right-0 w-1/2 h-full p-4 overflow-y-auto bg-white md:block"
                                     initial={{ opacity: 0, translateX: '100%' }}
                                     animate={{ opacity: 1, translateX: '0%' }}
                                     exit={{ opacity: 0, translateX: '100%' }}
@@ -101,7 +101,7 @@ export default function Sidebar() {
             </Popover>
 
             {/* Desktop Sidebar content */}
-            <div className="p-4 w-52 bg-[#F5F5F5] hidden md:block">
+            <div className="hidden p-4 bg-white w-80 md:block">
                 <ul className="font-serif text-xl font-bold">
                     {links.map((link, index) => (
                         <li key={index} className="mb-2">
