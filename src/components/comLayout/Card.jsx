@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { cardData } from '@/constants';
 import Image from 'next/image';
 import CardSkeleton from './CardSkeleton';
+import Link from 'next/link';
 
 export default function CardComponent() {
     const [isLoading, setIsLoading] = useState(true);
@@ -25,18 +26,20 @@ export default function CardComponent() {
                         ))
                     ) : (
                         cardData.map((card) => (
-                            <div key={card.id} className="p-4 bg-white rounded-lg shadow-md h-96">
-                                <Image
-                                    src={card.imageUrl}
-                                    alt={`Card Image ${card.id}`}
-                                    width={400}
-                                    height={300}
-                                    priority
-                                    className="object-fill w-full mb-4 rounded-lg h-60"
-                                />
-                                <h2 className="mb-2 text-xl font-semibold text-gray-600">{card.title}</h2>
-                                <p className="text-gray-600">{card.content}</p>
-                            </div>
+                            <Link key={card.id} href={`/component/${card.id}`}>
+                                <div className="p-4 bg-white rounded-lg shadow-md h-96">
+                                    <Image
+                                        src={card.imageUrl}
+                                        alt={`Card Image ${card.id}`}
+                                        width={400}
+                                        height={300}
+                                        priority
+                                        className="object-fill w-full mb-4 rounded-lg h-60"
+                                    />
+                                    <h2 className="mb-2 text-xl font-semibold text-gray-600">{card.title}</h2>
+                                    <p className="text-gray-600">{card.content}</p>
+                                </div>
+                            </Link>
                         ))
                     )}
                 </div>

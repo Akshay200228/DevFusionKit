@@ -66,7 +66,6 @@ export default function Sidebar() {
                             {open && (
                                 <motion.div
                                     className="fixed top-0 right-0 w-1/2 h-full bg-[#F5F5F5] overflow-y-auto md:block p-4"
-                                    style={{ width: '75%', maxWidth: '400px' }}
                                     initial={{ opacity: 0, translateX: '100%' }}
                                     animate={{ opacity: 1, translateX: '0%' }}
                                     exit={{ opacity: 0, translateX: '100%' }}
@@ -97,7 +96,6 @@ export default function Sidebar() {
                                 </motion.div>
                             )}
                         </AnimatePresence>
-
                     </>
                 )}
             </Popover>
