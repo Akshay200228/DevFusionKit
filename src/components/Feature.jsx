@@ -13,11 +13,11 @@ const Feature = () => {
       <Container>
         <div className="max-w-2xl mx-auto lg:mx-0 lg:max-w-3xl">
           <Title
-            title="Unlock the Full Potential of Web Development with DevFusionKit."
+            title="Unlock the Full Potential of Web Development with DevNexus."
             className="text-2xl text-white md:text-4xl"
           />
           <p className="mt-2 text-lg text-gray-400">
-            DevFusionKit is designed for web developers like you who want to take their projects to new heights. Our powerful features, components, and resources are here to supercharge your web development journey.
+            DevNexus is designed for web developers like you who want to take their projects to new heights. Our powerful features, components, and resources are here to supercharge your web development journey.
           </p>
         </div>
       </Container>

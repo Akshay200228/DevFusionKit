@@ -12,12 +12,12 @@ const Reviews = () => {
     >
       <Container>
         <Title
-          title="Explore Our Latest Work at DevFusionKit."
+          title="Explore Our Latest Work at DevNexus."
           id="reviews-title"
           className="text-4xl font-medium tracking-tight text-gray-900 md:text-5xl sm:text-center"
         />
         <p className="mt-2 text-xl text-gray-600 sm:text-center">
-          Dive into our recent projects and discover the magic of DevFusionKit in action.
+          Dive into our recent projects and discover the magic of DevNexus in action.
         </p>
         <ReviewGrid />
       </Container>

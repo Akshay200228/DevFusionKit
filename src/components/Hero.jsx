@@ -4,7 +4,6 @@ import Title from "./Title";
 import Image from "next/image";
 import Button from "./Button";
 import { BsPlayCircle } from "react-icons/bs";
-import playStore from "@/images/playStore.png";
 import BackgroundDesign from "./BackgroundDesign";
 import { dboy } from "@/images";
 import ExtraLogos from "./ExtraLogos";
@@ -13,22 +12,23 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="h-auto py-10 overflow-hidden mb-28 xl:h-screen md:mb-0 sm:py-20 lg:pb-32 xl:pb-36"
+      className="h-auto py-10 overflow-hidden mb-28 md:mb-0 sm:py-20 lg:pb-32 xl:pb-36"
     >
       <Container>
-        <div className="lg:grid lg:grid-cols-12 lg:gap-x-8 lg:gap-y-20">
+        <div className="lg:grid lg:grid-cols-12 lg:gap-x-8 lg:gap-y-28">
           {/* Right side */}
           <div className="relative z-10 max-w-2xl mx-auto lg:col-span-7 lg:max-w-none lg:pt-6 xl:col-span-6">
-            <Title title="Supercharge Your Web Development" className="text-4xl" />
+            <Title title="Supercharge Your Web Development" className="text-4xl md:text-5xl" />
             <p className="mt-6 text-lg text-gray-600">
               Unlock the full potential of web development with DevFusionKit. Our extensive collection of web components, code snippets, and animations will elevate your projects to new heights. Maximize creativity and efficiency with our high-quality resources.
             </p>
             <div className="flex flex-wrap items-center gap-4 mt-8 gap-x-6">
-              {/* <Image className="w-32 h-auto" src={playStore} alt="playImg" /> */}
+              {/* Btn 1 */}
               <Button variant="solid" href="/component">
                 <BsPlayCircle className="text-xl" />
                 <span className="ml-2.5">Get Started</span>
               </Button>
+              {/* Btn 2 */}
               <Button variant="outline" href="/">
                 <BsPlayCircle className="text-xl" />
                 <span className="ml-2.5">Watch the video</span>
