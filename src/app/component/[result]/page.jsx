@@ -10,24 +10,24 @@ export default function Result({ params }) {
     const card = cardData.find((card) => card.id === cardId);
 
     return (
-        <div className="flex items-center justify-center p-4 min-h-auto md:items-start sm:items-start md:pt-10">
+        <div className="flex items-start justify-center min-h-screen bg-gray-100">
             {/* Card data */}
             {card ? (
-                <div className="flex flex-col w-full h-[768px] max-w-screen-lg mx-4 bg-white rounded-lg shadow-lg items-center md:items-start md:flex-row">
-                    <div className="w-full md:w-1/2 h-96">
+                <div className="container p-6 mx-2 mt-6 bg-white rounded-lg shadow-lg lg:flex">
+                    <div className="lg:w-1/2">
                         <img
                             src={card.imageUrl}
                             alt={`Card Image ${card.id}`}
-                            className="w-full h-full p-4 rounded-lg"
+                            className="w-full h-auto rounded-lg"
                         />
                     </div>
-                    <div className="w-full p-6 md:w-1/2">
-                        <h3 className="mb-4 text-3xl font-semibold text-gray-800">{card.title}</h3>
+                    <div className="mt-6 lg:mt-0 lg:ml-6 lg:w-1/2">
+                        <h3 className="text-3xl font-semibold text-gray-800">{card.title}</h3>
                         <p className="mt-4 text-gray-700">{card.content}</p>
                     </div>
                 </div>
             ) : (
-                <p className="text-xl font-semibold text-red-600">Card not found.</p>
+                <p className="text-2xl font-semibold text-red-600">Card not found.</p>
             )}
         </div>
     );
