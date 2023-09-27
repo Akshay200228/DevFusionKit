@@ -27,7 +27,8 @@ export default function CardComponent() {
                     ) : (
                         cardData.map((card) => (
                             <Link key={card.id} href={`/component/${card.id}`}>
-                                <div className="p-4 bg-white rounded-lg shadow-[0px_22px_70px_4px_rgba(0,0,0,0.56)] h-96">
+                                {/* <div className="p-4 bg-white rounded-lg shadow-[0px_22px_70px_4px_rgba(0,0,0,0.56)] h-96"> */}
+                                <div className="p-4 bg-white rounded-lg shadow-xl h-96">
                                     <Image
                                         src={card.imageUrl}
                                         alt={`Card Image ${card.id}`}

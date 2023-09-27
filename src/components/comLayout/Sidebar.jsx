@@ -1,8 +1,8 @@
-"use client"
 import { Popover } from '@headlessui/react'
 import Link from 'next/link';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 
 // Define an array of link objects
 const links = [
@@ -18,6 +18,8 @@ const links = [
 ];
 
 export default function Sidebar() {
+
+    const pathname = usePathname();
 
     // Define a state variable to track the sidebar's visibility
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -73,25 +75,31 @@ export default function Sidebar() {
                                 >
                                     {/* Sidebar content */}
                                     <ul className="font-serif text-xl font-bold">
-                                        {links.map((link, index) => (
-                                            <motion.li
-                                                key={index}
-                                                initial={{ opacity: 0, translateX: '50%' }}
-                                                animate={{ opacity: 1, translateX: '0%' }}
-                                                exit={{ opacity: 0, translateX: '50%' }}
-                                                transition={{ duration: 0.3, delay: index * 0.1 }}
-                                                className="mb-2"
-                                            >
-                                                <Link
-                                                    href={link.href}
-                                                    passHref
-                                                    className="block px-4 py-2 transition-colors rounded-lg hover:bg-gray-600 hover:text-white"
-                                                    onClick={closeSidebar}
+                                        {links.map((link, index) => {
+                                            const isActive = pathname === link.href; // Check if the link is active
+                                            return (
+                                                <motion.li
+                                                    key={index}
+                                                    initial={{ opacity: 0, translateX: '50%' }}
+                                                    animate={{ opacity: 1, translateX: '0%' }}
+                                                    exit={{ opacity: 0, translateX: '50%' }}
+                                                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                                                    className="mb-2"
                                                 >
-                                                    {link.text}
-                                                </Link>
-                                            </motion.li>
-                                        ))}
+                                                    <Link
+                                                        href={link.href}
+                                                        passHref
+                                                        className={`block px-4 py-2 transition-colors rounded-lg hover:bg-gray-600 hover:text-white ${isActive ? 'bg-blue-500 text-white' : ''
+                                                            }`}
+                                                        onClick={() => {
+                                                            closeSidebar();
+                                                        }}
+                                                    >
+                                                        {link.text}
+                                                    </Link>
+                                                </motion.li>
+                                            );
+                                        })}
                                     </ul>
                                 </motion.div>
                             )}
@@ -103,17 +111,20 @@ export default function Sidebar() {
             {/* Desktop Sidebar content */}
             <div className="hidden p-4 bg-white w-80 md:block">
                 <ul className="font-serif text-xl font-bold">
-                    {links.map((link, index) => (
-                        <li key={index} className="mb-2">
-                            <Link
-                                href={link.href}
-                                passHref
-                                className="block px-4 py-2 transition-colors rounded-lg hover:bg-gray-600 hover:text-white"
-                            >
-                                {link.text}
-                            </Link>
-                        </li>
-                    ))}
+                    {links.map((link, index) => {
+                        const isActive = pathname === link.href; // Check if the link is active
+                        return (
+                            <li key={index} className="mb-2">
+                                <Link
+                                    href={link.href}
+                                    passHref
+                                    className={`block px-4 py-2 transition-colors rounded-lg hover:bg-blue-100 hover:text-blue-700 ${isActive ? 'bg-blue-500 text-white' : ''}`}
+                                >
+                                    {link.text}
+                                </Link>
+                            </li>
+                        );
+                    })}
                 </ul>
             </div>
         </>

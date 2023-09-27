@@ -1,5 +1,4 @@
 // CardSkeleton.js
-import React from 'react';
 
 const CardSkeleton = () => {
     return (
