@@ -17,7 +17,7 @@ export default function Layout({ children }) {
           <Sidebar />
           <div className="w-full bg-white">
             <SearchBar />
-            {children} {/* Render the page content */}
+            {children}
           </div>
         </div>
       ) : (

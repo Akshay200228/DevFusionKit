@@ -27,7 +27,7 @@ export default function Result({ params }) {
                     </div>
                 </div>
             ) : (
-                <p className="text-2xl font-semibold text-red-600">Card not found.</p>
+                <p className="text-2xl font-semibold text-red-600">Not found.</p>
             )}
         </div>
     );
