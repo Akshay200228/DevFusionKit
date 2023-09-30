@@ -111,7 +111,7 @@ export default function Component() {
                   <Link
                     href={template.githubLink}
                     target='_blank'
-                    className="flex items-center p-3 text-2xl rounded-full lg:hover:bg-blue-100"
+                    className="flex items-center p-3 text-2xl text-blue-400 rounded-full lg:hover:bg-blue-100"
                   >
                     <FaGithub />
                   </Link>
@@ -119,7 +119,7 @@ export default function Component() {
                   <Link
                     href={template.deployLink}
                     target='_blank'
-                    className="flex items-center p-3 text-2xl rounded-full lg:hover:bg-blue-100"
+                    className="flex items-center p-3 text-2xl text-blue-400 rounded-full lg:hover:bg-blue-100"
                   >
                     <FaCode /> 
                   </Link>
