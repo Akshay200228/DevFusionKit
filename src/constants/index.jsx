@@ -7,6 +7,9 @@ import {
   DeviceChartIcon,
 } from "@/components/StockLogos";
 
+import templateImage from '@/images/template.png';
+
+
 export const navData = [
   {
     _id: 101,
@@ -307,4 +310,73 @@ export const cardData = [
     content: 'Card content goes here 25.',
     imageUrl: '/next.svg',
   },
+];
+
+
+export const templatesData = [
+  {
+    id: 1,
+    imageUrl: templateImage, // Use the imported image
+    title: 'Website Template 1',
+    description: 'This is a description for Website Template 1.',
+    githubLink: 'https://github.com/Akshay200228/landing_page',
+    deployLink: 'https://landing-page-zeta-flax.vercel.app/',
+  },
+  {
+    id: 2,
+    imageUrl: templateImage, // Use the imported image
+    title: 'Website Template 2',
+    description: 'This is a description for Website Template 2.',
+    githubLink: 'https://github.com/Akshay200228/landing_page',
+    deployLink: 'https://landing-page-zeta-flax.vercel.app/',
+  },
+  {
+    id: 3,
+    imageUrl: templateImage, // Use the imported image
+    title: 'Website Template 3',
+    description: 'This is a description for Website Template 3.',
+    githubLink: 'https://github.com/Akshay200228/landing_page',
+    deployLink: 'https://landing-page-zeta-flax.vercel.app/',
+  },
+  {
+    id: 4,
+    imageUrl: templateImage, // Use the imported image
+    title: 'Website Template 3',
+    description: 'This is a description for Website Template 3.',
+    githubLink: 'https://github.com/Akshay200228/landing_page',
+    deployLink: 'https://landing-page-zeta-flax.vercel.app/',
+  },
+  {
+    id: 5,
+    imageUrl: templateImage, // Use the imported image
+    title: 'Website Template 1',
+    description: 'This is a description for Website Template 1.',
+    githubLink: 'https://github.com/Akshay200228/landing_page',
+    deployLink: 'https://landing-page-zeta-flax.vercel.app/',
+  },
+  {
+    id: 6,
+    imageUrl: templateImage, // Use the imported image
+    title: 'Website Template 2',
+    description: 'This is a description for Website Template 2.',
+    githubLink: 'https://github.com/Akshay200228/landing_page',
+    deployLink: 'https://landing-page-zeta-flax.vercel.app/',
+  },
+  {
+    id: 7,
+    imageUrl: templateImage, // Use the imported image
+    title: 'Website Template 3',
+    description: 'This is a description for Website Template 3.',
+    githubLink: 'https://github.com/Akshay200228/landing_page',
+    deployLink: 'https://landing-page-zeta-flax.vercel.app/',
+  },
+  {
+    id: 8,
+    imageUrl: templateImage, // Use the imported image
+    title: 'Website Template 3',
+    description: 'This is a description for Website Template 3.',
+    githubLink: 'https://github.com/Akshay200228/landing_page',
+    deployLink: 'https://landing-page-zeta-flax.vercel.app/',
+  },
+  // Add more cards as needed
 ];
