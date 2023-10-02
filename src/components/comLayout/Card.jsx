@@ -1,23 +1,34 @@
 "use client";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { cardData } from '@/constants';
 import Image from 'next/image';
+import CardSkeleton from './CardSkeleton';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 export default function CardComponent() {
-    const initialCardsToShow = 9; // Initially show 9 cards
-    const [cardsToShow, setCardsToShow] = useState(initialCardsToShow);
+    const [isLoading, setIsLoading] = useState(true);
+    const [cardsToShow, setCardsToShow] = useState(9);
+    const [showLoadMore, setShowLoadMore] = useState(false); // Initially set to false
+    const [loadingMore, setLoadingMore] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+            setShowLoadMore(true); // Show the "Load More" button after initial loading
+        }, 2000);
+    }, []);
 
     const loadMore = () => {
-        // Calculate the number of cards to load
-        const nextCardsToShow = cardsToShow + 9;
+        setLoadingMore(true);
+        setTimeout(() => {
+            setCardsToShow(cardsToShow + 9);
+            setLoadingMore(false);
 
-        // Limit to a maximum of the total number of available cards
-        const maxCardsToShow = Math.min(nextCardsToShow, cardData.length);
-
-        // Set the number of cards to show
-        setCardsToShow(maxCardsToShow);
+            if (cardsToShow + 9 >= cardData.length) {
+                setShowLoadMore(false);
+            }
+        }, 2000);
     };
 
     return (
@@ -35,29 +46,39 @@ export default function CardComponent() {
                     transition={{ delay: 0.1, duration: 0.5 }}
                     className="grid grid-cols-1 gap-8 p-4 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3"
                 >
-                    {cardData.slice(0, cardsToShow).map((card) => (
-                        <Link key={card.id} href={`/component/${card.id}`}>
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.3 }}
-                                className="p-4 bg-white rounded-lg shadow-xl h-96"
-                            >
-                                <Image
-                                    src={card.imageUrl}
-                                    alt={`Card Image ${card.id}`}
-                                    width={400}
-                                    height={300}
-                                    priority
-                                    className="object-fill w-full mb-4 rounded-lg h-60"
-                                />
-                                <h2 className="mb-2 text-xl font-semibold text-gray-600">{card.title}</h2>
-                                <p className="text-gray-600">{card.content}</p>
-                            </motion.div>
-                        </Link>
-                    ))}
+                    {isLoading ? (
+                        [...Array(cardsToShow)].map((_, index) => (
+                            <CardSkeleton key={index} />
+                        ))
+                    ) : (
+                        cardData.slice(0, cardsToShow).map((card) => (
+                            <Link key={card.id} href={`/component/${card.id}`}>
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ duration: 0.3 }}
+                                    className="p-4 bg-white rounded-lg shadow-xl h-96"
+                                >
+                                    <iframe
+                                        src={card.preview}
+                                        // src="https://card-test.akshaysankpal.repl.co"
+                                        frameBorder="0"
+                                        scrolling="no"
+                                        className="object-fill w-full mb-4 rounded-lg h-60"
+                                    ></iframe>
+                                    <h2 className="mb-2 text-xl font-semibold text-gray-600">{card.title}</h2>
+                                    <p className="text-gray-600">{card.content}</p>
+                                </motion.div>
+                            </Link>
+                        ))
+                    )}
+                    {loadingMore && (
+                        [...Array(9)].map((_, index) => (
+                            <CardSkeleton key={index} />
+                        ))
+                    )}
                 </motion.div>
-                {cardsToShow < cardData.length && (
+                {showLoadMore && (
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -66,9 +87,10 @@ export default function CardComponent() {
                     >
                         <button
                             onClick={loadMore}
-                            className="px-4 py-2 mt-4 text-white bg-blue-500 rounded-full hover:bg-blue-600"
+                            className={`px-4 py-2 mt-4 text-white bg-blue-500 rounded-full hover:bg-blue-600 ${loadingMore ? 'hidden' : ''}`}
+                            disabled={loadingMore}
                         >
-                            Load More
+                            {loadingMore ? "Loading..." : "Load More"}
                         </button>
                     </motion.div>
                 )}
