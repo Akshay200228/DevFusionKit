@@ -5,7 +5,7 @@ import {
   DeviceListIcon,
   DeviceLockIcon,
   DeviceChartIcon,
-} from "@/components/StockLogos";
+} from "@/components/homeLayout/StockLogos";
 
 import templateImage from '@/images/template.png';
 

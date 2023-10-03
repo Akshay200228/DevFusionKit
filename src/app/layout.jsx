@@ -1,6 +1,8 @@
-import Header from "@/components/Header";
+
+import Header from "@/components/homeLayout/Header";
 import "./globals.css";
-import Footer from "@/components/Footer";
+import Footer from "@/components/homeLayout/Footer";
+
 
 export const metadata = {
   title: {

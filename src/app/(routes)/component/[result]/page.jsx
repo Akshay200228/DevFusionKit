@@ -29,7 +29,7 @@ export default function Result({ params }) {
 
             {/* Card data */}
             {card ? (
-                <div className="container bg-white rounded-lg shadow-lg lg:flex">
+                <div className="container p-4 bg-white rounded-lg shadow-lg lg:flex">
                     <div className="lg:w-1/2">
                         <iframe
                             src={card.preview}

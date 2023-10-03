@@ -1,5 +1,5 @@
 import { useId } from "react";
-import AppScreen from "@/components/AppScreen";
+import AppScreen from "@/components/homeLayout/AppScreen";
 import { motion } from "framer-motion";
 import {
   DiageoLogo,
@@ -10,7 +10,7 @@ import {
   StaticKitLogo,
   TransistorLogo,
   TupleLogo,
-} from "@/components/StockLogos";
+} from "@/components/homeLayout/StockLogos";
 import clsx from "clsx";
 
 const MotionAppScreenHeader = motion(AppScreen.Header);
