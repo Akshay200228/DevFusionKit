@@ -86,13 +86,12 @@ export default function CardComponent() {
                                             height={36}
                                             className="mr-4 rounded-full"
                                         />
-                                        <h2 className="text-xl font-semibold text-gray-600">{card.title}</h2>
+                                        <h2 className="text-xl font-semibold text-gray-600">{card.userName}</h2>
                                     </div>
                                     <Link
                                         href={`/component/${card.id}`}
-                                        className={`p-2 text-blue-400 rounded-full hover:bg-blue-200 ${
-                                            hoveredCard === card.id ? 'pl-4 flex items-center' : ''
-                                        }`}
+                                        className={`p-2 text-blue-400 rounded-full hover:bg-blue-200 ${hoveredCard === card.id ? 'pl-4 flex items-center' : ''
+                                            }`}
                                         onMouseEnter={() => handleMouseEnter(card.id)}
                                         onMouseLeave={handleMouseLeave}
                                     >
@@ -109,14 +108,14 @@ export default function CardComponent() {
                             </motion.div>
                         ))
                     )}
-                    
+
                     {loadingMore && (
                         [...Array(9)].map((_, index) => (
                             <CardSkeleton key={index} />
                         ))
                     )}
                 </motion.div>
-                
+
                 {showLoadMore && (
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}
@@ -126,9 +125,8 @@ export default function CardComponent() {
                     >
                         <button
                             onClick={loadMore}
-                            className={`px-4 py-2 mt-4 text-white bg-blue-500 rounded-full hover:bg-blue-600 ${
-                                loadingMore ? 'hidden' : ''
-                            }`}
+                            className={`px-4 py-2 mt-4 text-white bg-blue-500 rounded-full hover:bg-blue-600 ${loadingMore ? 'hidden' : ''
+                                }`}
                             disabled={loadingMore}
                         >
                             {loadingMore ? 'Loading...' : 'Load More'}
