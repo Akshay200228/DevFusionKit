@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { cardData } from '@/constants';
 import { FaCode } from 'react-icons/fa';
 import CardSkeleton from './CardSkeleton';
@@ -10,9 +10,11 @@ import Image from 'next/image';
 export default function CardComponent() {
     const [isLoading, setIsLoading] = useState(true);
     const [cardsToShow, setCardsToShow] = useState(9);
-    const [showLoadMore, setShowLoadMore] = useState(false); // Initially set to false
+    const [showLoadMore, setShowLoadMore] = useState(false);
     const [loadingMore, setLoadingMore] = useState(false);
+    const [hoveredCard, setHoveredCard] = useState(null);
 
+    // Simulate loading effect
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(false);
@@ -20,26 +22,27 @@ export default function CardComponent() {
         }, 2000);
     }, []);
 
-    const [hoveredCard, setHoveredCard] = useState(null);
-
+    // Handle mouse enter event on a card
     const handleMouseEnter = (cardId) => {
-        setHoveredCard(cardId);
+        setHoveredCard(cardId)
     };
 
+    // Handle mouse leave event on a card
     const handleMouseLeave = () => {
         setHoveredCard(null);
     };
 
+    // Load more cards when the "Load More" button is clicked
     const loadMore = () => {
-        setLoadingMore(true);
+        setLoadingMore(true); 
         setTimeout(() => {
-            setCardsToShow(cardsToShow + 9);
-            setLoadingMore(false);
+            setCardsToShow(cardsToShow + 9); 
+            setLoadingMore(false); 
 
             if (cardsToShow + 9 >= cardData.length) {
                 setShowLoadMore(false);
             }
-        }, 2000);
+        }, 2000)
     };
 
     return (
