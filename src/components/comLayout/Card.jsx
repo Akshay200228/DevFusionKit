@@ -90,7 +90,7 @@ export default function CardComponent() {
                                     </div>
                                     <Link
                                         href={`/component/${card.id}`}
-                                        className={`p-2 text-blue-500 rounded-full hover:bg-blue-200 ${
+                                        className={`p-2 text-blue-400 rounded-full hover:bg-blue-200 ${
                                             hoveredCard === card.id ? 'pl-4 flex items-center' : ''
                                         }`}
                                         onMouseEnter={() => handleMouseEnter(card.id)}
@@ -98,8 +98,8 @@ export default function CardComponent() {
                                     >
                                         {hoveredCard === card.id ? (
                                             <>
-                                                <span className="mr-2">View More</span>
-                                                <FaCode className="ml-2 text-4xl" />
+                                                <span className="mr-2 text-blue-800">View More</span>
+                                                <FaCode className="ml-2 text-4xl " />
                                             </>
                                         ) : (
                                             <FaCode className="text-4xl" />
