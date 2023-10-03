@@ -10,7 +10,7 @@ export default function TemplateCards() {
     <div className="px-4 mx-auto max-w-fit sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {templatesData.map((template) => (
-            <div key={template.id} className="bg-white rounded-lg shadow-lg">
+            <div key={template.id} className="rounded-lg shadow-lg bg-blue-50">
               <div className="relative h-96"> 
                 <Image
                   src={template.imageUrl}
