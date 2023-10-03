@@ -1,5 +1,5 @@
 
-import Card from '../../components/comLayout/Card';
+import Card from '../../../components/comLayout/Card';
 
 export const metadata = {
   title: 'Components'

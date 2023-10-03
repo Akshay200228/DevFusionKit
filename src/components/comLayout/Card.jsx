@@ -1,10 +1,11 @@
 "use client";
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { cardData } from '@/constants';
-import Image from 'next/image';
+import { FaCode } from 'react-icons/fa';
 import CardSkeleton from './CardSkeleton';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 export default function CardComponent() {
     const [isLoading, setIsLoading] = useState(true);
@@ -15,9 +16,19 @@ export default function CardComponent() {
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(false);
-            setShowLoadMore(true); // Show the "Load More" button after initial loading
+            setShowLoadMore(true);
         }, 2000);
     }, []);
+
+    const [hoveredCard, setHoveredCard] = useState(null);
+
+    const handleMouseEnter = (cardId) => {
+        setHoveredCard(cardId);
+    };
+
+    const handleMouseLeave = () => {
+        setHoveredCard(null);
+    };
 
     const loadMore = () => {
         setLoadingMore(true);
@@ -52,33 +63,60 @@ export default function CardComponent() {
                         ))
                     ) : (
                         cardData.slice(0, cardsToShow).map((card) => (
-                            <Link key={card.id} href={`/component/${card.id}`}>
-                                <motion.div
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    transition={{ duration: 0.3 }}
-                                    className="p-4 bg-white rounded-lg shadow-xl h-96"
-                                >
-                                    <Image
-                                        src={card.imageUrl}
-                                        alt={`Card Image ${card.id}`}
-                                        width={400}
-                                        height={300}
-                                        priority
-                                        className="object-fill w-full mb-4 rounded-lg h-60"
-                                    />
-                                    <h2 className="mb-2 text-xl font-semibold text-gray-600">{card.title}</h2>
-                                    <p className="text-gray-600">{card.content}</p>
-                                </motion.div>
-                            </Link>
+                            <motion.div
+                                key={card.id}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.3 }}
+                                className="flex flex-col h-full p-4 bg-white rounded-lg shadow-xl"
+                            >
+                                <iframe
+                                    src={card.preview}
+                                    frameBorder="0"
+                                    scrolling="no"
+                                    className="object-fill w-full mb-8 rounded-lg h-72"
+                                />
+
+                                <div className="flex items-center justify-between mb-2">
+                                    <div className="flex items-center"> {/* Container for userImg and title */}
+                                        <Image
+                                            src={card.userImg}
+                                            alt="User Image"
+                                            width={36}
+                                            height={36}
+                                            className="mr-4 rounded-full"
+                                        />
+                                        <h2 className="text-xl font-semibold text-gray-600">{card.title}</h2>
+                                    </div>
+                                    <Link
+                                        href={`/component/${card.id}`}
+                                        className={`p-2 text-blue-400 rounded-full hover:bg-blue-200 ${
+                                            hoveredCard === card.id ? 'pl-4 flex items-center' : ''
+                                        }`}
+                                        onMouseEnter={() => handleMouseEnter(card.id)}
+                                        onMouseLeave={handleMouseLeave}
+                                    >
+                                        {hoveredCard === card.id ? (
+                                            <>
+                                                <span className="mr-2 text-blue-800">View More</span>
+                                                <FaCode className="ml-2 text-4xl " />
+                                            </>
+                                        ) : (
+                                            <FaCode className="text-4xl" />
+                                        )}
+                                    </Link>
+                                </div>
+                            </motion.div>
                         ))
                     )}
+                    
                     {loadingMore && (
                         [...Array(9)].map((_, index) => (
                             <CardSkeleton key={index} />
                         ))
                     )}
                 </motion.div>
+                
                 {showLoadMore && (
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}
@@ -88,10 +126,12 @@ export default function CardComponent() {
                     >
                         <button
                             onClick={loadMore}
-                            className={`px-4 py-2 mt-4 text-white bg-blue-500 rounded-full hover:bg-blue-600 ${loadingMore ? 'hidden' : ''}`}
+                            className={`px-4 py-2 mt-4 text-white bg-blue-500 rounded-full hover:bg-blue-600 ${
+                                loadingMore ? 'hidden' : ''
+                            }`}
                             disabled={loadingMore}
                         >
-                            {loadingMore ? "Loading..." : "Load More"}
+                            {loadingMore ? 'Loading...' : 'Load More'}
                         </button>
                     </motion.div>
                 )}

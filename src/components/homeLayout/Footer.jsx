@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer>
       <Container>
-        <div className="flex flex-col items-center pt-8 pb-12 mt-10 border-t border-gray-200 md:flex-row md:justify-between md:pt-6">
+        <footer className="flex flex-col items-center pt-8 pb-12 mt-10 border-t border-gray-200 md:flex-row md:justify-between md:pt-6">
           <p className="text-xs text-gray-500">
             &copy; Copyright {new Date().getFullYear()}. All rights reserved.
           </p>
@@ -25,7 +25,7 @@ const Footer = () => {
               <span className="lg:hidden">Join newsletter</span>
             </Button>
           </form>
-        </div>
+        </footer>
       </Container>
     </footer>
   );

@@ -40,9 +40,8 @@ const Header = () => {
   }, []);
   return (
     <header
-      className={`w-full sticky top-0 z-50 bg-white  ${
-        isScrolled && "shadow-xl"
-      }`}
+      className={`w-full sticky top-0 z-50 bg-white  ${isScrolled && "shadow-xl"
+        }`}
     >
       <nav>
         <Container className="relative z-40 flex justify-between py-4">
@@ -57,10 +56,10 @@ const Header = () => {
           {/* Buttons */}
           <div className="flex items-center gap-6">
             <Button href="#" variant="outline" className="hidden lg:block">
-              Get Advice
+              Sign Up
             </Button>
             <Button href="#" className="hidden lg:block">
-              Hire me
+              Log In
             </Button>
             {/* Mobile NavLinks */}
             <Popover className="lg:hidden">
@@ -110,9 +109,11 @@ const Header = () => {
                           </div>
                           <div className="flex flex-col gap-4 mt-8">
                             <Button href="#" variant="outline">
-                              Get Advice
+                              Sign Up
                             </Button>
-                            <Button href="#">Hire me</Button>
+                            <Button href="#">
+                              Log In
+                            </Button>
                           </div>
                         </Popover.Panel>
                       </>
