@@ -63,18 +63,19 @@ export default function Result({ params }) {
 
             {/* Card data */}
             {card ? (
-                <div className="container p-4 bg-white rounded-lg shadow-lg lg:flex">
+                // Add Separate vertical sroll 
+                <div className="h-[80vh] container p-4 bg-white rounded-lg shadow-lg lg:flex overflow-auto scrollbar-thin scrollbar-thumb-blue-200 scrollbar-track-gray-200">
                     <LiveProvider code={code}>
                         <div className="lg:w-1/2">
                             {/* Show LivePreview */}
-                            <div className="bg-blue-200">
+                            <div className="bg-blue-200 h-[70vh]">
                                 <LivePreview />
                                 <LiveError />
                             </div>
                         </div>
                         <div className="mt-6 lg:mt-0 lg:ml-6 lg:w-1/2">
                             {/* Live preview using react-live */}
-                            <div className="h-[50vh] overflow-auto scrollbar-thin scrollbar-thumb-blue-200 scrollbar-track-gray-200">
+                            <div className="h-[70vh] overflow-auto scrollbar-thin scrollbar-thumb-blue-200 scrollbar-track-gray-200">
                                 <div className='h-full'>
                                     <LiveEditor onChange={handleCodeChange} />
                                 </div>

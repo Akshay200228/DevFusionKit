@@ -194,11 +194,17 @@ export const cardData = [
     userName: 'Card Title 1',
     content: 'Card content goes here 1.',
     userImg: '/vercel.ico',
-    code:`
+    code: `
     <div className="flex items-center justify-center h-[50vh] bg-blue-200">
       <div className="flex p-6 border border-blue-600 rounded-lg shadow-lg bg-gradient-to-r from-blue-500 via-blue-400 to-blue-300 bg-opacity-80 backdrop-blur-lg">
         {/* Left Side: User Profile Image */}
         <div className="w-20 h-20 mr-4 overflow-hidden rounded-full">
+          <img
+            src="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png"
+            alt="User"
+            style={{height: "42px"}}
+            className="object-cover w-42 h-42"
+          />
         </div>
 
         {/* Right Side: User Name and Ratings */}
@@ -207,9 +213,9 @@ export const cardData = [
 
           {/* Ratings */}
           <div className="flex items-center mb-4">
-            <div className="w-6 h-6 mr-2 bg-yellow-500 rounded-full"></div>
-            <div className="w-6 h-6 mr-2 bg-yellow-500 rounded-full"></div>
-            <div className="w-6 h-6 bg-yellow-500 rounded-full"></div>
+            <div style={{backgroundColor: "yellow"}} className="w-6 h-6 mr-2 rounded-full"></div>
+            <div style={{backgroundColor: "yellow"}} className="w-6 h-6 mr-2 rounded-full"></div>
+            <div style={{backgroundColor: "yellow"}} className="w-6 h-6 rounded-full"></div>
           </div>
         </div>
 

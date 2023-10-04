@@ -42,7 +42,6 @@ export default function TemplateCards() {
                     <FaCode /> 
                   </Link>
                 </div>
-                
               </div>
             </div>
           ))}
