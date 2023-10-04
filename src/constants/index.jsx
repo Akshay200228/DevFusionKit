@@ -161,12 +161,77 @@ export const reviews = [
 
 // Components card static data
 export const cardData = [
+  // {
+  //   id: 1,
+  //   userName: 'Card Title 1',
+  //   content: 'Card content goes here 1.',
+  //   userImg: '/vercel.ico',
+  //   code: `
+  //   <button
+  //     class="px-4 py-2 mt-2 text-white bg-blue-500 rounded-full hover:bg-blue-600"
+  //   >
+  //     Click Me Here
+  // </button>
+  //   `,
+  // },
+  // {
+  //   id: 2,
+  //   userName: 'Card Title 1',
+  //   content: 'Card content goes here 1.',
+  //   userImg: '/vercel.ico',
+  //   code: `
+  //     <button
+  //       class="px-4 py-2 mt-2 text-white bg-blue-500 rounded-full hover:bg-blue-600"
+  //     >
+  //       Click Me Here
+  //     </button>
+  //   `,
+  // },
+
+
   {
     id: 1,
     userName: 'Card Title 1',
     content: 'Card content goes here 1.',
     userImg: '/vercel.ico',
-    preview: "https://cursor-animation.sahilwagh142.repl.co",
+    code:`
+    <div className="flex items-center justify-center h-[50vh] bg-blue-200">
+      <div className="flex p-6 border border-blue-600 rounded-lg shadow-lg bg-gradient-to-r from-blue-500 via-blue-400 to-blue-300 bg-opacity-80 backdrop-blur-lg">
+        {/* Left Side: User Profile Image */}
+        <div className="w-20 h-20 mr-4 overflow-hidden rounded-full">
+        </div>
+
+        {/* Right Side: User Name and Ratings */}
+        <div className="flex-grow">
+          <div className="mb-2 text-xl font-bold text-white">User Name</div>
+
+          {/* Ratings */}
+          <div className="flex items-center mb-4">
+            <div className="w-6 h-6 mr-2 bg-yellow-500 rounded-full"></div>
+            <div className="w-6 h-6 mr-2 bg-yellow-500 rounded-full"></div>
+            <div className="w-6 h-6 bg-yellow-500 rounded-full"></div>
+          </div>
+        </div>
+
+        {/* Bottom Right Corner: Close Icon */}
+        <div className="absolute top-0 right-0 p-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="red"
+            className="w-8 h-8"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>`
   },
   {
     id: 2,
@@ -174,6 +239,15 @@ export const cardData = [
     content: 'Card content goes here 2.',
     userImg: '/vercel.ico',
     preview: "https://card-test.akshaysankpal.repl.co",
+    code: `
+    <div style={{ backgroundColor: '#4299e1' }} className="flex items-center justify-center h-[50vh]">
+      <button
+        className="px-4 py-2 mt-2 text-white bg-blue-500 rounded-full hover:bg-blue-600"
+      >
+        Click Me Here
+      </button>
+    </div>
+  `,
   },
   {
     id: 3,

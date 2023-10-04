@@ -6,6 +6,7 @@ import CardSkeleton from './CardSkeleton';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { LivePreview, LiveProvider } from 'react-live';
 
 export default function CardComponent() {
     const [isLoading, setIsLoading] = useState(true);
@@ -34,10 +35,10 @@ export default function CardComponent() {
 
     // Load more cards when the "Load More" button is clicked
     const loadMore = () => {
-        setLoadingMore(true); 
+        setLoadingMore(true);
         setTimeout(() => {
-            setCardsToShow(cardsToShow + 9); 
-            setLoadingMore(false); 
+            setCardsToShow(cardsToShow + 9);
+            setLoadingMore(false);
 
             if (cardsToShow + 9 >= cardData.length) {
                 setShowLoadMore(false);
@@ -73,12 +74,12 @@ export default function CardComponent() {
                                 transition={{ duration: 0.3 }}
                                 className="flex flex-col h-full p-4 bg-white rounded-lg shadow-xl"
                             >
-                                <iframe
-                                    src={card.preview}
-                                    frameBorder="0"
-                                    scrolling="no"
-                                    className="object-fill w-full mb-8 rounded-lg h-72"
-                                />
+                                <LiveProvider code={card.code}>
+                                    {/* Show Live Preview */}
+                                    <LivePreview />
+
+                                </LiveProvider>
+
 
                                 <div className="flex items-center justify-between mb-2">
                                     <div className="flex items-center"> {/* Container for userImg and title */}
