@@ -64,7 +64,7 @@ export default function Result({ params }) {
             {/* Card data */}
             {card ? (
                 // Add Separate vertical sroll 
-                <div className="h-[80vh] container p-4 bg-white rounded-lg shadow-lg lg:flex overflow-auto scrollbar-thin scrollbar-thumb-blue-200 scrollbar-track-gray-200">
+                <div className="h-[75vh] container p-4 bg-white rounded-lg shadow-lg lg:flex overflow-auto scrollbar-thin scrollbar-thumb-blue-200 scrollbar-track-gray-200">
                     <LiveProvider code={code}>
                         <div className="lg:w-1/2">
                             {/* Show LivePreview */}

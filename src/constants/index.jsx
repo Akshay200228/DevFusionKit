@@ -261,6 +261,16 @@ export const cardData = [
     content: 'Card content goes here 3.',
     userImg: '/vercel.ico',
     preview: "https://cursor-animation.sahilwagh142.repl.co",
+    code: `
+    <div className="flex items-center justify-center h-[50vh]">
+      <div style={{backgroundColor: "#3490dc"}} className="p-4">
+        <div className="p-4 text-white rounded-lg">
+            <h2 className="text-2xl font-semibold">Card Title</h2>
+            <p className="mt-2">This is a simple card with a custom background color using inline CSS.</p>
+        </div>
+      </div>
+    </div>
+  `,
   },
   {
     id: 4,
@@ -268,6 +278,15 @@ export const cardData = [
     content: 'Card content goes here 4.',
     userImg: '/vercel.ico',
     preview: "https://card-test.akshaysankpal.repl.co",
+    code: `
+    <div style={{ backgroundColor: '#4299e1' }} className="flex items-center justify-center h-[50vh]">
+      <button
+        className="px-4 py-2 mt-2 text-white bg-blue-500 rounded-full hover:bg-blue-600"
+      >
+        Click Me Here
+      </button>
+    </div>
+  `,
   },
   {
     id: 5,
@@ -275,6 +294,15 @@ export const cardData = [
     content: 'Card content goes here 5.',
     userImg: '/vercel.ico',
     preview: "https://cursor-animation.sahilwagh142.repl.co",
+    code: `
+    <div style={{ backgroundColor: '#4299e1' }} className="flex items-center justify-center h-[50vh]">
+      <button
+        className="px-4 py-2 mt-2 text-white bg-blue-500 rounded-full hover:bg-blue-600"
+      >
+        Click Me Here
+      </button>
+    </div>
+  `,
   },
   {
     id: 6,
@@ -282,6 +310,15 @@ export const cardData = [
     content: 'Card content goes here 6.',
     userImg: '/vercel.ico',
     preview: "https://card-test.akshaysankpal.repl.co",
+    code: `
+    <div style={{ backgroundColor: '#4299e1' }} className="flex items-center justify-center h-[50vh]">
+      <button
+        className="px-4 py-2 mt-2 text-white bg-blue-500 rounded-full hover:bg-blue-600"
+      >
+        Click Me Here
+      </button>
+    </div>
+  `,
   },
   {
     id: 7,
@@ -289,6 +326,15 @@ export const cardData = [
     content: 'Card content goes here 7.',
     userImg: '/vercel.ico',
     preview: "https://cursor-animation.sahilwagh142.repl.co",
+    code: `
+    <div style={{ backgroundColor: '#4299e1' }} className="flex items-center justify-center h-[50vh]">
+      <button
+        className="px-4 py-2 mt-2 text-white bg-blue-500 rounded-full hover:bg-blue-600"
+      >
+        Click Me Here
+      </button>
+    </div>
+  `,
   },
   {
     id: 8,
@@ -296,6 +342,15 @@ export const cardData = [
     content: 'Card content goes here 8.',
     userImg: '/vercel.ico',
     preview: "https://card-test.akshaysankpal.repl.co",
+    code: `
+    <div style={{ backgroundColor: '#4299e1' }} className="flex items-center justify-center h-[50vh]">
+      <button
+        className="px-4 py-2 mt-2 text-white bg-blue-500 rounded-full hover:bg-blue-600"
+      >
+        Click Me Here
+      </button>
+    </div>
+  `,
   },
   {
     id: 9,
@@ -303,6 +358,15 @@ export const cardData = [
     content: 'Card content goes here 9.',
     userImg: '/vercel.ico',
     preview: "https://cursor-animation.sahilwagh142.repl.co",
+    code: `
+    <div style={{ backgroundColor: '#4299e1' }} className="flex items-center justify-center h-[50vh]">
+      <button
+        className="px-4 py-2 mt-2 text-white bg-blue-500 rounded-full hover:bg-blue-600"
+      >
+        Click Me Here
+      </button>
+    </div>
+  `,
   },
   {
     id: 10,
@@ -310,6 +374,15 @@ export const cardData = [
     content: 'Card content goes here 10.',
     userImg: '/vercel.ico',
     preview: "https://card-test.akshaysankpal.repl.co",
+    code: `
+    <div style={{ backgroundColor: '#4299e1' }} className="flex items-center justify-center h-[50vh]">
+      <button
+        className="px-4 py-2 mt-2 text-white bg-blue-500 rounded-full hover:bg-blue-600"
+      >
+        Click Me Here
+      </button>
+    </div>
+  `,
   },
   {
     id: 11,
@@ -317,6 +390,15 @@ export const cardData = [
     content: 'Card content goes here 11.',
     userImg: '/vercel.ico',
     preview: "https://cursor-animation.sahilwagh142.repl.co",
+    code: `
+    <div style={{ backgroundColor: '#4299e1' }} className="flex items-center justify-center h-[50vh]">
+      <button
+        className="px-4 py-2 mt-2 text-white bg-blue-500 rounded-full hover:bg-blue-600"
+      >
+        Click Me Here
+      </button>
+    </div>
+  `,
   },
   {
     id: 12,
@@ -324,6 +406,15 @@ export const cardData = [
     content: 'Card content goes here 12.',
     userImg: '/vercel.ico',
     preview: "https://card-test.akshaysankpal.repl.co",
+    code: `
+    <div style={{ backgroundColor: '#4299e1' }} className="flex items-center justify-center h-[50vh]">
+      <button
+        className="px-4 py-2 mt-2 text-white bg-blue-500 rounded-full hover:bg-blue-600"
+      >
+        Click Me Here
+      </button>
+    </div>
+  `,
   },
   {
     id: 13,
@@ -478,6 +569,70 @@ export const templatesData = [
   },
   {
     id: 8,
+    imageUrl: templateImage, // Use the imported image
+    title: 'Website Template 3',
+    description: 'This is a description for Website Template 3.',
+    githubLink: 'https://github.com/Akshay200228/landing_page',
+    deployLink: 'https://landing-page-zeta-flax.vercel.app/',
+  },
+  {
+    id: 9,
+    imageUrl: templateImage, // Use the imported image
+    title: 'Website Template 3',
+    description: 'This is a description for Website Template 3.',
+    githubLink: 'https://github.com/Akshay200228/landing_page',
+    deployLink: 'https://landing-page-zeta-flax.vercel.app/',
+  },
+  {
+    id: 10,
+    imageUrl: templateImage, // Use the imported image
+    title: 'Website Template 3',
+    description: 'This is a description for Website Template 3.',
+    githubLink: 'https://github.com/Akshay200228/landing_page',
+    deployLink: 'https://landing-page-zeta-flax.vercel.app/',
+  },
+  {
+    id: 11,
+    imageUrl: templateImage, // Use the imported image
+    title: 'Website Template 3',
+    description: 'This is a description for Website Template 3.',
+    githubLink: 'https://github.com/Akshay200228/landing_page',
+    deployLink: 'https://landing-page-zeta-flax.vercel.app/',
+  },
+  {
+    id: 12,
+    imageUrl: templateImage, // Use the imported image
+    title: 'Website Template 3',
+    description: 'This is a description for Website Template 3.',
+    githubLink: 'https://github.com/Akshay200228/landing_page',
+    deployLink: 'https://landing-page-zeta-flax.vercel.app/',
+  },
+  {
+    id: 13,
+    imageUrl: templateImage, // Use the imported image
+    title: 'Website Template 3',
+    description: 'This is a description for Website Template 3.',
+    githubLink: 'https://github.com/Akshay200228/landing_page',
+    deployLink: 'https://landing-page-zeta-flax.vercel.app/',
+  },
+  {
+    id: 14,
+    imageUrl: templateImage, // Use the imported image
+    title: 'Website Template 3',
+    description: 'This is a description for Website Template 3.',
+    githubLink: 'https://github.com/Akshay200228/landing_page',
+    deployLink: 'https://landing-page-zeta-flax.vercel.app/',
+  },
+  {
+    id: 15,
+    imageUrl: templateImage, // Use the imported image
+    title: 'Website Template 3',
+    description: 'This is a description for Website Template 3.',
+    githubLink: 'https://github.com/Akshay200228/landing_page',
+    deployLink: 'https://landing-page-zeta-flax.vercel.app/',
+  },
+  {
+    id: 16,
     imageUrl: templateImage, // Use the imported image
     title: 'Website Template 3',
     description: 'This is a description for Website Template 3.',

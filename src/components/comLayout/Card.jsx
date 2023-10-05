@@ -9,8 +9,9 @@ import Image from 'next/image';
 import { LivePreview, LiveProvider } from 'react-live';
 
 export default function CardComponent() {
+    const batchSize = 9;
     const [isLoading, setIsLoading] = useState(true);
-    const [cardsToShow, setCardsToShow] = useState(9);
+    const [cardsToShow, setCardsToShow] = useState(batchSize);
     const [showLoadMore, setShowLoadMore] = useState(false);
     const [loadingMore, setLoadingMore] = useState(false);
     const [hoveredCard, setHoveredCard] = useState(null);
@@ -25,7 +26,7 @@ export default function CardComponent() {
 
     // Handle mouse enter event on a card
     const handleMouseEnter = (cardId) => {
-        setHoveredCard(cardId)
+        setHoveredCard(cardId);
     };
 
     // Handle mouse leave event on a card
@@ -37,13 +38,20 @@ export default function CardComponent() {
     const loadMore = () => {
         setLoadingMore(true);
         setTimeout(() => {
-            setCardsToShow(cardsToShow + 9);
+            setCardsToShow((prevCount) => prevCount + batchSize);
             setLoadingMore(false);
 
-            if (cardsToShow + 9 >= cardData.length) {
+            if (cardsToShow + batchSize >= cardData.length) {
                 setShowLoadMore(false);
             }
-        }, 2000)
+        }, 2000);
+    };
+
+    const getNextBatchSkeletons = () => {
+        const remainingCards = cardData.slice(cardsToShow, cardsToShow + batchSize);
+        return remainingCards.map((_, index) => (
+            <CardSkeleton key={index} />
+        ));
     };
 
     return (
@@ -66,58 +74,57 @@ export default function CardComponent() {
                             <CardSkeleton key={index} />
                         ))
                     ) : (
-                        cardData.slice(0, cardsToShow).map((card) => (
-                            <motion.div
-                                key={card.id}
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.3 }}
-                                className="flex flex-col h-full p-4 bg-white rounded-lg shadow-xl"
-                            >
-                                <LiveProvider code={card.code}>
-                                    {/* Show Live Preview */}
-                                    <LivePreview />
+                        cardData
+                            .filter((card) => card.code) // Filter out cards without a code
+                            .slice(0, cardsToShow)
+                            .map((card) => (
+                                <motion.div
+                                    key={card.id}
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ duration: 0.3 }}
+                                    className="flex flex-col h-full p-4 bg-white rounded-lg shadow-xl"
+                                >
+                                    <LiveProvider code={card.code}>
+                                        <div className="h-[50vh] mb-10 bg-blue-200 relative">
+                                            <div className="absolute inset-0">
+                                                <LivePreview />
+                                            </div>
+                                        </div>
+                                    </LiveProvider>
 
-                                </LiveProvider>
-
-
-                                <div className="flex items-center justify-between mb-2">
-                                    <div className="flex items-center"> {/* Container for userImg and title */}
-                                        <Image
-                                            src={card.userImg}
-                                            alt="User Image"
-                                            width={36}
-                                            height={36}
-                                            className="mr-4 rounded-full"
-                                        />
-                                        <h2 className="text-xl font-semibold text-gray-600">{card.userName}</h2>
+                                    <div className="flex items-center justify-between mb-2">
+                                        <div className="flex items-center">
+                                            <Image
+                                                src={card.userImg}
+                                                alt="User Image"
+                                                width={36}
+                                                height={36}
+                                                className="mr-4 rounded-full"
+                                            />
+                                            <h2 className="text-xl font-semibold text-gray-600">{card.userName}</h2>
+                                        </div>
+                                        <Link
+                                            href={`/component/${card.id}`}
+                                            className={`p-2 text-blue-400 rounded-full hover:bg-blue-200 ${hoveredCard === card.id ? 'pl-4 flex items-center' : ''}`}
+                                            onMouseEnter={() => handleMouseEnter(card.id)}
+                                            onMouseLeave={handleMouseLeave}
+                                        >
+                                            {hoveredCard === card.id ? (
+                                                <>
+                                                    <span className="mr-2 text-blue-800">View More</span>
+                                                    <FaCode className="ml-2 text-4xl " />
+                                                </>
+                                            ) : (
+                                                <FaCode className="text-4xl" />
+                                            )}
+                                        </Link>
                                     </div>
-                                    <Link
-                                        href={`/component/${card.id}`}
-                                        className={`p-2 text-blue-400 rounded-full hover:bg-blue-200 ${hoveredCard === card.id ? 'pl-4 flex items-center' : ''
-                                            }`}
-                                        onMouseEnter={() => handleMouseEnter(card.id)}
-                                        onMouseLeave={handleMouseLeave}
-                                    >
-                                        {hoveredCard === card.id ? (
-                                            <>
-                                                <span className="mr-2 text-blue-800">View More</span>
-                                                <FaCode className="ml-2 text-4xl " />
-                                            </>
-                                        ) : (
-                                            <FaCode className="text-4xl" />
-                                        )}
-                                    </Link>
-                                </div>
-                            </motion.div>
-                        ))
+                                </motion.div>
+                            ))
                     )}
 
-                    {loadingMore && (
-                        [...Array(9)].map((_, index) => (
-                            <CardSkeleton key={index} />
-                        ))
-                    )}
+                    {loadingMore && getNextBatchSkeletons()}
                 </motion.div>
 
                 {showLoadMore && (
@@ -129,8 +136,7 @@ export default function CardComponent() {
                     >
                         <button
                             onClick={loadMore}
-                            className={`px-4 py-2 mt-4 text-white bg-blue-500 rounded-full hover:bg-blue-600 ${loadingMore ? 'hidden' : ''
-                                }`}
+                            className={`px-4 py-2 mt-4 text-white bg-blue-500 rounded-full hover:bg-blue-600 ${loadingMore ? 'hidden' : ''}`}
                             disabled={loadingMore}
                         >
                             {loadingMore ? 'Loading...' : 'Load More'}
