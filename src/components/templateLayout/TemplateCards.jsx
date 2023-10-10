@@ -1,7 +1,8 @@
 "use client"
 
 import Image from 'next/image'; // Import next/image
-import { FaCode, FaGithub } from 'react-icons/fa';
+import { FaGithub } from 'react-icons/fa';
+import { FiExternalLink } from 'react-icons/fi';
 import Link from 'next/link';
 import { templatesData } from '@/constants';
 
@@ -39,7 +40,7 @@ export default function TemplateCards() {
                     target='_blank'
                     className="flex items-center p-3 text-2xl text-blue-400 rounded-full lg:hover:bg-blue-100"
                   >
-                    <FaCode /> 
+                    <FiExternalLink />
                   </Link>
                 </div>
               </div>

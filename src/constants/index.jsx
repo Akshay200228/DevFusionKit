@@ -244,7 +244,6 @@ export const cardData = [
     userName: 'Card Title 2',
     content: 'Card content goes here 2.',
     userImg: '/vercel.ico',
-    preview: "https://card-test.akshaysankpal.repl.co",
     code: `
     <div style={{ backgroundColor: '#4299e1' }} className="flex items-center justify-center h-[50vh]">
       <button
@@ -260,9 +259,8 @@ export const cardData = [
     userName: 'Card Title 3',
     content: 'Card content goes here 3.',
     userImg: '/vercel.ico',
-    preview: "https://cursor-animation.sahilwagh142.repl.co",
     code: `
-    <div className="flex items-center justify-center h-[50vh]">
+    <div className="flex items-center p-4 justify-center h-[50vh]">
       <div style={{backgroundColor: "#3490dc"}} className="p-4">
         <div className="p-4 text-white rounded-lg">
             <h2 className="text-2xl font-semibold">Card Title</h2>
@@ -277,7 +275,6 @@ export const cardData = [
     userName: 'Card Title 4',
     content: 'Card content goes here 4.',
     userImg: '/vercel.ico',
-    preview: "https://card-test.akshaysankpal.repl.co",
     code: `
     <div style={{ backgroundColor: '#4299e1' }} className="flex items-center justify-center h-[50vh]">
       <button
@@ -293,7 +290,6 @@ export const cardData = [
     userName: 'Card Title 5',
     content: 'Card content goes here 5.',
     userImg: '/vercel.ico',
-    preview: "https://cursor-animation.sahilwagh142.repl.co",
     code: `
     <div style={{ backgroundColor: '#4299e1' }} className="flex items-center justify-center h-[50vh]">
       <button
@@ -309,7 +305,6 @@ export const cardData = [
     userName: 'Card Title 6',
     content: 'Card content goes here 6.',
     userImg: '/vercel.ico',
-    preview: "https://card-test.akshaysankpal.repl.co",
     code: `
     <div style={{ backgroundColor: '#4299e1' }} className="flex items-center justify-center h-[50vh]">
       <button
@@ -325,7 +320,6 @@ export const cardData = [
     userName: 'Card Title 7',
     content: 'Card content goes here 7.',
     userImg: '/vercel.ico',
-    preview: "https://cursor-animation.sahilwagh142.repl.co",
     code: `
     <div style={{ backgroundColor: '#4299e1' }} className="flex items-center justify-center h-[50vh]">
       <button
@@ -341,7 +335,6 @@ export const cardData = [
     userName: 'Card Title 8',
     content: 'Card content goes here 8.',
     userImg: '/vercel.ico',
-    preview: "https://card-test.akshaysankpal.repl.co",
     code: `
     <div style={{ backgroundColor: '#4299e1' }} className="flex items-center justify-center h-[50vh]">
       <button
@@ -357,7 +350,6 @@ export const cardData = [
     userName: 'Card Title 9',
     content: 'Card content goes here 9.',
     userImg: '/vercel.ico',
-    preview: "https://cursor-animation.sahilwagh142.repl.co",
     code: `
     <div style={{ backgroundColor: '#4299e1' }} className="flex items-center justify-center h-[50vh]">
       <button
@@ -373,7 +365,6 @@ export const cardData = [
     userName: 'Card Title 10',
     content: 'Card content goes here 10.',
     userImg: '/vercel.ico',
-    preview: "https://card-test.akshaysankpal.repl.co",
     code: `
     <div style={{ backgroundColor: '#4299e1' }} className="flex items-center justify-center h-[50vh]">
       <button
@@ -389,7 +380,6 @@ export const cardData = [
     userName: 'Card Title 11',
     content: 'Card content goes here 11.',
     userImg: '/vercel.ico',
-    preview: "https://cursor-animation.sahilwagh142.repl.co",
     code: `
     <div style={{ backgroundColor: '#4299e1' }} className="flex items-center justify-center h-[50vh]">
       <button
@@ -405,7 +395,6 @@ export const cardData = [
     userName: 'Card Title 12',
     content: 'Card content goes here 12.',
     userImg: '/vercel.ico',
-    preview: "https://card-test.akshaysankpal.repl.co",
     code: `
     <div style={{ backgroundColor: '#4299e1' }} className="flex items-center justify-center h-[50vh]">
       <button
@@ -421,91 +410,79 @@ export const cardData = [
     userName: 'Card Title 13',
     content: 'Card content goes here 13.',
     userImg: '/vercel.ico',
-    preview: "https://cursor-animation.sahilwagh142.repl.co",
   },
   {
     id: 14,
     userName: 'Card Title 14',
     content: 'Card content goes here 14.',
     userImg: '/vercel.ico',
-    preview: "https://card-test.akshaysankpal.repl.co",
   },
   {
     id: 15,
     userName: 'Card Title 15',
     content: 'Card content goes here 15.',
     userImg: '/vercel.ico',
-    preview: "https://cursor-animation.sahilwagh142.repl.co",
   },
   {
     id: 16,
     userName: 'Card Title 16',
     content: 'Card content goes here 16.',
     userImg: '/vercel.ico',
-    preview: "https://card-test.akshaysankpal.repl.co",
+    
   },
   {
     id: 17,
     userName: 'Card Title 17',
     content: 'Card content goes here 17.',
     userImg: '/vercel.ico',
-    preview: "https://cursor-animation.sahilwagh142.repl.co",
   },
   {
     id: 18,
     userName: 'Card Title 18',
     content: 'Card content goes here 18.',
     userImg: '/vercel.ico',
-    preview: "https://card-test.akshaysankpal.repl.co",
   },
   {
     id: 19,
     userName: 'Card Title 19',
     content: 'Card content goes here 19.',
     userImg: '/vercel.ico',
-    preview: "https://cursor-animation.sahilwagh142.repl.co",
   },
   {
     id: 20,
     userName: 'Card Title 20',
     content: 'Card content goes here 20.',
     userImg: '/vercel.ico',
-    preview: "https://card-test.akshaysankpal.repl.co",
   },
   {
     id: 21,
     userName: 'Card Title 21',
     content: 'Card content goes here 21.',
     userImg: '/vercel.ico',
-    preview: "https://cursor-animation.sahilwagh142.repl.co",
   },
   {
     id: 22,
     userName: 'Card Title 22',
     content: 'Card content goes here 22.',
     userImg: '/vercel.ico',
-    preview: "https://card-test.akshaysankpal.repl.co",
   },
   {
     id: 23,
     userName: 'Card Title 23',
     content: 'Card content goes here 23.',
     userImg: '/vercel.ico',
-    preview: "https://cursor-animation.sahilwagh142.repl.co",
   },
   {
     id: 24,
     userName: 'Card Title 24',
     content: 'Card content goes here 24.',
     userImg: '/vercel.ico',
-    preview: "https://card-test.akshaysankpal.repl.co",
   },
   {
     id: 25,
     userName: 'Card Title 25',
     content: 'Card content goes here 25.',
     userImg: '/vercel.ico',
-    preview: "https://cursor-animation.sahilwagh142.repl.co",
   },
 ];
 

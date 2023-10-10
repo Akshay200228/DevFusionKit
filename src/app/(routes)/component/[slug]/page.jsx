@@ -5,9 +5,9 @@ import { useRouter } from 'next/navigation';
 import { RiArrowLeftLine } from 'react-icons/ri';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 
-export default function Result({ params }) {
+export default function Slug({ params }) {
     const router = useRouter();
-    const cardId = parseInt(params.result);
+    const cardId = parseInt(params.slug);
     const initialCard = cardData.find((card) => card.id === cardId);
     const [card, setCard] = useState(initialCard);
     const [code, setCode] = useState(initialCard.code);
@@ -57,7 +57,7 @@ export default function Result({ params }) {
                     onClick={handleCopyCode}
                     className={`px-4 py-2 text-white ${isCodeCopied ? 'bg-green-500' : 'bg-blue-500'} xl:mr-8 rounded-2xl`}
                 >
-                    {isCodeCopied ? 'Copied' : 'Copy'}
+                    {isCodeCopied ? '✓ Copied code' : 'Copy code'}
                 </button>
             </div>
 
@@ -77,7 +77,7 @@ export default function Result({ params }) {
                             {/* Live preview using react-live */}
                             <div className="h-[70vh] overflow-auto scrollbar-thin scrollbar-thumb-blue-200 scrollbar-track-gray-200">
                                 <div className='h-full'>
-                                    <LiveEditor onChange={handleCodeChange} />
+                                    <LiveEditor onChange={handleCodeChange} className='text-lg' />
                                 </div>
                             </div>
                         </div>
