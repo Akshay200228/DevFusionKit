@@ -1,4 +1,4 @@
-# DevFusionKit
+# DevNexux
 
 🚀 Ignite Your Web Dev Creativity!
 

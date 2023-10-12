@@ -55,11 +55,11 @@ const Header = () => {
           </div>
           {/* Buttons */}
           <div className="flex items-center gap-6">
-            <Button href="#" variant="outline" className="hidden lg:block">
-              Sign Up
+            <Button href="/" variant="outline" className="hidden lg:block">
+              Get Started
             </Button>
-            <Button href="#" className="hidden lg:block">
-              Log In
+            <Button href="/signup" className="hidden lg:block">
+              Sign Up
             </Button>
             {/* Mobile NavLinks */}
             <Popover className="lg:hidden">
