@@ -32,7 +32,6 @@ export default function SignUp() {
       router.push('/login');
     } catch (error) {
       console.error(error);
-      // Handle errors (e.g., validation errors, server errors)
     }
   };
 

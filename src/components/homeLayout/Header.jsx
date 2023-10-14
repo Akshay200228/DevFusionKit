@@ -10,6 +10,7 @@ import { IoIosArrowUp } from "react-icons/io";
 import { navData } from "@/constants";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
+import { useAuth } from "@/context/useAuth";
 
 const MobileNavLink = ({ children, ...props }) => {
   return (
@@ -38,6 +39,10 @@ const Header = () => {
       return () => window.removeEventListener("scroll", handleScroll);
     }
   }, []);
+
+  const { user, error, isLoading } = useAuth(); // Destructure isLoading
+  console.log("User data", user)
+
   return (
     <header
       className={`w-full sticky top-0 z-50 bg-white  ${isScrolled && "shadow-xl"
@@ -55,12 +60,28 @@ const Header = () => {
           </div>
           {/* Buttons */}
           <div className="flex items-center gap-6">
-            <Button href="/" variant="outline" className="hidden lg:block">
-              Get Started
-            </Button>
-            <Button href="/signup" className="hidden lg:block">
-              Sign Up
-            </Button>
+            {isLoading ? (
+              <p>Loading user data...</p> // Display a loading message
+            ) : user ? (
+              // Display user data
+              <div>
+                <h2>User Profile</h2>
+                <p>Name: {user.name}</p>
+                <p>Email: {user.email}</p>
+                <p>Username: {user.username}</p>
+                <img src={user.avatar} alt={user.name} className="w-8 h-8 rounded-full" />
+              </div>
+            ) : (
+              <>
+                <Button href="/" variant="outline" className="hidden lg:block">
+                  Get Started
+                </Button>
+                <Button href="/signup" className="hidden lg:block">
+                  Sign Up
+                </Button>
+              </>
+            )
+            }
             {/* Mobile NavLinks */}
             <Popover className="lg:hidden">
               {({ open }) => (

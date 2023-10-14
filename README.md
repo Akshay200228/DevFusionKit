@@ -1,4 +1,4 @@
-# DevNexux
+# DevNexus
 
 🚀 Ignite Your Web Dev Creativity!
 
