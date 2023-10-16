@@ -67,7 +67,9 @@ const Header = ({ userId }) => {
           {/* Buttons */}
           <div className="flex items-center gap-6">
             {isLoading ? (
-              <p>Loading user data...</p> // Display a loading message
+              // <div className="w-12 h-12 border-t-4 border-b-4 border-blue-500 rounded-full animate-spin" />
+              // OR
+              <div className="w-12 h-12 bg-gray-300 rounded-full animate-pulse" />
             ) : user ? (
               // Display user data
               <div className="relative group" onClick={toggleDropdown}>
@@ -76,14 +78,14 @@ const Header = ({ userId }) => {
                   alt={user.name}
                   width={48}
                   height={48}
-                  className="w-12 h-12 rounded-full cursor-pointer"
+                  className="w-12 h-12 border-2 border-blue-600 rounded-full cursor-pointer"
                 />
                 {isDropdownOpen && (
                   <div className="absolute right-0 z-10 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg w-72 top-12">
                     <div className="py-2">
-                      <a href="/profile" className="block px-4 py-2 text-gray-800 hover:text-primary hover:bg-gray-100">
+                      <Link href="/profile" className="block px-4 py-2 text-gray-800 hover:text-primary hover:bg-gray-100">
                         Profile
-                      </a>
+                      </Link>
                       <button
                         className="block w-full px-4 py-2 text-left text-red-600 hover:text-red-800 hover:bg-gray-100"
                       // onClick={handleLogout}
