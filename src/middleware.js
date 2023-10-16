@@ -7,7 +7,7 @@ export default function middleware(request) {
 
   const isPublicPath = path === '/login' || path === '/signup';
   const token = request.cookies.get('token');
-  console.log(token)
+  // console.log(token)
 
   // If it's a protected route and not logged in, store the requested URL and redirect to the login page
   if (!isPublicPath && !token) {

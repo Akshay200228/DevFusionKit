@@ -11,6 +11,9 @@ import { navData } from "@/constants";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useAuth } from "@/context/useAuth";
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie"; // Import the Cookies library
+
 
 const MobileNavLink = ({ children, ...props }) => {
   return (
@@ -27,6 +30,7 @@ const MobileNavLink = ({ children, ...props }) => {
 const Header = ({ userId }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const router = useRouter();
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
@@ -46,8 +50,13 @@ const Header = ({ userId }) => {
     }
   }, []);
 
+  const handleLogout = () => {
+    // Clear the user's authentication token stored in a cookie
+    Cookies.remove("token");
+    router.push("/login")
+  };
+
   const { user, error, isLoading } = useAuth(userId); // Destructure isLoading
-  console.log("User data", user)
 
   return (
     <header
@@ -88,7 +97,7 @@ const Header = ({ userId }) => {
                       </Link>
                       <button
                         className="block w-full px-4 py-2 text-left text-red-600 hover:text-red-800 hover:bg-gray-100"
-                      // onClick={handleLogout}
+                        onClick={handleLogout}
                       >
                         Log Out
                       </button>
