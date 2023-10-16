@@ -16,26 +16,24 @@ export function useAuth() {
     const token = getCookie('token'); // Get the user's token from cookies
 
     if (token) {
-      // Replace 'userId' with the dynamic user ID that you want to fetch
-      fetchUserData(token, '652a2755e12d8bc9dc9ec249'); // Pass the dynamic user ID here
+      fetchUserData(token);
     } else {
       setUser(null);
       setIsLoading(false);
     }
   }, []);
 
-  // Modify the function to accept a dynamic user ID
-  const fetchUserData = async (token, userId) => {
+  const fetchUserData = async (token) => {
     try {
-      console.log("Sending request to: http://localhost:8000/api/users/" + userId);
-      
-      const response = await axios.get(`http://localhost:8000/api/users/${userId}`, {
+      console.log('Sending request to retrieve user data...');
+
+      const response = await axios.get('http://localhost:8000/api/users/authUser', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
-      console.log("Response data:", response.data);
+      console.log('Response data:', response.data);
 
       setUser(response.data);
       setIsLoading(false);

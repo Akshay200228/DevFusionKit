@@ -32,7 +32,7 @@ export default function Login() {
       setLoading(true);
       const response = await axios.post('http://localhost:8000/api/users/login', credentials);
 
-      const { token, user  } = response.data;
+      const { token  } = response.data;
       console.log(response.data);
 
       // Simulate successful login and set a token in cookies
