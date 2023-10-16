@@ -24,11 +24,17 @@ const MobileNavLink = ({ children, ...props }) => {
   );
 };
 
-const Header = () => {
+const Header = ({ userId }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   const handleScroll = () => {
     const scrollY = window.scrollY;
     setIsScrolled(scrollY > 50);
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
   };
 
   useEffect(() => {
@@ -40,7 +46,7 @@ const Header = () => {
     }
   }, []);
 
-  const { user, error, isLoading } = useAuth(); // Destructure isLoading
+  const { user, error, isLoading } = useAuth(userId); // Destructure isLoading
   console.log("User data", user)
 
   return (
@@ -64,12 +70,30 @@ const Header = () => {
               <p>Loading user data...</p> // Display a loading message
             ) : user ? (
               // Display user data
-              <div>
-                <h2>User Profile</h2>
-                <p>Name: {user.name}</p>
-                <p>Email: {user.email}</p>
-                <p>Username: {user.username}</p>
-                <img src={user.avatar} alt={user.name} className="w-8 h-8 rounded-full" />
+              <div className="relative group" onClick={toggleDropdown}>
+                <img
+                  src={user.avatar}
+                  alt={user.name}
+                  width={48}
+                  height={48}
+                  className="w-12 h-12 rounded-full cursor-pointer"
+                />
+                {isDropdownOpen && (
+                  <div className="absolute right-0 z-10 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg w-72 top-12">
+                    <div className="py-2">
+                      <a href="/profile" className="block px-4 py-2 text-gray-800 hover:text-primary hover:bg-gray-100">
+                        Profile
+                      </a>
+                      <button
+                        className="block w-full px-4 py-2 text-left text-red-600 hover:text-red-800 hover:bg-gray-100"
+                      // onClick={handleLogout}
+                      >
+                        Log Out
+                      </button>
+                    </div>
+                  </div>
+                )}
+
               </div>
             ) : (
               <>

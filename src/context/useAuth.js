@@ -14,32 +14,36 @@ export function useAuth() {
 
   useEffect(() => {
     const token = getCookie('token'); // Get the user's token from cookies
-    console.log("token sadsadsad", token)
 
     if (token) {
-      fetchUserData(token);
+      // Replace 'userId' with the dynamic user ID that you want to fetch
+      fetchUserData(token, '652a2755e12d8bc9dc9ec249'); // Pass the dynamic user ID here
     } else {
       setUser(null);
       setIsLoading(false);
     }
   }, []);
 
-  const fetchUserData = (token) => {
-    axios
-      .get('http://localhost:8000/api/users/652a2755e12d8bc9dc9ec249', {
+  // Modify the function to accept a dynamic user ID
+  const fetchUserData = async (token, userId) => {
+    try {
+      console.log("Sending request to: http://localhost:8000/api/users/" + userId);
+      
+      const response = await axios.get(`http://localhost:8000/api/users/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      })
-      .then((response) => {
-        setUser(response.data);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.error('Error fetching user data:', err);
-        setError(err);
-        setIsLoading(false);
       });
+
+      console.log("Response data:", response.data);
+
+      setUser(response.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+      setError(error);
+      setIsLoading(false);
+    }
   };
 
   return { user, error, isLoading };

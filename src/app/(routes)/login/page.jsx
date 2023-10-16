@@ -28,8 +28,8 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
     try {
+      setLoading(true);
       const response = await axios.post('http://localhost:8000/api/users/login', credentials);
 
       const { token } = response.data;
