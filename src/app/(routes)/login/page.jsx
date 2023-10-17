@@ -31,9 +31,9 @@ export default function Login() {
     try {
       setLoading(true);
       // const response = await axios.post('https://devnexus-server.onrender.com/api/users/login', credentials);
-      const apiUrl = process.env.NEXT_PUBLIC || 'https://devnexus-server.onrender.com';
+      // const apiUrl = process.env.NEXT_PUBLIC || 'https://devnexus-server.onrender.com';
 
-      const response = await axios.post(`${apiUrl}/api/users/login`, credentials);
+      const response = await axios.post(`${process.env.NEXT_PUBLIC}/api/users/login`, credentials);
       
       const { token  } = response.data;
       console.log(response.data);
