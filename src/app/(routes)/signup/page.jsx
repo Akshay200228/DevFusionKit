@@ -27,9 +27,9 @@ export default function SignUp() {
     e.preventDefault();
     try {
       // const response = await axios.post('http://localhost:8000/api/users/signup', formData);
-      // const apiUrl = process.env.NEXT_PUBLIC || 'https://devnexus-server.onrender.com';
+      const apiUrl = process.env.NEXT_PUBLIC || 'https://devnexus-server.onrender.com';
 
-      const response = await axios.post(`${process.env.NEXT_PUBLIC}/api/users/signup`, formData);
+      const response = await axios.post(`${apiUrl}/api/users/signup`, formData);
       console.log(response.data);
       setSuccessMessage('User registered successfully!');
       router.push('/login');
