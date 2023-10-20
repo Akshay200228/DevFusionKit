@@ -33,6 +33,7 @@ export const config = {
     '/login',
     '/component',
     '/templates',
-    '/animations'
+    '/animations',
+    '/code-comp',
   ]
 };

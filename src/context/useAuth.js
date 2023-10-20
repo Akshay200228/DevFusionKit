@@ -1,11 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import getCookie from './getCookie';
 
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
-}
+
 
 export function useAuth() {
   const [user, setUser] = useState(null);
@@ -27,7 +24,8 @@ export function useAuth() {
     try {
       console.log('Sending request to retrieve user data...');
 
-      const apiUrl = process.env.NEXT_PUBLIC || 'https://devnexus-server.onrender.com';
+      // const apiUrl = process.env.NEXT_PUBLIC || 'https://devnexus-server.onrender.com';
+      const apiUrl = 'http://localhost:8000';
       const response = await axios.get(`${apiUrl}/api/users/authUser`, {
         headers: {
           Authorization: `Bearer ${token}`,
