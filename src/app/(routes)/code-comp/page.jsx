@@ -4,6 +4,7 @@ import axios from 'axios';
 import Container from '@/components/homeLayout/Container';
 import getCookie from '@/context/getCookie';
 import { LiveProvider, LiveEditor, LivePreview } from 'react-live';
+import Button from '@/components/homeLayout/Button';
 
 const CreateCodeComponentForm = () => {
     const [formData, setFormData] = useState({
@@ -76,9 +77,9 @@ const CreateCodeComponentForm = () => {
                         </LiveProvider>
                     </div>
                 </div>
-                <button type="submit" className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">
+                <Button href="/">
                     Create Code Component
-                </button>
+                </Button>
             </form>
         </Container>
     );
