@@ -66,22 +66,24 @@ const CreateCodeComponentForm = () => {
                     />
                 </div>
                 <div className="flex gap-4 mb-4">
-                    <div className='w-[50%] bg-blue-200 h-[50vh] overflow-y-auto'>
-                        <LivePreview />
-                    </div>
-                    <div style={{ width: '50%' }}>
-                        <LiveProvider code={formData.code}>
+                    <LiveProvider code={formData.code}>
+                        <div className='w-[50%] bg-blue-200 h-[50vh] overflow-y-auto'>
+                            <LivePreview />
+                            {/* </LiveProvider> */}
+                        </div>
+                        <div style={{ width: '50%' }}>
+                            {/* <LiveProvider code={formData.code}> */}
                             <LiveEditor
                                 className="overflow-y-auto bg-slate-900 h-[50vh]"
                             />
-                        </LiveProvider>
-                    </div>
+                        </div>
+                    </LiveProvider>
                 </div>
                 <Button>
                     Sumbit
                 </Button>
             </form>
-        </Container>
+        </Container >
     );
 };
 
