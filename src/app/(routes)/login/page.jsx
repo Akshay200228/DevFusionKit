@@ -30,15 +30,20 @@ export default function Login() {
     e.preventDefault();
     try {
       setLoading(true);
-      const apiUrl = process.env.NEXT_PUBLIC || 'https://devnexus-server.onrender.com';
-      // const apiUrl = 'http://localhost:8000';
+      // const apiUrl = process.env.NEXT_PUBLIC || 'https://devnexus-server.onrender.com';
+      const apiUrl = 'http://localhost:8000';
       const response = await axios.post(`${apiUrl}/api/users/login`, credentials);
-      
-      const { token  } = response.data;
+
+      const { token } = response.data;
       console.log(response.data);
 
+      const tokenExpirationDays = 7;
+      const expirationDate = new Date();
+      expirationDate.setDate(expirationDate.getDate() + tokenExpirationDays);
+
+
       // Simulate successful login and set a token in cookies
-      Cookies.set('token', token);
+      Cookies.set('token', token, { expires: expirationDate });
 
       // Redirect the user back to the initially requested page or to the root path if no specific page was requested
       const requestedURL = currentPathname || '/';

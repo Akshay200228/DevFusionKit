@@ -77,8 +77,8 @@ const CreateCodeComponentForm = () => {
                         </LiveProvider>
                     </div>
                 </div>
-                <Button href="/">
-                    Create Code Component
+                <Button>
+                    Sumbit
                 </Button>
             </form>
         </Container>
