@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import getCookie from './getCookie';
 
-
-
 export function useAuth() {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);

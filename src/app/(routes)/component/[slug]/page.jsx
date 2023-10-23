@@ -4,6 +4,7 @@ import { cardData } from '@/constants';
 import { useRouter } from 'next/navigation';
 import { RiArrowLeftLine } from 'react-icons/ri';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
+import LiveEditorPreview from '@/components/comLayout/create-code-comp/LiveEditorPreview';
 
 export default function Slug({ params }) {
     const router = useRouter();
@@ -63,7 +64,6 @@ export default function Slug({ params }) {
 
             {/* Card data */}
             {card ? (
-                // Add Separate vertical sroll 
                 <div className="h-[75vh] container p-4 bg-white rounded-lg shadow-lg lg:flex overflow-auto scrollbar-thin scrollbar-thumb-blue-200 scrollbar-track-gray-200">
                     <LiveProvider code={code}>
                         <div className="lg:w-1/2">
@@ -83,6 +83,9 @@ export default function Slug({ params }) {
                         </div>
                     </LiveProvider>
                 </div>
+
+                // Use the LiveEditorPreview component here
+                // <LiveEditorPreview Input={code} handleChange={handleCodeChange} />
             ) : (
                 <p className="text-2xl font-semibold text-red-600">Not found.</p>
             )}
