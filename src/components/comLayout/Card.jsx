@@ -1,12 +1,12 @@
 "use client";
 import { useEffect, useState } from 'react';
-import { cardData } from '@/constants';
 import { FaCode } from 'react-icons/fa';
 import CardSkeleton from './CardSkeleton';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { LivePreview, LiveProvider } from 'react-live';
+import { devLogo } from '@/images';
 
 export default function CardComponent() {
     const batchSize = 9;
@@ -15,13 +15,25 @@ export default function CardComponent() {
     const [showLoadMore, setShowLoadMore] = useState(false);
     const [loadingMore, setLoadingMore] = useState(false);
     const [hoveredCard, setHoveredCard] = useState(null);
+    const [cardData, setCardData] = useState([]);
 
-    // Simulate loading effect
+    // Fetch data from the API
     useEffect(() => {
-        setTimeout(() => {
-            setIsLoading(false);
-            setShowLoadMore(true);
-        }, 2000);
+        const fetchData = async () => {
+            try {
+                const response = await fetch("http://localhost:8000/api/code-components/");
+                if (response.ok) {
+                    const data = await response.json();
+                    setCardData(data);
+                    setIsLoading(false);
+                    setShowLoadMore(true);
+                }
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+
+        fetchData();
     }, []);
 
     // Handle mouse enter event on a card
@@ -96,7 +108,7 @@ export default function CardComponent() {
                                     <div className="flex items-center justify-between mb-2">
                                         <div className="flex items-center">
                                             <Image
-                                                src={card.userImg}
+                                                src={devLogo}
                                                 alt="User Image"
                                                 width={36}
                                                 height={36}
