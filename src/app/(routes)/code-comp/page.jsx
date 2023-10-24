@@ -1,19 +1,49 @@
 "use client"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Container from '@/components/homeLayout/Container';
 import Button from '@/components/homeLayout/Button';
 import getCookie from '@/context/getCookie';
 import LiveEditorPreview from '@/components/comLayout/create-code-comp/LiveEditorPreview';
+import { FiCheckCircle, FiAlertCircle } from 'react-icons/fi';
 
 const CreateCodeComponentForm = () => {
-    const [formData, setFormData] = useState({
+    const initialFormData = {
         title: '',
         description: '',
         code: '<div className="flex items-center p-4 justify-center h-[50vh]">\n\t\t//code here \n</div>',
-    });
+    };
 
-    const [codeInput, setCodeInput] = useState(formData.code);
+    const [formData, setFormData] = useState(initialFormData);
+    const [codeInput, setCodeInput] = useState(initialFormData.code);
+    const [loading, setLoading] = useState(false);
+    const [successMessage, setSuccessMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+
+    useEffect(() => {
+        let successTimer;
+        let errorTimer;
+
+        // Clear success message after 3 seconds
+        if (successMessage) {
+            successTimer = setTimeout(() => {
+                setSuccessMessage('');
+            }, 3000);
+        }
+
+        // Clear error message after 3 seconds
+        if (errorMessage) {
+            errorTimer = setTimeout(() => {
+                setErrorMessage('');
+            }, 3000);
+        }
+
+        // Cleanup timers on unmount
+        return () => {
+            clearTimeout(successTimer);
+            clearTimeout(errorTimer);
+        };
+    }, [successMessage, errorMessage]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -27,13 +57,25 @@ const CreateCodeComponentForm = () => {
         setCodeInput(newCode);
     };
 
+    const resetForm = () => {
+        setFormData(initialFormData);
+        setCodeInput(initialFormData.code);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Validate the "title" and "description" fields
+        if (!formData.title.trim() || !formData.description.trim()) {
+            setSuccessMessage('');
+            setErrorMessage('Title and description are required fields.');
+            return;
+        }
+
+        setLoading(true); // Show loading
+
         try {
             const token = getCookie('token');
-            console.log("Token", token);
-
             const updatedFormData = { ...formData, code: codeInput };
 
             const response = await axios.post(`http://localhost:8000/api/code-components/`, updatedFormData, {
@@ -43,8 +85,17 @@ const CreateCodeComponentForm = () => {
             });
 
             console.log('Code component created: ', response.data);
+
+            setSuccessMessage('Code component created successfully!');
+            setErrorMessage(''); // Clear any previous error messages
+
+            // Reset the form after a successful submission
+            resetForm();
         } catch (error) {
-            console.error('Error creating code component:', error);
+            setSuccessMessage('');
+            setErrorMessage('Error creating code component: ' + error.message);
+        } finally {
+            setLoading(false); // Hide loading
         }
     };
 
@@ -79,11 +130,27 @@ const CreateCodeComponentForm = () => {
 
                 {/* Use the LiveEditorPreview component here */}
                 <LiveEditorPreview Input={codeInput} handleChange={handleCodeInputChange} />
-                
-                <Button className="mt-4">
-                    Submit
+
+                <Button type="submit" className="mt-4" disabled={loading}>
+                    {loading ? 'Submitting...' : 'Submit'}
                 </Button>
             </form>
+
+            {/* Display success and error messages in the bottom-right corner */}
+            {successMessage && (
+                <div className="fixed z-10 flex items-center px-4 py-3 text-green-800 bg-green-100 rounded bottom-4 right-4">
+                    <FiCheckCircle className="mr-2 text-xl text-green-600" />
+                    {successMessage}
+                </div>
+            )}
+
+            {errorMessage && (
+                <div className="fixed z-10 flex items-center px-4 py-3 text-red-800 bg-red-100 rounded bottom-4 right-4">
+                    <FiAlertCircle className="mr-2 text-xl text-red-600" />
+                    {errorMessage}
+                </div>
+            )}
+
         </Container>
     );
 };
