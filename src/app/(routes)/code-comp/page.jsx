@@ -2,10 +2,9 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Container from '@/components/homeLayout/Container';
-import Button from '@/components/homeLayout/Button';
 import getCookie from '@/context/getCookie';
-import LiveEditorPreview from '@/components/comLayout/create-code-comp/LiveEditorPreview';
-import { FiCheckCircle, FiAlertCircle } from 'react-icons/fi';
+import Message from '@/components/comLayout/create-code-comp/Message';
+import CreateCompForm from '@/components/comLayout/create-code-comp/CreateCompForm';
 
 const CreateCodeComponentForm = () => {
     const initialFormData = {
@@ -101,55 +100,20 @@ const CreateCodeComponentForm = () => {
 
     return (
         <Container>
-            <form onSubmit={handleSubmit} className="max-w-full mx-auto mt-4">
-                <div className="mb-4">
-                    <label htmlFor="title" className="block mb-2 text-sm font-bold text-gray-700">
-                        Title
-                    </label>
-                    <input
-                        type="text"
-                        id="title"
-                        name="title"
-                        value={formData.title}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:border-blue-500"
-                    />
-                </div>
-                <div className="mb-4">
-                    <label htmlFor="description" className="block mb-2 text-sm font-bold text-gray-700">
-                        Description
-                    </label>
-                    <textarea
-                        id="description"
-                        name="description"
-                        value={formData.description}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:border-blue-500"
-                    />
-                </div>
+            {/* Form */}
+            <CreateCompForm
+                formData={formData}
+                codeInput={codeInput}
+                loading={loading}
+                handleInputChange={handleInputChange}
+                handleCodeInputChange={handleCodeInputChange}
+                handleSubmit={handleSubmit}
+            />
 
-                {/* Use the LiveEditorPreview component here */}
-                <LiveEditorPreview Input={codeInput} handleChange={handleCodeInputChange} />
+            {/* Display success and error messages with animations */}
 
-                <Button type="submit" className="mt-4" disabled={loading}>
-                    {loading ? 'Submitting...' : 'Submit'}
-                </Button>
-            </form>
-
-            {/* Display success and error messages in the bottom-right corner */}
-            {successMessage && (
-                <div className="fixed z-10 flex items-center px-4 py-3 text-green-800 bg-green-100 rounded bottom-4 right-4">
-                    <FiCheckCircle className="mr-2 text-xl text-green-600" />
-                    {successMessage}
-                </div>
-            )}
-
-            {errorMessage && (
-                <div className="fixed z-10 flex items-center px-4 py-3 text-red-800 bg-red-100 rounded bottom-4 right-4">
-                    <FiAlertCircle className="mr-2 text-xl text-red-600" />
-                    {errorMessage}
-                </div>
-            )}
+            {successMessage && <Message type="success" message={successMessage} />}
+            {errorMessage && <Message type="error" message={errorMessage} />}
 
         </Container>
     );
