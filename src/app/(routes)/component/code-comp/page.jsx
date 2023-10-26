@@ -5,6 +5,7 @@ import Container from '@/components/homeLayout/Container';
 import getCookie from '@/context/getCookie';
 import Message from '@/components/comLayout/create-code-comp/Message';
 import CreateCompForm from '@/components/comLayout/create-code-comp/CreateCompForm';
+import { useRouter } from 'next/navigation';
 
 const CreateCodeComponentForm = () => {
     const initialFormData = {
@@ -18,6 +19,9 @@ const CreateCodeComponentForm = () => {
     const [loading, setLoading] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+
+    const router = useRouter();
+
 
     useEffect(() => {
         let successTimer;
@@ -84,6 +88,11 @@ const CreateCodeComponentForm = () => {
             });
 
             console.log('Code component created: ', response.data);
+
+            // Extract the ID of the newly created code component
+            const newCodeComponentId = response.data._id;
+
+            console.log('Code comp id',newCodeComponentId)
 
             setSuccessMessage('Code component created successfully!');
             setErrorMessage(''); // Clear any previous error messages

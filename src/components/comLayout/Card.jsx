@@ -1,18 +1,17 @@
 "use client";
 import { useEffect, useState } from 'react';
 import { FaCode } from 'react-icons/fa';
-import CardSkeleton from './CardSkeleton';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { LivePreview, LiveProvider } from 'react-live';
 import { devLogo } from '@/images';
+import { useRouter } from 'next/navigation';
 
 export default function CardComponent() {
     const [cardData, setCardData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true); // Add loading state
+    const [isLoading, setIsLoading] = useState(true);
+    const router = useRouter();
 
-    // Fetch data from the API
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -31,6 +30,10 @@ export default function CardComponent() {
         fetchData();
     }, []);
 
+    const handleViewMore = (id) => {
+        router.push(`/component/code-comp/${id}`);
+    };
+
     return (
         <>
             <motion.div
@@ -40,7 +43,7 @@ export default function CardComponent() {
                 className="w-full pt-10 overflow-y-auto text-white scrollbar-thin scrollbar-thumb-slate-400 scrollbar-track-gray-300 scrollbar-thumb-rounded-full"
                 style={{ maxHeight: 'calc(100vh - 80px)' }}
             >
-                {isLoading ? ( // Display loading indicator while fetching data
+                {isLoading ? (
                     <p>Loading...</p>
                 ) : (
                     <motion.div
@@ -76,12 +79,12 @@ export default function CardComponent() {
                                         />
                                         <h2 className="text-xl font-semibold text-gray-600">{card.userName}</h2>
                                     </div>
-                                    <Link
-                                        href={`/component/${card.id}`}
+                                    <button
+                                        onClick={() => handleViewMore(card._id)}
                                         className="p-2 text-blue-400 rounded-full hover-bg-blue-200"
                                     >
                                         <FaCode className="text-4xl" />
-                                    </Link>
+                                    </button>
                                 </div>
                             </motion.div>
                         ))}
@@ -91,3 +94,4 @@ export default function CardComponent() {
         </>
     );
 }
+

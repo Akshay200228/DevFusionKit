@@ -168,7 +168,7 @@ export const cardData = [
   //   userImg: '/vercel.ico',
   //   code: `
   //   <button
-  //     class="px-4 py-2 mt-2 text-white bg-blue-500 rounded-full hover:bg-blue-600"
+  //     className="px-4 py-2 mt-2 text-white bg-blue-500 rounded-full hover:bg-blue-600"
   //   >
   //     Click Me Here
   // </button>
@@ -181,7 +181,7 @@ export const cardData = [
   //   userImg: '/vercel.ico',
   //   code: `
   //     <button
-  //       class="px-4 py-2 mt-2 text-white bg-blue-500 rounded-full hover:bg-blue-600"
+  //       className="px-4 py-2 mt-2 text-white bg-blue-500 rounded-full hover:bg-blue-600"
   //     >
   //       Click Me Here
   //     </button>

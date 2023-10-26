@@ -1,94 +1,42 @@
 "use client";
-import { useEffect, useState } from 'react';
-import { cardData } from '@/constants';
 import { useRouter } from 'next/navigation';
-import { RiArrowLeftLine } from 'react-icons/ri';
-import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
-import LiveEditorPreview from '@/components/comLayout/create-code-comp/LiveEditorPreview';
+import { useState, useEffect } from 'react';
 
-export default function Slug({ params }) {
-    const router = useRouter();
-    const cardId = parseInt(params.slug);
-    const initialCard = cardData.find((card) => card.id === cardId);
-    const [card, setCard] = useState(initialCard);
-    const [code, setCode] = useState(initialCard.code);
-    const [isCodeCopied, setIsCodeCopied] = useState(false); // State to track if code is copied
+export default function CodeComponentDetail() {
+  const router = useRouter();
+  const { id } = router.query; // Extract "id" directly from router.query
+  const [codeComponent, setCodeComponent] = useState(null);
 
-
-    const handleGoBack = () => {
-        router.back();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (id) { // Add a check to ensure "id" is defined
+          const response = await fetch(`http://localhost:8000/api/code-components/${id}`);
+          console.log('Response is here', response)
+          if (response.ok) {
+            const data = await response.json();
+            setCodeComponent(data);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
 
-    const handleCodeChange = (newCode) => {
-        setCode(newCode);
-    };
+    fetchData();
+  }, [id]);
 
-    useEffect(() => {
-        setCard({ ...card, code });
-    }, [code]);
-
-    const handleCopyCode = () => {
-        navigator.clipboard.writeText(code)
-            .then(() => {
-                setIsCodeCopied(true);
-                setTimeout(() => {
-                    setIsCodeCopied(false);
-                }, 3000);
-            })
-            .catch((error) => {
-                console.error('Failed to copy code:', error);
-            });
-    };
-
-
-    return (
-        <div className="flex flex-col items-start justify-center p-6 bg-gray-100 lg:min-h-auto">
-            {/* Buttons */}
-            <div className="flex justify-between w-full p-4 mb-4">
-                {/* "Go Back" button */}
-                <button
-                    onClick={handleGoBack}
-                    className="flex items-center px-2 py-2 text-lg font-semibold text-blue-500 rounded-full hover:bg-blue-100"
-                >
-                    <RiArrowLeftLine className="mr-2" /> Go Back
-                </button>
-
-                {/* Copy button */}
-                <button
-                    onClick={handleCopyCode}
-                    className={`px-4 py-2 text-white ${isCodeCopied ? 'bg-green-500' : 'bg-blue-500'} xl:mr-8 rounded-2xl`}
-                >
-                    {isCodeCopied ? '✓ Copied code' : 'Copy code'}
-                </button>
-            </div>
-
-            {/* Card data */}
-            {card ? (
-                <div className="h-[75vh] container p-4 bg-white rounded-lg shadow-lg lg:flex overflow-auto scrollbar-thin scrollbar-thumb-blue-200 scrollbar-track-gray-200">
-                    <LiveProvider code={code}>
-                        <div className="lg:w-1/2">
-                            {/* Show LivePreview */}
-                            <div className="bg-blue-200 h-[70vh]">
-                                <LivePreview />
-                                <LiveError />
-                            </div>
-                        </div>
-                        <div className="mt-6 lg:mt-0 lg:ml-6 lg:w-1/2">
-                            {/* Live preview using react-live */}
-                            <div className="h-[70vh] overflow-auto scrollbar-thin scrollbar-thumb-blue-200 scrollbar-track-gray-200">
-                                <div className='h-full'>
-                                    <LiveEditor onChange={handleCodeChange} className='text-lg' />
-                                </div>
-                            </div>
-                        </div>
-                    </LiveProvider>
-                </div>
-
-                // Use the LiveEditorPreview component here
-                // <LiveEditorPreview Input={code} handleChange={handleCodeChange} />
-            ) : (
-                <p className="text-2xl font-semibold text-red-600">Not found.</p>
-            )}
+  return (
+    <div>
+      {codeComponent ? (
+        <div>
+          <h1>{codeComponent.title}</h1>
+          <p>{codeComponent.description}</p>
+          {/* Render other code component details */}
         </div>
-    );
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
+  );
 }
