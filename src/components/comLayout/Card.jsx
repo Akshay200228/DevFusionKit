@@ -30,8 +30,9 @@ export default function CardComponent() {
         fetchData();
     }, []);
 
-    const handleViewMore = (id) => {
-        router.push(`/component/code-comp/${id}`);
+    const handleViewMore = (slug) => {
+        console.log("Id is here..", slug)
+        router.push(`/component/code-comp/${slug}`);
     };
 
     return (

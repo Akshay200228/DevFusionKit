@@ -4,14 +4,15 @@ import { useState, useEffect } from 'react';
 
 export default function CodeComponentDetail() {
   const router = useRouter();
-  const { id } = router.query; // Extract "id" directly from router.query
+  const { slug } = router.query; // Extract "id" directly from router.query
   const [codeComponent, setCodeComponent] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if (id) { // Add a check to ensure "id" is defined
-          const response = await fetch(`http://localhost:8000/api/code-components/${id}`);
+        if (slug) { // Add a check to ensure "id" is defined
+          console.log('Working........')
+          const response = await fetch(`http://localhost:8000/api/code-components/${slug}`);
           console.log('Response is here', response)
           if (response.ok) {
             const data = await response.json();
@@ -24,7 +25,7 @@ export default function CodeComponentDetail() {
     };
 
     fetchData();
-  }, [id]);
+  }, [slug]);
 
   return (
     <div>
