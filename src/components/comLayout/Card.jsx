@@ -23,6 +23,7 @@ export default function CardComponent() {
                 }
             } catch (error) {
                 console.error("Error fetching data:", error);
+            } finally {
                 setIsLoading(false);
             }
         };
@@ -63,7 +64,7 @@ export default function CardComponent() {
                             >
                                 <LiveProvider code={card.code}>
                                     <div className="h-[50vh] mb-10 bg-blue-200 relative">
-                                        <div className="absolute inset-0">
+                                        <div className="absolute inset-0 text-neutral-950">
                                             <LivePreview />
                                         </div>
                                     </div>
