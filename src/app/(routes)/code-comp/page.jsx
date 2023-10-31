@@ -108,6 +108,7 @@ const CreateCodeComponentForm = () => {
     };
 
     return (
+        // <div className="w-full h-auto overflow-y-hidden bg-white">
         <Container>
             {/* Form */}
             <CreateCompForm
@@ -125,6 +126,7 @@ const CreateCodeComponentForm = () => {
             {errorMessage && <Message type="error" message={errorMessage} />}
 
         </Container>
+        // </div>
     );
 };
 

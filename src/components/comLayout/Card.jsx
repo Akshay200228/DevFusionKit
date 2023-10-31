@@ -33,7 +33,7 @@ export default function CardComponent() {
 
     const handleViewMore = (slug) => {
         console.log("Id is here..", slug)
-        router.push(`/component/code-comp/${slug}`);
+        router.push(`/code-comp/${slug}`);
     };
 
     return (
