@@ -1,4 +1,5 @@
 "use client";
+// CardComponent.jsx
 import { useEffect, useState } from 'react';
 import { FaCode } from 'react-icons/fa';
 import Image from 'next/image';
@@ -10,12 +11,13 @@ import { useRouter } from 'next/navigation';
 export default function CardComponent() {
     const [cardData, setCardData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [searchQuery, setSearchQuery] = useState('');
     const router = useRouter();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("http://localhost:8000/api/code-components/");
+                const response = await fetch(`http://localhost:8000/api/code-components/?title__icontains=${searchQuery}`);
                 if (response.ok) {
                     const data = await response.json();
                     setCardData(data);
@@ -29,13 +31,13 @@ export default function CardComponent() {
         };
 
         fetchData();
-    }, []);
+    }, [searchQuery]);
 
     const handleViewMore = (slug) => {
-        console.log("Id is here..", slug)
+        console.log("Id: ", slug);
         router.push(`/code-comp/${slug}`);
     };
-
+    
     return (
         <>
             <motion.div
@@ -77,9 +79,9 @@ export default function CardComponent() {
                                             alt="User Image"
                                             width={36}
                                             height={36}
-                                            className="mr-4 rounded-full"
+                                            className="mr-2 rounded-full"
                                         />
-                                        <h2 className="text-xl font-semibold text-gray-600">{card.userName}</h2>
+                                        <h2 className="text-xl font-semibold text-gray-600">{card.title}</h2>
                                     </div>
                                     <button
                                         onClick={() => handleViewMore(card._id)}
@@ -96,4 +98,3 @@ export default function CardComponent() {
         </>
     );
 }
-
