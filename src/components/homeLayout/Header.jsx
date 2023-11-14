@@ -10,6 +10,10 @@ import { IoIosArrowUp } from "react-icons/io";
 import { navData } from "@/constants";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
+import { useAuth } from "@/context/useAuth";
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie"; // Import the Cookies library
+
 
 const MobileNavLink = ({ children, ...props }) => {
   return (
@@ -23,11 +27,18 @@ const MobileNavLink = ({ children, ...props }) => {
   );
 };
 
-const Header = () => {
+const Header = ({ userId }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const router = useRouter();
+
   const handleScroll = () => {
     const scrollY = window.scrollY;
     setIsScrolled(scrollY > 50);
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
   };
 
   useEffect(() => {
@@ -38,6 +49,15 @@ const Header = () => {
       return () => window.removeEventListener("scroll", handleScroll);
     }
   }, []);
+
+  const handleLogout = () => {
+    // Clear the user's authentication token stored in a cookie
+    Cookies.remove("token");
+    router.push("/login")
+  };
+
+  const { user, error, isLoading } = useAuth(userId); // Destructure isLoading
+
   return (
     <header
       className={`w-full sticky top-0 z-50 bg-white  ${isScrolled && "shadow-xl"
@@ -52,15 +72,51 @@ const Header = () => {
           {/* NavLinks */}
           <div className="items-center hidden lg:flex lg:gap-10">
             <NavLinks />
-          </div>
-          {/* Buttons */}
-          <div className="flex items-center gap-6">
-            <Button href="#" variant="outline" className="hidden lg:block">
-              Sign Up
-            </Button>
-            <Button href="#" className="hidden lg:block">
-              Log In
-            </Button>
+            </div>
+            {/* Buttons */}
+            <div className="flex items-center gap-6">
+              {isLoading ? (
+                // <div className="w-12 h-12 border-t-4 border-b-4 border-blue-500 rounded-full animate-spin" />
+                // OR
+                <div className="w-12 h-12 bg-gray-300 rounded-full animate-pulse" />
+              ) : user ? (
+                // Display user data
+                <div className="relative group" onClick={toggleDropdown}>
+                  <img
+                    src={user.avatar}
+                    alt={user.name}
+                    width={48}
+                    height={48}
+                    className="w-12 h-12 border-2 border-blue-600 rounded-full cursor-pointer"
+                  />
+                  {isDropdownOpen && (
+                    <div className="absolute right-0 z-10 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg w-72 top-12">
+                      <div className="py-2">
+                        <Link href="/profile" className="block px-4 py-2 text-gray-800 hover:text-primary hover:bg-gray-100">
+                          Profile
+                        </Link>
+                        <button
+                          className="block w-full px-4 py-2 text-left text-red-600 hover:text-red-800 hover:bg-gray-100"
+                          onClick={handleLogout}
+                        >
+                          Log Out
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                </div>
+              ) : (
+                <>
+                  <Button href="/" variant="outline" className="hidden lg:block">
+                    Get Started
+                  </Button>
+                  <Button href="/signup" className="hidden lg:block">
+                    Sign Up
+                  </Button>
+                </>
+              )
+              }
             {/* Mobile NavLinks */}
             <Popover className="lg:hidden">
               {({ open }) => (
@@ -107,14 +163,16 @@ const Header = () => {
                               </MobileNavLink>
                             ))}
                           </div>
-                          <div className="flex flex-col gap-4 mt-8">
-                            <Button href="#" variant="outline">
-                              Sign Up
-                            </Button>
-                            <Button href="#">
-                              Log In
-                            </Button>
-                          </div>
+                          {user ? '' : (
+                            <div className="flex flex-col gap-4 mt-8">
+                              <Button href="#" variant="outline">
+                                Sign Up
+                              </Button>
+                              <Button href="#">
+                                Log In
+                              </Button>
+                            </div>
+                          )}
                         </Popover.Panel>
                       </>
                     )}
