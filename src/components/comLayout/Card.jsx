@@ -17,7 +17,8 @@ export default function CardComponent() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:8000/api/code-components/?title__icontains=${searchQuery}`);
+                const apiUrl = process.env.NEXT_PUBLIC || 'https://devnexus-server.onrender.com';
+                const response = await fetch(`${apiUrl}/api/code-components/?title__icontains=${searchQuery}`);
                 if (response.ok) {
                     const data = await response.json();
                     setCardData(data);

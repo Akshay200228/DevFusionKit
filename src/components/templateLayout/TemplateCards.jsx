@@ -14,7 +14,8 @@ export default function TemplateCards() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/code-templates"); // Replace with your API endpoint
+        const apiUrl = process.env.NEXT_PUBLIC || 'https://devnexus-server.onrender.com';
+        const response = await axios.get(`${apiUrl}/api/code-templates`);
         if (response.status === 200) {
           setTemplatesData(response.data);
           setIsLoading(false);

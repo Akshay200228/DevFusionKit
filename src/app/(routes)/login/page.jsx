@@ -30,8 +30,8 @@ export default function Login() {
     e.preventDefault();
     try {
       setLoading(true);
-      // const apiUrl = process.env.NEXT_PUBLIC || 'https://devnexus-server.onrender.com';
-      const apiUrl = 'http://localhost:8000';
+      const apiUrl = process.env.NEXT_PUBLIC || 'https://devnexus-server.onrender.com';
+      // const apiUrl = 'http://localhost:8000';
       const response = await axios.post(`${apiUrl}/api/users/login`, credentials);
 
       const { token } = response.data;
