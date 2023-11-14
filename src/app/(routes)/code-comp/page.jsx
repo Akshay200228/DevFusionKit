@@ -80,7 +80,7 @@ const CreateCodeComponentForm = () => {
         try {
             const token = getCookie('token');
             const updatedFormData = { ...formData, code: codeInput };
-            const apiUrl = process.env.NEXT_PUBLIC || 'https://devnexus-server.onrender.com';
+            const apiUrl = 'https://devnexus-server.onrender.com';
             const response = await axios.post(`${apiUrl}/api/code-components/`, updatedFormData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
