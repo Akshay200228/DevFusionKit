@@ -1,61 +1,12 @@
 "use client"
-import { useState } from 'react';
-import axios from 'axios';
-import { usePathname, useRouter } from 'next/navigation';
-import Cookies from 'js-cookie';
-import { devLogo } from '@/images';
+// Login.js
+import useLogin from "@/hooks/useLogin";
 import Image from 'next/image';
 import Link from 'next/link';
+import { devLogo } from "@/images";
 
-
-export default function Login() {
-  const [loading, setLoading] = useState(false);
-  const [credentials, setCredentials] = useState({
-    usernameOrEmail: '',
-    password: '',
-  });
-
-  const router = useRouter();
-  const currentPathname = usePathname()
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setCredentials({
-      ...credentials,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      setLoading(true);
-      // const apiUrl = process.env.NEXT_PUBLIC || 'https://devnexus-server.onrender.com';
-      const apiUrl = 'http://localhost:8000';
-      const response = await axios.post(`${apiUrl}/api/users/login`, credentials);
-
-      const { token } = response.data;
-      console.log(response.data);
-
-      const tokenExpirationDays = 7;
-      const expirationDate = new Date();
-      expirationDate.setDate(expirationDate.getDate() + tokenExpirationDays);
-
-
-      // Simulate successful login and set a token in cookies
-      Cookies.set('token', token, { expires: expirationDate });
-
-      // Redirect the user back to the initially requested page or to the root path if no specific page was requested
-      const requestedURL = currentPathname || '/';
-      router.push(requestedURL);
-    } catch (error) {
-      console.error(error);
-      // Handle errors (e.g., invalid credentials, server errors)
-    } finally {
-      setLoading(false);
-    }
-  };
-
+function Login() {
+  const { loading, credentials, error, handleChange, handleSubmit } = useLogin();
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -69,7 +20,7 @@ export default function Login() {
           />
           <h2 className="text-3xl font-extrabold text-blue-500">Login</h2>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div className="mb-4">
             <label className="block text-sm font-bold text-gray-700" htmlFor="usernameOrEmail">
               Username or Email:
@@ -105,6 +56,7 @@ export default function Login() {
           >
             {loading ? 'Please wait...' : 'Login'}
           </button>
+          {error && <p className="text-red-500">{error.message}</p>}
         </form>
         <p className="mt-4 text-sm text-center text-gray-700">
           Not registered?{' '}
@@ -116,3 +68,5 @@ export default function Login() {
     </div>
   );
 }
+
+export default Login;

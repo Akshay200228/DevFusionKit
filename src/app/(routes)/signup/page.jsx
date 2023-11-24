@@ -1,41 +1,9 @@
 "use client"
-import { useState } from 'react';
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
+// Signup.js
+import useSignup from "@/hooks/useSignup";
 
-export default function SignUp() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    username: '',
-    password: '',
-    avatar: '',
-  });
-
-  const [successMessage, setSuccessMessage] = useState('');
-  const router = useRouter();
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      // const apiUrl = process.env.NEXT_PUBLIC || 'https://devnexus-server.onrender.com';
-      const apiUrl = 'http://localhost:8000';
-      const response = await axios.post(`${apiUrl}/api/users/signup`, formData);
-      console.log(response.data);
-      setSuccessMessage('User registered successfully!');
-      router.push('/login');
-    } catch (error) {
-      console.error(error);
-    }
-  };
+function Signup() {
+  const { formData, avatar, successMessage, error, handleChange, handleAvatarChange, handleSubmit } = useSignup();
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -106,10 +74,10 @@ export default function SignUp() {
               Avatar (Image URL):
             </label>
             <input
-              type="text"
+              type="file"
+              accept="image/*"
               name="avatar"
-              value={formData.avatar}
-              onChange={handleChange}
+              onChange={handleAvatarChange}
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your avatar image URL"
             />
@@ -120,8 +88,12 @@ export default function SignUp() {
           >
             Sign Up
           </button>
+          {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
+          {error && <p style={{ color: 'red' }}>{error.message}</p>}
         </form>
       </div>
     </div>
   );
 }
+
+export default Signup;

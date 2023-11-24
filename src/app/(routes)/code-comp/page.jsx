@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Container from '@/components/homeLayout/Container';
-import getCookie from '@/context/getCookie';
+import getCookie from '@/hooks/getCookie';
 import Message from '@/components/comLayout/create-code-comp/Message';
 import CreateCompForm from '@/components/comLayout/create-code-comp/CreateCompForm';
 import { useRouter } from 'next/navigation';
