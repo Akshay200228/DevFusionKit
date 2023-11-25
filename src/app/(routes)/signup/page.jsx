@@ -3,7 +3,7 @@
 import useSignup from "@/hooks/useSignup";
 
 function Signup() {
-  const { formData, avatar, successMessage, error, handleChange, handleAvatarChange, handleSubmit } = useSignup();
+  const { formData, successMessage, error, handleChange, handleSubmit } = useSignup();
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -74,10 +74,9 @@ function Signup() {
               Avatar (Image URL):
             </label>
             <input
-              type="file"
-              accept="image/*"
+              type="text"
               name="avatar"
-              onChange={handleAvatarChange}
+              onChange={handleChange}
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your avatar image URL"
             />

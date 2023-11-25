@@ -1,5 +1,5 @@
 "use client"
-// SearchBar.jsx
+
 import { useState } from "react";
 import { HiSearch } from 'react-icons/hi';
 import Link from 'next/link';
@@ -25,12 +25,12 @@ export default function SearchBar({ onSearch }) {
                     <HiSearch className="text-gray-400" />
                 </div>
             </div>
-            <button
+            {/* <button
                 onClick={handleSearch}
                 className="px-4 py-2 ml-4 text-white bg-blue-500 rounded hover:bg-blue-600"
             >
                 Search
-            </button>
+            </button> */}
             <Link href="/code-comp" className="px-4 py-2 ml-4 text-white bg-blue-500 rounded hover:bg-blue-600">
                 + Create
             </Link>

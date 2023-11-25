@@ -5,59 +5,45 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
 const useSignup = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        username: '',
-        password: '',
-    });
-    const [avatar, setAvatar] = useState(null);
-    const [successMessage, setSuccessMessage] = useState('');
-    const [error, setError] = useState(null);
-    const router = useRouter();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    username: '',
+    password: '',
+    avatar: '', // Add a new property for the avatar URL
+  });
+  const [successMessage, setSuccessMessage] = useState('');
+  const [error, setError] = useState(null);
+  const router = useRouter();
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            [name]: value,
-        }));
-    };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
 
-    const handleAvatarChange = (e) => {
-        const file = e.target.files[0];
-        setAvatar(file);
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const apiUrl = 'http://localhost:8000';
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const apiUrl = 'http://localhost:8000';
+      const response = await axios.post(`${apiUrl}/api/users/signup`, formData, {
+        headers: {
+          'Content-Type': 'application/json', // Update content type
+        },
+      });
 
-            const formDataWithAvatar = new FormData();
-            Object.keys(formData).forEach((key) => {
-                formDataWithAvatar.append(key, formData[key]);
-            });
+      setSuccessMessage('User registered successfully!');
+      router.push('/login');
+    } catch (error) {
+      console.error(error);
+      setError(error);
+    }
+  };
 
-            if (avatar) {
-                formDataWithAvatar.append('avatar', avatar);
-            }
-
-            const response = await axios.post(`${apiUrl}/api/users/signup`, formDataWithAvatar, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
-
-            setSuccessMessage('User registered successfully!');
-            router.push('/login');
-        } catch (error) {
-            console.error(error);
-            setError(error);
-        }
-    };
-
-    return { formData, avatar, successMessage, error, handleChange, handleAvatarChange, handleSubmit };
+  return { formData, successMessage, error, handleChange, handleSubmit };
 };
 
 export default useSignup;
