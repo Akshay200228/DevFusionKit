@@ -17,7 +17,7 @@ const CreateCompForm = ({
   const categories = ["Accordion", "Button", "Card", "Carousel", "Form", "Inputs", "Loaders", "Toast"];
 
   const handleGoBack = () => {
-    router.back(); // Use the router's back() method to navigate back
+    router.back();
   };
 
 

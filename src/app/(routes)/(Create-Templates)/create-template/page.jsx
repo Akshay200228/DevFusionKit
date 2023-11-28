@@ -1,17 +1,18 @@
 "use client"
-// CreateCodeComponentForm.js
 import Container from '@/components/homeLayout/Container';
 import Message from '@/components/comLayout/create-code-comp/Message';
-import CreateCompForm from '@/components/comLayout/create-code-comp/CreateCompForm';
+import CreateTemplateForm from '@/components/templateLayout/CreateTemplateForm';
 import useCreateForm from '@/hooks/useCreateForm';
 
-const CreateCodeComponentForm = () => {
-    const apiUrl = 'http://localhost:8000/api/code-components/'; // Replace with your actual API URL
+const TemplateForm = () => {
+    const apiUrl = 'http://localhost:8000/api/code-templates/'; // Replace with your actual API URL
 
     const initialFormData = {
         title: '',
         description: '',
-        code: '<div className="flex items-center p-4 justify-center h-[50vh]">\n\t\t//code here \n</div>',
+        templateImage: '',
+        githubLink: '',
+        deployLink: '',
     };
 
     const {
@@ -23,19 +24,13 @@ const CreateCodeComponentForm = () => {
         handleSubmit,
     } = useCreateForm(initialFormData, apiUrl);
 
-    const handleCodeInputChange = (newCode) => {
-        handleInputChange({ target: { name: 'code', value: newCode } });
-    };
-
     return (
-        <Container>
+        <Container className="h-screen">
             {/* Form */}
-            <CreateCompForm
+            <CreateTemplateForm
                 formData={formData}
-                codeInput={formData.code} // Pass the code input separately
                 loading={loading}
                 handleInputChange={handleInputChange}
-                handleCodeInputChange={handleCodeInputChange}
                 handleSubmit={handleSubmit}
             />
 
@@ -46,4 +41,4 @@ const CreateCodeComponentForm = () => {
     );
 };
 
-export default CreateCodeComponentForm;
+export default TemplateForm;
