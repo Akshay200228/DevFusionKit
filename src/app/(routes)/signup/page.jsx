@@ -2,8 +2,44 @@
 // Signup.js
 import useSignup from "@/hooks/useSignup";
 
+<<<<<<< HEAD
 function Signup() {
   const { formData, successMessage, error, handleChange, handleSubmit } = useSignup();
+=======
+export default function SignUp() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    username: '',
+    password: '',
+    avatar: '',
+  });
+
+  const [successMessage, setSuccessMessage] = useState('');
+  const router = useRouter();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const apiUrl = process.env.NEXT_PUBLIC || 'https://devnexus-server.onrender.com';
+      // const apiUrl = 'http://localhost:8000';
+      const response = await axios.post(`${apiUrl}/api/users/signup`, formData);
+      console.log(response.data);
+      setSuccessMessage('User registered successfully!');
+      router.push('/login');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+>>>>>>> e59a4bb147f6aba4932e9f1951b25755f9c30795
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">

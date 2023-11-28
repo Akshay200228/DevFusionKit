@@ -22,8 +22,8 @@ export function useAuth() {
     try {
       console.log('Sending request to retrieve user data...');
 
-      // const apiUrl = process.env.NEXT_PUBLIC || 'https://devnexus-server.onrender.com';
-      const apiUrl = 'http://localhost:8000';
+      const apiUrl = process.env.NEXT_PUBLIC || 'https://devnexus-server.onrender.com';
+      // const apiUrl = 'http://localhost:8000';
       const response = await axios.get(`${apiUrl}/api/users/authUser`, {
         headers: {
           Authorization: `Bearer ${token}`,
