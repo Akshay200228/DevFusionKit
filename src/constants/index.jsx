@@ -28,8 +28,8 @@ export const navData = [
   },
   {
     _id: 104,
-    title: "Animations",
-    href: "/animations",
+    title: "About",
+    href: "/about",
   },
 ];
 

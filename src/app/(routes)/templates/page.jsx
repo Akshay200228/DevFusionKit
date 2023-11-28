@@ -1,10 +1,9 @@
-
+import Link from 'next/link';
 import TemplateCards from "@/components/templateLayout/TemplateCards";
 
 export const metadata = {
   title: 'Template'
 }
-
 
 export default function Templates() {
   return (
@@ -22,6 +21,13 @@ export default function Templates() {
           <p className="mt-4 text-xl text-gray-500">
             Explore a collection of website templates provided by DevNexus to kickstart your web projects.
           </p>
+
+          {/* Button for creating a template */}
+          <Link href="/create-template">
+            <button className="px-6 py-3 mt-8 text-white bg-blue-500 rounded-full hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
+              Create Your Own Template
+            </button>
+          </Link>
         </div>
       </div>
 

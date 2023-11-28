@@ -1,19 +1,21 @@
 "use client";
 // CardComponent.jsx
-import { useEffect, useState } from 'react';
 import { FaCode } from 'react-icons/fa';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { LivePreview, LiveProvider } from 'react-live';
 import { devLogo } from '@/images';
 import { useRouter } from 'next/navigation';
+import useApiFetch from '@/hooks/useApiFetch';
+import Loader from '../Loader';
 
 export default function CardComponent() {
-    const [cardData, setCardData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [searchQuery, setSearchQuery] = useState('');
+    const apiUrl = "http://localhost:8000/api/code-components";
+    const { data: cardData, isLoading, error } = useApiFetch(apiUrl);
     const router = useRouter();
 
+<<<<<<< HEAD
+=======
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -34,11 +36,12 @@ export default function CardComponent() {
         fetchData();
     }, [searchQuery]);
 
+>>>>>>> e59a4bb147f6aba4932e9f1951b25755f9c30795
     const handleViewMore = (slug) => {
         console.log("Id: ", slug);
         router.push(`/code-comp/${slug}`);
     };
-    
+
     return (
         <>
             <motion.div
@@ -49,7 +52,9 @@ export default function CardComponent() {
                 style={{ maxHeight: 'calc(100vh - 80px)' }}
             >
                 {isLoading ? (
-                    <p>Loading...</p>
+                    <Loader />
+                ) : error ? (
+                    <div>Error: {error.message}</div>
                 ) : (
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}

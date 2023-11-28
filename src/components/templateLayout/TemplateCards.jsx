@@ -1,39 +1,19 @@
 "use client"
 
-import { useEffect, useState } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { FiExternalLink } from 'react-icons/fi';
 import Link from 'next/link';
-import axios from 'axios';
 import Loader from '../Loader';
+import useApiFetch from '@/hooks/useApiFetch';
 
 export default function TemplateCards() {
-  const [templatesData, setTemplatesData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const apiUrl = process.env.NEXT_PUBLIC || 'https://devnexus-server.onrender.com';
-        const response = await axios.get(`${apiUrl}/api/code-templates`);
-        if (response.status === 200) {
-          setTemplatesData(response.data);
-          setIsLoading(false);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   return (
     <div className="px-4 mx-auto max-w-fit sm:px-6 lg:px-8">
       {isLoading ? (
         <Loader />
+      ) : error ? (
+        <div>Error: {error.message}</div>
       ) : (
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {

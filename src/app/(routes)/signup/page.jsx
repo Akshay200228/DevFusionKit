@@ -1,8 +1,11 @@
 "use client"
-import { useState } from 'react';
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
+// Signup.js
+import useSignup from "@/hooks/useSignup";
 
+<<<<<<< HEAD
+function Signup() {
+  const { formData, successMessage, error, handleChange, handleSubmit } = useSignup();
+=======
 export default function SignUp() {
   const [formData, setFormData] = useState({
     name: '',
@@ -36,6 +39,7 @@ export default function SignUp() {
       console.error(error);
     }
   };
+>>>>>>> e59a4bb147f6aba4932e9f1951b25755f9c30795
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -108,7 +112,6 @@ export default function SignUp() {
             <input
               type="text"
               name="avatar"
-              value={formData.avatar}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your avatar image URL"
@@ -120,8 +123,12 @@ export default function SignUp() {
           >
             Sign Up
           </button>
+          {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
+          {error && <p style={{ color: 'red' }}>{error.message}</p>}
         </form>
       </div>
     </div>
   );
 }
+
+export default Signup;

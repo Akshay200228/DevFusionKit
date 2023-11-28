@@ -1,12 +1,14 @@
 "use client"
-import { useState } from 'react';
-import axios from 'axios';
-import { usePathname, useRouter } from 'next/navigation';
-import Cookies from 'js-cookie';
-import { devLogo } from '@/images';
+// Login.js
+import useLogin from "@/hooks/useLogin";
 import Image from 'next/image';
 import Link from 'next/link';
+import { devLogo } from "@/images";
 
+<<<<<<< HEAD
+function Login() {
+  const { loading, credentials, error, handleChange, handleSubmit } = useLogin();
+=======
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
@@ -56,6 +58,7 @@ export default function Login() {
     }
   };
 
+>>>>>>> e59a4bb147f6aba4932e9f1951b25755f9c30795
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -69,7 +72,7 @@ export default function Login() {
           />
           <h2 className="text-3xl font-extrabold text-blue-500">Login</h2>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div className="mb-4">
             <label className="block text-sm font-bold text-gray-700" htmlFor="usernameOrEmail">
               Username or Email:
@@ -105,6 +108,7 @@ export default function Login() {
           >
             {loading ? 'Please wait...' : 'Login'}
           </button>
+          {error && <p className="text-red-500">{error.message}</p>}
         </form>
         <p className="mt-4 text-sm text-center text-gray-700">
           Not registered?{' '}
@@ -116,3 +120,5 @@ export default function Login() {
     </div>
   );
 }
+
+export default Login;

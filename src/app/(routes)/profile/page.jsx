@@ -1,6 +1,6 @@
 "use client"
 import Container from "@/components/homeLayout/Container";
-import { useAuth } from "@/context/useAuth";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function UserProfile() {
     const { user, error, isLoading } = useAuth();
