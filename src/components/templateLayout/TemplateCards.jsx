@@ -7,32 +7,6 @@ import Loader from '../Loader';
 import useApiFetch from '@/hooks/useApiFetch';
 
 export default function TemplateCards() {
-<<<<<<< HEAD
-  const apiUrl = "http://localhost:8000/api/code-templates";
-  const { data: templatesData, isLoading, error } = useApiFetch(apiUrl);
-=======
-  const [templatesData, setTemplatesData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const apiUrl = process.env.NEXT_PUBLIC || 'https://devnexus-server.onrender.com';
-        const response = await axios.get(`${apiUrl}/api/code-templates`);
-        if (response.status === 200) {
-          setTemplatesData(response.data);
-          setIsLoading(false);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
->>>>>>> e59a4bb147f6aba4932e9f1951b25755f9c30795
 
   return (
     <div className="px-4 mx-auto max-w-fit sm:px-6 lg:px-8">
