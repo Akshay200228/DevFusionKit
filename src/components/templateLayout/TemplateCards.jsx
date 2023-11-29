@@ -7,6 +7,8 @@ import Loader from '../Loader';
 import useApiFetch from '@/hooks/useApiFetch';
 
 export default function TemplateCards() {
+  const apiUrl = "http://localhost:8000/api/code-templates";
+  const { data: templatesData, isLoading, error } = useApiFetch(apiUrl);
 
   return (
     <div className="px-4 mx-auto max-w-fit sm:px-6 lg:px-8">

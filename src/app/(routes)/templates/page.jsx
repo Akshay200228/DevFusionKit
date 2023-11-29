@@ -25,7 +25,7 @@ export default function Templates() {
           {/* Button for creating a template */}
           <Link href="/create-template">
             <button className="px-6 py-3 mt-8 text-white bg-blue-500 rounded-full hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
-              Create Your Own Template
+              Create Your Own Templates
             </button>
           </Link>
         </div>
