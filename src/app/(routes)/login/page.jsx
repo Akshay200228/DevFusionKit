@@ -5,60 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { devLogo } from "@/images";
 
-<<<<<<< HEAD
 function Login() {
   const { loading, credentials, error, handleChange, handleSubmit } = useLogin();
-=======
-
-export default function Login() {
-  const [loading, setLoading] = useState(false);
-  const [credentials, setCredentials] = useState({
-    usernameOrEmail: '',
-    password: '',
-  });
-
-  const router = useRouter();
-  const currentPathname = usePathname()
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setCredentials({
-      ...credentials,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      setLoading(true);
-      const apiUrl = 'https://devnexus-server.onrender.com';
-      // const apiUrl = 'http://localhost:8000';
-      const response = await axios.post(`${apiUrl}/api/users/login`, credentials);
-
-      const { token } = response.data;
-      console.log(response.data);
-
-      const tokenExpirationDays = 7;
-      const expirationDate = new Date();
-      expirationDate.setDate(expirationDate.getDate() + tokenExpirationDays);
-
-
-      // Simulate successful login and set a token in cookies
-      Cookies.set('token', token, { expires: expirationDate });
-
-      // Redirect the user back to the initially requested page or to the root path if no specific page was requested
-      const requestedURL = currentPathname || '/';
-      router.push(requestedURL);
-    } catch (error) {
-      console.error(error);
-      // Handle errors (e.g., invalid credentials, server errors)
-    } finally {
-      setLoading(false);
-    }
-  };
-
->>>>>>> e59a4bb147f6aba4932e9f1951b25755f9c30795
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">

@@ -14,29 +14,6 @@ export default function CardComponent() {
     const { data: cardData, isLoading, error } = useApiFetch(apiUrl);
     const router = useRouter();
 
-<<<<<<< HEAD
-=======
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const apiUrl = process.env.NEXT_PUBLIC || 'https://devnexus-server.onrender.com';
-                const response = await fetch(`${apiUrl}/api/code-components/?title__icontains=${searchQuery}`);
-                if (response.ok) {
-                    const data = await response.json();
-                    setCardData(data);
-                    setIsLoading(false);
-                }
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
-        fetchData();
-    }, [searchQuery]);
-
->>>>>>> e59a4bb147f6aba4932e9f1951b25755f9c30795
     const handleViewMore = (slug) => {
         console.log("Id: ", slug);
         router.push(`/code-comp/${slug}`);
