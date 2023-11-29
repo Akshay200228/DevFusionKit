@@ -10,7 +10,7 @@ const useSignup = () => {
     email: '',
     username: '',
     password: '',
-    avatar: '', // Add a new property for the avatar URL
+    avatar: '',
   });
   const [successMessage, setSuccessMessage] = useState('');
   const [error, setError] = useState(null);
@@ -31,9 +31,12 @@ const useSignup = () => {
 
       const response = await axios.post(`${apiUrl}/api/users/signup`, formData, {
         headers: {
-          'Content-Type': 'application/json', // Update content type
+          'Content-Type': 'application/json',
         },
       });
+
+      // Example: Log the response to the console
+      console.log('Signup Response:', response);
 
       setSuccessMessage('User registered successfully!');
       router.push('/login');
