@@ -7,7 +7,8 @@ import Loader from '../Loader';
 import useApiFetch from '@/hooks/useApiFetch';
 
 export default function TemplateCards() {
-  const apiUrl = "http://localhost:8000/api/code-templates";
+  const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL + "/api/code-templates" || "http://localhost:8000/api/code-templates/";
+  console.log("URI", apiUrl)
   const { data: templatesData, isLoading, error } = useApiFetch(apiUrl);
 
   return (
@@ -20,7 +21,7 @@ export default function TemplateCards() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {
             templatesData.map((template) => (
-              <div key={template.id} className="rounded-lg shadow-lg bg-blue-50">
+              <div key={template._id} className="rounded-lg shadow-lg bg-blue-50">
                 <div className="relative h-96">
                   <img
                     src={template.templateImage}

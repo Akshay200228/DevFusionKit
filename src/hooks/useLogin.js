@@ -24,7 +24,7 @@ const useLogin = () => {
         e.preventDefault();
         try {
             setLoading(true);
-            const apiUrl = 'http://localhost:8000';
+            const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL || "http://localhost:8000";
             const response = await axios.post(`${apiUrl}/api/users/login`, credentials);
 
             const { token } = response.data;

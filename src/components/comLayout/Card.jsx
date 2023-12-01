@@ -10,8 +10,9 @@ import useApiFetch from '@/hooks/useApiFetch';
 import Loader from '../Loader';
 
 export default function CardComponent() {
-    const apiUrl = "http://localhost:8000/api/code-components";
+    const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL + "/api/code-components/" || "http://localhost:8000/api/code-components/";
     const { data: cardData, isLoading, error } = useApiFetch(apiUrl);
+
     const router = useRouter();
 
     const handleViewMore = (slug) => {
@@ -41,7 +42,7 @@ export default function CardComponent() {
                     >
                         {cardData.map((card) => (
                             <motion.div
-                                key={card.id}
+                                key={card._id}
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.3 }}
