@@ -49,7 +49,7 @@ export default function CardComponent() {
                                 className="flex flex-col h-full p-4 bg-white rounded-lg shadow-xl"
                             >
                                 <LiveProvider code={card.code}>
-                                    <div className="h-[50vh] mb-10 bg-blue-200 relative">
+                                    <div className="h-[50vh] mb-4 bg-blue-200 relative overflow-hidden rounded-lg">
                                         <div className="absolute inset-0 text-neutral-950">
                                             <LivePreview />
                                         </div>

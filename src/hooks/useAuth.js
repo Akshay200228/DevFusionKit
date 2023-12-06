@@ -30,7 +30,7 @@ export function useAuth() {
       });
 
       console.log('Response data:', response.data);
-
+      
       setUser(response.data);
       setIsLoading(false);
     } catch (error) {

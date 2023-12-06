@@ -8,7 +8,6 @@ import useApiFetch from '@/hooks/useApiFetch';
 
 export default function TemplateCards() {
   const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL + "/api/code-templates" || "http://localhost:8000/api/code-templates/";
-  console.log("URI", apiUrl)
   const { data: templatesData, isLoading, error } = useApiFetch(apiUrl);
 
   return (
