@@ -15,7 +15,6 @@ const MemberCard = ({ name, role, description, image }) => {
           src={image}
           alt={`${name}'s profile`}
           layout="fill"
-          objectFit="cover"
           className="rounded-full"
         />
       </div>

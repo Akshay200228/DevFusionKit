@@ -10,8 +10,9 @@ import useApiFetch from '@/hooks/useApiFetch';
 import Loader from '../Loader';
 
 export default function CardComponent() {
-    const apiUrl = "http://localhost:8000/api/code-components";
+    const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL + "/api/code-components/" || "http://localhost:8000/api/code-components/";
     const { data: cardData, isLoading, error } = useApiFetch(apiUrl);
+
     const router = useRouter();
 
     const handleViewMore = (slug) => {
@@ -41,14 +42,14 @@ export default function CardComponent() {
                     >
                         {cardData.map((card) => (
                             <motion.div
-                                key={card.id}
+                                key={card._id}
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.3 }}
                                 className="flex flex-col h-full p-4 bg-white rounded-lg shadow-xl"
                             >
                                 <LiveProvider code={card.code}>
-                                    <div className="h-[50vh] mb-10 bg-blue-200 relative">
+                                    <div className="h-[50vh] mb-4 bg-blue-200 relative overflow-hidden rounded-lg">
                                         <div className="absolute inset-0 text-neutral-950">
                                             <LivePreview />
                                         </div>
