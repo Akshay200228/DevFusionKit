@@ -4,6 +4,7 @@ import Container from "@/components/homeLayout/Container";
 import { useAuth } from "@/hooks/useAuth";
 import axios from 'axios';
 import UserProfileContainer from '@/components/ProfilePage/UserProfileContainer';
+import Loader from '@/components/Loader';
 
 
 export default function UserProfile() {
@@ -54,9 +55,7 @@ export default function UserProfile() {
     return (
         <Container>
             {isLoading ? (
-                <div className="flex items-center justify-center mt-8">
-                    <div className="w-32 h-32 border-b-4 border-blue-500 rounded-full animate-spin"></div>
-                </div>
+                <Loader />
             ) : error ? (
                 <div className="mt-8 text-center text-red-600">
                     Error: {error.message}

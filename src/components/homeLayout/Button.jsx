@@ -22,8 +22,8 @@ const variantStyles = {
     gray: "border-gray-300 text-gray-700 hover:border-gray-400 active:bg-gray-100 active:text-gray-700/80",
   },
   blueOutline: {
-    primary: "text-white bg-blue-500",
-    secondary: "text-white bg-gray-500",
+    primary: "text-white bg-blue-500 hover:bg-blue-600 active:bg-blue-600", // Updated active color to blue-600
+    secondary: "text-white bg-gray-500 hover:bg-gray-600 active:bg-gray-600", // Updated active color to gray-600
   },
 };
 
