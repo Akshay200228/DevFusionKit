@@ -6,7 +6,7 @@ const CodeComponent = ({ codeComponents }) => {
     return (
         <div className="mt-10 text-center">
             <h3 className="mb-8 text-3xl font-bold text-gray-800">Code Components</h3>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
                 {/* Display a message when no code components are found */}
                 {codeComponents.length === 0 ? (
                     <div className="flex flex-col items-center justify-center mt-8 text-gray-600">
