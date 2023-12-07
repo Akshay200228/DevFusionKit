@@ -5,8 +5,9 @@ import CreateTemplateForm from '@/components/templateLayout/CreateTemplateForm';
 import useCreateForm from '@/hooks/useCreateForm';
 
 const TemplateForm = () => {
-    const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL + "/api/code-templates/" || "http://localhost:8000/api/code-templates/";
-
+    // const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL + "/api/code-templates/" || "http://localhost:8000/api/code-templates/";
+    const apiUrl = "https://devnexus-server.onrender.com/api/code-templates/";
+    
     const initialFormData = {
         title: '',
         description: '',
