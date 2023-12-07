@@ -1,7 +1,10 @@
 // UserProfileContainer.jsx
-import React from 'react';
 import CodeComponent from './CodeComponent';
 import WebTemplate from './WebTemplate';
+import CalendarHeatmap from 'react-calendar-heatmap';
+import 'react-calendar-heatmap/dist/styles.css';
+import Button from '../homeLayout/Button';
+
 
 const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplatesData }) => {
     // Static data for location, followers, and social media links
@@ -11,6 +14,36 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
         twitter: "https://twitter.com/your_twitter",
         github: "https://github.com/your_github",
         linkedin: "https://linkedin.com/in/your_linkedin",
+    };
+
+    const contributionsData = [
+        { date: '2023-01-01', count: 50 },
+        { date: '2023-01-02', count: 1 },
+        { date: '2023-01-03', count: 22 },
+        { date: '2023-01-04', count: 12 },
+        { date: '2023-02-05', count: 65 },
+        { date: '2023-03-05', count: 58 },
+        { date: '2023-04-05', count: 11 },
+        // Add more contribution data as needed
+    ];
+    const classForValue = (value) => {
+        if (!value) {
+            return 'color-empty';
+        }
+
+        const count = value.count;
+
+        if (count > 15) {
+            return 'color-github-4';
+        } else if (count > 10) {
+            return 'color-github-3';
+        } else if (count > 5) {
+            return 'color-github-2';
+        } else if (count > 0) {
+            return 'color-github-1';
+        } else {
+            return 'color-github-0';
+        }
     };
 
     return (
@@ -27,7 +60,10 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
                 </div>
                 <h1 className="mb-2 text-2xl font-semibold text-center md:text-left">{user.name}</h1>
                 <p className="mb-2 text-center text-gray-600 md:text-left">{user.username}</p>
-                <button className="w-full px-4 py-2 my-4 text-white bg-blue-500 rounded">Edit Profile</button>
+                <Button variant="blueOutline" color="outline" href="#" className="w-full my-4 font-bold hover:bg-blue-100 active:bg-blue-400">
+                    Edit Profile
+                </Button>
+
                 <p className="mb-2 text-center text-gray-600 md:text-left">{user.email}</p>
                 {/* Additional user details */}
                 <p className="mb-2 text-center text-gray-600 md:text-left">{location}</p>
@@ -49,8 +85,6 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
 
             {/* Right Column - User Works */}
             <div className="w-full md:w-3/4">
-                {/* <h2 className="mb-4 text-2xl font-semibold">User Works</h2> */}
-
                 {/* Display additional user data from the second API request */}
                 {userData && (
                     <div>
@@ -58,6 +92,17 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
                         <WebTemplate webTemplates={webTemplatesData} />
                     </div>
                 )}
+
+                {/* Contribution heatmap */}
+                <div className="mt-8">
+                    <h3 className="mb-4 text-2xl font-semibold">Contribution Heatmap</h3>
+                    <CalendarHeatmap
+                        startDate={new Date('2023-01-01')}
+                        endDate={new Date()} // Use the current date or another end date as needed
+                        values={contributionsData}
+                        classForValue={classForValue}
+                    />
+                </div>
             </div>
         </div>
     );
