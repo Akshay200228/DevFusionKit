@@ -10,8 +10,8 @@ import useApiFetch from '@/hooks/useApiFetch';
 import Loader from '../Loader';
 
 export default function CardComponent() {
-    const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL + "/api/code-components/" || "http://localhost:8000/api/code-components/";
-    // const apiUrl = "https://devnexus-server.onrender.com/api/code-components/";
+    // const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL + "/api/code-components/" || "http://localhost:8000/api/code-components/";
+    const apiUrl = "https://devnexus-server.onrender.com/api/code-components/";
     console.log("API url ", apiUrl)
     const { data: cardData, isLoading, error } = useApiFetch(apiUrl);
 
