@@ -49,7 +49,7 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
 
             {/* Right Column - User Works */}
             <div className="w-full md:w-3/4">
-                <h2 className="mb-4 text-2xl font-semibold">User Works</h2>
+                {/* <h2 className="mb-4 text-2xl font-semibold">User Works</h2> */}
 
                 {/* Display additional user data from the second API request */}
                 {userData && (
