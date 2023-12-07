@@ -16,7 +16,7 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
     return (
         <div className="container flex flex-col p-4 mx-auto mt-8 md:flex-row">
             {/* Left Column - User Info */}
-            <div className="flex-shrink-0 w-full mb-4 md:w-1/4 md:pr-8 md:mb-0">
+            <div className="flex-shrink-0 w-full mb-4 md:w-1/3 lg:w-1/4 xl:w-1/5 md:pr-8 md:mb-0">
                 {/* Updated image styling */}
                 <div className="relative w-40 h-40 mx-auto mb-4 overflow-hidden border-4 border-blue-500 rounded-full">
                     <img
@@ -49,7 +49,7 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
 
             {/* Right Column - User Works */}
             <div className="w-full md:w-3/4">
-                <h2 className="mb-4 text-2xl font-semibold">User Works</h2>
+                {/* <h2 className="mb-4 text-2xl font-semibold">User Works</h2> */}
 
                 {/* Display additional user data from the second API request */}
                 {userData && (
