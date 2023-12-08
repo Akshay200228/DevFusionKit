@@ -3,6 +3,7 @@
 import { LivePreview, LiveProvider } from 'react-live';
 import { devLogo } from '@/images';
 import useApiFetch from '@/hooks/useApiFetch';
+import Loader from '@/components/Loader';
 
 export default function CodeComponentDetail({ slug }) {
     console.log("Slug ID: ", slug);
@@ -10,7 +11,7 @@ export default function CodeComponentDetail({ slug }) {
     const { data: codeComponent, isLoading, error } = useApiFetch(apiUrl);
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <Loader />;
     }
 
     if (error) {

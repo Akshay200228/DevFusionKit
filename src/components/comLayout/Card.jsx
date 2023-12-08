@@ -1,28 +1,17 @@
 "use client";
 // CardComponent.jsx
 import { FaCode } from 'react-icons/fa';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { LivePreview, LiveProvider } from 'react-live';
-import { devLogo } from '@/images';
 import useApiFetch from '@/hooks/useApiFetch';
 import Loader from '../Loader';
 import Link from 'next/link';
-// import { useRouter } from 'next/navigation';
 
 
 export default function CardComponent() {
     const apiUrl = "https://devnexus-server.onrender.com/api/code-components/";
 
     const { data: cardData, isLoading, error } = useApiFetch(apiUrl);
-
-    // const router = useRouter();
-
-    // const handleViewMore = (slug) => {
-    //     console.log("Id: ", slug);
-    //     router.push(`/component/CodeComponentDetail/${slug}`);
-    // };
-
 
     return (
         <>
@@ -45,6 +34,7 @@ export default function CardComponent() {
                         className="grid grid-cols-1 gap-8 p-4 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3"
                     >
                         {cardData.map((card) => {
+                            console.log("Comp data card: ", cardData)
                             return (
                                 <motion.div
                                     key={card._id}
@@ -63,21 +53,28 @@ export default function CardComponent() {
 
                                     <div className="flex items-center justify-between mb-2">
                                         <div className="flex items-center">
-                                            <Image
-                                                src={devLogo}
-                                                alt="User Image"
-                                                width={36}
-                                                height={36}
-                                                className="mr-2 rounded-full"
-                                            />
+                                            {card.creatorAvatar ? (
+                                                <img
+                                                    src={card.creatorAvatar}
+                                                    alt="User Image"
+                                                    width={36}
+                                                    height={36}
+                                                    className="mr-2 rounded-full"
+                                                />
+                                            ) : (
+                                                <img
+                                                    src="https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75"
+                                                    alt="Default User Image"
+                                                    width={36}
+                                                    height={36}
+                                                    className="mr-2 rounded-full"
+                                                />
+                                            )}
                                             <h2 className="text-xl font-semibold text-gray-600">{card.title}</h2>
                                         </div>
                                         {card._id && (
-                                            <Link href={{ pathname: "/component/CodeComponentDetail", query: { slug: card._id } }}>
-                                                <button
-                                                    className="p-2 text-blue-400 rounded-full hover-bg-blue-200"
-                                                    onClick={() => console.log("Button Slug ID:", card._id)}
-                                                >
+                                            <Link href={`/component/${card._id}`}>
+                                                <button className="p-2 text-blue-400 rounded-full hover-bg-blue-200">
                                                     <FaCode className="text-4xl" />
                                                 </button>
                                             </Link>
