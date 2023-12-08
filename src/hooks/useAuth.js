@@ -24,6 +24,7 @@ export function useAuth() {
 
       // const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL || "http://localhost:8000";
       const apiUrl = "https://devnexus-server.onrender.com";
+
       const response = await axios.get(`${apiUrl}/api/users/authUser`, {
         headers: {
           Authorization: `Bearer ${token}`,

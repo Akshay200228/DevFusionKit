@@ -26,6 +26,7 @@ const useLogin = () => {
             setLoading(true);
             // const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL || "http://localhost:8000";
             const apiUrl = "https://devnexus-server.onrender.com";
+
             const response = await axios.post(`${apiUrl}/api/users/login`, credentials);
 
             const { token } = response.data;

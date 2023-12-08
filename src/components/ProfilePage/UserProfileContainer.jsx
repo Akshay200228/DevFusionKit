@@ -4,6 +4,7 @@ import WebTemplate from './WebTemplate';
 import CalendarHeatmap from 'react-calendar-heatmap';
 import 'react-calendar-heatmap/dist/styles.css';
 import Button from '../homeLayout/Button';
+import Loader from '../Loader';
 
 
 const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplatesData }) => {
@@ -86,7 +87,9 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
             {/* Right Column - User Works */}
             <div className="w-full md:w-3/4">
                 {/* Display additional user data from the second API request */}
-                {userData && (
+                {!userData ? (
+                    <Loader />
+                ) : (
                     <div>
                         <CodeComponent codeComponents={codeComponentsData} />
                         <WebTemplate webTemplates={webTemplatesData} />
