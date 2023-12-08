@@ -7,7 +7,6 @@ import useApiFetch from '@/hooks/useApiFetch';
 import Loader from '../Loader';
 import Link from 'next/link';
 
-
 export default function CardComponent() {
     const apiUrl = "https://devnexus-server.onrender.com/api/code-components/";
 
