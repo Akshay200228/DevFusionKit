@@ -13,7 +13,7 @@ export default function Layout({ children }) {
   return (
     <>
       {isComponentPage ? (
-        <div className="flex h-[100vh]">
+        <div className="flex h-full">
           <Sidebar />
           <div className="w-full bg-white">
             <SearchBar />

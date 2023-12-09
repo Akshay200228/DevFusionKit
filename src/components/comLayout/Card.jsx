@@ -19,8 +19,7 @@ export default function CardComponent() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="w-full pt-10 overflow-y-auto text-white scrollbar-thin scrollbar-thumb-slate-400 scrollbar-track-gray-300 scrollbar-thumb-rounded-full"
-                style={{ maxHeight: 'calc(100vh - 80px)' }}
+                className="w-full pt-4 text-white"
             >
                 {isLoading ? (
                     <Loader />
@@ -34,7 +33,6 @@ export default function CardComponent() {
                         className="grid grid-cols-1 gap-8 p-4 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3"
                     >
                         {cardData.map((card) => {
-                            console.log("Comp data card: ", cardData)
                             return (
                                 <motion.div
                                     key={card._id}

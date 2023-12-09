@@ -67,7 +67,7 @@ export default function Sidebar() {
                         <AnimatePresence>
                             {open && (
                                 <motion.div
-                                    className="fixed top-0 right-0 w-1/2 h-full p-4 overflow-y-auto bg-white md:block"
+                                    className="fixed top-0 right-0 w-2/3 h-full p-4 overflow-y-auto bg-white md:block"
                                     initial={{ opacity: 0, translateX: '100%' }}
                                     animate={{ opacity: 1, translateX: '0%' }}
                                     exit={{ opacity: 0, translateX: '100%' }}
@@ -109,7 +109,7 @@ export default function Sidebar() {
             </Popover>
 
             {/* Desktop Sidebar content */}
-            <div className="hidden p-4 bg-white w-80 md:block">
+            <div className="hidden p-4 bg-white w-72 md:block">
                 <ul className="font-serif text-xl font-bold">
                     {links.map((link, index) => {
                         const isActive = pathname === link.href; // Check if the link is active
