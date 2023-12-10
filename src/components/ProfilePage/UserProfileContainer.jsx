@@ -47,6 +47,8 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
         }
     };
 
+    
+
     return (
         <div className="container flex flex-col p-4 mx-auto mt-8 md:flex-row">
             {/* Left Column - User Info */}

@@ -20,7 +20,7 @@ const copyToClipboard = (text) => {
 const CodeCompDetails = ({ params }) => {
     const liveEditorRef = useRef(null);
 
-    const CompApiUrl = `https://devnexus-server.onrender.com/api/code-components/${params.codeCompIds}`;
+    const CompApiUrl = `http://localhost:8000/api/code-components/${params.codeCompIds}`;
     const { data: codeComponent, isLoading, error } = useApiFetch(CompApiUrl);
 
     const handleCopyCode = () => {

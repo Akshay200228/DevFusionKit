@@ -2,7 +2,6 @@
 import { LiveProvider, LivePreview, LiveEditor } from 'react-live';
 
 const CodeDisplay = ({ code, liveEditorRef }) => {
-
     return (
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
             <LiveProvider code={code}>
