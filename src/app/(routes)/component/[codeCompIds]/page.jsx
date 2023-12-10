@@ -24,7 +24,11 @@ const CodeCompDetails = ({ params }) => {
     const liveEditorRef = useRef(null);
     const [message, setMessage] = useState(null);
 
-    const CompApiUrl = `http://localhost:8000/api/code-components/${params.codeCompIds}`;
+    const apiUrl = "https://devnexus-server.onrender.com";
+    const CompApiUrl = `${apiUrl}/api/code-components/${params.codeCompIds}`;
+    
+    // const CompApiUrl = `http://localhost:8000/api/code-components/${params.codeCompIds}`;
+
     const { data: codeComponent, isLoading, error } = useApiFetch(CompApiUrl);
 
     const handleCopyCode = () => {

@@ -31,7 +31,8 @@ const CodeComponent = ({ codeComponents }) => {
           onClick: async () => {
             const token = getCookie("token");
             try {
-              const apiUrl = "http://localhost:8000";
+              // const apiUrl = "http://localhost:8000";
+              const apiUrl = "https://devnexus-server.onrender.com";
               await axios.delete(`${apiUrl}/api/code-components/delete/${componentId}`, {
                 headers: {
                   Authorization: `Bearer ${token}`,
