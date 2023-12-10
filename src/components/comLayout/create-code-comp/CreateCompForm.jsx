@@ -83,7 +83,9 @@ const CreateCompForm = ({
       </div>
 
       {/* Use the LiveEditorPreview component here */}
-      <LiveEditorPreview Input={codeInput} handleChange={handleCodeInputChange} />
+      <div className="h-[75vh] container p-4 bg-white rounded-lg shadow-lg lg:flex overflow-auto scrollbar-thin scrollbar-thumb-blue-200 scrollbar-track-gray-200">
+        <LiveEditorPreview Input={codeInput} handleChange={handleCodeInputChange} />
+      </div>
 
       <motion.button
         whileHover={{ scale: 1.05 }}

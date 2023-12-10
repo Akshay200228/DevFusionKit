@@ -1,16 +1,28 @@
 "use client"
+import Message from "@/components/comLayout/create-code-comp/Message";
 // Signup.js
 import useSignup from "@/hooks/useSignup";
+import { useState } from "react";
 
 function Signup() {
   const { formData, successMessage, error, handleChange, handleSubmit } = useSignup();
+  const [message, setMessage] = useState(null);
+
+  // Function to close the message
+  const closeMessage = () => {
+    setMessage(null);
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md p-6 bg-white border-t-4 border-blue-600 rounded-lg shadow-lg">
         <h2 className="mb-4 text-3xl font-extrabold text-center text-blue-500">Sign Up</h2>
-        {successMessage && (
-          <p className="mb-4 text-center text-green-500">{successMessage}</p>
+         {/* Display custom messages based on success or failure */}
+         {successMessage && (
+          <Message type="success" message="Register Successfully" onClose={closeMessage} />
+        )}
+        {error && (
+          <Message type="error" message={error.message || "Failed: Please fill out the entire form"} onClose={closeMessage} />
         )}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -87,8 +99,6 @@ function Signup() {
           >
             Sign Up
           </button>
-          {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
-          {error && <p style={{ color: 'red' }}>{error.message}</p>}
         </form>
       </div>
     </div>
