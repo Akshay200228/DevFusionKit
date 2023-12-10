@@ -38,7 +38,7 @@ const useSignup = () => {
       // Example: Log the response to the console
       console.log('Signup Response:', response);
 
-      setSuccessMessage('User registered successfully!');
+      setSuccessMessage('User registered successfully! Moye Moye');
       router.push('/login');
     } catch (error) {
       console.error(error);

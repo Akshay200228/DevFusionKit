@@ -1,24 +1,28 @@
 "use client"
 // CodeCompDetails.js
+import { useState } from 'react';
 import Loader from '@/components/Loader';
 import CodeDisplay from '@/components/comLayout/codeCompIds/CodeDisplay';
 import CopyCodeButton from '@/components/comLayout/codeCompIds/CopyCodeButton';
 import GoBackButton from '@/components/comLayout/codeCompIds/GoBackButton';
 import useApiFetch from '@/hooks/useApiFetch';
 import { useRef } from 'react';
+import Message from '@/components/comLayout/create-code-comp/Message';
 
 // Function to copy text to clipboard
-const copyToClipboard = (text) => {
+const copyToClipboard = (text, setMessage) => {
     const textField = document.createElement('textarea');
     textField.innerText = text;
     document.body.appendChild(textField);
     textField.select();
     document.execCommand('copy');
     textField.remove();
+    setMessage({ type: 'success', message: 'Code copied to clipboard!' });
 };
 
 const CodeCompDetails = ({ params }) => {
     const liveEditorRef = useRef(null);
+    const [message, setMessage] = useState(null);
 
     const CompApiUrl = `http://localhost:8000/api/code-components/${params.codeCompIds}`;
     const { data: codeComponent, isLoading, error } = useApiFetch(CompApiUrl);
@@ -27,9 +31,12 @@ const CodeCompDetails = ({ params }) => {
         const code = liveEditorRef.current.innerText;
 
         if (code) {
-            copyToClipboard(code);
-            alert('Code copied to clipboard!');
+            copyToClipboard(code, setMessage);
         }
+    };
+
+    const closeMessage = () => {
+        setMessage(null);
     };
 
     return (
@@ -55,6 +62,9 @@ const CodeCompDetails = ({ params }) => {
                         />
                         <h2 className="text-xl font-semibold text-gray-600">{codeComponent.title}</h2>
                     </div>
+
+                    {/* Display the message if it exists */}
+                    {message && <Message type={message.type} message={message.message} onClose={closeMessage} />}
                 </>
             )}
         </div>
