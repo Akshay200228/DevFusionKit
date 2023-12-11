@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { FaUser, FaSignOutAlt } from "react-icons/fa";
 import Container from "./Container";
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
@@ -72,51 +73,51 @@ const Header = ({ userId }) => {
           {/* NavLinks */}
           <div className="items-center hidden lg:flex lg:gap-10">
             <NavLinks />
-            </div>
-            {/* Buttons */}
-            <div className="flex items-center gap-6">
-              {isLoading ? (
-                // <div className="w-12 h-12 border-t-4 border-b-4 border-blue-500 rounded-full animate-spin" />
-                // OR
-                <div className="w-12 h-12 bg-gray-300 rounded-full animate-pulse" />
-              ) : user ? (
-                // Display user data
-                <div className="relative group" onClick={toggleDropdown}>
-                  <img
-                    src={user.avatar}
-                    alt={user.name}
-                    width={48}
-                    height={48}
-                    className="w-12 h-12 border-2 border-blue-600 rounded-full cursor-pointer"
-                  />
-                  {isDropdownOpen && (
-                    <div className="absolute right-0 z-10 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg w-72 top-12">
-                      <div className="py-2">
-                        <Link href="/profile" className="block px-4 py-2 text-gray-800 hover:text-primary hover:bg-gray-100">
-                          Profile
-                        </Link>
-                        <button
-                          className="block w-full px-4 py-2 text-left text-red-600 hover:text-red-800 hover:bg-gray-100"
-                          onClick={handleLogout}
-                        >
-                          Log Out
-                        </button>
-                      </div>
+          </div>
+          {/* Buttons */}
+          <div className="flex items-center gap-6">
+            {isLoading ? (
+              // <div className="w-12 h-12 border-t-4 border-b-4 border-blue-500 rounded-full animate-spin" />
+              // OR
+              <div className="w-12 h-12 bg-gray-300 rounded-full animate-pulse" />
+            ) : user ? (
+              // Display user data
+              <div className="relative group" onClick={toggleDropdown}>
+                <img
+                  src={user.avatar}
+                  alt={user.name}
+                  width={48}
+                  height={48}
+                  className="w-12 h-12 border-2 border-blue-600 rounded-full cursor-pointer"
+                />
+                {isDropdownOpen && (
+                  <div className="absolute right-0 z-10 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg w-72 top-12">
+                    <div className="py-2">
+                      <Link href="/profile" className="block px-4 py-2 text-gray-800 hover:text-primary hover:bg-gray-100">
+                        <FaUser className="inline-block mr-2" /> Profile
+                      </Link>
+                      <button
+                        className="block w-full px-4 py-2 text-left text-red-600 hover:text-red-800 hover:bg-red-100"
+                        onClick={handleLogout}
+                      >
+                        <FaSignOutAlt className="inline-block mr-2" /> Log Out
+                      </button>
                     </div>
-                  )}
+                  </div>
+                )}
 
-                </div>
-              ) : (
-                <>
-                  <Button href="/" variant="outline" className="hidden lg:block">
-                    Get Started
-                  </Button>
-                  <Button href="/signup" className="hidden lg:block">
-                    Sign Up
-                  </Button>
-                </>
-              )
-              }
+              </div>
+            ) : (
+              <>
+                <Button href="/" variant="outline" className="hidden lg:block">
+                  Get Started
+                </Button>
+                <Button href="/signup" className="hidden lg:block">
+                  Sign Up
+                </Button>
+              </>
+            )
+            }
             {/* Mobile NavLinks */}
             <Popover className="lg:hidden">
               {({ open }) => (

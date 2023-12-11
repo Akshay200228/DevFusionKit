@@ -8,6 +8,7 @@ import getCookie from "@/hooks/getCookie";
 import { confirmAlert } from "react-confirm-alert"; // Import the confirmation dialog
 
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import the styles
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 const CodeComponent = ({ codeComponents }) => {
   const [editingComponent, setEditingComponent] = useState(null);
@@ -46,7 +47,7 @@ const CodeComponent = ({ codeComponents }) => {
         },
         {
           label: "No",
-          onClick: () => {}, // Do nothing on cancel
+          onClick: () => { }, // Do nothing on cancel
         },
       ],
     });
@@ -68,10 +69,10 @@ const CodeComponent = ({ codeComponents }) => {
           </div>
         ) : (
           codeComponents.map((component) => (
-            <div key={component._id} className="p-4 mb-8 border rounded shadow-md">
-              <h4 className="mb-2 text-xl font-semibold">{component.title}</h4>
-              <p className="mb-4 text-gray-600">{component.description}</p>
-              <div className="h-[50vh] bg-blue-200 relative">
+            <div key={component._id} className="p-4 mb-8 bg-white border rounded-lg shadow-md">
+              <h4 className="mb-2 text-xl font-semibold text-blue-600">{component.title}</h4>
+              <p className="mb-4 text-gray-700">{component.description}</p>
+              <div className="h-[50vh] bg-blue-200 relative overflow-hidden rounded-lg">
                 <LiveProvider code={component.code} key={component._id}>
                   <div className="absolute inset-0 flex items-center justify-center text-neutral-950">
                     <LivePreview />
@@ -79,8 +80,20 @@ const CodeComponent = ({ codeComponents }) => {
                 </LiveProvider>
               </div>
               <div className="flex justify-between mt-4">
-                <button className="text-blue-500 hover:underline"  onClick={() => handleEdit(component)}>Edit</button>
-                <button className="text-red-500 hover:underline"  onClick={() => handleDelete(component._id)}>Delete</button>
+                <button
+                  className="flex items-center text-blue-500 transition duration-300 ease-in-out hover:text-blue-700"
+                  onClick={() => handleEdit(component)}
+                >
+                  <FaEdit className="mr-2" />
+                  Edit
+                </button>
+                <button
+                  className="flex items-center text-red-500 transition duration-300 ease-in-out hover:text-red-700"
+                  onClick={() => handleDelete(component._id)}
+                >
+                  <FaTrashAlt className="mr-2" />
+                  Delete
+                </button>
               </div>
             </div>
           ))

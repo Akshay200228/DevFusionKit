@@ -82,6 +82,7 @@ const useCreateForm = (initialFormData, apiUrl) => {
         errorMessage,
         handleInputChange,
         handleSubmit,
+        resetForm,
     };
 };
 
