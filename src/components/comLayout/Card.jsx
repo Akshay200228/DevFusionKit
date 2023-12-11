@@ -13,84 +13,97 @@ export default function CardComponent() {
     const { data: cardData, isLoading, error } = useApiFetch(apiUrl);
 
     return (
-        <>
-            <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="w-full pt-4 text-white"
-            >
-                {isLoading ? (
-                    <Loader />
-                ) : error ? (
-                    <div>Error: {error.message}</div>
-                ) : (
-                    <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1, duration: 0.5 }}
-                        className="grid grid-cols-1 gap-8 p-4 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3"
-                    >
-                        {cardData.map((card) => {
-                            return (
-                                <motion.div
-                                    key={card._id}
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    transition={{ duration: 0.3 }}
-                                    className="flex flex-col h-full p-4 bg-white rounded-lg shadow-xl"
-                                >
-                                    <LiveProvider code={card.code}>
-                                        <div className="h-[50vh] mb-4 bg-blue-200 relative overflow-hidden rounded-lg">
-                                            <div className="absolute inset-0 text-neutral-950">
-                                                <LivePreview />
-                                            </div>
+        <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="w-full pt-4 text-white"
+        >
+            {isLoading ? (
+                <Loader />
+            ) : error ? (
+                <div>Error: {error.message}</div>
+            ) : (
+                <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1, duration: 0.5 }}
+                    className="grid grid-cols-1 gap-8 p-4 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3"
+                >
+                    {cardData.map((card) => {
+                        return (
+                            <motion.div
+                                key={card._id}
+                                initial={{ opacity: 0, scale: 0.9, rotateY: -20, rotateX: -20 }}
+                                animate={{ opacity: 1, scale: 1, rotateY: 0, rotateX: 0 }}
+                                whileHover={{ scale: 1.05, rotateY: 10, rotateX: 10 }}
+                                transition={{ duration: 0.5, ease: 'easeInOut' }}
+                                className="flex flex-col h-full p-4 bg-white rounded-lg shadow-xl transform-style-preserve-3d"
+                            >
+                                <LiveProvider code={card.code}>
+                                    <motion.div
+                                        className="h-[50vh] mb-4 bg-blue-200 relative overflow-hidden rounded-lg transform-style-preserve-3d"
+                                        initial={{ rotateY: -10, rotateX: 10 }}
+                                        animate={{ rotateY: 0, rotateX: 0 }}
+                                        whileHover={{ rotateY: 5, rotateX: 5 }}
+                                        transition={{ duration: 0.5, ease: 'easeInOut' }}
+                                    >
+                                        <div className="absolute inset-0 text-neutral-950">
+                                            <LivePreview />
                                         </div>
-                                    </LiveProvider>
+                                    </motion.div>
+                                </LiveProvider>
 
-                                    <div className="flex items-center justify-between mb-2">
-                                        <div className="flex items-center">
-                                            {card.creatorAvatar ? (
-                                                <img
-                                                    src={card.creatorAvatar}
-                                                    alt="User Image"
-                                                    width={36}
-                                                    height={36}
-                                                    className="mr-2 rounded-full"
-                                                />
-                                            ) : (
-                                                <img
-                                                    src="https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75"
-                                                    alt="Default User Image"
-                                                    width={36}
-                                                    height={36}
-                                                    className="mr-2 rounded-full"
-                                                />
-                                            )}
-                                            <h2 className="text-xl font-semibold text-gray-600">{card.title}</h2>
+                                <div className="flex items-center justify-between mb-2">
+                                    <div className="flex items-center space-x-3">
+                                        <div className="w-10 h-10 overflow-hidden rounded-full">
+                                            <motion.img
+                                                src={card.creatorAvatar || "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75"}
+                                                alt="User Image"
+                                                width={36}
+                                                height={36}
+                                                className="object-cover w-full h-full"
+                                                initial={{ rotateY: -10, rotateX: 10 }}
+                                                animate={{ rotateY: 0, rotateX: 0 }}
+                                                whileHover={{ rotateY: 5, rotateX: 5 }}
+                                                transition={{ duration: 0.5, ease: 'easeInOut' }}
+                                            />
                                         </div>
-                                        {/* View More Button */}
-                                        {card._id && (
-                                            <Link href={`/component/${card._id}`}>
-                                                <motion.button
-                                                    whileHover={{ scale: 1.05 }}
-                                                    whileTap={{ scale: 0.95 }}
-                                                    className="p-2 bg-blue-100 rounded-full text-neutral-800 hover:bg-blue-300 focus:outline-none focus:ring focus:border-blue-300"
-                                                >
-                                                    <div className="flex items-center">
-                                                        <FaCode className="mr-2 text-2xl" />
-                                                        <span className="text-lg">View More</span>
-                                                    </div>
-                                                </motion.button>
-                                            </Link>
-                                        )}
+                                        <div>
+                                            <h2 className="text-xl font-semibold text-gray-700">{card.title}</h2>
+                                            <p className="text-sm text-gray-500">by {card.creatorName || 'Anonymous'}</p>
+                                        </div>
                                     </div>
-                                </motion.div>
-                            );
-                        })}
-                    </motion.div>
-                )}
-            </motion.div>
-        </>
+                                    {/* View More Button */}
+                                    {card._id && (
+                                        <Link href={`/component/${card._id}`}>
+                                            <motion.button
+                                                whileHover={{ scale: 1.1, rotateY: 5 }}
+                                                whileTap={{ scale: 0.9 }}
+                                                initial={{ scale: 1, opacity: 0.9 }}
+                                                animate={{ opacity: 1 }}
+                                                transition={{ duration: 0.3 }}
+                                                className="px-4 py-2 text-white transition-transform duration-300 ease-in-out rounded-full bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-indigo-500 hover:to-purple-500 hover:shadow-xl focus:outline-none focus:ring focus:border-blue-300 transform-style-preserve-3d"
+                                            >
+                                                <div className="flex items-center space-x-2">
+                                                    <motion.div
+                                                        initial={{ scale: 0.8, rotateY: -10, rotateX: 10 }}
+                                                        animate={{ scale: 1, rotateY: 0, rotateX: 0 }}
+                                                        transition={{ yoyo: Infinity, duration: 1.5 }}
+                                                    >
+                                                        <FaCode className="text-2xl" />
+                                                    </motion.div>
+                                                    <span className="text-lg">Explore</span>
+                                                </div>
+                                            </motion.button>
+                                        </Link>
+                                    )}
+                                </div>
+                            </motion.div>
+                        );
+                    })}
+                </motion.div>
+            )}
+        </motion.div>
     );
 }
