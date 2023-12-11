@@ -88,7 +88,6 @@ export default function CardComponent() {
                                 </div>
                                 <Link href={`/component/${card._id}`}>
                                     <motion.button
-                                        whileHover={{ scale: 1.1, rotateY: 5 }}
                                         whileTap={{ scale: 0.9 }}
                                         initial={{ scale: 1, opacity: 0.9 }}
                                         animate={{ opacity: 1 }}
