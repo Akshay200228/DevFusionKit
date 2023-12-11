@@ -75,15 +75,16 @@ export default function CardComponent() {
                                                 <motion.button
                                                     whileHover={{ scale: 1.05 }}
                                                     whileTap={{ scale: 0.95 }}
-                                                    className="p-2 bg-blue-100 rounded-full text-neutral-800 hover:bg-blue-300 focus:outline-none focus:ring focus:border-blue-300"
+                                                    className="px-4 py-2 text-white transition-transform duration-300 ease-in-out rounded-full bg-gradient-to-r from-blue-300 to-blue-500 hover:shadow-lg focus:outline-none focus:ring focus:border-blue-300"
                                                 >
                                                     <div className="flex items-center">
                                                         <FaCode className="mr-2 text-2xl" />
-                                                        <span className="text-lg">View More</span>
+                                                        <span className="text-lg">Explore</span>
                                                     </div>
                                                 </motion.button>
                                             </Link>
                                         )}
+
                                     </div>
                                 </motion.div>
                             );
