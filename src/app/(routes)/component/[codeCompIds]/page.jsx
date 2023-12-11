@@ -26,7 +26,7 @@ const CodeCompDetails = ({ params }) => {
 
     const apiUrl = "https://devnexus-server.onrender.com";
     const CompApiUrl = `${apiUrl}/api/code-components/${params.codeCompIds}`;
-    
+
     // const CompApiUrl = `http://localhost:8000/api/code-components/${params.codeCompIds}`;
 
     const { data: codeComponent, isLoading, error } = useApiFetch(CompApiUrl);
@@ -64,7 +64,10 @@ const CodeCompDetails = ({ params }) => {
                             height={36}
                             className="mr-2 rounded-full"
                         />
-                        <h2 className="text-xl font-semibold text-gray-600">{codeComponent.title}</h2>
+                        {/* <h3>{}</h3> */}
+                        <div>
+                            <p className="text-sm text-gray-500">{codeComponent.description}</p>
+                        </div>
                     </div>
 
                     {/* Display the message if it exists */}
