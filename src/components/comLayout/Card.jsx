@@ -84,7 +84,6 @@ export default function CardComponent() {
                                                 </motion.button>
                                             </Link>
                                         )}
-
                                     </div>
                                 </motion.div>
                             );
