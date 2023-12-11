@@ -69,13 +69,22 @@ export default function CardComponent() {
                                             )}
                                             <h2 className="text-xl font-semibold text-gray-600">{card.title}</h2>
                                         </div>
+                                        {/* View More Button */}
                                         {card._id && (
                                             <Link href={`/component/${card._id}`}>
-                                                <button className="p-2 text-blue-400 rounded-full hover-bg-blue-200">
-                                                    <FaCode className="text-4xl" />
-                                                </button>
+                                                <motion.button
+                                                    whileHover={{ scale: 1.05 }}
+                                                    whileTap={{ scale: 0.95 }}
+                                                    className="p-2 bg-blue-100 rounded-full text-neutral-800 hover:bg-blue-300 focus:outline-none focus:ring focus:border-blue-300"
+                                                >
+                                                    <div className="flex items-center">
+                                                        <FaCode className="mr-2 text-2xl" />
+                                                        <span className="text-lg">View More</span>
+                                                    </div>
+                                                </motion.button>
                                             </Link>
                                         )}
+
                                     </div>
                                 </motion.div>
                             );
