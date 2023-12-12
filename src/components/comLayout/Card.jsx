@@ -5,6 +5,7 @@ import { LivePreview, LiveProvider } from 'react-live';
 import useApiFetch from '@/hooks/useApiFetch';
 import Loader from '../Loader';
 import Link from 'next/link';
+import CardSkeleton from './CardSkeleton';
 
 export default function CardComponent() {
     // const apiUrl = "https://devnexus-server.onrender.com/api/code-components/";
@@ -20,7 +21,8 @@ export default function CardComponent() {
             className="w-full pt-4 text-white"
         >
             {isLoading ? (
-                <Loader />
+                // <Loader />
+                <CardSkeleton />
             ) : error ? (
                 <div>Error: {error.message}</div>
             ) : (
