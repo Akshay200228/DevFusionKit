@@ -7,7 +7,8 @@ import Loader from '../Loader';
 import Link from 'next/link';
 
 export default function CardComponent() {
-    const apiUrl = "https://devnexus-server.onrender.com/api/code-components/";
+    // const apiUrl = "https://devnexus-server.onrender.com/api/code-components/";
+    const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL+"/api/code-components";
 
     const { data: cardData, isLoading, error } = useApiFetch(apiUrl);
 
