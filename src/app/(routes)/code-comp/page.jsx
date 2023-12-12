@@ -8,7 +8,8 @@ import useCreateForm from '@/hooks/useCreateForm';
 const CreateCodeComponentForm = () => {
     // const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL + "/api/code-components/" || "http://localhost:8000/api/code-components/";
     // const apiUrl = "http://localhost:8000/api/code-components/";
-    const apiUrl = "https://devnexus-server.onrender.com/api/code-components/";
+    // const apiUrl = "https://devnexus-server.onrender.com/api/code-components/";
+    const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL+"/api/code-components/";
     const initialFormData = {
         title: '',
         description: '',

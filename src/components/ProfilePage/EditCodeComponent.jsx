@@ -5,8 +5,12 @@ import axios from 'axios';
 import getCookie from '@/hooks/getCookie';
 import { motion } from 'framer-motion';
 import { LiveProvider, LiveEditor, LivePreview, LiveError } from 'react-live';
+import { FaCheck, FaSpinner, FaTimes } from 'react-icons/fa';
 
 const EditCodeComponent = ({ component, onCancelEdit }) => {
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
     const [formData, setFormData] = useState({
         title: component.title,
         description: component.description,
@@ -26,8 +30,10 @@ const EditCodeComponent = ({ component, onCancelEdit }) => {
 
     const handleUpdate = async () => {
         try {
+            setLoading(true);
             // const apiUrl = "http://localhost:8000";
-            const apiUrl = "https://devnexus-server.onrender.com";
+            // const apiUrl = "https://devnexus-server.onrender.com";
+            const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
             const response = await axios.put(
                 `${apiUrl}/api/code-components/update/${component._id}`,
                 formData,
@@ -45,7 +51,9 @@ const EditCodeComponent = ({ component, onCancelEdit }) => {
             onCancelEdit(); // Close the editing interface
         } catch (error) {
             console.error('Error updating code component:', error);
-        }
+        } finally {
+            setLoading(false); // Set loading to false regardless of success or failure
+        }    
     };
 
     const categories = ["Accordion", "Button", "Card", "Carousel", "Form", "Inputs", "Loaders", "Toast"];
@@ -56,15 +64,8 @@ const EditCodeComponent = ({ component, onCancelEdit }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             onSubmit={handleUpdate}
-            className="w-full p-6 mx-auto mt-4 bg-white rounded-lg shadow-lg"
+            className="w-auto p-6 mx-auto mt-4 bg-white rounded-lg shadow-lg"
         >
-            <button
-                onClick={onCancelEdit}
-                className="flex items-center justify-end px-4 py-2 my-4 text-white transition duration-300 bg-blue-300 rounded-lg hover:bg-blue-400"
-            >
-                Go Back
-            </button>
-
             {/* Title */}
             <div className="mb-4">
                 <label htmlFor="title" className="block mb-2 text-sm font-bold text-gray-700">
@@ -117,6 +118,13 @@ const EditCodeComponent = ({ component, onCancelEdit }) => {
 
             {/* Code and Preview Section */}
             <div className="flex mb-4">
+                <div className="w-1/2 ml-4">
+                    <label className="block mb-2 text-sm font-bold text-gray-700">Preview</label>
+                    <div className="bg-blue-200 h-[40vh] p-4">
+                        <LivePreview />
+                        <LiveError />
+                    </div>
+                </div>
                 <div className="w-1/2">
                     <label htmlFor="code" className="block mb-2 text-sm font-bold text-gray-700">
                         Code
@@ -125,18 +133,31 @@ const EditCodeComponent = ({ component, onCancelEdit }) => {
                         <LiveEditor onChange={(code) => setFormData({ ...formData, code })} />
                     </LiveProvider>
                 </div>
-                <div className="w-1/2 ml-4">
-                    <label className="block mb-2 text-sm font-bold text-gray-700">Preview</label>
-                    <div className="bg-blue-200 h-[40vh] p-4">
-                        <LivePreview />
-                        <LiveError />
-                    </div>
-                </div>
             </div>
 
             <div className="flex justify-between mt-4">
-                <button type="submit">Update</button>
-                <button type="button" onClick={onCancelEdit}>
+                <button
+                    type="submit"
+                    className="flex items-center px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                    {loading ? (
+                        <>
+                            <FaSpinner className="mr-2 animate-spin" />
+                            Updating...
+                        </>
+                    ) : (
+                        <>
+                            <FaCheck className="mr-2" />
+                            Update
+                        </>
+                    )}
+                </button>
+                <button
+                    type="button"
+                    onClick={onCancelEdit}
+                    className="flex items-center px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                >
+                    <FaTimes className="mr-2" />
                     Cancel
                 </button>
             </div>

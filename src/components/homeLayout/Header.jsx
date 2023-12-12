@@ -83,13 +83,16 @@ const Header = ({ userId }) => {
             ) : user ? (
               // Display user data
               <div className="relative group" onClick={toggleDropdown}>
-                <img
-                  src={user.avatar}
-                  alt={user.name}
-                  width={48}
-                  height={48}
-                  className="w-12 h-12 border-2 border-blue-600 rounded-full cursor-pointer"
-                />
+                <div className="flex items-center cursor-pointer">
+                  <img
+                    src={user.avatar}
+                    alt={user.name}
+                    width={48}
+                    height={48}
+                    className="w-12 h-12 border-2 border-blue-600 rounded-full"
+                  />
+                  <p className="hidden ml-2 text-gray-800 md:block">{`Hi, ${user.name}`}</p>
+                </div>
                 {isDropdownOpen && (
                   <div className="absolute right-0 z-10 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg w-72 top-12">
                     <div className="py-2">

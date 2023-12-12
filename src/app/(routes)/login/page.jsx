@@ -4,6 +4,7 @@ import useLogin from "@/hooks/useLogin";
 import Image from 'next/image';
 import Link from 'next/link';
 import { devLogo } from "@/images";
+import { FaSpinner } from "react-icons/fa";
 
 function Login() {
   const { loading, credentials, error, handleChange, handleSubmit } = useLogin();
@@ -51,10 +52,17 @@ function Login() {
           </div>
           <button
             type="submit"
-            className="w-full py-3 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex items-center justify-center w-full py-3 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
             disabled={loading}
           >
-            {loading ? 'Please wait...' : 'Login'}
+            {loading ? (
+              <>
+                <FaSpinner className="mr-2 animate-spin" />
+                Please wait...
+              </>
+            ) : (
+              'Login'
+            )}
           </button>
           {error && <p className="text-red-500">{error.message}</p>}
         </form>
