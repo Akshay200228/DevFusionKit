@@ -32,7 +32,8 @@ const EditCodeComponent = ({ component, onCancelEdit }) => {
         try {
             setLoading(true);
             // const apiUrl = "http://localhost:8000";
-            const apiUrl = "https://devnexus-server.onrender.com";
+            // const apiUrl = "https://devnexus-server.onrender.com";
+            const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
             const response = await axios.put(
                 `${apiUrl}/api/code-components/update/${component._id}`,
                 formData,

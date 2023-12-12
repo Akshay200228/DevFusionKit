@@ -28,7 +28,8 @@ const useSignup = () => {
     e.preventDefault();
     try {
       // const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL || "http://localhost:8000";
-      const apiUrl = "https://devnexus-server.onrender.com";
+      // const apiUrl = "https://devnexus-server.onrender.com";
+      const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
       const response = await axios.post(`${apiUrl}/api/users/signup`, formData, {
         headers: {
           'Content-Type': 'application/json',
