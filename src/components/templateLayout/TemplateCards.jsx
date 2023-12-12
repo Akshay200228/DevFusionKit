@@ -1,7 +1,7 @@
 "use client"
 
-import { FaGithub } from 'react-icons/fa';
-import { FiExternalLink } from 'react-icons/fi';
+import { FaCode } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Loader from '../Loader';
 import useApiFetch from '@/hooks/useApiFetch';
@@ -9,7 +9,7 @@ import useApiFetch from '@/hooks/useApiFetch';
 export default function TemplateCards() {
   // const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL + "/api/code-templates" || "http://localhost:8000/api/code-templates/";
   // const apiUrl = "https://devnexus-server.onrender.com/api/code-templates/";
-  const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL+"/api/code-templates/";
+  const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL + "/api/code-templates/";
   const { data: templatesData, isLoading, error } = useApiFetch(apiUrl);
 
   return (
@@ -35,21 +35,29 @@ export default function TemplateCards() {
                   <p className="mt-2 text-gray-500">{template.description}</p>
 
                   {/* Links */}
-                  <div className="flex justify-between mt-4">
+                  <div className="flex justify-center mt-4">
                     <Link
-                      href={template.githubLink}
-                      target='_blank'
-                      className="flex items-center p-3 text-2xl text-blue-400 rounded-full lg:hover:bg-blue-100"
+                      href={`/templates/${template._id}`}
+                      // className="flex items-center p-3 text-2xl text-blue-400 rounded-full lg:hover:bg-blue-100"
                     >
-                      <FaGithub />
-                    </Link>
-
-                    <Link
-                      href={template.deployLink}
-                      target='_blank'
-                      className="flex items-center p-3 text-2xl text-blue-400 rounded-full lg:hover:bg-blue-100"
-                    >
-                      <FiExternalLink />
+                      <motion.button
+                        whileTap={{ scale: 0.9 }}
+                        initial={{ scale: 1, opacity: 0.9 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                        className="px-6 py-2 text-white transition-transform duration-300 ease-in-out rounded-full bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-indigo-500 hover:to-purple-500 hover:shadow-2xl focus:outline-none focus:ring focus:border-blue-300 transform-style-preserve-3d"
+                      >
+                        <div className="flex items-center space-x-2">
+                          <motion.div
+                            initial={{ scale: 0.8, rotateY: -10, rotateX: 10 }}
+                            animate={{ scale: 1, rotateY: 0, rotateX: 0 }}
+                            transition={{ yoyo: Infinity, duration: 1.5 }}
+                          >
+                            <FaCode className="text-3xl" />
+                          </motion.div>
+                          <span className="text-lg">Explore</span>
+                        </div>
+                      </motion.button>
                     </Link>
                   </div>
                 </div>
