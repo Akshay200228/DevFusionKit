@@ -3,26 +3,30 @@ import { FaCode } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { LivePreview, LiveProvider } from 'react-live';
 import useApiFetch from '@/hooks/useApiFetch';
-import Loader from '../Loader';
 import Link from 'next/link';
 import CardSkeleton from './CardSkeleton';
+import { useState } from 'react';
+import NavigationButtons from './NavigationButtons';
 
 export default function CardComponent() {
+    const [page, setPage] = useState(1);
     // const apiUrl = "https://devnexus-server.onrender.com/api/code-components/";
-    const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL+"/api/code-components";
+    const apiUrl = `http://localhost:8000/api/code-components?page=${page}`;
 
     const { data: cardData, isLoading, error } = useApiFetch(apiUrl);
 
+    const handleNextPage = () => {
+        setPage((prevPage) => prevPage + 1);
+    };
+
+    const handlePrevPage = () => {
+        setPage((prevPage) => Math.max(prevPage - 1, 1));
+    };
+
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="w-full pt-4 text-white"
-        >
+        <div className="w-full pt-4 text-white">
             {isLoading ? (
-                // <Loader />
-                <CardSkeleton />
+                <CardSkeleton count={9} />
             ) : error ? (
                 <div>Error: {error.message}</div>
             ) : (
@@ -114,6 +118,12 @@ export default function CardComponent() {
                     ))}
                 </motion.div>
             )}
-        </motion.div>
+            <NavigationButtons
+                handlePrevPage={handlePrevPage}
+                handleNextPage={handleNextPage}
+                page={page}
+                cardData={cardData}
+            />
+        </div>
     );
 }
