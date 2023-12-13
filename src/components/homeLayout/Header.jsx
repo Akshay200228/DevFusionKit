@@ -77,38 +77,72 @@ const Header = ({ userId }) => {
           {/* Buttons */}
           <div className="flex items-center gap-6">
             {isLoading ? (
-              // <div className="w-12 h-12 border-t-4 border-b-4 border-blue-500 rounded-full animate-spin" />
-              // OR
               <div className="w-12 h-12 bg-gray-300 rounded-full animate-pulse" />
             ) : user ? (
               // Display user data
               <div className="relative group" onClick={toggleDropdown}>
-                <div className="flex items-center cursor-pointer">
-                  <img
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, type: "spring", stiffness: 100, damping: 10 }}
+                  className="flex items-center cursor-pointer"
+                >
+                  <motion.img
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
                     src={user.avatar}
                     alt={user.name}
                     width={48}
                     height={48}
                     className="w-12 h-12 border-2 border-blue-600 rounded-full"
                   />
-                  <p className="hidden ml-2 text-gray-800 md:block">{`Hi, ${user.name}`}</p>
-                </div>
-                {isDropdownOpen && (
-                  <div className="absolute right-0 z-10 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg w-72 top-12">
-                    <div className="py-2">
-                      <Link href="/profile" className="block px-4 py-2 text-gray-800 hover:text-primary hover:bg-gray-100">
-                        <FaUser className="inline-block mr-2" /> Profile
-                      </Link>
-                      <button
-                        className="block w-full px-4 py-2 text-left text-red-600 hover:text-red-800 hover:bg-red-100"
-                        onClick={handleLogout}
-                      >
-                        <FaSignOutAlt className="inline-block mr-2" /> Log Out
-                      </button>
-                    </div>
-                  </div>
-                )}
-
+                  <motion.p
+                    initial={{ opacity: 0, y: -20, color: "#718096" }}
+                    animate={{ opacity: 1, y: 0, color: "#2c5282" }}
+                    transition={{ duration: 0.8, delay: 0.5, type: "spring", stiffness: 100, damping: 10 }}
+                    className="hidden ml-2 font-serif text-lg font-semibold text-blue-700 md:inline-block"
+                  >
+                    <span className="text-gray-800">Hi, </span>
+                    <motion.span
+                      initial={{ scale: 0.8 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.8, delay: 0.7, type: "spring", stiffness: 100, damping: 10 }}
+                      className="text-indigo-600"
+                    >
+                      {user.name}
+                    </motion.span>
+                  </motion.p>
+                </motion.div>
+                <AnimatePresence>
+                  {isDropdownOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.5 }}
+                      className="absolute right-0 z-10 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg w-72 top-12"
+                    >
+                      <div className="py-2">
+                        <Link
+                          href="/profile"
+                          className="block px-4 py-2 text-gray-800 hover:text-primary hover:bg-gray-100"
+                        >
+                          <FaUser className="inline-block mr-2" /> Profile
+                        </Link>
+                        <motion.button
+                          initial={{ scale: 0.8 }}
+                          animate={{ scale: 1 }}
+                          transition={{ duration: 0.5, delay: 0.2 }}
+                          className="block w-full px-4 py-2 text-left text-red-600 hover:text-red-800 hover:bg-red-100"
+                          onClick={handleLogout}
+                        >
+                          <FaSignOutAlt className="inline-block mr-2" /> Log Out
+                        </motion.button>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             ) : (
               <>

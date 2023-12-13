@@ -35,10 +35,12 @@ const WebTemplatesDetails = ({ params }) => {
             >
                 {/* Left side (templateImage) */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5 }}
                     className="pr-8 lg:w-1/3"
+                    initial={{ x: -100, opacity: 0, rotate: -45 }}
+                    animate={{ opacity: 1, x: 0, rotate: 0 }}
+                    transition={{ duration: 0.5 }}
+                    whileTap={{ scale: 0.9 }}
+
                 >
                     <img
                         src={webTemplate.templateImage}

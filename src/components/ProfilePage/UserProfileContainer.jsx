@@ -20,6 +20,7 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
     const contributionsData = [
         { date: '2023-01-01', count: 50 },
         { date: '2023-01-02', count: 1 },
+        { date: '2023-01-02', count: 1 },
         { date: '2023-01-03', count: 22 },
         { date: '2023-01-04', count: 12 },
         { date: '2023-02-05', count: 65 },
