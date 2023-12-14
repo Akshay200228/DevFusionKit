@@ -14,6 +14,7 @@ import Link from "next/link";
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie"; // Import the Cookies library
+import ProfileSkeltonLoaing from "./ProfileSkeltonLoaing";
 
 
 const MobileNavLink = ({ children, ...props }) => {
@@ -31,7 +32,11 @@ const MobileNavLink = ({ children, ...props }) => {
 const Header = ({ userId }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { user: authUser, error, isLoading } = useAuth(userId);
+  const [user, setUser] = useState(null); // Local user state
+
   const router = useRouter();
+
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
@@ -52,18 +57,20 @@ const Header = ({ userId }) => {
   }, []);
 
   const handleLogout = () => {
-    // Clear the user's authentication token stored in a cookie
     Cookies.remove("token");
-    router.push("/login")
+    setUser(null);
+    router.push("/login");
   };
 
-  const { user, error, isLoading } = useAuth(userId); // Destructure isLoading
+  // Update local user state when authentication state changes
+  useEffect(() => {
+    if (authUser) {
+      setUser(authUser);
+    }
+  }, [authUser]);
 
   return (
-    <header
-      className={`w-full sticky top-0 z-50 bg-white  ${isScrolled && "shadow-xl"
-        }`}
-    >
+    <header className={`w-full sticky top-0 z-50 bg-white  ${isScrolled && "shadow-xl"}`}>
       <nav>
         <Container className="relative z-40 flex justify-between py-4">
           {/* Logo */}
@@ -77,10 +84,10 @@ const Header = ({ userId }) => {
           {/* Buttons */}
           <div className="flex items-center gap-6">
             {isLoading ? (
-              <div className="w-12 h-12 bg-gray-300 rounded-full animate-pulse" />
+              <ProfileSkeltonLoaing />
             ) : user ? (
               // Display user data
-              <div className="relative group" onClick={toggleDropdown}>
+              <div className="relative hidden group lg:block" onClick={toggleDropdown}>
                 <motion.div
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -201,7 +208,36 @@ const Header = ({ userId }) => {
                               </MobileNavLink>
                             ))}
                           </div>
-                          {user ? '' : (
+                          {user ? (
+                            // Add user profile and logout button also 
+                            <div className="flex flex-col gap-4 mt-4">
+                              <Link
+                                href="/profile"
+                                className="flex items-center justify-center p-2 text-gray-800 transition duration-300 rounded-md hover:text-primary hover:bg-gray-100"
+                              >
+                                <motion.img
+                                  initial={{ scale: 0 }}
+                                  animate={{ scale: 1 }}
+                                  transition={{ duration: 0.5, delay: 0.3 }}
+                                  src={user.avatar}
+                                  alt={user.name}
+                                  width={48}
+                                  height={48}
+                                  className="w-12 h-12 border-2 border-blue-600 rounded-full"
+                                />
+                                <span className="ml-2 text-lg font-semibold">Profile</span>
+                              </Link>
+                              <div className="text-left">
+                                <Button
+                                  variant="outline"
+                                  onClick={handleLogout}
+                                  className="block w-full px-4 py-2 text-left text-red-600 transition duration-300 rounded-md hover:text-red-800 hover:bg-red-100"
+                                >
+                                  Log Out
+                                </Button>
+                              </div>
+                            </div>
+                          ) : (
                             <div className="flex flex-col gap-4 mt-8">
                               <Button href="#" variant="outline">
                                 Sign Up

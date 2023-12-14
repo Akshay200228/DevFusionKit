@@ -66,7 +66,18 @@ const Message = ({ type, message, onClose }) => {
             </div>
             <div className="w-full h-2 bg-white rounded">
                 <motion.div
-                    style={{ width: `${progress}%`, height: '100%', background: ' rgb(134 239 172)' }}
+                    style={{
+                        width: `${progress}%`,
+                        height: '100%',
+                        background:
+                            type === 'success'
+                                ? 'rgb(134 239 172)'
+                                : type === 'error'
+                                    ? '#FF0000'
+                                    : type === 'warning'
+                                        ? 'rgb(255 236 153)'
+                                        : 'rgb(134 239 172)',
+                    }}
                     animate={controls}
                 ></motion.div>
             </div>

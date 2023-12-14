@@ -1,17 +1,19 @@
 "use client";
+// CodeComponent.js
 import { useState } from "react";
 import { LivePreview, LiveProvider } from "react-live";
 import CreateButton from "../CreateButton";
 import EditCodeComponent from "./EditCodeComponent";
 import axios from "axios";
 import getCookie from "@/hooks/getCookie";
-import { confirmAlert } from "react-confirm-alert"; // Import the confirmation dialog
-
-import "react-confirm-alert/src/react-confirm-alert.css"; // Import the styles
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import CustomModal from "./CustomModal";
+import Message from "../comLayout/create-code-comp/Message";
 
 const CodeComponent = ({ codeComponents }) => {
   const [editingComponent, setEditingComponent] = useState(null);
+  const [confirmDelete, setConfirmDelete] = useState(null);
+  const [showDeleteMessage, setShowDeleteMessage] = useState(false);
 
   const handleEdit = (component) => {
     setEditingComponent(component);
@@ -23,35 +25,27 @@ const CodeComponent = ({ codeComponents }) => {
 
   const handleDelete = (componentId) => {
     // Display confirmation dialog
-    confirmAlert({
-      title: "Confirm to delete",
-      message: "Are you sure you want to delete this code component?",
-      buttons: [
-        {
-          label: "Yes",
-          onClick: async () => {
-            const token = getCookie("token");
-            try {
-              // const apiUrl = "http://localhost:8000";
-              // const apiUrl = "https://devnexus-server.onrender.com";
-              const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
-              await axios.delete(`${apiUrl}/api/code-components/delete/${componentId}`, {
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                },
-              });
-
-            } catch (error) {
-              console.error("Error deleting code component:", error);
-            }
-          },
-        },
-        {
-          label: "No",
-          onClick: () => { }, // Do nothing on cancel
-        },
-      ],
+    setConfirmDelete({
+      componentId,
+      title: 'Confirm to delete',
+      message: 'Are you sure you want to delete this code component?',
     });
+  };
+
+  const confirmDeleteHandler = async () => {
+    const token = getCookie('token');
+    try {
+      const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
+      await axios.delete(`${apiUrl}/api/code-components/delete/${confirmDelete.componentId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setShowDeleteMessage(true); // Show delete success message
+    } catch (error) {
+      console.error('Error deleting code component:', error);
+    }
+    setConfirmDelete(null);
   };
 
   return (
@@ -100,6 +94,18 @@ const CodeComponent = ({ codeComponents }) => {
           ))
         )}
       </div>
+      {confirmDelete && (
+        <CustomModal
+          title={confirmDelete.title}
+          message={confirmDelete.message}
+          onConfirm={confirmDeleteHandler}
+          onCancel={() => setConfirmDelete(null)}
+        />
+      )}
+      {/* Show the delete success message when showDeleteMessage is true */}
+      {showDeleteMessage && (
+        <Message type="error" message="Item deleted successfully" onClose={() => setShowDeleteMessage(false)} />
+      )}
     </div>
   );
 };
