@@ -14,7 +14,7 @@ export default function SearchBar() {
 
     return (
         <Container>
-            <div className="flex items-center justify-between m-4">
+            <div className="flex items-center justify-between">
                 <div className="relative">
                     <input
                         type="text"
