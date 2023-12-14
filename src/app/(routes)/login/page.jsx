@@ -1,8 +1,8 @@
 "use client"
 // Login.js
-import useLogin from "@/hooks/useLogin";
 import Image from 'next/image';
 import Link from 'next/link';
+import useLogin from "@/hooks/useLogin";
 import { devLogo } from "@/images";
 import { FaSpinner } from "react-icons/fa";
 
@@ -52,8 +52,7 @@ function Login() {
           </div>
           <button
             type="submit"
-            className="flex items-center justify-center w-full py-3 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            disabled={loading}
+            className={`flex items-center justify-center w-full py-3 text-white rounded-md ${loading ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500'}`}
           >
             {loading ? (
               <>
