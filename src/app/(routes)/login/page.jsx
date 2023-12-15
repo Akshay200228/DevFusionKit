@@ -53,6 +53,7 @@ function Login() {
           <button
             type="submit"
             className={`flex items-center justify-center w-full py-3 text-white rounded-md ${loading ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500'}`}
+            disabled={loading}
           >
             {loading ? (
               <>

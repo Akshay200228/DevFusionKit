@@ -8,6 +8,7 @@ import GoBackButton from '@/components/comLayout/codeCompIds/GoBackButton';
 import useApiFetch from '@/hooks/useApiFetch';
 import { useRef } from 'react';
 import Message from '@/components/comLayout/create-code-comp/Message';
+import { CodeCompDetailsSkeleton } from '@/components/SkeltonLoading';
 
 // Function to copy text to clipboard
 const copyToClipboard = (text, setMessage) => {
@@ -46,9 +47,11 @@ const CodeCompDetails = ({ params }) => {
 
     return (
         <div className="container p-8 mx-auto mt-8 bg-white rounded-lg shadow-lg">
-            {isLoading && <Loader />}
-            {error && <p>Error: {error.message}</p>}
-            {codeComponent && (
+            {isLoading ? (
+                <CodeCompDetailsSkeleton />
+            ) : error ? (
+                <p>Error: {error.message}</p>
+            ) : codeComponent ? (
                 <>
                     <div className="flex items-center justify-between mb-4">
                         <GoBackButton />
@@ -74,7 +77,7 @@ const CodeCompDetails = ({ params }) => {
                     {/* Display the message if it exists */}
                     {message && <Message type={message.type} message={message.message} onClose={closeMessage} />}
                 </>
-            )}
+            ) : null}
         </div>
     );
 };
