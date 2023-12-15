@@ -4,9 +4,9 @@ import { motion } from 'framer-motion';
 import { LivePreview, LiveProvider } from 'react-live';
 import useApiFetch from '@/hooks/useApiFetch';
 import Link from 'next/link';
-import CardSkeleton from './CardSkeleton';
 import { useState } from 'react';
 import NavigationButtons from './NavigationButtons';
+import { CardSkeleton } from '../SkeltonLoading';
 
 export default function CardComponent() {
     const [page, setPage] = useState(1);

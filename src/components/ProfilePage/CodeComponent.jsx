@@ -41,11 +41,13 @@ const CodeComponent = ({ codeComponents }) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      setShowDeleteMessage(true); // Show delete success message
+      setShowDeleteMessage(true);
+      window.location.reload(true); 
     } catch (error) {
       console.error('Error deleting code component:', error);
+    } finally {
+      setConfirmDelete(null);
     }
-    setConfirmDelete(null);
   };
 
   return (

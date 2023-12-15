@@ -3,8 +3,8 @@
 import { FaCode } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import Loader from '../Loader';
 import useApiFetch from '@/hooks/useApiFetch';
+import { TemplateCardsSkeleton } from '../SkeltonLoading';
 
 export default function TemplateCards() {
   // const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL + "/api/code-templates" || "http://localhost:8000/api/code-templates/";
@@ -15,7 +15,7 @@ export default function TemplateCards() {
   return (
     <div className="px-4 mx-auto max-w-fit sm:px-6 lg:px-8">
       {isLoading ? (
-        <Loader />
+        <TemplateCardsSkeleton count={12} />
       ) : error ? (
         <div>Error: {error.message}</div>
       ) : (

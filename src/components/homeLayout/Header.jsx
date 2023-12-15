@@ -13,8 +13,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
-import Cookies from "js-cookie"; // Import the Cookies library
-import ProfileSkeltonLoaing from "./ProfileSkeltonLoaing";
+import Cookies from "js-cookie";
+import { ProfileSkeltonLoading } from "../SkeltonLoading";
 
 
 const MobileNavLink = ({ children, ...props }) => {
@@ -84,7 +84,7 @@ const Header = ({ userId }) => {
           {/* Buttons */}
           <div className="flex items-center gap-6">
             {isLoading ? (
-              <ProfileSkeltonLoaing />
+              <ProfileSkeltonLoading />
             ) : user ? (
               // Display user data
               <div className="relative hidden group lg:block" onClick={toggleDropdown}>

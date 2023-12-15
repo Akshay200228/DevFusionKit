@@ -20,6 +20,8 @@ const CreateCompForm = ({
     router.back();
   };
 
+  // Check if all required fields are filled
+  const isSubmitDisabled = !formData.title || !formData.description || !formData.category;
 
   return (
     <motion.form
@@ -91,8 +93,8 @@ const CreateCompForm = ({
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         type="submit"
-        className="flex items-center justify-end w-auto px-6 py-3 mt-4 text-white transition duration-300 bg-blue-500 rounded-md hover:bg-blue-600"
-        disabled={loading}
+        className={`flex items-center justify-end w-auto px-6 py-3 mt-4 text-white transition duration-300 rounded-md ${isSubmitDisabled ? 'cursor-not-allowed bg-gray-300' : 'bg-blue-500 hover:bg-blue-600'}`}
+        disabled={loading || isSubmitDisabled}
       >
         {loading ? 'Submitting...' : 'Submit'}
         <FiSend className="ml-2" />

@@ -5,6 +5,7 @@ import Container from '@/components/homeLayout/Container';
 import useApiFetch from '@/hooks/useApiFetch';
 import Loader from '@/components/Loader';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { WebTemplatesDetailsSkeleton } from '@/components/SkeltonLoading';
 
 const WebTemplatesDetails = ({ params }) => {
     const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
@@ -13,7 +14,7 @@ const WebTemplatesDetails = ({ params }) => {
     const { data: webTemplate, isLoading, error } = useApiFetch(WebTempApiUrl);
 
     if (isLoading) {
-        return <Loader />;
+        return <WebTemplatesDetailsSkeleton />;
     }
 
     if (error) {
