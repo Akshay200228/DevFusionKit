@@ -67,6 +67,7 @@ export default function UserProfile() {
                     userData={userData}
                     codeComponentsData={codeComponentsData}
                     webTemplatesData={webTemplatesData}
+                    loading={isLoading}
                 />
             )}
         </Container>

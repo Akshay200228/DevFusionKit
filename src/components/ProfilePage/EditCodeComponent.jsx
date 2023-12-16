@@ -53,7 +53,7 @@ const EditCodeComponent = ({ component, onCancelEdit }) => {
             console.error('Error updating code component:', error);
         } finally {
             setLoading(false); // Set loading to false regardless of success or failure
-        }    
+        }
     };
 
     const categories = ["Accordion", "Button", "Card", "Carousel", "Form", "Inputs", "Loaders", "Toast"];
@@ -118,21 +118,21 @@ const EditCodeComponent = ({ component, onCancelEdit }) => {
 
             {/* Code and Preview Section */}
             <div className="flex mb-4">
-                <div className="w-1/2 ml-4">
-                    <label className="block mb-2 text-sm font-bold text-gray-700">Preview</label>
-                    <div className="bg-blue-200 h-[40vh] p-4">
-                        <LivePreview />
-                        <LiveError />
+                <LiveProvider code={formData.code}>
+                    <div className="w-1/2 ml-4">
+                        <label className="block mb-2 text-sm font-bold text-gray-700">Preview</label>
+                        <div className="bg-blue-200 h-[50vh] p-4">
+                            <LivePreview />
+                            <LiveError />
+                        </div>
                     </div>
-                </div>
-                <div className="w-1/2">
-                    <label htmlFor="code" className="block mb-2 text-sm font-bold text-gray-700">
-                        Code
-                    </label>
-                    <LiveProvider code={formData.code}>
-                        <LiveEditor onChange={(code) => setFormData({ ...formData, code })} />
-                    </LiveProvider>
-                </div>
+                    <div className="w-1/2 overflow-auto">
+                        <label htmlFor="code" className="block mb-2 text-sm font-bold text-gray-700">
+                            Code
+                        </label>
+                        <LiveEditor onChange={(code) => setFormData({ ...formData, code })} className='overflow-y-auto bg-[#011627] h-[50vh]' />
+                    </div>
+                </LiveProvider>
             </div>
 
             <div className="flex justify-between mt-4">

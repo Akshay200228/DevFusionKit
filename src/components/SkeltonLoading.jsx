@@ -120,3 +120,31 @@ export const TemplateCardsSkeleton = ({ count }) => {
         </div>
     );
 };
+
+
+// UserProfileSkeleton.js
+export const UserProfileSkeleton = () => {
+    return (
+        <div className="container flex flex-col p-4 mx-auto mt-8 md:flex-row">
+
+            {/* Right Column - User Works (Mimicking code component display) */}
+            <div className="flex justify-between space-x-4">
+                {[...Array(3)].map((_, index) => (
+                    <div key={index} className="rounded-lg shadow-lg bg-blue-50 animate-pulse">
+                        <div className="bg-gray-300 rounded-t-lg h-96 w-80 skeleton-shimmer" />
+                        <div className="p-4">
+                            <div className="flex justify-between mt-2 md:mt-4">
+                                <button
+                                    className="flex items-center px-8 py-4 bg-gray-300 rounded-lg"
+                                />
+                                <button
+                                    className="flex items-center px-8 py-4 bg-gray-300 rounded-lg"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
