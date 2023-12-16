@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Container from '@/components/homeLayout/Container';
 import useApiFetch from '@/hooks/useApiFetch';
-import Loader from '@/components/Loader';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { WebTemplatesDetailsSkeleton } from '@/components/SkeltonLoading';
 
