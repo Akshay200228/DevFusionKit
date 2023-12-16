@@ -6,10 +6,6 @@ import axios from 'axios';
 import UserProfileContainer from '@/components/ProfilePage/UserProfileContainer';
 import Loader from '@/components/Loader';
 
-export const metadata = {
-    title: 'Profile'
-}
-
 export default function UserProfile() {
     const { user, error, isLoading } = useAuth();
     const [userData, setUserData] = useState(null);
