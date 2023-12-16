@@ -48,7 +48,7 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
         }
     };
 
-    
+
 
     return (
         <div className="container flex flex-col p-4 mx-auto mt-8 md:flex-row">
@@ -59,7 +59,7 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
                     <img
                         src={user.avatar}
                         alt={user.name}
-                        className="object-cover w-full h-full"
+                        className="object-cover w-full h-full rounded-full"
                     />
                 </div>
                 <h1 className="mb-2 text-2xl font-semibold text-center md:text-left">{user.name}</h1>
@@ -95,6 +95,8 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
                 ) : (
                     <div>
                         <CodeComponent codeComponents={codeComponentsData} />
+                        {/* Adding horizontal line here */}
+                        <hr className="my-8 border-t border-gray-300" />
                         <WebTemplate webTemplates={webTemplatesData} />
                     </div>
                 )}

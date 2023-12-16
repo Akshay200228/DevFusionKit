@@ -11,7 +11,8 @@ import { CardSkeleton } from '../SkeltonLoading';
 export default function CardComponent() {
     const [page, setPage] = useState(1);
     // const apiUrl = "https://devnexus-server.onrender.com/api/code-components/";
-    const apiUrl = `http://localhost:8000/api/code-components?page=${page}`;
+    const apiUrl = `https://devnexus-server.onrender.com/api/code-components?page=${page}`;
+    // const apiUrl = `http://localhost:8000/api/code-components?page=${page}`;
 
     const { data: cardData, isLoading, error } = useApiFetch(apiUrl);
 
