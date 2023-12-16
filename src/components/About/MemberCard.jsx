@@ -1,8 +1,9 @@
 "use client"
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
-const MemberCard = ({ name, role, description, image }) => {
+const MemberCard = ({ name, role, description, image, link }) => {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -22,9 +23,11 @@ const MemberCard = ({ name, role, description, image }) => {
         <h2 className="mb-2 text-xl font-semibold">{name}</h2>
         <p className="mb-2 text-gray-500">{role}</p>
         <p className="mb-4 text-gray-600">{description}</p>
-        <button className="px-4 py-2 text-white bg-blue-500 rounded-full hover:bg-blue-600">
-          Connect
-        </button>
+        <Link href={link}>
+          <button className="px-4 py-2 text-white bg-blue-500 rounded-full hover:bg-blue-600">
+            Connect
+          </button>
+        </Link>
         <span className="block mt-2 text-gray-400">Joined: August 2022</span>
       </div>
     </motion.div>

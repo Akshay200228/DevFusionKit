@@ -6,7 +6,6 @@ import axios from 'axios';
 import UserProfileContainer from '@/components/ProfilePage/UserProfileContainer';
 import Loader from '@/components/Loader';
 
-
 export default function UserProfile() {
     const { user, error, isLoading } = useAuth();
     const [userData, setUserData] = useState(null);
@@ -68,6 +67,7 @@ export default function UserProfile() {
                     userData={userData}
                     codeComponentsData={codeComponentsData}
                     webTemplatesData={webTemplatesData}
+                    loading={isLoading}
                 />
             )}
         </Container>

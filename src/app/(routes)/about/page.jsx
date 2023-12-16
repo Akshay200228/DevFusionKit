@@ -10,6 +10,7 @@ const members = [
     role: "Founder",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit....",
     image: "/dboy.png",
+    link: "https://www.linkedin.com/in/akshay-sankpal-a12426259/",
   },
   {
     id: 2,
@@ -17,6 +18,7 @@ const members = [
     role: "Co-Founder",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ...",
     image: "/Members/sahil.jpg",
+    link: "https://www.linkedin.com/in/sahil-wagh-665a31248/",
   },
 ];
 

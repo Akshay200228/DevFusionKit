@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Container from '@/components/homeLayout/Container';
 import useApiFetch from '@/hooks/useApiFetch';
-import Loader from '@/components/Loader';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { WebTemplatesDetailsSkeleton } from '@/components/SkeltonLoading';
 
@@ -32,11 +31,11 @@ const WebTemplatesDetails = ({ params }) => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 50 }}
                 transition={{ duration: 0.5 }}
-                className="flex flex-col lg:flex-row"
+                className="flex flex-col md:flex-row"
             >
                 {/* Left side (templateImage) */}
                 <motion.div
-                    className="pr-8 lg:w-1/3"
+                    className="pr-8 md:w-1/3"
                     initial={{ x: -100, opacity: 0, rotate: -45 }}
                     animate={{ opacity: 1, x: 0, rotate: 0 }}
                     transition={{ duration: 0.5 }}
@@ -55,7 +54,7 @@ const WebTemplatesDetails = ({ params }) => {
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="lg:w-2/3"
+                    className="md:w-2/3"
                 >
                     <h2 className="mb-4 text-3xl font-semibold">{webTemplate.title}</h2>
                     <p className="mb-4 text-gray-600">{webTemplate.description}</p>

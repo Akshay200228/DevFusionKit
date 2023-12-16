@@ -13,6 +13,7 @@ export default function CardComponent() {
     // const apiUrl = "https://devnexus-server.onrender.com/api/code-components/";
     const apiUrl = `${process.env.NEXT_PUBLIC_NEXUS_URL}/api/code-components?page=${page}`;
 
+
     const { data: cardData, isLoading, error } = useApiFetch(apiUrl);
 
     const handleNextPage = () => {
