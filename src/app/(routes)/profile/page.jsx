@@ -17,8 +17,8 @@ export default function UserProfile() {
             if (user && user._id) {
                 try {
                     // const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL || "http://localhost:8000";
-                    // const apiUrl = "https://devnexus-server.onrender.com";
-                    const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
+                    const apiUrl = "http://localhost:8000";
+                    // const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
                     const userResponse = await axios.get(`${apiUrl}/api/users/${user._id}`);
                     console.log("User data:", userResponse.data);
                     setUserData(userResponse.data);
@@ -38,7 +38,7 @@ export default function UserProfile() {
                     const webTemplateIds = userResponse.data.webTemplates.join(',');
                     // Check if there are web template IDs to fetch
                     if (webTemplateIds) {
-                        const webTemplatesResponse = await axios.get(`${apiUrl}/api/code-templates/details/${webTemplateIds}`);
+                        const webTemplatesResponse = await axios.get(`${apiUrl}/api/web-templates/details/${webTemplateIds}`);
                         const webTemplatesData = webTemplatesResponse.data;
                         setWebTemplatesData(webTemplatesData.filter(Boolean)); // Filter out null values
                     } else {

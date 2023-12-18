@@ -9,7 +9,6 @@ import { FaCheck, FaSpinner, FaTimes } from 'react-icons/fa';
 
 const EditCodeComponent = ({ component, onCancelEdit }) => {
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
 
     const [formData, setFormData] = useState({
         title: component.title,
@@ -137,6 +136,7 @@ const EditCodeComponent = ({ component, onCancelEdit }) => {
 
             <div className="flex justify-between mt-4">
                 <button
+                    onClick={()=> {console.log("Click here")}}
                     type="submit"
                     className="flex items-center px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >

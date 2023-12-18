@@ -8,7 +8,7 @@ import { WebTemplatesDetailsSkeleton } from '@/components/SkeltonLoading';
 
 const WebTemplatesDetails = ({ params }) => {
     const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
-    const WebTempApiUrl = `${apiUrl}/api/code-templates/${params.templatesID}`;
+    const WebTempApiUrl = `${apiUrl}/api/web-templates/${params.templatesID}`;
 
     const { data: webTemplate, isLoading, error } = useApiFetch(WebTempApiUrl);
 
