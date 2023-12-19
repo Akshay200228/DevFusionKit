@@ -7,21 +7,32 @@ import Link from 'next/link';
 import { useState } from 'react';
 import NavigationButtons from './NavigationButtons';
 import { CardSkeleton } from '../SkeltonLoading';
+import { useRouter } from 'next/navigation';
 
 export default function CardComponent() {
+    const router = useRouter();
     const [page, setPage] = useState(1);
-    // const apiUrl = "https://devnexus-server.onrender.com/api/code-components/";
+    // const apiUrl = `https://devnexus-server.onrender.com/api/code-components?page=${page}`;
     const apiUrl = `${process.env.NEXT_PUBLIC_NEXUS_URL}/api/code-components?page=${page}`;
 
     const { data: cardData, isLoading, error } = useApiFetch(apiUrl);
 
     const handleNextPage = () => {
-        setPage((prevPage) => prevPage + 1);
+        setPage((prevPage) => {
+            const nextPage = prevPage + 1;
+            router.push(`/component?page=${nextPage}`);
+            return nextPage;
+        });
     };
 
     const handlePrevPage = () => {
-        setPage((prevPage) => Math.max(prevPage - 1, 1));
+        setPage((prevPage) => {
+            const prevPageNumber = Math.max(prevPage - 1, 1);
+            router.push(`/component?page=${prevPageNumber}`);
+            return prevPageNumber;
+        });
     };
+
 
     return (
         <div className="w-full pt-4 text-white">
