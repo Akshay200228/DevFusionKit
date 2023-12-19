@@ -16,8 +16,8 @@ export default function UserProfile() {
         const fetchUserDetails = async () => {
             if (user && user._id) {
                 try {
-                    // const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL || "http://localhost:8000";
-                    const apiUrl = "http://localhost:8000";
+                    const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL || "http://localhost:8000";
+                    // const apiUrl = "http://localhost:8000";
                     // const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
                     const userResponse = await axios.get(`${apiUrl}/api/users/${user._id}`);
                     console.log("User data:", userResponse.data);
