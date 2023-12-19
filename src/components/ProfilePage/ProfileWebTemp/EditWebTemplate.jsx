@@ -1,54 +1,13 @@
-"use client"
-// EditWebTemplate.jsx
-import axios from 'axios';
+import useProfileWorkEditForm from '@/hooks/useProfileWorkEditForm';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 import { FaCheck, FaSpinner, FaTimes } from 'react-icons/fa';
-import getCookie from '@/hooks/getCookie';
 
 const EditWebTemplate = ({ template, onCancelEdit }) => {
-    const [loading, setLoading] = useState(false);
-
-    const [formData, setFormData] = useState({
-        title: template.title,
-        description: template.description,
-        githubLink: template.githubLink,
-        deployLink: template.deployLink,
-        templateImage: template.templateImage,
+    const { loading, formData, handleChange, handleUpdate } = useProfileWorkEditForm({
+        data: template,
+        apiUrl: process.env.NEXT_PUBLIC_NEXUS_URL,
+        updateEndpoint: 'web-templates',
     });
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
-
-    const token = getCookie('token');
-    const handleUpdate = async () => {
-        try {
-            setLoading(true);
-            // const apiUrl = "http://localhost:8000";
-            const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
-
-            const response = await axios.put(
-                `${apiUrl}/api/web-templates/update/${template._id}`,
-                formData,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            );
-            console.log('Web template updated successfully:', response.data);
-            onCancelEdit();
-        } catch (error) {
-            console.error('Error updating web template:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
 
     return (
         <motion.form
@@ -89,12 +48,12 @@ const EditWebTemplate = ({ template, onCancelEdit }) => {
 
             {/* githubLink */}
             <div className="mb-4">
-                <label htmlFor="description" className="block mb-2 text-sm font-bold text-gray-700">
+                <label htmlFor="githubLink" className="block mb-2 text-sm font-bold text-gray-700">
                     GithubLink
                 </label>
                 <textarea
-                    id="description"
-                    name="description"
+                    id="githubLink"
+                    name="githubLink"
                     value={formData.githubLink}
                     onChange={handleChange}
                     className="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:border-blue-500"
@@ -103,12 +62,12 @@ const EditWebTemplate = ({ template, onCancelEdit }) => {
 
             {/* deployLink */}
             <div className="mb-4">
-                <label htmlFor="description" className="block mb-2 text-sm font-bold text-gray-700">
+                <label htmlFor="deployLink" className="block mb-2 text-sm font-bold text-gray-700">
                     DeployLink
                 </label>
                 <textarea
-                    id="description"
-                    name="description"
+                    id="deployLink"
+                    name="deployLink"
                     value={formData.deployLink}
                     onChange={handleChange}
                     className="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:border-blue-500"
@@ -117,12 +76,12 @@ const EditWebTemplate = ({ template, onCancelEdit }) => {
 
             {/* templateImage */}
             <div className="mb-4">
-                <label htmlFor="description" className="block mb-2 text-sm font-bold text-gray-700">
+                <label htmlFor="templateImage" className="block mb-2 text-sm font-bold text-gray-700">
                     TemplateImage
                 </label>
                 <textarea
-                    id="description"
-                    name="description"
+                    id="templateImage"
+                    name="templateImage"
                     value={formData.templateImage}
                     onChange={handleChange}
                     className="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:border-blue-500"
@@ -133,6 +92,7 @@ const EditWebTemplate = ({ template, onCancelEdit }) => {
                 <button
                     type="submit"
                     className="flex items-center px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    disabled={loading}
                 >
                     {loading ? (
                         <>
@@ -150,6 +110,7 @@ const EditWebTemplate = ({ template, onCancelEdit }) => {
                     type="button"
                     onClick={onCancelEdit}
                     className="flex items-center px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                    disabled={loading}
                 >
                     <FaTimes className="mr-2" />
                     Cancel

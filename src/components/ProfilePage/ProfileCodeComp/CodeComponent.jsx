@@ -40,6 +40,7 @@ const CodeComponent = ({ codeComponents }) => {
     const token = getCookie('token');
     try {
       const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
+      // const apiUrl = "http://localhost:8000";
       await axios.delete(`${apiUrl}/api/code-components/delete/${confirmDelete.componentId}`, {
         headers: {
           Authorization: `Bearer ${token}`,

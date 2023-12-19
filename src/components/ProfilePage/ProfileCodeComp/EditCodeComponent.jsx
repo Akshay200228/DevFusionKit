@@ -27,6 +27,14 @@ const EditCodeComponent = ({ component, onCancelEdit }) => {
         }));
     };
 
+    const handleCodeChange = (code) => {
+        setFormData((prevData) => ({
+            ...prevData,
+            code: code,
+        }));
+    };
+
+
     const handleUpdate = async () => {
         try {
             setLoading(true);
@@ -129,14 +137,14 @@ const EditCodeComponent = ({ component, onCancelEdit }) => {
                         <label htmlFor="code" className="block mb-2 text-sm font-bold text-gray-700">
                             Code
                         </label>
-                        <LiveEditor onChange={(code) => setFormData({ ...formData, code })} className='overflow-y-auto bg-[#011627] h-[50vh]' />
+                        <LiveEditor onChange={handleCodeChange} className='overflow-y-auto bg-[#011627] h-[50vh]' />
                     </div>
                 </LiveProvider>
             </div>
 
             <div className="flex justify-between mt-4">
                 <button
-                    onClick={()=> {console.log("Click here")}}
+                    onClick={() => { console.log("Click here") }}
                     type="submit"
                     className="flex items-center px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
