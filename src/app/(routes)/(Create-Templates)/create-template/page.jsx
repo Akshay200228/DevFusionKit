@@ -3,11 +3,15 @@ import Container from '@/components/homeLayout/Container';
 import Message from '@/components/comLayout/create-code-comp/Message';
 import CreateTemplateForm from '@/components/templateLayout/CreateTemplateForm';
 import useCreateForm from '@/hooks/useCreateForm';
+import { useState } from 'react';
 
 const TemplateForm = () => {
-    // const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL + "/api/code-templates/" || "http://localhost:8000/api/code-templates/";
-    // const apiUrl = "https://devnexus-server.onrender.com/api/code-templates/";
-    const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL+"/api/code-templates/";
+    // State to store success and error messages
+    const [currentSuccessMessage, setCurrentSuccessMessage] = useState(null);
+    const [currentErrorMessage, setCurrentErrorMessage] = useState(null);
+    // const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL + "/api/web-templates/" || "http://localhost:8000/api/web-templates/";
+    // const apiUrl = "http://localhost:8000/api/web-templates/";
+    const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL+"/api/web-templates/";
     const initialFormData = {
         title: '',
         description: '',
@@ -35,9 +39,13 @@ const TemplateForm = () => {
                 handleSubmit={handleSubmit}
             />
 
-            {/* Display success and error messages with animations */}
-            {successMessage && <Message type="success" message={successMessage} />}
-            {errorMessage && <Message type="error" message={errorMessage} />}
+            {/* Display success and error messages with animations  */}
+            {currentSuccessMessage && (
+                <Message type="success" message={successMessage} onClose={() => setCurrentSuccessMessage(null)} />
+            )}
+            {currentErrorMessage && (
+                <Message type="error" message={errorMessage} onClose={() => setCurrentErrorMessage(null)} />
+            )}
         </Container>
     );
 };

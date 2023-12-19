@@ -1,6 +1,6 @@
 // UserProfileContainer.jsx
-import CodeComponent from './CodeComponent';
-import WebTemplate from './WebTemplate';
+import CodeComponent from './ProfileCodeComp/CodeComponent';
+import WebTemplate from './ProfileWebTemp/WebTemplate';
 import CalendarHeatmap from 'react-calendar-heatmap';
 import 'react-calendar-heatmap/dist/styles.css';
 import Button from '../homeLayout/Button';

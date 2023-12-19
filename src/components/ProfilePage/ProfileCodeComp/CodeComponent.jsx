@@ -2,14 +2,15 @@
 // CodeComponent.js
 import { useState } from "react";
 import { LivePreview, LiveProvider } from "react-live";
-import CreateButton from "../CreateButton";
+import CreateButton from "../../CreateButton";
 import EditCodeComponent from "./EditCodeComponent";
 import axios from "axios";
 import getCookie from "@/hooks/getCookie";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
-import CustomModal from "./CustomModal";
-import Message from "../comLayout/create-code-comp/Message";
+import CustomModal from "../CustomModal";
+import Message from "../../comLayout/create-code-comp/Message";
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 
 
@@ -39,6 +40,7 @@ const CodeComponent = ({ codeComponents }) => {
     const token = getCookie('token');
     try {
       const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
+      // const apiUrl = "http://localhost:8000";
       await axios.delete(`${apiUrl}/api/code-components/delete/${confirmDelete.componentId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -67,7 +69,7 @@ const CodeComponent = ({ codeComponents }) => {
           <CreateButton navigateTo="/code-comp" text="Create Code-Comp" />
         </div>
       ) : (
-        <div >
+        <div>
           {editingComponent ? (
             <EditCodeComponent component={editingComponent} onCancelEdit={handleCancelEdit} />
           ) : (
@@ -77,18 +79,19 @@ const CodeComponent = ({ codeComponents }) => {
                 spaceBetween={10}
                 grabCursor={true}
                 loop={false}
-                autoplay={{ delay: 3000 }} 
+                autoplay={{
+                  delay: 2500,
+                  disableOnInteraction: false,
+                }}
+                speed="3000"
+                modules={[Autoplay]}
                 breakpoints={{
                   640: {
                     slidesPerView: 1,
                     spaceBetween: 10,
                   },
-                  768: {
-                    slidesPerView: 2,
-                    spaceBetween: 20,
-                  },
                   1024: {
-                    slidesPerView: 3,
+                    slidesPerView: 2,
                     spaceBetween: 20,
                   },
                   1170: {

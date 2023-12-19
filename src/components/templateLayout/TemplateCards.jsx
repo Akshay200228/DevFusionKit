@@ -7,9 +7,9 @@ import useApiFetch from '@/hooks/useApiFetch';
 import { TemplateCardsSkeleton } from '../SkeltonLoading';
 
 export default function TemplateCards() {
-  // const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL + "/api/code-templates" || "http://localhost:8000/api/code-templates/";
-  // const apiUrl = "https://devnexus-server.onrender.com/api/code-templates/";
-  const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL + "/api/code-templates/";
+  // const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL + "/api/web-templates" || "http://localhost:8000/api/web-templates/";
+  // const apiUrl = "https://devnexus-server.onrender.com/api/web-templates/";
+  const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL + "/api/web-templates/";
   const { data: templatesData, isLoading, error } = useApiFetch(apiUrl);
 
   return (
@@ -36,10 +36,7 @@ export default function TemplateCards() {
 
                   {/* Links */}
                   <div className="flex justify-center mt-4">
-                    <Link
-                      href={`/templates/${template._id}`}
-                      // className="flex items-center p-3 text-2xl text-blue-400 rounded-full lg:hover:bg-blue-100"
-                    >
+                    <Link href={`/templates/${template._id}`}>
                       <motion.button
                         whileTap={{ scale: 0.9 }}
                         initial={{ scale: 1, opacity: 0.9 }}
