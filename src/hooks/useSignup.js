@@ -10,7 +10,6 @@ const useSignup = () => {
     email: '',
     username: '',
     password: '',
-    avatar: '',
   });
   const [successMessage, setSuccessMessage] = useState('');
   const [error, setError] = useState(null);
