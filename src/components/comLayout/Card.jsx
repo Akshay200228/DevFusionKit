@@ -7,10 +7,8 @@ import Link from 'next/link';
 import { useState } from 'react';
 import NavigationButtons from './NavigationButtons';
 import { CardSkeleton } from '../SkeltonLoading';
-import { useRouter } from 'next/navigation';
 
 export default function CardComponent() {
-    const router = useRouter();
     const [page, setPage] = useState(1);
     // const apiUrl = `https://devnexus-server.onrender.com/api/code-components?page=${page}`;
     const apiUrl = `${process.env.NEXT_PUBLIC_NEXUS_URL}/api/code-components?page=${page}`;

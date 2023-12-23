@@ -59,6 +59,7 @@ const Header = ({ userId }) => {
   const handleLogout = () => {
     Cookies.remove("token");
     setUser(null);
+    localStorage.removeItem('userAvatar');
     router.push("/login");
   };
 
