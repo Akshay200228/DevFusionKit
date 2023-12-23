@@ -81,7 +81,7 @@ function Signup() {
               required
             />
           </div>
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="avatar">
               Avatar (Image URL):
             </label>
@@ -92,7 +92,7 @@ function Signup() {
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your avatar image URL"
             />
-          </div>
+          </div> */}
           <button
             type="submit"
             className="w-full py-3 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"

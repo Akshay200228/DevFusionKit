@@ -20,7 +20,6 @@ export default function CardComponent() {
     const handleNextPage = () => {
         setPage((prevPage) => {
             const nextPage = prevPage + 1;
-            router.push(`/component?page=${nextPage}`);
             return nextPage;
         });
     };
@@ -28,7 +27,6 @@ export default function CardComponent() {
     const handlePrevPage = () => {
         setPage((prevPage) => {
             const prevPageNumber = Math.max(prevPage - 1, 1);
-            router.push(`/component?page=${prevPageNumber}`);
             return prevPageNumber;
         });
     };

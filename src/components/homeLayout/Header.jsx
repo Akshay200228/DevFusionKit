@@ -59,6 +59,7 @@ const Header = ({ userId }) => {
   const handleLogout = () => {
     Cookies.remove("token");
     setUser(null);
+    localStorage.removeItem('userAvatar');
     router.push("/login");
   };
 
@@ -98,7 +99,8 @@ const Header = ({ userId }) => {
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
-                    src={user.avatar}
+                    src={user.avatar || "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75"}
+                    // src={user.avatar || devLogo}
                     alt={user.name}
                     width={48}
                     height={48}
@@ -219,7 +221,7 @@ const Header = ({ userId }) => {
                                   initial={{ scale: 0 }}
                                   animate={{ scale: 1 }}
                                   transition={{ duration: 0.5, delay: 0.3 }}
-                                  src={user.avatar}
+                                  src={user.avatar || "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75"}
                                   alt={user.name}
                                   width={48}
                                   height={48}

@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import Container from "@/components/homeLayout/Container";
 import { useAuth } from "@/hooks/useAuth";
 import axios from 'axios';
-import UserProfileContainer from '@/components/ProfilePage/UserProfileContainer';
 import Loader from '@/components/Loader';
+import MemoizedUserProfileContainer from '@/components/ProfilePage/UserProfileContainer';
 
 export default function UserProfile() {
     const { user, error, isLoading } = useAuth();
@@ -62,7 +62,7 @@ export default function UserProfile() {
                     Error: {error.message}
                 </div>
             ) : (
-                <UserProfileContainer
+                <MemoizedUserProfileContainer
                     user={user}
                     userData={userData}
                     codeComponentsData={codeComponentsData}
