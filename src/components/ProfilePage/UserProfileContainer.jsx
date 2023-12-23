@@ -23,13 +23,15 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
     const [isAvatarLoading, setIsAvatarLoading] = useState(false);
     const [confirmDelete, setConfirmDelete] = useState(null);
 
-
+    const apiUrl = "https://devnexus-server.onrender.com"
     const token = getCookie('token');
+    const defaultAvatar = "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75";
 
     // Function to delete the previous avatar
     const deletePreviousAvatar = async (previousImageUrl) => {
         try {
-            const response = await axios.delete(`http://localhost:8000/api/users/delete-avatar`, {
+            // const response = await axios.delete(`${apiUrl}/api/users/delete-avatar`, {
+            const response = await axios.delete(`${process.env.NEXT_PUBLIC_NEXUS_URL}/api/users/delete-avatar`, {
                 params: { avatarUrl: previousImageUrl },
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -74,22 +76,25 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
             formData.append('upload_preset', 'devNexus');
 
             // Make an API call to Cloudinary to upload the image
-            const cloudinaryResponse = await fetch(`https://api.cloudinary.com/v1_1/dwiwwev8p/image/upload`, {
-                method: 'POST',
-                body: formData,
-            });
+            // const cloudinaryResponse = await fetch(`https://api.cloudinary.com/v1_1/dwiwwev8p/image/upload`, {
+            //     method: 'POST',
+            //     body: formData,
+            // });
 
-            if (!cloudinaryResponse.ok) {
+            const cloudinaryResponse = await axios.post('https://api.cloudinary.com/v1_1/dwiwwev8p/image/upload', formData);
+
+            if (!cloudinaryResponse.data.secure_url) {
                 throw new Error('Failed to upload image to Cloudinary');
             }
 
             // Handle the response (update UI, show success message, etc.)
-            const cloudinaryData = await cloudinaryResponse.json()
+            const cloudinaryData = cloudinaryResponse.data;
             console.log('Avatar upload response:', cloudinaryData.secure_url);
             setCloudinaryUrl(() => {
                 localStorage.setItem('userAvatar', cloudinaryData.secure_url);
                 return cloudinaryData.secure_url;
             });
+
         } catch (error) {
             console.error('Avatar upload error:', error);
         } finally {
@@ -170,7 +175,6 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
         }
     });
 
-    const defaultAvatar = "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75"
     return (
         <div className="container flex flex-col p-4 mx-auto mt-8 md:flex-row">
             {/* Left Column - User Info */}
