@@ -3,7 +3,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import getCookie from './getCookie';
 
-const useComponent = (apiUrl, type) => {
+const useComponent = (items, apiUrl, type, idKey) => {
     const [editingComponent, setEditingComponent] = useState(null);
     const [confirmDelete, setConfirmDelete] = useState(null);
     const [showDeleteMessage, setShowDeleteMessage] = useState(false);
@@ -50,6 +50,7 @@ const useComponent = (apiUrl, type) => {
         handleEdit,
         handleCancelEdit,
         handleDelete,
+        setConfirmDelete,
         confirmDeleteHandler,
     };
 };

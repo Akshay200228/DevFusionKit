@@ -12,10 +12,11 @@ import { useRouter } from 'next/navigation';
 export default function CardComponent() {
     const router = useRouter();
     const [page, setPage] = useState(1);
-    // const apiUrl = `https://devnexus-server.onrender.com/api/code-components?page=${page}`;
-    const apiUrl = `${process.env.NEXT_PUBLIC_NEXUS_URL}/api/code-components?page=${page}`;
+    const apiUrl = `http://localhost:8000/api/code-components/?page=${page}`;
+    // const apiUrl = `${process.env.NEXT_PUBLIC_NEXUS_URL}/api/code-components?page=${page}`;
 
     const { data: cardData, isLoading, error } = useApiFetch(apiUrl);
+    console.log(cardData)
 
     const handleNextPage = () => {
         setPage((prevPage) => {
