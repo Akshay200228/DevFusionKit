@@ -51,10 +51,6 @@ const EditCodeComponent = ({ component, onCancelEdit }) => {
                 }
             );
 
-            // Handle update success
-            console.log('Code component updated successfully:', response.data);
-            // You might want to update the state or re-fetch data here
-
             onCancelEdit(); // Close the editing interface
         } catch (error) {
             console.error('Error updating code component:', error);
@@ -144,7 +140,6 @@ const EditCodeComponent = ({ component, onCancelEdit }) => {
 
             <div className="flex justify-between mt-4">
                 <button
-                    onClick={() => { console.log("Click here") }}
                     type="submit"
                     className="flex items-center px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >

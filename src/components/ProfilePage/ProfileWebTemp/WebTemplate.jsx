@@ -19,6 +19,7 @@ const WebTemplate = ({ webTemplates }) => {
     handleCancelEdit,
     handleDelete,
     confirmDeleteHandler,
+    setConfirmDelete,
   } = useComponent(webTemplates, process.env.NEXT_PUBLIC_NEXUS_URL, 'web-templates', 'webTempId');
 
   return (
@@ -104,7 +105,7 @@ const WebTemplate = ({ webTemplates }) => {
             />
           )}
           {showDeleteMessage && (
-            <Message type="error" message="Item deleted successfully" onClose={() => setShowDeleteMessage(false)} />
+            <Message type="error" message="Item deleted successfully" onClose={() => console.log("Done")} />
           )}
         </div>
       )}

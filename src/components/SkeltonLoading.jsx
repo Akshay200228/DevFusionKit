@@ -11,8 +11,10 @@ export const CardSkeleton = ({ count }) => {
                         <div className="flex items-center space-x-3">
                             <div className="w-12 h-12 overflow-hidden bg-gray-300 rounded-full skeleton-shimmer" />
                             <div>
-                                <div className="h-6 mb-1 bg-gray-300 rounded skeleton-shimmer" />
-                                <div className="h-4 bg-gray-300 rounded skeleton-shimmer" />
+                                <div className="flex flex-col skeleton-shimmer">
+                                    <div className="w-20 h-4 mb-2 bg-gray-300"></div>
+                                    <div className="w-16 h-4 bg-gray-300"></div>
+                                </div>
                             </div>
                         </div>
                         <div className="w-1/4 h-10 px-4 py-2 bg-gray-300 rounded-full skeleton-shimmer" />

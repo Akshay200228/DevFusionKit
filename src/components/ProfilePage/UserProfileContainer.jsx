@@ -75,11 +75,6 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
             formData.append('file', file);
             formData.append('upload_preset', 'devNexus');
 
-            // Make an API call to Cloudinary to upload the image
-            // const cloudinaryResponse = await fetch(`https://api.cloudinary.com/v1_1/dwiwwev8p/image/upload`, {
-            //     method: 'POST',
-            //     body: formData,
-            // });
 
             const cloudinaryResponse = await axios.post('https://api.cloudinary.com/v1_1/dwiwwev8p/image/upload', formData);
 
@@ -89,7 +84,6 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
 
             // Handle the response (update UI, show success message, etc.)
             const cloudinaryData = cloudinaryResponse.data;
-            console.log('Avatar upload response:', cloudinaryData.secure_url);
             setCloudinaryUrl(() => {
                 localStorage.setItem('userAvatar', cloudinaryData.secure_url);
                 return cloudinaryData.secure_url;
