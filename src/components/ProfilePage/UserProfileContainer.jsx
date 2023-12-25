@@ -180,7 +180,7 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
                     ) : (
                         <>
                             <img
-                                src={cloudinaryUrl || defaultAvatar}
+                                src={cloudinaryUrl || user.avatar || defaultAvatar}
                                 alt={user.name}
                                 className="object-cover w-full h-full p-1 rounded-full"
                             />
