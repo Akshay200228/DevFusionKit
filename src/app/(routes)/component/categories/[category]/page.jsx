@@ -8,7 +8,7 @@ import { FaCode } from 'react-icons/fa';
 import useApiFetch from '@/hooks/useApiFetch';
 
 const CompCategory = ({ params }) => {
-  const apiUrl = "http://localhost:8000";
+  const apiUrl =process.env.NEXT_PUBLIC_NEXUS_URL;
   const { data: codeComponents, isLoading, error } = useApiFetch(`${apiUrl}/api/code-components/category/${params.category}`) || {};
 
   return (

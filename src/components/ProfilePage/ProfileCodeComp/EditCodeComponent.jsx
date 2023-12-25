@@ -59,7 +59,7 @@ const EditCodeComponent = ({ component, onCancelEdit }) => {
         }
     };
 
-    const categories = ["Accordion", "Button", "Card", "Carousel", "Form", "Inputs", "Loaders", "Toast"];
+    const categories = ["Accordion", "Button", "Card", "Carousel", "Form", "Input", "Loader", "Toast"];
 
     return (
         <motion.form
