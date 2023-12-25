@@ -14,7 +14,7 @@ const CreateCompForm = ({
   handleSubmit,
 }) => {
   const router = useRouter();
-  const categories = ["Accordion", "Button", "Card", "Carousel", "Form", "Inputs", "Loaders", "Toast"];
+  const categories = ["Accordion", "Button", "Card", "Carousel", "Form", "Input", "Loader", "Toast"];
 
   const handleGoBack = () => {
     router.back();

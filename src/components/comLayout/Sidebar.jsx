@@ -7,14 +7,14 @@ import { usePathname } from 'next/navigation';
 // Define an array of link objects
 const links = [
     { href: '/component', text: 'All' },
-    { href: '/component/accordion', text: 'Accordion' },
-    { href: '/component/buttons', text: 'Buttons' },
-    { href: '/component/cards', text: 'Cards' },
-    { href: '/component/carousel', text: 'Carousel' },
-    { href: '/component/form', text: 'Form' },
-    { href: '/component/inputs', text: 'Inputs' },
-    { href: '/component/loaders', text: 'Loaders' },
-    { href: '/component/toast', text: 'Toast' },
+    { href: '/component/categories/Accordion', text: 'Accordion' },
+    { href: '/component/categories/Button', text: 'Buttons' },
+    { href: '/component/categories/Card', text: 'Cards' },
+    { href: '/component/categories/Carousel', text: 'Carousel' },
+    { href: '/component/categories/Form', text: 'Form' },
+    { href: '/component/categories/Input', text: 'Inputs' },
+    { href: '/component/categories/Loader', text: 'Loaders' },
+    { href: '/component/categories/Toast', text: 'Toast' },
 ];
 
 export default function Sidebar() {
@@ -92,6 +92,7 @@ export default function Sidebar() {
                                                         className={`block px-4 py-2 transition-colors rounded-lg hover:bg-gray-600 hover:text-white ${isActive ? 'bg-blue-500 text-white' : ''
                                                             }`}
                                                         onClick={() => {
+                                                            console.log(link.text)
                                                             closeSidebar();
                                                         }}
                                                     >

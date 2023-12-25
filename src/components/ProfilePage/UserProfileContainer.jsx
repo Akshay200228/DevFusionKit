@@ -23,7 +23,7 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
     const [isAvatarLoading, setIsAvatarLoading] = useState(false);
     const [confirmDelete, setConfirmDelete] = useState(null);
 
-    const apiUrl = "https://devnexus-server.onrender.com"
+    // const apiUrl = "https://devnexus-server.onrender.com"
     const token = getCookie('token');
     const defaultAvatar = "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75";
 
