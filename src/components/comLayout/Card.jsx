@@ -57,7 +57,7 @@ export default function CardComponent() {
                         >
                             <LiveProvider code={card.code}>
                                 <motion.div
-                                    className="h-[50vh] mb-4 bg-gradient-to-r from-blue-300 to-blue-200 relative overflow-hidden rounded-t-lg transform-style-preserve-3d"
+                                    className="min-h-[50vh] mb-4 bg-gradient-to-r from-blue-300 to-blue-200 relative overflow-hidden rounded-t-lg transform-style-preserve-3d"
                                     initial={{ rotateY: -10, rotateX: 10 }}
                                     animate={{ rotateY: 0, rotateX: 0 }}
                                     whileHover={{ rotateY: 5, rotateX: 5 }}
@@ -71,7 +71,10 @@ export default function CardComponent() {
 
                             <div className="flex items-center justify-between px-2 mb-2">
                                 <div className="flex items-center space-x-3">
-                                    <div className="w-8 h-8 overflow-hidden rounded-full sm:w-12 sm:h-12">
+                                    <Link
+                                        href={`/profile/${card.createdBy}`}
+                                        className="w-8 h-8 overflow-hidden rounded-full sm:w-12 sm:h-12"
+                                    >
                                         <motion.img
                                             src={card.creatorAvatar || "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75"}
                                             alt="User Image"
@@ -83,7 +86,7 @@ export default function CardComponent() {
                                             whileHover={{ rotate: 5 }}
                                             transition={{ duration: 0.3, ease: 'easeInOut' }}
                                         />
-                                    </div>
+                                    </Link>
                                     <div>
                                         <motion.div
                                             className="text-lg font-semibold text-gray-800 md:text-2xl "

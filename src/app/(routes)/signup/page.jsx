@@ -1,8 +1,8 @@
 "use client"
-import Message from "@/components/comLayout/create-code-comp/Message";
 // Signup.js
-import useSignup from "@/hooks/useSignup";
 import { useState } from "react";
+import useSignup from "@/hooks/useSignup";
+import Message from "@/components/comLayout/create-code-comp/Message";
 
 function Signup() {
   const { formData, successMessage, error, handleChange, handleSubmit } = useSignup();
