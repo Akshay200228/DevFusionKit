@@ -10,6 +10,7 @@ const useSignup = () => {
     email: '',
     username: '',
     password: '',
+    confirmPassword: '',
   });
   const [successMessage, setSuccessMessage] = useState('');
   const [error, setError] = useState(null);
@@ -25,6 +26,13 @@ const useSignup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const { password, confirmPassword } = formData;
+
+    // Check if password and confirm password match
+    if (password !== confirmPassword) {
+      return setError({ message: 'Password and confirm password do not match' });
+    }
+
     try {
       // const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL || "http://localhost:8000";
       // const apiUrl = "https://devnexus-server.onrender.com";
