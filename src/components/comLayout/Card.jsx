@@ -7,16 +7,18 @@ import Link from 'next/link';
 import { useState } from 'react';
 import NavigationButtons from './NavigationButtons';
 import { CardSkeleton } from '../SkeltonLoading';
-import { useRouter } from 'next/navigation';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function CardComponent() {
-    const router = useRouter();
     const [page, setPage] = useState(1);
     // const apiUrl = `http://localhost:8000/api/code-components/?page=${page}`;
     const apiUrl = `${process.env.NEXT_PUBLIC_NEXUS_URL}/api/code-components?page=${page}`;
-
     const { data: cardData, isLoading, error } = useApiFetch(apiUrl);
     console.log(cardData)
+
+    const authData = useAuth();
+    const user = authData.user;
+    const userId = user ? user._id : null;
 
     const handleNextPage = () => {
         setPage((prevPage) => {
@@ -31,7 +33,6 @@ export default function CardComponent() {
             return prevPageNumber;
         });
     };
-
 
     return (
         <div className="w-full pt-4 text-white">
@@ -72,7 +73,7 @@ export default function CardComponent() {
                             <div className="flex items-center justify-between px-2 mb-2">
                                 <div className="flex items-center space-x-3">
                                     <Link
-                                        href={`/profile/${card.createdBy}`}
+                                        href={userId === card.createdBy ? `/profile` : `/profile/${card.createdBy}`}
                                         className="w-8 h-8 overflow-hidden rounded-full sm:w-12 sm:h-12"
                                     >
                                         <motion.img
