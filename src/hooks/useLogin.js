@@ -8,6 +8,7 @@ const useLogin = () => {
     const [credentials, setCredentials] = useState({
         usernameOrEmail: '',
         password: '',
+        otp: '',
     });
     const [error, setError] = useState(null);
     const router = useRouter();
@@ -20,6 +21,22 @@ const useLogin = () => {
         });
     };
 
+    const handleVerifyOTP = async () => {
+        try {
+            setLoading(true);
+            const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
+            await axios.post(`${apiUrl}/api/users/verify-otp`, credentials);
+
+            // If OTP verification is successful, proceed with login
+            await handleSubmit();
+        } catch (error) {
+            console.error(error);
+            setError(error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -27,7 +44,7 @@ const useLogin = () => {
             // const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL || "http://localhost:8000";
             // const apiUrl = "https://devnexus-server.onrender.com";
             const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
-            
+
 
             const response = await axios.post(`${apiUrl}/api/users/login`, credentials);
 
@@ -48,7 +65,7 @@ const useLogin = () => {
         }
     };
 
-    return { loading, credentials, error, handleChange, handleSubmit };
+    return { loading, credentials, error, handleChange, handleVerifyOTP, handleSubmit };
 };
 
 export default useLogin;

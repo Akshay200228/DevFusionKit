@@ -1,8 +1,10 @@
 "use client"
 // [creatorUser].jsx
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { LivePreview, LiveProvider } from "react-live";
 import axios from 'axios';
+import { FaCode } from 'react-icons/fa';
 
 const CreatorUser = ({ params }) => {
     const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
