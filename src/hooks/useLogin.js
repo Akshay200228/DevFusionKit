@@ -21,22 +21,6 @@ const useLogin = () => {
         });
     };
 
-    const handleVerifyOTP = async () => {
-        try {
-            setLoading(true);
-            const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
-            await axios.post(`${apiUrl}/api/users/verify-otp`, credentials);
-
-            // If OTP verification is successful, proceed with login
-            await handleSubmit();
-        } catch (error) {
-            console.error(error);
-            setError(error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -65,7 +49,7 @@ const useLogin = () => {
         }
     };
 
-    return { loading, credentials, error, handleChange, handleVerifyOTP, handleSubmit };
+    return { loading, credentials, error, handleChange, handleSubmit };
 };
 
 export default useLogin;
