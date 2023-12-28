@@ -64,9 +64,7 @@ const CodeCompDetails = ({ params }) => {
                         <img
                             src={codeComponent.creatorAvatar || "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75"}
                             alt="User Image"
-                            width={36}
-                            height={36}
-                            className="mr-2 rounded-full"
+                            className="w-12 h-12 mr-2 rounded-full"
                         />
                         {/* <h3>{}</h3> */}
                         <div>

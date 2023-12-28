@@ -7,16 +7,18 @@ import Link from 'next/link';
 import { useState } from 'react';
 import NavigationButtons from './NavigationButtons';
 import { CardSkeleton } from '../SkeltonLoading';
-import { useRouter } from 'next/navigation';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function CardComponent() {
-    const router = useRouter();
     const [page, setPage] = useState(1);
     // const apiUrl = `http://localhost:8000/api/code-components/?page=${page}`;
     const apiUrl = `${process.env.NEXT_PUBLIC_NEXUS_URL}/api/code-components?page=${page}`;
-
     const { data: cardData, isLoading, error } = useApiFetch(apiUrl);
     console.log(cardData)
+
+    const authData = useAuth();
+    const user = authData.user;
+    const userId = user ? user._id : null;
 
     const handleNextPage = () => {
         setPage((prevPage) => {
@@ -31,7 +33,6 @@ export default function CardComponent() {
             return prevPageNumber;
         });
     };
-
 
     return (
         <div className="w-full pt-4 text-white">
@@ -53,11 +54,11 @@ export default function CardComponent() {
                             animate={{ opacity: 1, scale: 1, translateY: 0, rotateY: 0, rotateX: 0 }}
                             transition={{ duration: 0.7, ease: 'easeInOut' }}
                             whileHover={{ scale: 1.05, rotateY: 5, rotateX: 5 }}
-                            className="flex flex-col h-full p-4 bg-white rounded-lg shadow-xl transform-style-preserve-3d hover:shadow-2xl"
+                            className="flex flex-col h-full bg-white rounded-lg shadow-xl transform-style-preserve-3d hover:shadow-2xl"
                         >
                             <LiveProvider code={card.code}>
                                 <motion.div
-                                    className="h-[50vh] mb-4 bg-gradient-to-r from-blue-300 to-blue-200 relative overflow-hidden rounded-lg transform-style-preserve-3d"
+                                    className="min-h-[50vh] mb-4 bg-gradient-to-r from-blue-300 to-blue-200 relative overflow-hidden rounded-t-lg transform-style-preserve-3d"
                                     initial={{ rotateY: -10, rotateX: 10 }}
                                     animate={{ rotateY: 0, rotateX: 0 }}
                                     whileHover={{ rotateY: 5, rotateX: 5 }}
@@ -69,9 +70,12 @@ export default function CardComponent() {
                                 </motion.div>
                             </LiveProvider>
 
-                            <div className="flex items-center justify-between mb-2">
+                            <div className="flex items-center justify-between px-2 mb-2">
                                 <div className="flex items-center space-x-3">
-                                    <div className="w-12 h-12 overflow-hidden rounded-full">
+                                    <Link
+                                        href={userId === card.createdBy ? `/profile` : `/profile/${card.createdBy}`}
+                                        className="w-8 h-8 overflow-hidden rounded-full sm:w-12 sm:h-12"
+                                    >
                                         <motion.img
                                             src={card.creatorAvatar || "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75"}
                                             alt="User Image"
@@ -83,10 +87,10 @@ export default function CardComponent() {
                                             whileHover={{ rotate: 5 }}
                                             transition={{ duration: 0.3, ease: 'easeInOut' }}
                                         />
-                                    </div>
+                                    </Link>
                                     <div>
                                         <motion.div
-                                            className="text-2xl font-semibold text-gray-800"
+                                            className="text-lg font-semibold text-gray-800 md:text-2xl "
                                             initial={{ opacity: 0, y: 10 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.5, ease: 'easeInOut' }}
@@ -117,7 +121,7 @@ export default function CardComponent() {
                                                 animate={{ scale: 1, rotateY: 0, rotateX: 0 }}
                                                 transition={{ yoyo: Infinity, duration: 1.5 }}
                                             >
-                                                <FaCode className="text-3xl" />
+                                                <FaCode className="text-xl md:text-3xl" />
                                             </motion.div>
                                             <span className="text-lg">Explore</span>
                                         </div>

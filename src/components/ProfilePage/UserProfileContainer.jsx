@@ -1,19 +1,20 @@
 "use client"
 // UserProfileContainer.jsx
 import axios from 'axios';
-
+import { AnimatePresence, motion } from "framer-motion";
 import CodeComponent from './ProfileCodeComp/CodeComponent';
 import WebTemplate from './ProfileWebTemp/WebTemplate';
 import CalendarHeatmap from 'react-calendar-heatmap';
 import 'react-calendar-heatmap/dist/styles.css';
 import Button from '../homeLayout/Button';
 import { UserProfileAvatarSkeleton, UserProfileSkeleton } from '../SkeltonLoading';
-import React, { useMemo, useState } from 'react';
+import { useState } from 'react';
 import getCookie from '@/hooks/getCookie';
 import useAvatarUpload from '@/hooks/useAvatarUpload';
-import { TbCameraUp } from 'react-icons/tb';
 import { RiDeleteBinLine } from "react-icons/ri";
 import CustomModal from './CustomModal';
+import { MdCloudUpload } from "react-icons/md";
+import { FaEdit } from 'react-icons/fa';
 
 
 const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplatesData }) => {
@@ -22,6 +23,11 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
     const [cloudinaryUrl, setCloudinaryUrl] = useState(localStorage.getItem('userAvatar') || null);
     const [isAvatarLoading, setIsAvatarLoading] = useState(false);
     const [confirmDelete, setConfirmDelete] = useState(null);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+    const toggleDropdown = () => {
+        setIsDropdownOpen(!isDropdownOpen);
+    };
 
     // const apiUrl = "https://devnexus-server.onrender.com"
     const token = getCookie('token');
@@ -48,7 +54,7 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
         }
     };
 
-    const handleAvatarChange = useMemo(() => async (e) => {
+    const handleAvatarChange = async (e) => {
         try {
             const file = e.target.files[0];
             setAvatarFile(file);
@@ -93,8 +99,9 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
             console.error('Avatar upload error:', error);
         } finally {
             setIsAvatarLoading(false);
+            setIsDropdownOpen(false);
         }
-    });
+    };
 
     // Use the custom hook to upload Cloudinary URL to the server
     const serverUploadStatus = useAvatarUpload(token, cloudinaryUrl);
@@ -124,7 +131,8 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
         } catch (error) {
             console.error('Error deleting avatar:', error.message);
         } finally {
-            setIsAvatarLoading(false)
+            setIsAvatarLoading(false);
+            setIsDropdownOpen(false);
         }
     };
 
@@ -148,7 +156,7 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
         { date: '2023-04-05', count: 11 },
         // Add more contribution data as needed
     ];
-    const classForValue = useMemo(() => (value) => {
+    const classForValue = (value) => {
 
         if (!value) {
             return 'color-empty';
@@ -167,14 +175,14 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
         } else {
             return 'color-github-0';
         }
-    });
+    };
 
     return (
         <div className="container flex flex-col p-4 mx-auto mt-8 md:flex-row">
             {/* Left Column - User Info */}
             <div className="flex-shrink-0 w-full mb-4 md:w-1/3 lg:w-1/4 xl:w-1/5 md:pr-8 md:mb-0">
                 {/* Updated image styling */}
-                <div className="relative mx-auto mb-4 overflow-visible border-4 border-blue-500 rounded-full w-44 h-44">
+                <div className="relative mx-auto mb-4 overflow-visible border-4 border-blue-500 rounded-full w-44 h-44 xl:w-56 xl:h-56">
                     {isAvatarLoading ? (
                         <UserProfileAvatarSkeleton />
                     ) : (
@@ -184,27 +192,59 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
                                 alt={user.name}
                                 className="object-cover w-full h-full p-1 rounded-full"
                             />
-                            {/* Upload button here */}
+                            {/* Edit button with dropdown */}
                             <div className="absolute bottom-0 right-0 flex items-center">
-                                <label htmlFor="avatarUpload" className="cursor-pointer">
-                                    <TbCameraUp className="w-10 h-10 p-2 text-white bg-blue-500 rounded-full" />
-                                </label>
-                                <input
-                                    id="avatarUpload"
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={handleAvatarChange}
-                                    className="hidden"
-                                />
-                            </div>
-                            {/* Delete current avatar button here */}
-                            <div className="absolute bottom-0 left-0 flex items-center">
-                                <RiDeleteBinLine
-                                    className={`w-10 h-10 p-2 text-white rounded-full ${isAvatarLoading ? 'bg-gray-500' : 'bg-red-500'
-                                        }`}
-                                    style={{ cursor: isAvatarLoading ? 'not-allowed' : 'pointer' }}
-                                    onClick={handleDelete}
-                                />
+                                <button
+                                    type="button"
+                                    className="inline-flex items-center justify-center px-2 py-1 text-white bg-blue-500 border-2 border-blue-200 rounded-xl"
+                                    onClick={toggleDropdown}
+                                >
+                                    <FaEdit className="mr-2" />
+                                    Edit
+                                </button>
+                                <AnimatePresence>
+                                    {isDropdownOpen && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: -10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -10 }}
+                                            transition={{ duration: 0.5 }}
+                                            className="absolute right-0 z-10 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg w-52 top-12"
+                                        >
+                                            <label htmlFor="avatarUpload"
+                                                className="flex items-center w-full px-4 py-2 text-left text-blue-600 hover:text-blue-800 hover:bg-blue-100"
+                                                role="menuitem">
+                                                <MdCloudUpload
+                                                    className="w-6 h-6 mr-2 text-blue-500"
+                                                />
+                                                Upload avatar
+                                                <input
+                                                    id="avatarUpload"
+                                                    type="file"
+                                                    accept="image/*"
+                                                    onChange={handleAvatarChange}
+                                                    className="hidden"
+                                                />
+                                            </label>
+                                            {/* Delete current avatar button here */}
+                                            <motion.button
+                                                initial={{ scale: 0.8 }}
+                                                animate={{ scale: 1 }}
+                                                transition={{ duration: 0.5, delay: 0.2 }}
+                                                className={`flex items-center w-full px-4 py-2 text-left ${!cloudinaryUrl ? 'cursor-not-allowed bg-gray-300' : 'cursor-pointer text-red-600 hover:text-red-800 hover:bg-red-100'}`}
+                                                role="menuitem"
+                                                onClick={handleDelete}
+                                                disabled={isAvatarLoading || !cloudinaryUrl}
+                                            >
+                                                <RiDeleteBinLine
+                                                    className="w-6 h-6 mr-2"
+                                                    disabled={isAvatarLoading}
+                                                />
+                                                Remove Avatar
+                                            </motion.button>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
                             </div>
                         </>
                     )}
@@ -271,7 +311,4 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
     );
 };
 
-// Memoize the entire component to avoid unnecessary re-renders
-const MemoizedUserProfileContainer = React.memo(UserProfileContainer);
-
-export default MemoizedUserProfileContainer;
+export default UserProfileContainer;

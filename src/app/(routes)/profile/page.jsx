@@ -4,7 +4,7 @@ import Container from "@/components/homeLayout/Container";
 import { useAuth } from "@/hooks/useAuth";
 import axios from 'axios';
 import Loader from '@/components/Loader';
-import MemoizedUserProfileContainer from '@/components/ProfilePage/UserProfileContainer';
+import UserProfileContainer from '@/components/ProfilePage/UserProfileContainer';
 
 export default function UserProfile() {
     const { user, error, isLoading } = useAuth();
@@ -62,7 +62,7 @@ export default function UserProfile() {
                     Error: {error.message}
                 </div>
             ) : (
-                <MemoizedUserProfileContainer
+                <UserProfileContainer
                     user={user}
                     userData={userData}
                     codeComponentsData={codeComponentsData}
