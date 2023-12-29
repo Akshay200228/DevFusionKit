@@ -73,9 +73,6 @@ const useSignup = () => {
 
       document.cookie = `token=${token}; expires=${expirationDate.toUTCString()}`;
 
-      // Example: Log the response to the console
-      console.log('Signup Response:', response);
-
       setSuccessMessage('User registered successfully! Moye Moye');
       // If registration is successful, show OTP input
       setOtpSent(true);

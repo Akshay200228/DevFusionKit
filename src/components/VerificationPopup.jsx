@@ -25,7 +25,7 @@ const VerificationPopup = ({ onClose }) => {
             🎉 Woohoo! Your OTP is Verified!
           </p>
           <p className="mb-8 text-lg">
-            Congratulations! You're all set to explore exciting things.
+            Congratulations! You&apos;re all set to explore exciting things.
           </p>
           <motion.button
             whileHover={{ scale: 1.1 }}
@@ -33,7 +33,7 @@ const VerificationPopup = ({ onClose }) => {
             onClick={onClose}
             className="px-6 py-3 text-white bg-green-500 rounded-full hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
           >
-            Let's Go!
+            Let&apos;s Go!
           </motion.button>
         </motion.div>
       </motion.div>

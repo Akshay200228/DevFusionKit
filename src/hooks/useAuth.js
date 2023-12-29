@@ -20,8 +20,6 @@ export function useAuth() {
 
   const fetchUserData = async (token) => {
     try {
-      console.log('Sending request to retrieve user data...');
-
       // const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL || "http://localhost:8000";
       // const apiUrl = "https://devnexus-server.onrender.com";
       const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
@@ -31,8 +29,6 @@ export function useAuth() {
           Authorization: `Bearer ${token}`,
         },
       });
-
-      console.log('Response data:', response.data);
       
       setUser(response.data);
       setIsLoading(false);
