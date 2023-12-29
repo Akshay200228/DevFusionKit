@@ -16,8 +16,10 @@ const useSignup = () => {
   });
   const [successMessage, setSuccessMessage] = useState('');
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [otpSent, setOtpSent] = useState(false);
   const [showOtpInput, setShowOtpInput] = useState(false);
+  const [showVerificationPopup, setShowVerificationPopup] = useState(false);
 
   const router = useRouter();
 
@@ -40,6 +42,49 @@ const useSignup = () => {
     } catch (error) {
       console.error(error);
       setError(error);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { password, confirmPassword, otp } = formData;
+
+    // Check if password and confirm password match
+    if (password !== confirmPassword) {
+      return setError({ message: 'Password and confirm password do not match' });
+    }
+
+    try {
+      setLoading(true);
+      // const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL || "http://localhost:8000";
+      // const apiUrl = "https://devnexus-server.onrender.com";
+      const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
+      const response = await axios.post(`${apiUrl}/api/users/signup`, { ...formData, otp }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const { token } = response.data;
+
+      const tokenExpirationDays = 7;
+      const expirationDate = new Date();
+      expirationDate.setDate(expirationDate.getDate() + tokenExpirationDays);
+
+      document.cookie = `token=${token}; expires=${expirationDate.toUTCString()}`;
+
+      // Example: Log the response to the console
+      console.log('Signup Response:', response);
+
+      setSuccessMessage('User registered successfully! Moye Moye');
+      // If registration is successful, show OTP input
+      setOtpSent(true);
+      setShowOtpInput(true);
+    } catch (error) {
+      console.error(error);
+      setError(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -69,9 +114,9 @@ const useSignup = () => {
       if (otpVerificationResponse.status === 200) {
         setSuccessMessage('OTP verified successfully!');
         setShowOtpInput(false); // Hide OTP input after successful verification
+        setShowVerificationPopup(true);
 
-        // Redirect to the login page after successful registration
-        router.push('/login');
+        // router.replace('/');
       } else {
         // Handle OTP verification failure (e.g., show an error message)
         console.error('OTP verification failed');
@@ -83,39 +128,9 @@ const useSignup = () => {
     }
   };
 
-
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const { password, confirmPassword, otp } = formData;
-
-    // Check if password and confirm password match
-    if (password !== confirmPassword) {
-      return setError({ message: 'Password and confirm password do not match' });
-    }
-
-    try {
-      // const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL || "http://localhost:8000";
-      // const apiUrl = "https://devnexus-server.onrender.com";
-      const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
-      const response = await axios.post(`${apiUrl}/api/users/signup`, { ...formData, otp }, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      // Example: Log the response to the console
-      console.log('Signup Response:', response);
-
-      setSuccessMessage('User registered successfully! Moye Moye');
-      // If registration is successful, show OTP input
-      setOtpSent(true);
-      setShowOtpInput(true);
-      // router.push('/login');
-    } catch (error) {
-      console.error(error);
-      setError(error);
-    }
+  const closeVerificationPopup = () => {
+    setShowVerificationPopup(false);
+    router.replace('/');
   };
 
   return {
@@ -124,10 +139,14 @@ const useSignup = () => {
     error,
     otpSent,
     showOtpInput,
+    showVerificationPopup,
+    loading,
     handleChange,
     handleSubmit,
     handleVerifyOTP,
     handleResendOTP,
+    closeVerificationPopup,
+
   };
 };
 
