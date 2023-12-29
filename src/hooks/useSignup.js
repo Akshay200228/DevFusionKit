@@ -63,6 +63,7 @@ const useSignup = () => {
         headers: {
           'Content-Type': 'application/json',
         },
+        withCredentials: true,
       });
 
       const { token } = response.data;
