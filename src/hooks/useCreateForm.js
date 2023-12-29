@@ -59,8 +59,6 @@ const useCreateForm = (initialFormData, apiUrl) => {
                 },
             });
 
-            console.log('Item created: ', response.data);
-
             // Handle success response
             setSuccessMessage('Item created successfully!');
             setErrorMessage('');

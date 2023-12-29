@@ -6,18 +6,23 @@ import Link from 'next/link';
 import useSignup from "@/hooks/useSignup";
 import Message from "@/components/comLayout/create-code-comp/Message";
 import { devLogo } from "@/images";
+import VerificationPopup from '@/components/VerificationPopup';
+import { FaSpinner } from 'react-icons/fa';
 
 function Signup() {
   const {
     formData,
     successMessage,
     error,
+    loading,
     otpSent,
     showOtpInput,
+    showVerificationPopup,
     handleChange,
     handleResendOTP,
     handleVerifyOTP,
     handleSubmit,
+    closeVerificationPopup,
   } = useSignup();
 
   const [message, setMessage] = useState(null);
@@ -151,11 +156,25 @@ function Signup() {
               />
             </div>
 
-            <button
+            {/* <button
               type="submit"
               className="w-full py-3 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               Sign Up
+            </button> */}
+            <button
+              type="submit"
+              className={`flex items-center justify-center w-full py-3 text-white rounded-md ${loading ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500'}`}
+              disabled={loading}
+            >
+              {loading ? (
+                <>
+                  <FaSpinner className="mr-2 animate-spin" />
+                  Please wait...
+                </>
+              ) : (
+                'Sign Up'
+              )}
             </button>
           </form>
         )}
@@ -176,6 +195,9 @@ function Signup() {
               Login here
             </Link>
           </p>
+        )}
+        {showVerificationPopup && (
+          <VerificationPopup onClose={closeVerificationPopup} />
         )}
       </div>
     </div>

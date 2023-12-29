@@ -47,8 +47,6 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
             if (response.status !== 200) {
                 throw new Error(response.data.error || 'Failed to delete previous avatar image.');
             }
-
-            console.log('Previous avatar deleted successfully.');
         } catch (error) {
             console.error('Error deleting previous avatar:', error.message);
         }
@@ -68,7 +66,6 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
 
             // Get the previous avatar URL from local storage
             const previousImageUrl = localStorage.getItem('userAvatar');
-            console.log("previousImageUrl: ", previousImageUrl)
 
             // Delete the previous image if previousImageUrl is present
             if (previousImageUrl) {
@@ -105,7 +102,6 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
 
     // Use the custom hook to upload Cloudinary URL to the server
     const serverUploadStatus = useAvatarUpload(token, cloudinaryUrl);
-    console.log('Server upload status:', serverUploadStatus);
 
     const handleDelete = () => {
         // Display confirmation dialog

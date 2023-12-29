@@ -35,7 +35,6 @@ const useProfileWorkEditForm = ({ data, apiUrl, updateEndpoint, onCancelEdit, cu
                 }
             );
 
-            console.log(`${updateEndpoint} updated successfully:`, response.data);
             onCancelEdit();
         } catch (error) {
             console.error(`Error updating ${updateEndpoint}:`, error);
