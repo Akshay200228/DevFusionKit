@@ -10,7 +10,7 @@ export default function middleware(request) {
   // console.log(token)
 
   // If it's a protected route and not logged in, store the requested URL and redirect to the login page
-  if (!isPublicPath && !token) {
+  if (!isPublicPath && !token && token === undefined) {
     requestedPath = request.nextUrl.pathname;
     const url = request.nextUrl.clone();
     url.pathname = '/login';
