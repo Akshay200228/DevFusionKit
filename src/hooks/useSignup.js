@@ -65,18 +65,27 @@ const useSignup = () => {
         },
       });
 
-      const { token } = response.data;
+      console.log("Response create user data: ", response)
 
-      const tokenExpirationDays = 7;
-      const expirationDate = new Date();
-      expirationDate.setDate(expirationDate.getDate() + tokenExpirationDays);
+      // Check if the response contains a valid structure
+      if (response.data && response.data.token) {
+        const { token } = response.data;
 
-      document.cookie = `token=${token}; expires=${expirationDate.toUTCString()}`;
+        const tokenExpirationDays = 7;
+        const expirationDate = new Date();
+        expirationDate.setDate(expirationDate.getDate() + tokenExpirationDays);
 
-      setSuccessMessage('User registered successfully! Moye Moye');
-      // If registration is successful, show OTP input
-      setOtpSent(true);
-      setShowOtpInput(true);
+        document.cookie = `token=${token}; expires=${expirationDate.toUTCString()}`;
+
+        setSuccessMessage('User registered successfully! Moye Moye');
+        // If registration is successful, show OTP input
+        setOtpSent(true);
+        setShowOtpInput(true);
+      } else {
+        // Handle the case where the response structure is not as expected
+        console.error('Unexpected response format:', response);
+        setError({ message: 'Unexpected response format' });
+      }
     } catch (error) {
       console.error(error);
       setError(error);
@@ -113,7 +122,7 @@ const useSignup = () => {
         setShowOtpInput(false); // Hide OTP input after successful verification
         setShowVerificationPopup(true);
 
-        router.replace('/login');
+        // router.replace('/login');
       } else {
         // Handle OTP verification failure (e.g., show an error message)
         console.error('OTP verification failed');
