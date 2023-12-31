@@ -121,8 +121,6 @@ const useSignup = () => {
         setSuccessMessage('OTP verified successfully!');
         setShowOtpInput(false); // Hide OTP input after successful verification
         setShowVerificationPopup(true);
-
-        // router.replace('/login');
       } else {
         // Handle OTP verification failure (e.g., show an error message)
         console.error('OTP verification failed');
