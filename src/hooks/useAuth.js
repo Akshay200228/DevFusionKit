@@ -29,7 +29,7 @@ export function useAuth() {
           Authorization: `Bearer ${token}`,
         },
       });
-      
+      console.log("response user data: ", response.data)
       setUser(response.data);
       setIsLoading(false);
     } catch (error) {

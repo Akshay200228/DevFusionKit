@@ -5,8 +5,9 @@ import { LivePreview, LiveProvider } from "react-live";
 import CreateButton from "../../CreateButton";
 import EditCodeComponent from "./EditCodeComponent";
 import axios from "axios";
+import Link from 'next/link';
 import getCookie from "@/hooks/getCookie";
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { FaCode, FaEdit, FaTrashAlt } from "react-icons/fa";
 import CustomModal from "../CustomModal";
 import Message from "../../comLayout/create-code-comp/Message";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -102,9 +103,12 @@ const CodeComponent = ({ codeComponents }) => {
               >
                 {codeComponents.map((component) => (
                   <SwiperSlide key={component._id}>
-                    <div className="p-2 mb-4 bg-white border rounded-lg shadow-md">
+                    <div className="relative p-2 mb-4 bg-white border rounded-lg shadow-md">
+                      {/* Title and Description */}
                       <h4 className="mb-1 text-lg font-semibold text-blue-600">{component.title}</h4>
                       <p className="mb-2 text-gray-700">{component.description}</p>
+
+                      {/* Live Preview */}
                       <div className="h-[40vh] bg-blue-200 relative overflow-hidden rounded-lg">
                         <LiveProvider code={component.code} key={component._id}>
                           <div className="absolute inset-0 flex items-center justify-center text-neutral-950">
@@ -112,25 +116,36 @@ const CodeComponent = ({ codeComponents }) => {
                           </div>
                         </LiveProvider>
                       </div>
+
+                      {/* Buttons */}
                       <div className="flex justify-between mt-2 md:mt-4">
-                        <button
-                          className="flex items-center px-4 py-2 text-blue-500 transition duration-300 ease-in-out bg-blue-100 rounded-lg hover:text-blue-100 hover:bg-blue-600"
-                          onClick={() => handleEdit(component)}
-                        >
-                          <FaEdit className="mr-1" />
-                          Edit
-                        </button>
-                        <button
-                          className="flex items-center px-4 py-2 text-red-500 transition duration-300 ease-in-out bg-red-100 rounded-lg hover:text-red-100 hover:bg-red-600"
-                          onClick={() => handleDelete(component._id)}
-                        >
-                          <FaTrashAlt className="mr-1" />
-                          Delete
-                        </button>
+                        {/* Explore Button (Left Side) */}
+                        <Link href={`/component/${component._id}`}>
+                          <button className="px-4 py-2 text-white transition-transform duration-300 ease-in-out bg-blue-500 rounded-full hover:bg-blue-600">
+                              <FaCode className="text-xl md:text-3xl" />
+                          </button>
+                        </Link>
+
+                        {/* Edit and Delete Buttons (Right Side) */}
+                        <div className="flex space-x-2">
+                          <button
+                            className="flex items-center px-4 py-2 text-blue-500 transition duration-300 ease-in-out bg-blue-100 rounded-lg hover:text-blue-100 hover:bg-blue-600"
+                            onClick={() => handleEdit(component)}
+                          >
+                            <FaEdit />
+                          </button>
+                          <button
+                            className="flex items-center px-4 py-2 text-red-500 transition duration-300 ease-in-out bg-red-100 rounded-lg hover:text-red-100 hover:bg-red-600"
+                            onClick={() => handleDelete(component._id)}
+                          >
+                            <FaTrashAlt />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </SwiperSlide>
                 ))}
+
               </Swiper>
             </div>
           )}

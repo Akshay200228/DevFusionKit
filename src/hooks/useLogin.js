@@ -40,7 +40,7 @@ const useLogin = () => {
 
             document.cookie = `token=${token}; expires=${expirationDate.toUTCString()}; path=/`;
 
-            router.push('/');
+            router.replace('/');
         } catch (error) {
             console.error(error);
             setError(error);

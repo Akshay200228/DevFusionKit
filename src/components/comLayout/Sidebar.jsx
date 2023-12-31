@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
+import { IoBookmark } from "react-icons/io5";
 
 // Define an array of link objects
 const links = [
@@ -15,6 +16,8 @@ const links = [
     { href: '/component/categories/Input', text: 'Inputs' },
     { href: '/component/categories/Loader', text: 'Loaders' },
     { href: '/component/categories/Toast', text: 'Toast' },
+    // Favorites Route
+    { href: '/component/favorites', text: 'My Favorites' },
 ];
 
 export default function Sidebar() {
@@ -95,7 +98,14 @@ export default function Sidebar() {
                                                             closeSidebar();
                                                         }}
                                                     >
-                                                        {link.text}
+                                                        {link.text === 'My Favorites' ? (
+                                                            <>
+                                                                <IoBookmark className="inline mr-2" />
+                                                                {link.text}
+                                                            </>
+                                                        ) : (
+                                                            link.text
+                                                        )}
                                                     </Link>
                                                 </motion.li>
                                             );
@@ -120,7 +130,14 @@ export default function Sidebar() {
                                     passHref
                                     className={`block px-4 py-2 transition-colors rounded-lg hover:bg-blue-100 hover:text-blue-700 ${isActive ? 'bg-blue-500 text-white' : ''}`}
                                 >
-                                    {link.text}
+                                    {link.text === 'My Favorites' ? (
+                                        <>
+                                            <IoBookmark className="inline mr-2" />
+                                            {link.text}
+                                        </>
+                                    ) : (
+                                        link.text
+                                    )}
                                 </Link>
                             </li>
                         );
