@@ -5,32 +5,22 @@ import { motion } from 'framer-motion';
 import { LivePreview, LiveProvider } from 'react-live';
 import useApiFetch from '@/hooks/useApiFetch';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import NavigationButtons from './NavigationButtons';
 import { CardSkeleton } from '../SkeltonLoading';
 import { useAuth } from '@/hooks/useAuth';
-import getCookie from '@/hooks/getCookie';
+import useBookmark from '@/hooks/useBookmark';
 
 export default function CardComponent() {
     const [page, setPage] = useState(1);
-    const [bookmarkStates, setBookmarkStates] = useState({});
-    // const apiUrl = `http://localhost:8000/api/code-components/?page=${page}`;
-    const apiUrl = `${process.env.NEXT_PUBLIC_NEXUS_URL}/api/code-components?page=${page}`;
-    const { data: cardData, isLoading, error } = useApiFetch(apiUrl);
     const authData = useAuth();
     const user = authData.user;
     const userId = user ? user._id : null;
+    const apiUrl = `${process.env.NEXT_PUBLIC_NEXUS_URL}/api/code-components?page=${page}`;
+    const { data: cardData, isLoading, error } = useApiFetch(apiUrl);
 
-    // Update bookmarkStates on component mount to include bookmarked code component IDs
-    useEffect(() => {
-        if (user && user.bookmarks) {
-            const initialBookmarkStates = user.bookmarks.reduce((acc, bookmark) => {
-                acc[bookmark._id] = true;
-                return acc;
-            }, {});
-            setBookmarkStates(initialBookmarkStates);
-        }
-    }, [user]);
+    // Use the useBookmark hook
+    const { bookmarkStates, handleAddBookmark } = useBookmark(user ? user.bookmarks : []);
 
     const handleNextPage = () => {
         setPage((prevPage) => {
@@ -44,60 +34,6 @@ export default function CardComponent() {
             const prevPageNumber = Math.max(prevPage - 1, 1);
             return prevPageNumber;
         });
-    };
-
-    const handleAddBookmark = async (codeComponentId) => {
-        try {
-            const token = getCookie('token');
-            // If the code component is already bookmarked, remove it
-            if (bookmarkStates[codeComponentId]) {
-                const removeResponse = await fetch(`${process.env.NEXT_PUBLIC_NEXUS_URL}/api/bookmark/remove-bookmark`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`,
-                    },
-                    body: JSON.stringify({ codeComponentId }),
-                });
-
-                const removeData = await removeResponse.json();
-
-                if (removeResponse.ok) {
-                    console.log('Bookmark removed successfully:', removeData);
-                    // Update the UI to show the "Add Bookmark" button
-                    setBookmarkStates((prevStates) => ({
-                        ...prevStates,
-                        [codeComponentId]: false,
-                    }));
-                } else {
-                    console.error('Error removing bookmark:', removeData.error);
-                }
-            } else {
-                // If the code component is not bookmarked, add it
-                const addResponse = await fetch(`${process.env.NEXT_PUBLIC_NEXUS_URL}/api/bookmark/add-bookmark/${codeComponentId}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`,
-                    },
-                });
-
-                const addData = await addResponse.json();
-
-                if (addResponse.ok) {
-                    console.log('Bookmark added successfully:', addData);
-                    // Update the UI to show the "Remove Bookmark" button
-                    setBookmarkStates((prevStates) => ({
-                        ...prevStates,
-                        [codeComponentId]: true,
-                    }));
-                } else {
-                    console.error('Error adding bookmark:', addData.error);
-                }
-            }
-        } catch (error) {
-            console.error('Error handling bookmark:', error);
-        }
     };
 
     return (
@@ -171,7 +107,7 @@ export default function CardComponent() {
                                 </div>
 
                                 {/* Bookmark button */}
-                                {bookmarkStates[card._id] ? (
+                                {bookmarkStates && bookmarkStates[card._id] ? (
                                     // Remove Bookmark button
                                     <motion.button
                                         onClick={() => handleAddBookmark(card._id)} // Updated to handle removal

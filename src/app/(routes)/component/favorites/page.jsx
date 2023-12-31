@@ -7,6 +7,8 @@ import { useAuth } from "@/hooks/useAuth";
 import { CardSkeleton } from '@/components/SkeltonLoading';
 import { LivePreview, LiveProvider } from 'react-live';
 import { FaCode } from 'react-icons/fa';
+import { IoBookmark } from 'react-icons/io5';
+import getCookie from '@/hooks/getCookie';
 
 const MyFavorites = () => {
     const { user, error, isLoading } = useAuth();
@@ -14,13 +16,12 @@ const MyFavorites = () => {
     const [loadingBookmarks, setLoadingBookmarks] = useState(true);
 
     const userId = user ? user._id : null;
-    console.log("object userId: ", userId)
 
     useEffect(() => {
         const fetchBookmarks = async () => {
             try {
                 const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
-                const bookmarksIds = user?.bookmarks.map(bookmark => bookmark._id).join(',');
+                const bookmarksIds = user?.bookmarks.map((bookmark) => bookmark._id).join(',');
 
                 if (bookmarksIds) {
                     const response = await axios.get(`${apiUrl}/api/code-components/ids/${bookmarksIds}`);
@@ -28,6 +29,7 @@ const MyFavorites = () => {
                 }
             } catch (error) {
                 console.error('Error fetching bookmarks:', error);
+                console.error('Response:', error.response);
             } finally {
                 setLoadingBookmarks(false);
             }
@@ -39,6 +41,33 @@ const MyFavorites = () => {
             setLoadingBookmarks(false);
         }
     }, [user]);
+
+    const handleRemoveBookmark = async (bookmarkId) => {
+        try {
+            const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
+            const token = getCookie('token');
+            const removeResponse = await fetch(`${apiUrl}/api/bookmark/remove-bookmark`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify({ codeComponentId: bookmarkId }),
+            });
+
+            const removeData = await removeResponse.json();
+
+            if (removeResponse.ok) {
+                console.log('Bookmark removed successfully:', removeData);
+                // Update the local state to reflect the removal
+                setBookmarks((prevBookmarks) => prevBookmarks.filter((bookmark) => bookmark._id !== bookmarkId));
+            } else {
+                console.error('Error removing bookmark:', removeData.error);
+            }
+        } catch (error) {
+            console.error('Error removing bookmark:', error);
+        }
+    };
 
     if (isLoading) {
         return <CardSkeleton count={9} />;
@@ -53,7 +82,7 @@ const MyFavorites = () => {
             {loadingBookmarks ? (
                 <div>Loading bookmarks...</div>
             ) : (
-                bookmarks.map(bookmark => (
+                bookmarks.map((bookmark) => (
                     <motion.div
                         key={bookmark._id}
                         initial={{ rotateY: -10, rotateX: 10 }}
@@ -72,7 +101,7 @@ const MyFavorites = () => {
                             </div>
                         </LiveProvider>
 
-                        <div className="flex items-center justify-between px-2 mb-2">
+                        <div className="flex items-center justify-between px-2 mt-2">
                             <div className="flex items-center space-x-3">
                                 <Link
                                     href={userId === bookmark.createdBy ? `/profile` : `/profile/${bookmark.createdBy}`}
@@ -109,6 +138,19 @@ const MyFavorites = () => {
                                     </motion.p>
                                 </div>
                             </div>
+                            {/* Remove bookmark */}
+                            <motion.button
+                                onClick={() => handleRemoveBookmark(bookmark._id)}
+                                className={`p-2 text-white rounded-full transition-transform duration-300 transform hover:scale-110 bg-red-500`}
+                                initial={{ opacity: 1 }}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                                style={{ position: 'absolute', top: '0', right: '0' }}
+                            >
+                                <div className="flex items-center space-x-2">
+                                    <IoBookmark className="text-xl md:text-3xl" />
+                                </div>
+                            </motion.button>
                             <Link href={`/component/${bookmark._id}`}>
                                 <motion.button
                                     whileTap={{ scale: 0.9 }}

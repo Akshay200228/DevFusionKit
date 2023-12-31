@@ -1,15 +1,26 @@
 "use client"
-// YourComponent.js
+// CompCategory.js
 import { motion } from 'framer-motion';
 import { LivePreview, LiveProvider } from 'react-live';
 import Link from 'next/link';
 import { CardSkeleton } from '@/components/SkeltonLoading';
 import { FaCode } from 'react-icons/fa';
 import useApiFetch from '@/hooks/useApiFetch';
+import useBookmark from '@/hooks/useBookmark';
+import { IoBookmark } from 'react-icons/io5';
+import { useAuth } from '@/hooks/useAuth';
 
 const CompCategory = ({ params }) => {
-  const apiUrl =process.env.NEXT_PUBLIC_NEXUS_URL;
+  const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
   const { data: codeComponents, isLoading, error } = useApiFetch(`${apiUrl}/api/code-components/category/${params.category}`) || {};
+
+  console.log("codeComponents: ", codeComponents)
+
+  const authData = useAuth();
+  const user = authData.user;
+
+  // Assuming user.bookmarks is an array of bookmarked code components
+  const { bookmarkStates, handleAddBookmark } = useBookmark(user ? user.bookmarks : []);
 
   return (
     <>
@@ -27,11 +38,11 @@ const CompCategory = ({ params }) => {
           {codeComponents.map((card) => (
             <motion.div
               key={card._id}
-              initial={{ opacity: 0, scale: 0.5, translateY: 20, rotateY: -10, rotateX: -5 }}
-              animate={{ opacity: 1, scale: 1, translateY: 0, rotateY: 0, rotateX: 0 }}
-              transition={{ duration: 0.7, ease: 'easeInOut' }}
-              whileHover={{ scale: 1.05, rotateY: 5, rotateX: 5 }}
-              className="flex flex-col h-full p-4 bg-white rounded-lg shadow-xl transform-style-preserve-3d hover:shadow-2xl"
+              initial={{ rotateY: -10, rotateX: 10 }}
+              animate={{ rotateY: 0, rotateX: 0 }}
+              whileHover={{ rotateY: 10, rotateX: 5 }}
+              transition={{ duration: 0.5, ease: 'easeInOut' }}
+              className="relative flex flex-col h-full bg-white rounded-lg shadow-xl transform-style-preserve-3d hover:shadow-2xl"
             >
               <LiveProvider code={card.code}>
                 <motion.div
@@ -46,6 +57,37 @@ const CompCategory = ({ params }) => {
                   </div>
                 </motion.div>
               </LiveProvider>
+
+              {/* Bookmark button */}
+              {bookmarkStates && bookmarkStates[card._id] ? (
+                // Remove Bookmark button
+                <motion.button
+                  onClick={() => handleAddBookmark(card._id)}
+                  className={`absolute z-10 p-2 text-white bg-green-500 rounded-full top-2 right-2 transition-transform duration-300 transform hover:scale-110`}
+                  initial={{ opacity: 1 }}
+                >
+                  <div className="flex items-center space-x-2">
+                    <IoBookmark className="text-xl md:text-3xl" />
+                  </div>
+                </motion.button>
+              ) : (
+                // Add Bookmark button
+                <motion.button
+                  onClick={() => handleAddBookmark(card._id)}
+                  className={`absolute z-10 p-2 text-white bg-blue-500 rounded-full top-2 right-2 transition-all duration-300 transform hover:scale-110 hover:bg-blue-600`}
+                  initial={{ opacity: 1 }}
+                >
+                  <motion.div
+                    whileHover={{ rotate: 360 }}
+                    initial={{ y: -10, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.3, type: 'spring', stiffness: 100 }}
+                  >
+                    <IoBookmark className="text-xl md:text-3xl" />
+                  </motion.div>
+                </motion.button>
+
+              )}
 
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center space-x-3">
