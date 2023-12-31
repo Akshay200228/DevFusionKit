@@ -28,6 +28,7 @@ const MyFavorites = () => {
                 }
             } catch (error) {
                 console.error('Error fetching bookmarks:', error);
+                console.error('Response:', error.response); 
             } finally {
                 setLoadingBookmarks(false);
             }
