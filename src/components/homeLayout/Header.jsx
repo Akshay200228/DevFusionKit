@@ -15,7 +15,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { ProfileSkeltonLoading } from "../SkeltonLoading";
-// import ThemeToggle from "./ThemeToggle";
+import ThemeToggle from "./ThemeToggle";
 
 
 const MobileNavLink = ({ children, ...props }) => {
@@ -72,7 +72,7 @@ const Header = ({ userId }) => {
   }, [authUser]);
 
   return (
-    <header className={`w-full sticky top-0 z-50 bg-white ${isScrolled && "shadow-xl"}`}>
+    <header className={`w-full sticky top-0 z-50 dark:bg-white bg-slate-900  ${isScrolled && "shadow-xl"}`}>
       <nav>
         <Container className="relative z-40 flex justify-between py-4">
           {/* Logo */}
@@ -112,12 +112,12 @@ const Header = ({ userId }) => {
                     transition={{ duration: 0.8, delay: 0.5, type: "spring", stiffness: 100, damping: 10 }}
                     className="hidden ml-2 font-serif text-lg font-semibold text-blue-700 md:inline-block"
                   >
-                    <span className="text-gray-800">Hi, </span>
+                    <span className="text-gray-300 dark:text-gray-800">Hi, </span>
                     <motion.span
                       initial={{ scale: 0.8 }}
                       animate={{ scale: 1 }}
                       transition={{ duration: 0.8, delay: 0.7, type: "spring", stiffness: 100, damping: 10 }}
-                      className="text-indigo-600"
+                      className="text-indigo-300 dark:text-indigo-600"
                     >
                       {user.name}
                     </motion.span>
@@ -164,7 +164,7 @@ const Header = ({ userId }) => {
               </>
             )}
             {/* Add ThemeToggle component here */}
-            {/* <ThemeToggle /> */}
+            <ThemeToggle />
 
             {/* Mobile NavLinks */}
             <Popover className="lg:hidden">
