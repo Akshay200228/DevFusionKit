@@ -15,6 +15,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { ProfileSkeltonLoading } from "../SkeltonLoading";
+// import ThemeToggle from "./ThemeToggle";
 
 
 const MobileNavLink = ({ children, ...props }) => {
@@ -71,7 +72,7 @@ const Header = ({ userId }) => {
   }, [authUser]);
 
   return (
-    <header className={`w-full sticky top-0 z-50 bg-white  ${isScrolled && "shadow-xl"}`}>
+    <header className={`w-full sticky top-0 z-50 bg-white ${isScrolled && "shadow-xl"}`}>
       <nav>
         <Container className="relative z-40 flex justify-between py-4">
           {/* Logo */}
@@ -100,7 +101,6 @@ const Header = ({ userId }) => {
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
                     src={user.avatar || "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75"}
-                    // src={user.avatar || devLogo}
                     alt={user.name}
                     width={48}
                     height={48}
@@ -162,8 +162,10 @@ const Header = ({ userId }) => {
                   Sign Up
                 </Button>
               </>
-            )
-            }
+            )}
+            {/* Add ThemeToggle component here */}
+            {/* <ThemeToggle /> */}
+
             {/* Mobile NavLinks */}
             <Popover className="lg:hidden">
               {({ open }) => (

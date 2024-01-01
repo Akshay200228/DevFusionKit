@@ -2,6 +2,7 @@
 import Header from "@/components/homeLayout/Header";
 import "./globals.css";
 import Footer from "@/components/homeLayout/Footer";
+import { ThemeProvider } from "./ThemeContext";
 
 
 export const metadata = {
@@ -16,12 +17,20 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  // const initialTheme = typeof window !== 'undefined'
+  //   ? localStorage.getItem('color-theme') || 'light'
+  //   : 'dark';
+
+  // console.log('Initial Theme:', initialTheme);
+
   return (
     <html lang="en">
       <body>
-        <Header />
-        {children}
-        <Footer />
+        {/* <ThemeProvider initialTheme={initialTheme}> */}
+          <Header />
+          {children}
+          <Footer />
+        {/* </ThemeProvider> */}
       </body>
     </html>
   );

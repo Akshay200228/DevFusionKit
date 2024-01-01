@@ -7,7 +7,7 @@ export const CardSkeleton = ({ count }) => {
             {[...Array(count)].map((_, index) => (
                 <div key={index} className="relative h-full overflow-hidden bg-white rounded-lg shadow-xl">
                     <div className="h-[50vh] mb-4 bg-gray-300 rounded-lg skeleton-shimmer" />
-                    <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center justify-between px-2 mb-4">
                         <div className="flex items-center space-x-3">
                             <div className="w-12 h-12 overflow-hidden bg-gray-300 rounded-full skeleton-shimmer" />
                             <div>
