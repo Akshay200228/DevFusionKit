@@ -100,7 +100,7 @@ const MyFavorites = () => {
                             </div>
                         </LiveProvider>
 
-                        <div className="flex items-center justify-between px-2 mt-2">
+                        <div className="flex items-center justify-between px-2 mb-4">
                             <div className="flex items-center space-x-3">
                                 <Link
                                     href={userId === bookmark.createdBy ? `/profile` : `/profile/${bookmark.createdBy}`}

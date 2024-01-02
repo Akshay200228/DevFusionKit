@@ -3,7 +3,6 @@ import Header from "@/components/homeLayout/Header";
 import "./globals.css";
 import Footer from "@/components/homeLayout/Footer";
 
-
 export const metadata = {
   title: {
     template: '%s | DevNexus',

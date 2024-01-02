@@ -14,8 +14,6 @@ const CompCategory = ({ params }) => {
   const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
   const { data: codeComponents, isLoading, error } = useApiFetch(`${apiUrl}/api/code-components/category/${params.category}`) || {};
 
-  console.log("codeComponents: ", codeComponents)
-
   const authData = useAuth();
   const user = authData.user;
 
@@ -89,7 +87,7 @@ const CompCategory = ({ params }) => {
 
               )}
 
-              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center justify-between px-2 mb-4">
                 <div className="flex items-center space-x-3">
                   <div className="w-12 h-12 overflow-hidden rounded-full">
                     <motion.img
