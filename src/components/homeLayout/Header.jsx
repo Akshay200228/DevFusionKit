@@ -15,7 +15,6 @@ import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { ProfileSkeltonLoading } from "../SkeltonLoading";
-// import ThemeToggle from "./ThemeToggle";
 
 
 const MobileNavLink = ({ children, ...props }) => {
@@ -163,10 +162,7 @@ const Header = ({ userId }) => {
                 </Button>
               </>
             )}
-            {/* Add ThemeToggle component here */}
-            {/* <ThemeToggle /> */}
-
-            {/* Mobile NavLinks */}
+          
             <Popover className="lg:hidden">
               {({ open }) => (
                 <>
