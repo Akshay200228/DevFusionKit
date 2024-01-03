@@ -6,6 +6,10 @@ import useApiFetch from '@/hooks/useApiFetch';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { WebTemplatesDetailsSkeleton } from '@/components/SkeltonLoading';
 
+export const metadata = {
+    title: 'User Templates'
+}
+
 const WebTemplatesDetails = ({ params }) => {
     const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
     const WebTempApiUrl = `${apiUrl}/api/web-templates/${params.templatesID}`;

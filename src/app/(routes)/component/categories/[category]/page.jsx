@@ -44,7 +44,7 @@ const CompCategory = ({ params }) => {
             >
               <LiveProvider code={card.code}>
                 <motion.div
-                  className="h-[50vh] mb-4 bg-gradient-to-r from-blue-300 to-blue-200 relative overflow-hidden rounded-lg transform-style-preserve-3d"
+                  className="h-[50vh] mb-4 bg-gradient-to-r from-blue-300 to-blue-200 relative overflow-hidden rounded-t-lg transform-style-preserve-3d"
                   initial={{ rotateY: -10, rotateX: 10 }}
                   animate={{ rotateY: 0, rotateX: 0 }}
                   whileHover={{ rotateY: 5, rotateX: 5 }}

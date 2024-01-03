@@ -140,11 +140,10 @@ const MyFavorites = () => {
                             {/* Remove bookmark */}
                             <motion.button
                                 onClick={() => handleRemoveBookmark(bookmark._id)}
-                                className={`p-2 text-white rounded-full transition-transform duration-300 transform hover:scale-110 bg-red-500`}
+                                className={`absolute top-2 right-2 p-2 z-10 text-white rounded-full transition-transform duration-300 transform hover:scale-110 bg-red-500`}
                                 initial={{ opacity: 1 }}
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
-                                style={{ position: 'absolute', top: '0', right: '0' }}
                             >
                                 <div className="flex items-center space-x-2">
                                     <IoBookmark className="text-xl md:text-3xl" />

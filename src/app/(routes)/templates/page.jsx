@@ -2,7 +2,7 @@ import Link from 'next/link';
 import TemplateCards from "@/components/templateLayout/TemplateCards";
 
 export const metadata = {
-  title: 'Template'
+  title: 'Web Templates'
 }
 
 export default function Templates() {
