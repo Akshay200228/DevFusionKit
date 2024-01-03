@@ -1,10 +1,11 @@
-"use client"
+"use client";
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Container from '@/components/homeLayout/Container';
 import useApiFetch from '@/hooks/useApiFetch';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { WebTemplatesDetailsSkeleton } from '@/components/SkeltonLoading';
+
 
 const WebTemplatesDetails = ({ params }) => {
     const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
