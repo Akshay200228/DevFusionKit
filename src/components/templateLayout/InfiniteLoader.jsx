@@ -45,7 +45,11 @@ export default function InfiniteLoader({ height = 'h-24' }) {
                 ))}
             </div>
             {!allDataLoaded && loading && (
-                <TemplateCardsSkeleton count={3} />
+                <div
+                    className={`flex items-center justify-center ${height}`}
+                >
+                    <div className="w-16 h-16 border-t-4 border-b-4 border-red-500 rounded-full animate-spin" />
+                </div>
             )}
             {!allDataLoaded && !loading && (
                 <div
