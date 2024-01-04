@@ -3,15 +3,11 @@
 import { fetchWebTemp } from "@/app/action";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { TemplateCardsSkeleton } from "../SkeltonLoading";
 import WebTempCard from "./WebTempCard";
 
 
 export default function InfiniteLoader({ height = 'h-24' }) {
-    const { ref, inView } = useInView({
-        triggerOnce: true, // Ensures the event is triggered only once
-        threshold: 0.5, // Adjust this value based on your needs
-    });
+    const { ref, inView } = useInView();
     const [data, setData] = useState([]);
     const [page, setPage] = useState(1);
     const [allDataLoaded, setAllDataLoaded] = useState(false);
