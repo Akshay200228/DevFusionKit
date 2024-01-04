@@ -5,6 +5,7 @@ import Container from '@/components/homeLayout/Container';
 import useApiFetch from '@/hooks/useApiFetch';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { WebTemplatesDetailsSkeleton } from '@/components/SkeltonLoading';
+import GoBackButton from '@/components/comLayout/codeCompIds/GoBackButton';
 
 
 const WebTemplatesDetails = ({ params }) => {
@@ -27,6 +28,9 @@ const WebTemplatesDetails = ({ params }) => {
 
     return (
         <Container>
+            <div className="flex items-center justify-between mb-4">
+                <GoBackButton />
+            </div>
             <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}

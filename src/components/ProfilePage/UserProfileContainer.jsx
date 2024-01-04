@@ -15,6 +15,7 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import CustomModal from './CustomModal';
 import { MdCloudUpload } from "react-icons/md";
 import { FaEdit } from 'react-icons/fa';
+import { IoClose } from 'react-icons/io5';
 
 
 const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplatesData }) => {
@@ -24,6 +25,18 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
     const [isAvatarLoading, setIsAvatarLoading] = useState(false);
     const [confirmDelete, setConfirmDelete] = useState(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isImageModalOpen, setIsImageModalOpen] = useState(false);
+    const [modalImageUrl, setModalImageUrl] = useState('');
+
+    const openImageModal = (imageUrl) => {
+        setModalImageUrl(imageUrl);
+        setIsImageModalOpen(true);
+    };
+
+    const closeImageModal = () => {
+        setIsImageModalOpen(false);
+        setModalImageUrl('');
+    };
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
@@ -187,7 +200,26 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
                                 src={cloudinaryUrl || user.avatar || defaultAvatar}
                                 alt={user.name}
                                 className="object-cover w-full h-full p-1 rounded-full"
+                                onClick={() => openImageModal(cloudinaryUrl || user.avatar || defaultAvatar)}
                             />
+                            {isImageModalOpen && (
+                                <div className="fixed top-0 left-0 z-20 flex items-center justify-center w-full h-full">
+                                    <div className="absolute z-30 top-4 right-4">
+                                        <button
+                                            onClick={closeImageModal}
+                                            className="p-2 text-white bg-blue-500 rounded-full hover:text-gray-300 focus:outline-none"
+                                        >
+                                            <IoClose className="w-6 h-6" />
+                                        </button>
+                                    </div>
+                                    <img
+                                        src={modalImageUrl}
+                                        alt="Avatar"
+                                        className="max-w-full max-h-full cursor-pointer"
+                                        onClick={closeImageModal}
+                                    />
+                                </div>
+                            )}
                             {/* Edit button with dropdown */}
                             <div className="absolute bottom-0 right-0 flex items-center">
                                 <button
@@ -230,7 +262,7 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
                                                 className={`flex items-center w-full px-4 py-2 text-left ${!cloudinaryUrl ? 'cursor-not-allowed bg-gray-300' : 'cursor-pointer text-red-600 hover:text-red-800 hover:bg-red-100'}`}
                                                 role="menuitem"
                                                 onClick={handleDelete}
-                                                disabled={isAvatarLoading || !cloudinaryUrl}
+                                                disabled={isAvatarLoading || !user.avatar}
                                             >
                                                 <RiDeleteBinLine
                                                     className="w-6 h-6 mr-2"

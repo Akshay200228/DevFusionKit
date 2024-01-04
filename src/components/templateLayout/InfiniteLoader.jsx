@@ -17,8 +17,8 @@ export default function InfiniteLoader({ height = 'h-24' }) {
     useEffect(() => {
         const fetchData = async () => {
             if (inView && !allDataLoaded && !loading) {
+                setLoading(true); // Set loading to true when fetching
                 try {
-                    setLoading(true); // Set loading to true when fetching
                     const newData = await fetchWebTemp(page);
                     if (newData.length > 0) {
                         setData((prevData) => [...prevData, ...newData]);
@@ -40,15 +40,15 @@ export default function InfiniteLoader({ height = 'h-24' }) {
     return (
         <>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-                {data.map((webtemp) => (
-                    <WebTempCard key={webtemp._id} webtemp={webtemp} />
+                {data.map((webtemp, index) => (
+                    <WebTempCard key={webtemp._id} webtemp={webtemp} index={index}  />
                 ))}
             </div>
             {!allDataLoaded && loading && (
                 <div
                     className={`flex items-center justify-center ${height}`}
                 >
-                    <div className="w-16 h-16 border-t-4 border-b-4 border-red-500 rounded-full animate-spin" />
+                    <div className="w-16 h-16 border-t-4 border-b-4 border-red-700 rounded-full animate-spin" />
                 </div>
             )}
             {!allDataLoaded && !loading && (

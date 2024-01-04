@@ -62,7 +62,7 @@ const CodeComponent = ({ codeComponents }) => {
 
       {/* Rearranged logic: Check if codeComponents is empty or not */}
       {codeComponents.length === 0 ? (
-        <div className="flex flex-col items-center justify-center mt-8 text-gray-600">
+        <div className="grid grid-cols-1 gap-8 p-4 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
           <p className="mb-4 text-2xl font-bold text-center">No code components found for this user.</p>
           <p className="mb-4 text-lg text-center text-gray-500">
             Explore amazing Components or create your first one now!
@@ -121,8 +121,8 @@ const CodeComponent = ({ codeComponents }) => {
                       <div className="flex justify-between mt-2 md:mt-4">
                         {/* Explore Button (Left Side) */}
                         <Link href={`/component/${component._id}`}>
-                          <button className="px-4 py-2 text-white transition-transform duration-300 ease-in-out bg-blue-500 rounded-full hover:bg-blue-600">
-                              <FaCode className="text-xl md:text-3xl" />
+                          <button className="px-4 py-2 text-white transition-transform duration-300 ease-in-out rounded-full bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-indigo-500 hover:to-purple-500 hover:shadow-2xl focus:outline-none focus:ring focus:border-blue-300 transform-style-preserve-3d">
+                            <FaCode className="text-xl md:text-3xl" />
                           </button>
                         </Link>
 
