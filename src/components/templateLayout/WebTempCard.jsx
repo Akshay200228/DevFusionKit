@@ -23,7 +23,7 @@ const WebTempCard = ({ webtemp }) => {
           ease: "easeInOut",
           duration: 0.5,
         }}
-        viewport={{ amount: 0 }}
+        // viewport={{ amount: 0 }}
         className="rounded-lg shadow-lg bg-blue-50"
       >
         <div className="relative h-96">

@@ -69,7 +69,9 @@ const WebTemplate = ({ webTemplates }) => {
                 {webTemplates.map((template) => (
                   <SwiperSlide key={template._id}>
                     <div className="p-4 mb-8 border rounded shadow-md">
-                      <img src={template.templateImage} alt="templateImage" className="mb-4 rounded-md" />
+                      <div className="relative h-96">
+                        <img src={template.templateImage} alt="templateImage" className="object-cover w-full h-full rounded-t-lg" />
+                      </div>
                       <h4 className="mb-2 text-xl font-semibold">{template.title}</h4>
                       <p className="text-gray-600">{template.description}</p>
 
