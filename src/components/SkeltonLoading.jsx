@@ -105,7 +105,7 @@ export const WebTemplatesDetailsSkeleton = () => {
 // TemplateCardsSkeleton.js
 export const TemplateCardsSkeleton = ({ count }) => {
     return (
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {[...Array(count)].map((_, index) => (
                 <div key={index} className="rounded-lg shadow-lg bg-blue-50 animate-pulse">
                     <div className="bg-gray-300 rounded-t-lg h-96 w-80 skeleton-shimmer" />

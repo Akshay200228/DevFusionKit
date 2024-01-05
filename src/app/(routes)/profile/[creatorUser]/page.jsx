@@ -96,6 +96,14 @@ const CreatorUser = ({ params }) => {
                                                 </div>
                                             </LiveProvider>
                                         </div>
+                                        <div className="flex justify-center mt-2 md:mt-4">
+                                            {/* Explore Button (Left Side) */}
+                                            <Link href={`/component/${component._id}`}>
+                                                <button className="px-4 py-2 text-white transition-transform duration-300 ease-in-out bg-blue-500 rounded-full hover:bg-blue-600">
+                                                    <FaCode className="text-xl md:text-3xl" />
+                                                </button>
+                                            </Link>
+                                        </div>
                                     </div>
                                 </div>
                             ))

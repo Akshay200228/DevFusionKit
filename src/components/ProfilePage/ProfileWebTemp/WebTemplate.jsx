@@ -1,8 +1,9 @@
 "use client"
 // WebTemplate.jsx
 import CreateButton from '../../CreateButton';
+import Link from 'next/link';
 import EditWebTemplate from './EditWebTemplate';
-import { FaEdit, FaTrashAlt } from 'react-icons/fa';
+import { FaCode, FaEdit, FaTrashAlt } from 'react-icons/fa';
 import Message from '@/components/comLayout/create-code-comp/Message';
 import CustomModal from '../CustomModal';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -76,20 +77,27 @@ const WebTemplate = ({ webTemplates }) => {
                       <p className="text-gray-600">{template.description}</p>
 
                       <div className="flex justify-between mt-2 md:mt-4">
-                        <button
-                          onClick={() => handleEdit(template)}
-                          className="flex items-center px-4 py-2 text-blue-500 transition duration-300 ease-in-out bg-blue-100 rounded-lg hover:text-blue-100 hover:bg-blue-600"
-                        >
-                          <FaEdit className="mr-1" />
-                          Edit
-                        </button>
-                        <button
-                          className="flex items-center px-4 py-2 text-red-500 transition duration-300 ease-in-out bg-red-100 rounded-lg hover:text-red-100 hover:bg-red-600"
-                          onClick={() => handleDelete(template._id)}
-                        >
-                          <FaTrashAlt className="mr-1" />
-                          Delete
-                        </button>
+                        <Link href={`/templates/${template._id}`}>
+                          <button
+                            className="px-4 py-2 text-white transition-transform duration-300 ease-in-out rounded-full bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-indigo-500 hover:to-purple-500 hover:shadow-2xl focus:outline-none focus:ring focus:border-blue-300 transform-style-preserve-3d"
+                          >
+                            <FaCode className="text-3xl" />
+                          </button>
+                        </Link>
+                        <div className="flex space-x-2">
+                          <button
+                            onClick={() => handleEdit(template)}
+                            className="flex items-center px-4 py-2 text-blue-500 transition duration-300 ease-in-out bg-blue-100 rounded-lg hover:text-blue-100 hover:bg-blue-600"
+                          >
+                            <FaEdit className="mr-1" />
+                          </button>
+                          <button
+                            className="flex items-center px-4 py-2 text-red-500 transition duration-300 ease-in-out bg-red-100 rounded-lg hover:text-red-100 hover:bg-red-600"
+                            onClick={() => handleDelete(template._id)}
+                          >
+                            <FaTrashAlt className="mr-1" />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </SwiperSlide>
