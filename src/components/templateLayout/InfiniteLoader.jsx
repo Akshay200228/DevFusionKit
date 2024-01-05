@@ -5,7 +5,9 @@ import { fetchWebTemp } from "@/app/action";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import WebTempCard from "./WebTempCard";
+import { TemplateCardsSkeleton } from "../SkeltonLoading";
 
+const loadingDelay = 2000; // 2 seconds delay for loading indicator
 
 export default function InfiniteLoader({ height = 'h-24' }) {
     const { ref, inView } = useInView();
@@ -19,6 +21,8 @@ export default function InfiniteLoader({ height = 'h-24' }) {
             if (inView && !allDataLoaded && !loading) {
                 setLoading(true); // Set loading to true when fetching
                 try {
+                    // Delay before fetching next data (e.g., 500 milliseconds)
+                    await new Promise(resolve => setTimeout(resolve, 500));
                     const newData = await fetchWebTemp(page);
                     if (newData.length > 0) {
                         setData((prevData) => [...prevData, ...newData]);
@@ -29,8 +33,11 @@ export default function InfiniteLoader({ height = 'h-24' }) {
                 } catch (error) {
                     console.error("Error fetching data:", error);
                 } finally {
-                    setLoading(false); // Set loading to false when fetching is complete
+                    setTimeout(() => {
+                        setLoading(false); // Set loading to false after a delay
+                    }, loadingDelay);
                 }
+
             }
         };
 
@@ -39,26 +46,25 @@ export default function InfiniteLoader({ height = 'h-24' }) {
 
     return (
         <>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {data.map((webtemp, index) => (
-                    <WebTempCard key={webtemp._id} webtemp={webtemp} index={index}  />
+                    <WebTempCard key={webtemp._id} webtemp={webtemp} index={index} />
                 ))}
             </div>
-            {!allDataLoaded && loading && (
+            {loading && (
                 <div
                     className={`flex items-center justify-center ${height}`}
                 >
                     <div className="w-16 h-16 border-t-4 border-b-4 border-red-700 rounded-full animate-spin" />
                 </div>
             )}
+
             {!allDataLoaded && !loading && (
-                <div
-                    ref={ref}
-                    className={`flex items-center justify-center ${height}`}
-                >
-                    <div className="w-16 h-16 border-t-4 border-b-4 border-red-500 rounded-full animate-spin" />
-                </div>
+                <div ref={ref}>
+                    <TemplateCardsSkeleton count={9} />
+                </div >
             )}
+
             {allDataLoaded && (
                 <h3 className="mt-4 text-xl text-center">Thank you for viewing!</h3>
             )}

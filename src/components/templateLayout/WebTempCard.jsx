@@ -3,24 +3,25 @@ import { motion } from 'framer-motion';
 import { FaCode } from 'react-icons/fa';
 import Link from 'next/link';
 
-const stagger = 0.080;
+const stagger = 0.2;
 
 const variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1 },
+  hidden: { opacity: 0, rotateX: -45, rotateY: -45, rotateZ: -45 },
+  visible: { opacity: 1, rotateX: 0, rotateY: 0, rotateZ: 0 },
 };
 
-
 const WebTempCard = ({ webtemp, index }) => {
+  const isStaggered = index > 0 && index % 12 !== 0; // Skip stagger for the first card and multiples of 12
+
   return (
     <motion.div
       key={webtemp._id}
       variants={variants}
-      initial="hidden"
+      initial={isStaggered ? "hidden" : "visible"}
       animate="visible"
       transition={{
         duration: 0.5,
-        delay: index * stagger,
+        delay: isStaggered ? index * stagger : 0, // Apply stagger only if it's not the first card
         ease: "easeInOut",
       }}
       className="rounded-lg shadow-lg bg-blue-50"
@@ -48,8 +49,8 @@ const WebTempCard = ({ webtemp, index }) => {
             >
               <div className="flex items-center space-x-2">
                 <motion.div
-                  initial={{ scale: 0.8, rotateY: -10, rotateX: 10 }}
-                  animate={{ scale: 1, rotateY: 0, rotateX: 0 }}
+                  initial={{ scale: 0.8, rotateY: -10, rotateX: 10, rotateZ: -10 }}
+                  animate={{ scale: 1, rotateY: 0, rotateX: 0, rotateZ: 0 }}
                   transition={{ yoyo: Infinity, duration: 1.5 }}
                 >
                   <FaCode className="text-3xl" />

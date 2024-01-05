@@ -18,6 +18,7 @@ export default function CardComponent() {
     const userId = user ? user._id : null;
     const apiUrl = `${process.env.NEXT_PUBLIC_NEXUS_URL}/api/code-components?page=${page}`;
     const { data: cardData, isLoading, error } = useApiFetch(apiUrl);
+    const defaultAvatar = "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75";
 
     // Use the useBookmark hook
     const { bookmarkStates, handleAddBookmark } = useBookmark(user ? user.bookmarks : []);
@@ -75,7 +76,7 @@ export default function CardComponent() {
                                         className="w-8 h-8 overflow-hidden rounded-full sm:w-12 sm:h-12"
                                     >
                                         <motion.img
-                                            src={card.creatorAvatar || "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75"}
+                                            src={card.creatorAvatar || defaultAvatar}
                                             alt="User Image"
                                             width={48}
                                             height={48}
