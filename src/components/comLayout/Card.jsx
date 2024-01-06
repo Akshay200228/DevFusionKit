@@ -10,13 +10,16 @@ import NavigationButtons from './NavigationButtons';
 import { CardSkeleton } from '../SkeltonLoading';
 import { useAuth } from '@/hooks/useAuth';
 import useBookmark from '@/hooks/useBookmark';
+import { useSearch } from '@/context/SearchContext';
 
 export default function CardComponent() {
+
     const [page, setPage] = useState(1);
     const authData = useAuth();
     const user = authData.user;
     const userId = user ? user._id : null;
-    const apiUrl = `${process.env.NEXT_PUBLIC_NEXUS_URL}/api/code-components?page=${page}`;
+    const { searchQuery } = useSearch(); 
+    const apiUrl = `${process.env.NEXT_PUBLIC_NEXUS_URL}/api/code-components?page=${page}&title=${searchQuery}`;
     const { data: cardData, isLoading, error } = useApiFetch(apiUrl);
     const defaultAvatar = "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75";
 

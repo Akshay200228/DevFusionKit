@@ -1,6 +1,7 @@
 "use client"
 import SearchBar from "@/components/comLayout/SearchBar";
 import Sidebar from "@/components/comLayout/Sidebar";
+import { SearchProvider } from "@/context/SearchContext";
 import { Link } from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -9,9 +10,8 @@ export default function Layout({ children }) {
   const pathName = usePathname();
   const isComponentPage = pathName.startsWith("/component");
 
-
   return (
-    <>
+    <SearchProvider>
       {isComponentPage ? (
         <div className="flex h-full">
           <Sidebar />
@@ -31,6 +31,6 @@ export default function Layout({ children }) {
           </Link>
         </div>
       )}
-    </>
+    </SearchProvider>
   );
 }
