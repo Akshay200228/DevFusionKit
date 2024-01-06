@@ -38,8 +38,6 @@ const EditCodeComponent = ({ component, onCancelEdit }) => {
     const handleUpdate = async () => {
         try {
             setLoading(true);
-            // const apiUrl = "http://localhost:8000";
-            // const apiUrl = "https://devnexus-server.onrender.com";
             const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
             const response = await axios.put(
                 `${apiUrl}/api/code-components/update/${component._id}`,
@@ -120,16 +118,16 @@ const EditCodeComponent = ({ component, onCancelEdit }) => {
             </div>
 
             {/* Code and Preview Section */}
-            <div className="flex mb-4">
+            <div className="flex flex-col gap-2 mb-4 md:flex-row">
                 <LiveProvider code={formData.code}>
-                    <div className="w-1/2 ml-4">
+                    <div className="w-full md:w-1/2">
                         <label className="block mb-2 text-sm font-bold text-gray-700">Preview</label>
                         <div className="bg-blue-200 h-[50vh] p-4">
                             <LivePreview />
                             <LiveError />
                         </div>
                     </div>
-                    <div className="w-1/2 overflow-auto">
+                    <div className="w-full overflow-auto md:w-1/2">
                         <label htmlFor="code" className="block mb-2 text-sm font-bold text-gray-700">
                             Code
                         </label>

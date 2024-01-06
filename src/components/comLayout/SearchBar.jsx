@@ -10,7 +10,6 @@ export default function SearchBar() {
 
     const handleChange = (e) => {
         const value = e.target.value;
-        console.log('Input value:', value);
         handleSearch(value);
     };
 
