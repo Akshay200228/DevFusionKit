@@ -28,7 +28,7 @@ export const CardSkeleton = ({ count }) => {
 // Profile Skelton Loader
 export const ProfileSkeltonLoading = () => {
     return (
-        <div className="animate-pulse">
+        <div className="hidden animate-pulse lg:block">
             <div className="flex items-center">
                 <div className="w-12 h-12 mr-4 bg-gray-300 rounded-full skeleton-shimmer"></div>
                 <div className="flex flex-col skeleton-shimmer">

@@ -1,7 +1,8 @@
 "use sever";
-const perPage = 12;
 
+// Web temp data
 export async function fetchWebTemp(currentPage) {
+    const perPage = 12;
     const api = `http://localhost:8000/api/web-templates/paginated-web-templates?page=${currentPage}&perPage=${perPage}`;
     try {
         const response = await fetch(api);

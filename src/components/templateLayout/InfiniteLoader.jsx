@@ -6,10 +6,11 @@ import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import WebTempCard from "./WebTempCard";
 import { TemplateCardsSkeleton } from "../SkeltonLoading";
+import Loader from "../Loader";
 
 const loadingDelay = 2000; // 2 seconds delay for loading indicator
 
-export default function InfiniteLoader({ height = 'h-24' }) {
+export default function InfiniteLoader() {
     const { ref, inView } = useInView();
     const [data, setData] = useState([]);
     const [page, setPage] = useState(1);
@@ -51,13 +52,8 @@ export default function InfiniteLoader({ height = 'h-24' }) {
                     <WebTempCard key={webtemp._id} webtemp={webtemp} index={index} />
                 ))}
             </div>
-            {loading && (
-                <div
-                    className={`flex items-center justify-center ${height}`}
-                >
-                    <div className="w-16 h-16 border-t-4 border-b-4 border-red-700 rounded-full animate-spin" />
-                </div>
-            )}
+
+            {loading && <Loader height="h-24" />}
 
             {!allDataLoaded && !loading && (
                 <div ref={ref}>
