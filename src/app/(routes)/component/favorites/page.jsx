@@ -9,9 +9,11 @@ import { LivePreview, LiveProvider } from 'react-live';
 import { FaCode } from 'react-icons/fa';
 import { IoBookmark } from 'react-icons/io5';
 import getCookie from '@/hooks/getCookie';
+import { useSearch } from '@/context/SearchContext';
 
 const MyFavorites = () => {
     const { user, error, isLoading } = useAuth();
+    const { searchQuery, handleSearch } = useSearch();
     const [bookmarks, setBookmarks] = useState([]);
     const [loadingBookmarks, setLoadingBookmarks] = useState(true);
 
@@ -76,102 +78,111 @@ const MyFavorites = () => {
         return <div>Error: {error.message}</div>;
     }
 
+    // Filter bookmarks based on search query
+    const filteredBookmarks = bookmarks.filter((bookmark) =>
+        bookmark.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <div className="grid grid-cols-1 gap-8 p-4 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
             {loadingBookmarks ? (
                 <div>Loading bookmarks...</div>
             ) : (
-                bookmarks.map((bookmark) => (
-                    <motion.div
-                        key={bookmark._id}
-                        initial={{ rotateY: -10, rotateX: 10 }}
-                        animate={{ rotateY: 0, rotateX: 0 }}
-                        whileHover={{ rotateY: 10, rotateX: 5 }}
-                        transition={{ duration: 0.5, ease: 'easeInOut' }}
-                        className="relative flex flex-col h-full bg-white rounded-lg shadow-xl transform-style-preserve-3d hover:shadow-2xl"
-                    >
-                        <LiveProvider code={bookmark.code}>
-                            <div
-                                className="min-h-[50vh] mb-4 bg-gradient-to-r from-blue-300 to-blue-200 relative overflow-hidden rounded-t-lg transform-style-preserve-3d"
-                            >
-                                <div className="absolute inset-0 text-neutral-950">
-                                    <LivePreview />
-                                </div>
-                            </div>
-                        </LiveProvider>
-
-                        <div className="flex items-center justify-between px-2 mb-4">
-                            <div className="flex items-center space-x-3">
-                                <Link
-                                    href={userId === bookmark.createdBy ? `/profile` : `/profile/${bookmark.createdBy}`}
-                                    className="w-8 h-8 overflow-hidden rounded-full sm:w-12 sm:h-12"
+                filteredBookmarks.length > 0 ? (
+                    filteredBookmarks.map((bookmark) => (
+                        <motion.div
+                            key={bookmark._id}
+                            initial={{ rotateY: -10, rotateX: 10 }}
+                            animate={{ rotateY: 0, rotateX: 0 }}
+                            whileHover={{ rotateY: 10, rotateX: 5 }}
+                            transition={{ duration: 0.5, ease: 'easeInOut' }}
+                            className="relative flex flex-col h-full bg-white rounded-lg shadow-xl transform-style-preserve-3d hover:shadow-2xl"
+                        >
+                            <LiveProvider code={bookmark.code}>
+                                <div
+                                    className="min-h-[50vh] mb-4 bg-gradient-to-r from-blue-300 to-blue-200 relative overflow-hidden rounded-t-lg transform-style-preserve-3d"
                                 >
-                                    <motion.img
-                                        src={bookmark.creatorAvatar || "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75"}
-                                        alt="User Image"
-                                        width={48}
-                                        height={48}
-                                        className="object-cover w-full h-full rounded-full"
-                                        initial={{ rotateY: -10, rotateX: 10 }}
-                                        animate={{ rotateY: 0, rotateX: 0 }}
-                                        whileHover={{ rotate: 5 }}
-                                        transition={{ duration: 0.3, ease: 'easeInOut' }}
-                                    />
-                                </Link>
-                                <div>
-                                    <motion.div
-                                        className="text-lg font-semibold text-gray-800 md:text-2xl "
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.5, ease: 'easeInOut' }}
-                                    >
-                                        {bookmark.title}
-                                    </motion.div>
-                                    <motion.p
-                                        className="text-sm text-gray-600"
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.5, delay: 0.1, ease: 'easeInOut' }}
-                                    >
-                                        Category {bookmark.category}
-                                    </motion.p>
+                                    <div className="absolute inset-0 text-neutral-950">
+                                        <LivePreview />
+                                    </div>
                                 </div>
-                            </div>
-                            {/* Remove bookmark */}
-                            <motion.button
-                                onClick={() => handleRemoveBookmark(bookmark._id)}
-                                className={`absolute top-2 right-2 p-2 z-10 text-white rounded-full transition-transform duration-300 transform hover:scale-110 bg-red-500`}
-                                initial={{ opacity: 1 }}
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.9 }}
-                            >
-                                <div className="flex items-center space-x-2">
-                                    <IoBookmark className="text-xl md:text-3xl" />
+                            </LiveProvider>
+
+                            <div className="flex items-center justify-between px-2 mb-4">
+                                <div className="flex items-center space-x-3">
+                                    <Link
+                                        href={userId === bookmark.createdBy ? `/profile` : `/profile/${bookmark.createdBy}`}
+                                        className="w-8 h-8 overflow-hidden rounded-full sm:w-12 sm:h-12"
+                                    >
+                                        <motion.img
+                                            src={bookmark.creatorAvatar || "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75"}
+                                            alt="User Image"
+                                            width={48}
+                                            height={48}
+                                            className="object-cover w-full h-full rounded-full"
+                                            initial={{ rotateY: -10, rotateX: 10 }}
+                                            animate={{ rotateY: 0, rotateX: 0 }}
+                                            whileHover={{ rotate: 5 }}
+                                            transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                        />
+                                    </Link>
+                                    <div>
+                                        <motion.div
+                                            className="text-lg font-semibold text-gray-800 md:text-2xl "
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ duration: 0.5, ease: 'easeInOut' }}
+                                        >
+                                            {bookmark.title}
+                                        </motion.div>
+                                        <motion.p
+                                            className="text-sm text-gray-600"
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ duration: 0.5, delay: 0.1, ease: 'easeInOut' }}
+                                        >
+                                            Category {bookmark.category}
+                                        </motion.p>
+                                    </div>
                                 </div>
-                            </motion.button>
-                            <Link href={`/component/${bookmark._id}`}>
+                                {/* Remove bookmark */}
                                 <motion.button
+                                    onClick={() => handleRemoveBookmark(bookmark._id)}
+                                    className={`absolute top-2 right-2 p-2 z-10 text-white rounded-full transition-transform duration-300 transform hover:scale-110 bg-red-500`}
+                                    initial={{ opacity: 1 }}
+                                    whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.9 }}
-                                    initial={{ scale: 1, opacity: 0.9 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ duration: 0.3 }}
-                                    className="px-4 py-2 text-white transition-transform duration-300 ease-in-out rounded-full bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-indigo-500 hover:to-purple-500 hover:shadow-2xl focus:outline-none focus:ring focus:border-blue-300 transform-style-preserve-3d"
                                 >
                                     <div className="flex items-center space-x-2">
-                                        <motion.div
-                                            initial={{ scale: 0.8, rotateY: -10, rotateX: 10 }}
-                                            animate={{ scale: 1, rotateY: 0, rotateX: 0 }}
-                                            transition={{ yoyo: Infinity, duration: 1.5 }}
-                                        >
-                                            <FaCode className="text-xl md:text-3xl" />
-                                        </motion.div>
-                                        <span className="text-lg">Explore</span>
+                                        <IoBookmark className="text-xl md:text-3xl" />
                                     </div>
                                 </motion.button>
-                            </Link>
-                        </div>
-                    </motion.div>
-                ))
+                                <Link href={`/component/${bookmark._id}`}>
+                                    <motion.button
+                                        whileTap={{ scale: 0.9 }}
+                                        initial={{ scale: 1, opacity: 0.9 }}
+                                        animate={{ opacity: 1 }}
+                                        transition={{ duration: 0.3 }}
+                                        className="px-4 py-2 text-white transition-transform duration-300 ease-in-out rounded-full bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-indigo-500 hover:to-purple-500 hover:shadow-2xl focus:outline-none focus:ring focus:border-blue-300 transform-style-preserve-3d"
+                                    >
+                                        <div className="flex items-center space-x-2">
+                                            <motion.div
+                                                initial={{ scale: 0.8, rotateY: -10, rotateX: 10 }}
+                                                animate={{ scale: 1, rotateY: 0, rotateX: 0 }}
+                                                transition={{ yoyo: Infinity, duration: 1.5 }}
+                                            >
+                                                <FaCode className="text-xl md:text-3xl" />
+                                            </motion.div>
+                                            <span className="text-lg">Explore</span>
+                                        </div>
+                                    </motion.button>
+                                </Link>
+                            </div>
+                        </motion.div>
+                    ))
+                ) : (
+                    <div>No bookmarks found for the specified search query.</div>
+                )
             )}
         </div>
     );

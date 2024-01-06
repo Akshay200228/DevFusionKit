@@ -9,10 +9,17 @@ import useApiFetch from '@/hooks/useApiFetch';
 import useBookmark from '@/hooks/useBookmark';
 import { IoBookmark } from 'react-icons/io5';
 import { useAuth } from '@/hooks/useAuth';
+import { useSearch } from '@/context/SearchContext';
 
 const CompCategory = ({ params }) => {
+  const { searchQuery, handleSearch } = useSearch();
   const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
   const { data: codeComponents, isLoading, error } = useApiFetch(`${apiUrl}/api/code-components/category/${params.category}`) || {};
+
+  // Filter code components based on search query
+  const filteredCodeComponents = codeComponents.filter((component) =>
+    component.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const authData = useAuth();
   const user = authData.user;
@@ -26,14 +33,14 @@ const CompCategory = ({ params }) => {
         <CardSkeleton count={9} />
       ) : error ? (
         <div>Error: {error.message}</div>
-      ) : codeComponents && codeComponents.length > 0 ? (
+      ) : filteredCodeComponents && filteredCodeComponents.length > 0 ? (
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.5 }}
           className="grid grid-cols-1 gap-8 p-4 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3"
         >
-          {codeComponents.map((card) => (
+          {filteredCodeComponents.map((card) => (
             <motion.div
               key={card._id}
               initial={{ rotateY: -10, rotateX: 10 }}
