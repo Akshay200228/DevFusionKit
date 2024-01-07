@@ -36,5 +36,7 @@ export const config = {
     '/templates/[templatesID]',
     '/animations',
     '/code-comp',
+    '/profile',
+    '/profile/[creatorUser]',
   ]
 };

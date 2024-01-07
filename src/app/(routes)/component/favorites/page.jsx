@@ -13,7 +13,7 @@ import { useSearch } from '@/context/SearchContext';
 
 const MyFavorites = () => {
     const { user, error, isLoading } = useAuth();
-    const { searchQuery, handleSearch } = useSearch();
+    const { searchQuery } = useSearch();
     const [bookmarks, setBookmarks] = useState([]);
     const [loadingBookmarks, setLoadingBookmarks] = useState(true);
 

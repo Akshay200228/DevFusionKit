@@ -8,7 +8,6 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      {/* <Feature /> */}
       <CodeEditor />
       <Reviews />
       <Account />

@@ -68,15 +68,7 @@ const useSignup = () => {
       console.log("Response create user data: ", response)
 
       // Check if the response contains a valid structure
-      if (response.data && response.data.token) {
-        const { token } = response.data;
-
-        const tokenExpirationDays = 7;
-        const expirationDate = new Date();
-        expirationDate.setDate(expirationDate.getDate() + tokenExpirationDays);
-
-        document.cookie = `token=${token}; expires=${expirationDate.toUTCString()}`;
-
+      if (response.data) {
         setSuccessMessage('User registered successfully! Moye Moye');
         // If registration is successful, show OTP input
         setOtpSent(true);
@@ -121,6 +113,13 @@ const useSignup = () => {
         setSuccessMessage('OTP verified successfully!');
         setShowOtpInput(false); // Hide OTP input after successful verification
         setShowVerificationPopup(true);
+
+        // Store the token in the browser's cookies after OTP verification
+        const { token } = otpVerificationResponse.data;
+        const tokenExpirationDays = 7;
+        const expirationDate = new Date();
+        expirationDate.setDate(expirationDate.getDate() + tokenExpirationDays);
+        document.cookie = `token=${token}; expires=${expirationDate.toUTCString()}`;
       } else {
         // Handle OTP verification failure (e.g., show an error message)
         console.error('OTP verification failed');
