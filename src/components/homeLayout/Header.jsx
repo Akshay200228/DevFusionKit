@@ -131,23 +131,40 @@ const Header = ({ userId }) => {
                       transition={{ duration: 0.5 }}
                       className="absolute right-0 z-10 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg w-72 top-12"
                     >
-                      <div className="py-2">
-                        <Link
-                          href="/profile"
-                          className="block px-4 py-2 text-gray-800 hover:text-primary hover:bg-gray-100"
+                      <motion.div
+                        initial={{ scaleY: 0 }}
+                        animate={{ scaleY: 1 }}
+                        exit={{ scaleY: 0 }}
+                        transition={{ duration: 0.3, delay: 0.1 }}
+                      >
+                        <motion.div
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.3, delay: 0.1 }}
                         >
-                          <FaUser className="inline-block mr-2" /> Profile
-                        </Link>
-                        <motion.button
-                          initial={{ scale: 0.8 }}
-                          animate={{ scale: 1 }}
-                          transition={{ duration: 0.5, delay: 0.2 }}
-                          className="block w-full px-4 py-2 text-left text-red-600 hover:text-red-800 hover:bg-red-100"
-                          onClick={handleLogout}
+                          <Link
+                            href="/profile"
+                            className="block px-4 py-2 text-gray-800 hover:text-primary hover:bg-gray-100"
+                          >
+                            <FaUser className="inline-block mr-2" /> Profile
+                          </Link>
+                        </motion.div>
+                        <motion.div
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.3, delay: 0.2 }}
                         >
-                          <FaSignOutAlt className="inline-block mr-2" /> Log Out
-                        </motion.button>
-                      </div>
+                          <motion.button
+                            initial={{ scale: 0.8 }}
+                            animate={{ scale: 1 }}
+                            transition={{ duration: 0.5 }}
+                            className="block w-full px-4 py-2 text-left text-red-600 hover:text-red-800 hover:bg-red-100"
+                            onClick={handleLogout}
+                          >
+                            <FaSignOutAlt className="inline-block mr-2" /> Log Out
+                          </motion.button>
+                        </motion.div>
+                      </motion.div>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -162,7 +179,7 @@ const Header = ({ userId }) => {
                 </Button>
               </>
             )}
-          
+
             <Popover className="lg:hidden">
               {({ open }) => (
                 <>
