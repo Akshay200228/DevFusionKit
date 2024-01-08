@@ -1,3 +1,5 @@
+"use client"
+import { toast } from 'sonner';
 import Container from "./Container";
 import Title from "./Title";
 import Image from "next/image";
@@ -29,6 +31,10 @@ const Hero = () => {
               </Button>
               {/* Btn 2 */}
               <Button variant="outline" href="/">
+                <BsPlayCircle className="text-xl" />
+                <span className="ml-2.5">Watch the video</span>
+              </Button>
+              <Button variant="outline" onClick={() => toast('My first toast')}>
                 <BsPlayCircle className="text-xl" />
                 <span className="ml-2.5">Watch the video</span>
               </Button>
