@@ -22,6 +22,13 @@ export default function middleware(request) {
     return NextResponse.redirect(url);
   }
 
+  // Redirect logged-in users away from the /signup page
+  if (path === '/signup' && token) {
+    const url = request.nextUrl.clone();
+    url.pathname = requestedPath || '/';
+    return NextResponse.redirect(url);
+  }
+
   // Allow access if authorized
   return NextResponse.next();
 }
@@ -29,6 +36,7 @@ export default function middleware(request) {
 export const config = {
   matcher: [
     '/login',
+    '/signup',
     '/component',
     '/component/[category]',
     '/component/[codeCompIds]',

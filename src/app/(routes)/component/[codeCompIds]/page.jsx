@@ -10,6 +10,8 @@ import { useRef } from 'react';
 import Message from '@/components/comLayout/create-code-comp/Message';
 import { CodeCompDetailsSkeleton } from '@/components/SkeltonLoading';
 import { useAuth } from '@/hooks/useAuth';
+import Breadcrumbs from '@/components/comLayout/codeCompIds/Breadcrumbs';
+import { usePathname } from 'next/navigation';
 
 // Function to copy text to clipboard
 const copyToClipboard = (text, setMessage) => {
@@ -46,6 +48,7 @@ const CodeCompDetails = ({ params }) => {
     const closeMessage = () => {
         setMessage(null);
     };
+    const pathname = usePathname();
 
 
     return (
@@ -56,6 +59,7 @@ const CodeCompDetails = ({ params }) => {
                 <p>Error: {error.message}</p>
             ) : codeComponent ? (
                 <>
+                    <Breadcrumbs pathname={pathname} />
                     <div className="flex items-center justify-between mb-4">
                         <GoBackButton />
                         <CopyCodeButton onCopy={handleCopyCode} />
