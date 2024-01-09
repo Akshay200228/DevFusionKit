@@ -109,7 +109,7 @@ function Signup() {
                 value={formData.email}
                 onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter your email"
+                placeholder="Enter a valid email"
                 required
               />
             </div>
@@ -123,7 +123,7 @@ function Signup() {
                 value={formData.username}
                 onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Choose a username"
+                placeholder="Enter username (e.g., john_doe123)"
                 required
               />
             </div>

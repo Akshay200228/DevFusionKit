@@ -62,7 +62,7 @@ const CodeComponent = ({ codeComponents }) => {
 
       {/* Rearranged logic: Check if codeComponents is empty or not */}
       {codeComponents.length === 0 ? (
-        <div className="grid grid-cols-1 gap-8 p-4 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
+        <div className="flex flex-col items-center justify-center mt-8 text-gray-600">
           <p className="mb-4 text-2xl font-bold text-center">No code components found for this user.</p>
           <p className="mb-4 text-lg text-center text-gray-500">
             Explore amazing Components or create your first one now!

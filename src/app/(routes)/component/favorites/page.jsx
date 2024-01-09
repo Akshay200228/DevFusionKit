@@ -181,7 +181,7 @@ const MyFavorites = () => {
                         </motion.div>
                     ))
                 ) : (
-                    <div>No bookmarks found for the specified search query.</div>
+                    <div>No bookmarks found.</div>
                 )
             )}
         </div>
