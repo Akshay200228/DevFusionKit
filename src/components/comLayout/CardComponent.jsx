@@ -3,42 +3,53 @@ import { FaCode } from 'react-icons/fa';
 import { IoBookmark } from "react-icons/io5";
 import { motion } from 'framer-motion';
 import { LivePreview, LiveProvider } from 'react-live';
-import useApiFetch from '@/hooks/useApiFetch';
+import axios from 'axios';
 import Link from 'next/link';
-import { useState } from 'react';
 import NavigationButtons from './NavigationButtons';
 import { CardSkeleton } from '../SkeltonLoading';
-import { useAuth } from '@/hooks/useAuth';
 import useBookmark from '@/hooks/useBookmark';
-import { useSearch } from '@/context/SearchContext';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
-export default function CardComponent() {
 
-    const [page, setPage] = useState(1);
-    const authData = useAuth();
-    const user = authData.user;
-    const userId = user ? user._id : null;
-    const { searchQuery } = useSearch(); 
-    const apiUrl = `${process.env.NEXT_PUBLIC_NEXUS_URL}/api/code-components?page=${page}&title=${searchQuery}`;
-    const { data: cardData, isLoading, error } = useApiFetch(apiUrl);
-    const defaultAvatar = "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75";
+export default function CardComponent({ user, userId, apiUrl, page }) {
+    const router = useRouter()
 
-    // Use the useBookmark hook
+    const [cardData, setCardData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+
     const { bookmarkStates, handleAddBookmark } = useBookmark(user ? user.bookmarks : []);
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setIsLoading(true);
+                const response = await axios.get(apiUrl);
+                setCardData(response.data);
+                setIsLoading(false);
+                console.log("response: ", response.data)
+            } catch (error) {
+                setError(error);
+                setIsLoading(false);
+            }
+        };
+
+        fetchData();
+    }, [apiUrl, page]);
+
+
     const handleNextPage = () => {
-        setPage((prevPage) => {
-            const nextPage = prevPage + 1;
-            return nextPage;
-        });
+        const nextPage = page + 1;
+        router.push(`/component?page=${nextPage}`);
+
     };
 
     const handlePrevPage = () => {
-        setPage((prevPage) => {
-            const prevPageNumber = Math.max(prevPage - 1, 1);
-            return prevPageNumber;
-        });
+        const prevPage = page - 1;
+        router.push(`/component?page=${prevPage}`);
     };
+
 
     return (
         <div className="w-full pt-4 text-white">
