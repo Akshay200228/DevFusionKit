@@ -12,7 +12,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { useSearch } from '@/context/SearchContext';
 
 const CompCategory = ({ params }) => {
-  const { searchQuery, handleSearch } = useSearch();
+  const { searchQuery } = useSearch();
   const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
   const { data: codeComponents, isLoading, error } = useApiFetch(`${apiUrl}/api/code-components/category/${params.category}`) || {};
 

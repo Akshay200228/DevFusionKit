@@ -1,13 +1,19 @@
 // SearchContext.js
+import { useRouter } from 'next/navigation';
 import { createContext, useContext, useState } from 'react';
 
 const SearchContext = createContext();
 
 export const SearchProvider = ({ children }) => {
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearch = (query) => {
     setSearchQuery(query);
+    // Check if the current page is not 1, then navigate to page 1
+    if (query.page !== '1') {
+      router.push(`/component?page=1`);
+    }
   };
 
   return (
