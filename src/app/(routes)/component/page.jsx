@@ -1,11 +1,14 @@
-"use client"
-import Card from '../../../components/comLayout/Card';
+import { getCodeComp } from "@/app/action";
+import CardComponent from "@/components/comLayout/CardComponent";
 
-export default function Component() {
+export default async function Card(context) {
+  // call api here
+  const page = parseInt(context.searchParams.page) || 1;
+  const data = await getCodeComp(page);
+  console.log("context: ", context)
 
   return (
-    <div className="w-full bg-white">
-      <Card />
-    </div>
-  );
+    <CardComponent page={page} data={data} />
+  )
 }
+

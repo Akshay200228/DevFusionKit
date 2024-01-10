@@ -20,3 +20,17 @@ export async function fetchWebTemp(currentPage) {
         return null;
     }
 }
+
+// Code comp card data
+
+export async function getCodeComp(page) {
+    try {
+        // Fetch api here
+        const response = await fetch(`http://localhost:8000/api/code-components?page=${page}`);
+        const data = await response.json();
+        return data;
+    } catch (err) {
+        console.log("Error is here: ", err);
+        return [];
+    }
+}
