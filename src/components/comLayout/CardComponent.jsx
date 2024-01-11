@@ -19,7 +19,21 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const { bookmarkStates, handleAddBookmark } = useBookmark(user ? user.bookmarks : []);
+    const updateBookmarkCount = (codeComponentId, isBookmarkAdded) => {
+        setCardData((prevData) => {
+            return prevData.map((card) => {
+                if (card._id === codeComponentId) {
+                    return {
+                        ...card,
+                        bookmarks: isBookmarkAdded ? [...card.bookmarks, userId] : card.bookmarks.filter((id) => id !== userId),
+                    };
+                }
+                return card;
+            });
+        });
+    };
+
+    const { bookmarkStates, handleAddBookmark } = useBookmark(user ? user.bookmarks : [], updateBookmarkCount);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -118,6 +132,11 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
                                         >
                                             Category {card.category}
                                         </motion.p>
+                                        {/* Count */}
+                                        <div className="flex items-center mt-1 text-gray-600">
+                                            <p className="text-sm">{card.bookmarks.length}</p>
+                                            <span className="ml-1">bookmarks</span>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -129,8 +148,11 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
                                         className={`absolute z-10 p-2 text-white bg-green-500 rounded-full top-2 right-2 transition-transform duration-300 transform hover:scale-110`}
                                         initial={{ opacity: 1 }}
                                     >
-                                        <div className="flex items-center space-x-2">
-                                            <IoBookmark className="text-xl md:text-3xl" />
+                                        <div className="flex items-center space-x-1">
+                                            <IoBookmark className="text-xl md:text-2xl" />
+                                            <span className="ml-1 text-sm text-white">
+                                                {card.bookmarks.length}
+                                            </span>
                                         </div>
                                     </motion.button>
                                 ) : (
@@ -145,8 +167,14 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
                                             initial={{ y: -10, opacity: 0 }}
                                             animate={{ y: 0, opacity: 1 }}
                                             transition={{ duration: 0.3, type: 'spring', stiffness: 100 }}
+                                            className="flex items-center space-x-1"
                                         >
-                                            <IoBookmark className="text-xl md:text-3xl" />
+                                            <IoBookmark className="text-xl md:text-2xl" />
+                                            {card.bookmarks.length > 0 && (
+                                                <span className="ml-1 text-sm text-white">
+                                                    {card.bookmarks.length}
+                                                </span>
+                                            )}
                                         </motion.div>
                                     </motion.button>
                                 )}
