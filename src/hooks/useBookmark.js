@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import getCookie from './getCookie';
 
-const useBookmark = (initialBookmarks, userId) => {
+const useBookmark = (initialBookmarks, updateBookmarkCount) => {
   const [bookmarkStates, setBookmarkStates] = useState({}); // Change the initial state to an empty object
 
   useEffect(() => {
@@ -21,6 +21,7 @@ const useBookmark = (initialBookmarks, userId) => {
 
       // If the code component is already bookmarked, remove it
       if (bookmarkStates[codeComponentId]) {
+        // Remove bookmark
         const removeResponse = await fetch(`${process.env.NEXT_PUBLIC_NEXUS_URL}/api/bookmark/remove-bookmark`, {
           method: 'DELETE',
           headers: {
@@ -39,6 +40,8 @@ const useBookmark = (initialBookmarks, userId) => {
             ...prevStates,
             [codeComponentId]: false,
           }));
+          // Update bookmark count
+          updateBookmarkCount(codeComponentId, false);
         } else {
           console.error('Error removing bookmark:', removeData.error);
         }
@@ -61,6 +64,8 @@ const useBookmark = (initialBookmarks, userId) => {
             ...prevStates,
             [codeComponentId]: true,
           }));
+          // Update bookmark count
+          updateBookmarkCount(codeComponentId, true);
         } else {
           console.error('Error adding bookmark:', addData.error);
         }
