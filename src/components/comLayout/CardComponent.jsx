@@ -1,15 +1,15 @@
 "use client";
-import { FaCode } from 'react-icons/fa';
-import { IoBookmark } from "react-icons/io5";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { LivePreview, LiveProvider } from 'react-live';
-import axios from 'axios';
-import Link from 'next/link';
 import NavigationButtons from './NavigationButtons';
 import { CardSkeleton } from '../SkeltonLoading';
 import useBookmark from '@/hooks/useBookmark';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { IoBookmark } from "react-icons/io5";
+import { FaCode } from 'react-icons/fa';
 
 
 export default function CardComponent({ user, userId, apiUrl, page }) {
@@ -64,7 +64,6 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
         router.push(`/component?page=${prevPage}`);
     };
 
-
     return (
         <div className="w-full pt-4 text-white">
             {isLoading ? (
@@ -88,10 +87,8 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
                             className="relative flex flex-col h-full bg-white rounded-lg shadow-xl transform-style-preserve-3d hover:shadow-2xl"
                         >
                             <LiveProvider code={card.code}>
-                                <div
-                                    className="min-h-[50vh] mb-4 bg-gradient-to-r from-blue-300 to-blue-200 relative overflow-hidden rounded-t-lg transform-style-preserve-3d"
-                                >
-                                    <div className="absolute inset-0 text-neutral-950">
+                                <div className="min-h-[50vh] mb-4 bg-gradient-to-r from-blue-300 to-blue-200 relative overflow-auto rounded-t-lg transform-style-preserve-3d">
+                                    <div className="absolute inset-0 overflow-auto text-neutral-950 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-blue-200">
                                         <LivePreview />
                                     </div>
                                 </div>
@@ -132,11 +129,6 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
                                         >
                                             Category {card.category}
                                         </motion.p>
-                                        {/* Count */}
-                                        <div className="flex items-center mt-1 text-gray-600">
-                                            <p className="text-sm">{card.bookmarks.length}</p>
-                                            <span className="ml-1">bookmarks</span>
-                                        </div>
                                     </div>
                                 </div>
 
