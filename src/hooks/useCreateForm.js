@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import getCookie from './getCookie';
+import { useRouter } from 'next/navigation';
 
 const useCreateForm = (initialFormData, apiUrl) => {
     const [formData, setFormData] = useState(initialFormData);
     const [loading, setLoading] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const router = useRouter();
 
     useEffect(() => {
         let successTimer;
@@ -65,6 +67,11 @@ const useCreateForm = (initialFormData, apiUrl) => {
 
             // Reset the form after a successful submission
             resetForm();
+            // Navigate to the desired page after successful submission
+            setTimeout(() => {
+                // Navigate to the desired page after a delay
+                router.push('/component');
+            }, 3000);
         } catch (error) {
             setSuccessMessage('');
             setErrorMessage('Error creating item: ' + error.message);

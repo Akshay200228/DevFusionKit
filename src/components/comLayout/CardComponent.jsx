@@ -1,15 +1,15 @@
 "use client";
-import { FaCode } from 'react-icons/fa';
-import { IoBookmark } from "react-icons/io5";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { LivePreview, LiveProvider } from 'react-live';
-import axios from 'axios';
-import Link from 'next/link';
 import NavigationButtons from './NavigationButtons';
 import { CardSkeleton } from '../SkeltonLoading';
 import useBookmark from '@/hooks/useBookmark';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { IoBookmark } from "react-icons/io5";
+import { FaCode } from 'react-icons/fa';
 
 
 export default function CardComponent({ user, userId, apiUrl, page }) {
@@ -19,7 +19,21 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const { bookmarkStates, handleAddBookmark } = useBookmark(user ? user.bookmarks : []);
+    const updateBookmarkCount = (codeComponentId, isBookmarkAdded) => {
+        setCardData((prevData) => {
+            return prevData.map((card) => {
+                if (card._id === codeComponentId) {
+                    return {
+                        ...card,
+                        bookmarks: isBookmarkAdded ? [...card.bookmarks, userId] : card.bookmarks.filter((id) => id !== userId),
+                    };
+                }
+                return card;
+            });
+        });
+    };
+
+    const { bookmarkStates, handleAddBookmark } = useBookmark(user ? user.bookmarks : [], updateBookmarkCount);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -50,7 +64,6 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
         router.push(`/component?page=${prevPage}`);
     };
 
-
     return (
         <div className="w-full pt-4 text-white">
             {isLoading ? (
@@ -62,7 +75,7 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1, duration: 0.5 }}
-                    className="grid grid-cols-1 gap-8 p-4 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3"
+                    className="grid grid-cols-1 gap-8 p-4 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3"
                 >
                     {cardData.map((card) => (
                         <motion.div
@@ -71,13 +84,11 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
                             animate={{ rotateY: 0, rotateX: 0 }}
                             whileHover={{ rotateY: 10, rotateX: 5 }}
                             transition={{ duration: 0.5, ease: 'easeInOut' }}
-                            className="relative flex flex-col h-full bg-white rounded-lg shadow-xl transform-style-preserve-3d hover:shadow-2xl"
+                            className="relative flex flex-col h-auto bg-white rounded-lg shadow-xl transform-style-preserve-3d hover:shadow-2xl"
                         >
                             <LiveProvider code={card.code}>
-                                <div
-                                    className="min-h-[50vh] mb-4 bg-gradient-to-r from-blue-300 to-blue-200 relative overflow-hidden rounded-t-lg transform-style-preserve-3d"
-                                >
-                                    <div className="absolute inset-0 text-neutral-950">
+                                <div className="min-h-[50vh] mb-4 bg-gradient-to-r from-blue-300 to-blue-200 relative overflow-auto rounded-t-lg transform-style-preserve-3d">
+                                    <div className="absolute inset-0 overflow-auto text-neutral-950 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-blue-200">
                                         <LivePreview />
                                     </div>
                                 </div>
@@ -129,8 +140,11 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
                                         className={`absolute z-10 p-2 text-white bg-green-500 rounded-full top-2 right-2 transition-transform duration-300 transform hover:scale-110`}
                                         initial={{ opacity: 1 }}
                                     >
-                                        <div className="flex items-center space-x-2">
-                                            <IoBookmark className="text-xl md:text-3xl" />
+                                        <div className="flex items-center space-x-1">
+                                            <IoBookmark className="text-xl md:text-2xl" />
+                                            <span className="ml-1 text-sm text-white">
+                                                {card.bookmarks.length}
+                                            </span>
                                         </div>
                                     </motion.button>
                                 ) : (
@@ -145,8 +159,14 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
                                             initial={{ y: -10, opacity: 0 }}
                                             animate={{ y: 0, opacity: 1 }}
                                             transition={{ duration: 0.3, type: 'spring', stiffness: 100 }}
+                                            className="flex items-center space-x-1"
                                         >
-                                            <IoBookmark className="text-xl md:text-3xl" />
+                                            <IoBookmark className="text-xl md:text-2xl" />
+                                            {card.bookmarks.length > 0 && (
+                                                <span className="ml-1 text-sm text-white">
+                                                    {card.bookmarks.length}
+                                                </span>
+                                            )}
                                         </motion.div>
                                     </motion.button>
                                 )}

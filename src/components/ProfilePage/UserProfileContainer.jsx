@@ -203,13 +203,13 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
                                 onClick={() => openImageModal(cloudinaryUrl || user.avatar || defaultAvatar)}
                             />
                             {isImageModalOpen && (
-                                <div className="fixed top-0 left-0 z-20 flex items-center justify-center w-full h-full">
-                                    <div className="absolute z-30 top-4 right-4">
+                                <div className="fixed left-0 z-20 flex items-center justify-center w-full h-full top-12">
+                                    <div className="absolute z-30 mt-12 top-4 right-4">
                                         <button
                                             onClick={closeImageModal}
                                             className="p-2 text-white bg-blue-500 rounded-full hover:text-gray-300 focus:outline-none"
                                         >
-                                            <IoClose className="w-6 h-6" />
+                                            <IoClose className="text-2xl" />
                                         </button>
                                     </div>
                                     <img
