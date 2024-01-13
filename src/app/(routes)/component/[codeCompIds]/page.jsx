@@ -75,9 +75,8 @@ const CodeCompDetails = ({ params }) => {
                                 className="w-12 h-12 mr-2 rounded-full"
                             />
                         </Link>
-                        {/* <h3>{}</h3> */}
                         <div>
-                            <p className="text-sm text-gray-500">{codeComponent.description}</p>
+                            <p className="text-sm text-gray-500">{codeComponent.title}</p>
                         </div>
                     </div>
 

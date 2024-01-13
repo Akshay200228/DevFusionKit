@@ -75,7 +75,7 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1, duration: 0.5 }}
-                    className="grid grid-cols-1 gap-8 p-4 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3"
+                    className="grid grid-cols-1 gap-8 p-4 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3"
                 >
                     {cardData.map((card) => (
                         <motion.div
@@ -84,7 +84,7 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
                             animate={{ rotateY: 0, rotateX: 0 }}
                             whileHover={{ rotateY: 10, rotateX: 5 }}
                             transition={{ duration: 0.5, ease: 'easeInOut' }}
-                            className="relative flex flex-col h-full bg-white rounded-lg shadow-xl transform-style-preserve-3d hover:shadow-2xl"
+                            className="relative flex flex-col h-auto bg-white rounded-lg shadow-xl transform-style-preserve-3d hover:shadow-2xl"
                         >
                             <LiveProvider code={card.code}>
                                 <div className="min-h-[50vh] mb-4 bg-gradient-to-r from-blue-300 to-blue-200 relative overflow-auto rounded-t-lg transform-style-preserve-3d">
