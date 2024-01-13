@@ -67,12 +67,15 @@ const CompCategory = ({ params }) => {
               {bookmarkStates && bookmarkStates[card._id] ? (
                 // Remove Bookmark button
                 <motion.button
-                  onClick={() => handleAddBookmark(card._id)}
+                  onClick={() => handleAddBookmark(card._id)} // Updated to handle removal
                   className={`absolute z-10 p-2 text-white bg-green-500 rounded-full top-2 right-2 transition-transform duration-300 transform hover:scale-110`}
                   initial={{ opacity: 1 }}
                 >
-                  <div className="flex items-center space-x-2">
-                    <IoBookmark className="text-xl md:text-3xl" />
+                  <div className="flex items-center space-x-1">
+                    <IoBookmark className="text-xl md:text-2xl" />
+                    <span className="ml-1 text-sm text-white">
+                      {card.bookmarks.length}
+                    </span>
                   </div>
                 </motion.button>
               ) : (
