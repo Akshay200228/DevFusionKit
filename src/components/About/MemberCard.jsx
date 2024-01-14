@@ -16,7 +16,7 @@ const MemberCard = ({ name, role, description, image, link }) => {
           src={image}
           alt={`${name}'s profile`}
           layout="fill"
-          className="rounded-full"
+          className="rounded-full p-0.5 border-2 border-blue-600"
         />
       </div>
       <div className="text-center">
