@@ -1,7 +1,7 @@
 
 import Header from "@/components/homeLayout/Header";
-import "./globals.css";
 import Footer from "@/components/homeLayout/Footer";
+import "./globals.css";
 
 export const metadata = {
   title: {
@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="scrollbar-none">
         <Header />
-        {children}
+        <main>{children}</main>
         <Footer />
       </body>
     </html>

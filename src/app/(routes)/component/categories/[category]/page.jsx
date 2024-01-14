@@ -105,7 +105,7 @@ const CompCategory = ({ params }) => {
                       alt="User Image"
                       width={48}
                       height={48}
-                      className="object-cover w-full h-full rounded-full"
+                      className="object-cover w-full h-full rounded-full p-0.5 border-2 border-blue-600"
                       initial={{ rotateY: -10, rotateX: 10 }}
                       animate={{ rotateY: 0, rotateX: 0 }}
                       whileHover={{ rotate: 5 }}

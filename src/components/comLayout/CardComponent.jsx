@@ -105,7 +105,7 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
                                             alt="User Image"
                                             width={48}
                                             height={48}
-                                            className="object-cover w-full h-full rounded-full"
+                                            className="object-cover w-full h-full rounded-full border-2 border-blue-600 p-0.5"
                                             initial={{ rotateY: -10, rotateX: 10 }}
                                             animate={{ rotateY: 0, rotateX: 0 }}
                                             whileHover={{ rotate: 5 }}

@@ -72,11 +72,11 @@ const CodeCompDetails = ({ params }) => {
                             <img
                                 src={codeComponent.creatorAvatar || "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75"}
                                 alt="User Image"
-                                className="w-12 h-12 mr-2 rounded-full"
+                                className="w-14 h-14 p-0.5 mr-2 border-2 border-blue-600 rounded-full"
                             />
                         </Link>
                         <div>
-                            <p className="text-sm text-gray-500">{codeComponent.title}</p>
+                            <p className="text-lg font-bold text-gray-500">{codeComponent.title}</p>
                         </div>
                     </div>
 

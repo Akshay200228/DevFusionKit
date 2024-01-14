@@ -103,7 +103,7 @@ const Header = ({ userId }) => {
                     alt={user.name}
                     width={48}
                     height={48}
-                    className="w-12 h-12 border-2 border-blue-600 rounded-full"
+                    className="w-12 h-12 p-0.5 border-2 border-blue-600 rounded-full"
                   />
                   <motion.p
                     initial={{ opacity: 0, y: -20, color: "#718096" }}
