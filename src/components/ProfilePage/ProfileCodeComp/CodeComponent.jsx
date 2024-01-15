@@ -106,7 +106,7 @@ const CodeComponent = ({ codeComponents }) => {
                     <div className="relative p-2 mb-4 bg-white border rounded-lg shadow-md">
                       {/* Title and Description */}
                       <h4 className="mb-1 text-lg font-semibold text-blue-600">{component.title}</h4>
-                      <p className="mb-2 text-gray-700">{component.description}</p>
+                      {/* <p className="mb-2 text-gray-700">{component.description}</p> */}
 
                       {/* Live Preview */}
                       <div className="h-[40vh] bg-blue-200 relative overflow-hidden rounded-lg">

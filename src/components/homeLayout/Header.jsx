@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import { FaUser, FaSignOutAlt } from "react-icons/fa";
-import Container from "./Container";
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
 import Button from "./Button";
@@ -15,6 +14,8 @@ import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { ProfileSkeltonLoading } from "../SkeltonLoading";
+import Drawer from "./Drawer";
+import Notification from "../Notification/Notification";
 
 
 const MobileNavLink = ({ children, ...props }) => {
@@ -73,11 +74,13 @@ const Header = ({ userId }) => {
   return (
     <header className={`w-full sticky top-0 z-50 bg-white ${isScrolled && "shadow-xl"}`}>
       <nav>
-        <Container className="relative z-40 flex justify-between py-4">
+        <div className="relative z-40 flex justify-between py-4 mx-2 md:mx-6">
           {/* Logo */}
-          <div className="relative z-10 flex items-center gap-16">
-            <Logo />
-          </div>
+          <Drawer text="DevNexus">
+            <div className="relative z-10 flex items-center gap-16">
+              <Logo />
+            </div>
+          </Drawer>
           {/* NavLinks */}
           <div className="items-center hidden lg:flex lg:gap-10">
             <NavLinks />
@@ -87,88 +90,109 @@ const Header = ({ userId }) => {
             {isLoading ? (
               <ProfileSkeltonLoading />
             ) : user ? (
-              // Display user data
-              <div className="relative hidden group lg:block" onClick={toggleDropdown}>
-                <motion.div
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, type: "spring", stiffness: 100, damping: 10 }}
-                  className="flex items-center cursor-pointer"
-                >
-                  <motion.img
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                    src={user.avatar || "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75"}
-                    alt={user.name}
-                    width={48}
-                    height={48}
-                    className="w-12 h-12 p-0.5 border-2 border-blue-600 rounded-full"
-                  />
-                  <motion.p
-                    initial={{ opacity: 0, y: -20, color: "#718096" }}
-                    animate={{ opacity: 1, y: 0, color: "#2c5282" }}
-                    transition={{ duration: 0.8, delay: 0.5, type: "spring", stiffness: 100, damping: 10 }}
-                    className="hidden ml-2 font-serif text-lg font-semibold text-blue-700 md:inline-block"
+              <>
+                <Drawer text="Notification">
+                  <Notification />
+                </Drawer>
+                <Drawer text="Profile">
+                  <div
+                    className="relative hidden group lg:block"
+                    onClick={toggleDropdown}
                   >
-                    <span className="text-gray-800">Hi, </span>
-                    <motion.span
-                      initial={{ scale: 0.8 }}
-                      animate={{ scale: 1 }}
-                      transition={{ duration: 0.8, delay: 0.7, type: "spring", stiffness: 100, damping: 10 }}
-                      className="text-indigo-600"
-                    >
-                      {user.name}
-                    </motion.span>
-                  </motion.p>
-                </motion.div>
-                <AnimatePresence>
-                  {isDropdownOpen && (
                     <motion.div
-                      initial={{ opacity: 0, y: -10 }}
+                      initial={{ opacity: 0, y: -20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.5 }}
-                      className="absolute right-0 z-10 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg w-72 top-12"
+                      transition={{ duration: 0.8, type: "spring", stiffness: 100, damping: 10 }}
+                      className="flex items-center cursor-pointer"
                     >
-                      <motion.div
-                        initial={{ scaleY: 0 }}
-                        animate={{ scaleY: 1 }}
-                        exit={{ scaleY: 0 }}
-                        transition={{ duration: 0.3, delay: 0.1 }}
+                      <motion.img
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                        src={user.avatar || "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75"}
+                        alt={user.name}
+                        width={48}
+                        height={48}
+                        className="w-12 h-12 p-0.5 border-2 border-blue-600 rounded-full"
+                      />
+                      <motion.p
+                        initial={{ opacity: 0, y: -20, color: "#718096" }}
+                        animate={{ opacity: 1, y: 0, color: "#2c5282" }}
+                        transition={{ duration: 0.8, delay: 0.5, type: "spring", stiffness: 100, damping: 10 }}
+                        className="hidden ml-2 font-serif text-lg font-semibold text-blue-700 md:inline-block"
                       >
-                        <motion.div
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.3, delay: 0.1 }}
+                        <span className="text-gray-800">Hi, </span>
+                        <motion.span
+                          initial={{ scale: 0.8 }}
+                          animate={{ scale: 1 }}
+                          transition={{ duration: 0.8, delay: 0.7, type: "spring", stiffness: 100, damping: 10 }}
+                          className="text-indigo-600"
                         >
-                          <Link
-                            href="/profile"
-                            className="block px-4 py-2 text-gray-800 hover:text-primary hover:bg-gray-100"
-                          >
-                            <FaUser className="inline-block mr-2" /> Profile
-                          </Link>
-                        </motion.div>
-                        <motion.div
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.3, delay: 0.2 }}
-                        >
-                          <motion.button
-                            initial={{ scale: 0.8 }}
-                            animate={{ scale: 1 }}
-                            transition={{ duration: 0.5 }}
-                            className="block w-full px-4 py-2 text-left text-red-600 hover:text-red-800 hover:bg-red-100"
-                            onClick={handleLogout}
-                          >
-                            <FaSignOutAlt className="inline-block mr-2" /> Log Out
-                          </motion.button>
-                        </motion.div>
-                      </motion.div>
+                          {user.name.split(" ")[0]}
+                        </motion.span>
+                      </motion.p>
+                      {/* SVG icon */}
+                      <motion.svg
+                        whileHover={{ scale: 1.2, color: "#4C51BF" }}
+                        initial={{ scale: 1 }}
+                        animate={{ scale: 1, rotate: isDropdownOpen ? 180 : 0 }}
+                        className={`w-6 h-6 ml-2 transition-transform`}
+                        fill='none'
+                        viewBox='0 0 24 24'
+                        stroke='currentColor'
+                      >
+                        <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M19 9l-7 7-7-7' />
+                      </motion.svg>
                     </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                    <AnimatePresence>
+                      {isDropdownOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.5 }}
+                          className="absolute right-0 z-10 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg w-72 top-12"
+                        >
+                          <motion.div
+                            initial={{ scaleY: 0 }}
+                            animate={{ scaleY: 1 }}
+                            exit={{ scaleY: 0 }}
+                            transition={{ duration: 0.3, delay: 0.1 }}
+                          >
+                            <motion.div
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ duration: 0.3, delay: 0.1 }}
+                            >
+                              <Link
+                                href="/profile"
+                                className="block px-4 py-2 text-gray-800 hover:text-primary hover:bg-gray-100"
+                              >
+                                <FaUser className="inline-block mr-2" /> Profile
+                              </Link>
+                            </motion.div>
+                            <motion.div
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ duration: 0.3, delay: 0.2 }}
+                            >
+                              <motion.button
+                                initial={{ scale: 0.8 }}
+                                animate={{ scale: 1 }}
+                                transition={{ duration: 0.5 }}
+                                className="block w-full px-4 py-2 text-left text-red-600 hover:text-red-800 hover:bg-red-100"
+                                onClick={handleLogout}
+                              >
+                                <FaSignOutAlt className="inline-block mr-2" /> Log Out
+                              </motion.button>
+                            </motion.div>
+                          </motion.div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </Drawer>
+              </>
             ) : (
               <>
                 <Button href="/" variant="outline" className="hidden lg:block">
@@ -272,7 +296,7 @@ const Header = ({ userId }) => {
               )}
             </Popover>
           </div>
-        </Container>
+        </div>
       </nav>
     </header>
   );

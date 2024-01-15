@@ -49,7 +49,7 @@ const CodeCompDetails = ({ params }) => {
         setMessage(null);
     };
     const pathname = usePathname();
-
+    const shortId = params.codeCompIds.slice(0, 5); // Extract the first 4 characters of the ID
 
     return (
         <div className="container p-8 mx-auto mt-8 bg-white rounded-lg shadow-lg">
@@ -59,7 +59,7 @@ const CodeCompDetails = ({ params }) => {
                 <p>Error: {error.message}</p>
             ) : codeComponent ? (
                 <>
-                    <Breadcrumbs pathname={pathname} />
+                    <Breadcrumbs pathname={pathname} shortenedId={shortId} />
                     <div className="flex items-center justify-between mb-4">
                         <GoBackButton />
                         <CopyCodeButton onCopy={handleCopyCode} />
