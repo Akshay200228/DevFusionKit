@@ -98,7 +98,7 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
                                 <div className="flex items-center space-x-3">
                                     <Link
                                         href={userId === card.createdBy ? `/profile` : `/profile/${card.createdBy}`}
-                                        className="w-8 h-8 overflow-hidden rounded-full sm:w-12 sm:h-12"
+                                        className="w-12 h-12 overflow-hidden rounded-full sm:w-12 sm:h-12"
                                     >
                                         <motion.img
                                             src={card.creatorAvatar || defaultAvatar}
@@ -122,7 +122,7 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
                                             {card.title}
                                         </motion.div>
                                         <motion.p
-                                            className="text-sm text-gray-600"
+                                            className="text-xs text-gray-600 md:text-sm"
                                             initial={{ opacity: 0, y: 10 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.5, delay: 0.1, ease: 'easeInOut' }}
