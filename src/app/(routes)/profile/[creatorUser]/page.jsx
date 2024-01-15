@@ -92,7 +92,6 @@ const CreatorUser = ({ params }) => {
                                         <div key={index} className="mb-6">
                                             <div className="p-2 bg-white border rounded-lg shadow-md">
                                                 <h4 className="mb-1 text-lg font-semibold text-blue-600">{component.title}</h4>
-                                                <p className="mb-2 text-gray-700">{component.description}</p>
                                                 <div className="h-[40vh] bg-blue-200 relative overflow-hidden rounded-lg">
                                                     <LiveProvider code={component.code} key={component._id}>
                                                         <div className="absolute inset-0 flex items-center justify-center text-neutral-950">

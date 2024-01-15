@@ -131,7 +131,7 @@ const EditCodeComponent = ({ component, onCancelEdit }) => {
                         <label htmlFor="code" className="block mb-2 text-sm font-bold text-gray-700">
                             Code
                         </label>
-                        <LiveEditor onChange={handleCodeChange} className='overflow-y-auto bg-[#011627] h-[50vh]' />
+                        <LiveEditor onChange={handleCodeChange} className='overflow-y-auto text-start bg-[#011627] h-[50vh]' />
                     </div>
                 </LiveProvider>
             </div>

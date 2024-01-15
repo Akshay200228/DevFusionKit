@@ -18,13 +18,13 @@ const Drawer = ({ text, children }) => {
     if (isDrawerOpen) {
       timer = setTimeout(() => {
         setIsDrawerOpen(false);
-      }, 3000);
+      }, 2000);
     }
     return () => clearTimeout(timer);
   }, [isDrawerOpen]);
 
   return (
-    <div className="relative group" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       {children}
       <AnimatePresence>
         {isDrawerOpen && (

@@ -4,7 +4,6 @@ import { useSearch } from "@/context/SearchContext";
 import { useAuth } from "@/hooks/useAuth";
 
 export default function Component(context) {
-  // console.log("object context: ", context)
   const page = parseInt(context.searchParams.page) || 1;
 
   const authData = useAuth();
