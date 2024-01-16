@@ -2,7 +2,7 @@
 
 🚀 Ignite Your Web Dev Creativity!
 
-Welcome to DevFusionKit, your one-stop destination for supercharging your web development projects. Dive into a world of endless possibilities with our curated collection of web application components, code gems, stunning animations, and unique, eye-catching landing pages.
+Welcome to DevNexus, your one-stop destination for supercharging your web development projects. Dive into a world of endless possibilities with our curated collection of web application components, code gems, stunning animations, and unique, eye-catching landing pages.
 
 ## Features
 
@@ -16,15 +16,15 @@ Welcome to DevFusionKit, your one-stop destination for supercharging your web de
 
 ## Getting Started
 
-To get started with DevFusionKit, follow these steps:
+To get started with DevNexus, follow these steps:
 
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/devfusionkit.git
+   git clone https://github.com/your-username/DevNexus.git
 
 2. Install the required dependencies:
-    cd devfusionkit
+    cd DevNexus
     npm install
 
 3. Run the development server:
@@ -32,7 +32,7 @@ To get started with DevFusionKit, follow these steps:
     OR
     yarn dev
 
-4. Open your browser and visit http://localhost:3000 to access the DevFusionKit website.
+4. Open your browser and visit http://localhost:3000 to access the DevNexus website.
 
 ## Usage
     
@@ -42,7 +42,7 @@ To get started with DevFusionKit, follow these steps:
 
 ## Contributing
 
-🤝 We're thrilled to have you join us in making DevFusionKit even better! 
+🤝 We're thrilled to have you join us in making DevNexus even better! 
 
 ## License
 
@@ -52,4 +52,4 @@ This project is licensed under the MIT License.
 
 Got questions, suggestions, or feedback? Reach out to us at akshayrs096.com. We'd love to hear from you!
 
-Happy coding and let your creativity fuse with DevFusionKit! 🚀
+Happy coding and let your creativity fuse with DevNexus! 🚀

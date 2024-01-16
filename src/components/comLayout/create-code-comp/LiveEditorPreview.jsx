@@ -1,5 +1,6 @@
 import React from 'react';
-import { LiveProvider, LiveEditor, LivePreview, LiveError } from 'react-live';
+import { LiveProvider, LivePreview, LiveError } from 'react-live';
+import { Editor } from '@monaco-editor/react';
 
 const LiveEditorPreview = ({ Input, handleChange }) => {
   return (
@@ -15,9 +16,21 @@ const LiveEditorPreview = ({ Input, handleChange }) => {
         {/* Live preview using react-live */}
         <div className="h-[70vh] overflow-auto scrollbar-thin scrollbar-thumb-blue-200 scrollbar-track-gray-200">
           <div className='h-full'>
-            <LiveEditor
+            {/* <LiveEditor
               onChange={handleChange}
               className="overflow-y-auto bg-[#011627] h-[70vh]"
+            /> */}
+            <Editor
+              height="70vh"
+              language="javascript" // Set the language according to your code
+              theme="vs-dark" // Set the theme according to your preference
+              onChange={handleChange}
+              value={Input}
+              options={{
+                minimap: {
+                  enabled: false,
+                },
+              }}
             />
           </div>
         </div>

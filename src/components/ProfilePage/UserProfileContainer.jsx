@@ -20,7 +20,6 @@ import { IoClose } from 'react-icons/io5';
 
 const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplatesData }) => {
     const [avatarFile, setAvatarFile] = useState(null);
-    // const [cloudinaryUrl, setCloudinaryUrl] = useCloudinaryUrl('userAvatar');
     const [cloudinaryUrl, setCloudinaryUrl] = useState(localStorage.getItem('userAvatar') || null);
     const [isAvatarLoading, setIsAvatarLoading] = useState(false);
     const [confirmDelete, setConfirmDelete] = useState(null);

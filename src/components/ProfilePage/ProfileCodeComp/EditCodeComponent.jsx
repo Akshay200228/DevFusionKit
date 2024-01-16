@@ -5,6 +5,7 @@ import axios from 'axios';
 import getCookie from '@/hooks/getCookie';
 import { motion } from 'framer-motion';
 import { LiveProvider, LiveEditor, LivePreview, LiveError } from 'react-live';
+import { Editor } from '@monaco-editor/react';
 import { FaCheck, FaSpinner, FaTimes } from 'react-icons/fa';
 
 const EditCodeComponent = ({ component, onCancelEdit }) => {
@@ -131,7 +132,19 @@ const EditCodeComponent = ({ component, onCancelEdit }) => {
                         <label htmlFor="code" className="block mb-2 text-sm font-bold text-gray-700">
                             Code
                         </label>
-                        <LiveEditor onChange={handleCodeChange} className='overflow-y-auto text-start bg-[#011627] h-[50vh]' />
+                        {/* <LiveEditor onChange={handleCodeChange} className='overflow-y-auto text-start bg-[#011627] h-[50vh]' /> */}
+                        <Editor
+                            height="50vh"
+                            language="javascript" // Set the language according to your code
+                            theme="vs-dark" // Set the theme according to your preference
+                            value={formData.code}
+                            onChange={handleCodeChange}
+                            options={{
+                                minimap: {
+                                    enabled: false,
+                                },
+                            }}
+                        />
                     </div>
                 </LiveProvider>
             </div>
