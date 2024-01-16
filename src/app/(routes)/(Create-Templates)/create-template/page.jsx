@@ -9,8 +9,6 @@ const TemplateForm = () => {
     // State to store success and error messages
     const [currentSuccessMessage, setCurrentSuccessMessage] = useState(null);
     const [currentErrorMessage, setCurrentErrorMessage] = useState(null);
-    // const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL + "/api/web-templates/" || "http://localhost:8000/api/web-templates/";
-    // const apiUrl = "http://localhost:8000/api/web-templates/";
     const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL+"/api/web-templates/";
     const initialFormData = {
         title: '',

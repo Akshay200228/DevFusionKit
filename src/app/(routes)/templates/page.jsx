@@ -19,7 +19,7 @@ export default function Templates() {
             </span>
           </h1>
           <p className="mt-4 text-xl text-gray-500">
-            Explore a collection of website templates provided by DevNexus to kickstart your web projects.
+            Explore a collection of website templates provided by DevNexus And Users to kickstart your web projects.
           </p>
 
           {/* Button for creating a template */}

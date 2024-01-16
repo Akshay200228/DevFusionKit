@@ -37,12 +37,31 @@ const CodeCompDetails = ({ params }) => {
 
     const { data: codeComponent, isLoading, error } = useApiFetch(CompApiUrl);
 
-    const handleCopyCode = () => {
-        const code = liveEditorRef.current.innerText;
+    // Copy code in Editer function create code in below
+    const editorRef = useRef(null);
+    const handleCopyCode = async () => {
+        // Use getModel() to get the model of the editor
+        const model = editorRef.current.getModel();
 
-        if (code) {
-            copyToClipboard(code, setMessage);
+        // Use the format action to format the code
+        await editorRef.current.trigger('source', 'editor.action.formatDocument');
+
+        // Get the formatted code using getModel().getLinesContent()
+        const lines = model.getLinesContent();
+        const formattedCode = lines.join('\n');
+
+        if (formattedCode) {
+            copyToClipboard(formattedCode);
         }
+    };
+
+    const copyToClipboard = (text) => {
+        const textField = document.createElement('textarea');
+        textField.innerText = text;
+        document.body.appendChild(textField);
+        textField.select();
+        document.execCommand('copy');
+        textField.remove();
     };
 
     const closeMessage = () => {
@@ -62,7 +81,7 @@ const CodeCompDetails = ({ params }) => {
                     <Breadcrumbs pathname={pathname} shortenedId={shortId} />
                     <div className="flex items-center justify-between mb-4">
                         <GoBackButton />
-                        <CopyCodeButton onCopy={handleCopyCode} />
+                        {/* <CopyCodeButton onCopy={handleCopyCode} /> */}
                     </div>
 
                     <CodeDisplay code={codeComponent.code} liveEditorRef={liveEditorRef} />
