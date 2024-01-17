@@ -1,7 +1,7 @@
 "use client";
 // CodeComponent.js
 import { useState } from "react";
-import { LivePreview, LiveProvider } from "react-live";
+import { LivePreview, LiveProvider, LiveError } from "react-live";
 import CreateButton from "../../CreateButton";
 import EditCodeComponent from "./EditCodeComponent";
 import axios from "axios";
@@ -58,8 +58,9 @@ const CodeComponent = ({ codeComponents }) => {
 
   return (
     <div className="mt-10 text-center">
-      <h3 className="mb-8 text-3xl font-bold text-gray-800">Code Components</h3>
-
+      <h2 className="mb-8 text-3xl font-extrabold tracking-wider text-center text-gray-800 uppercase">
+        Code Components
+      </h2>
       {/* Rearranged logic: Check if codeComponents is empty or not */}
       {codeComponents.length === 0 ? (
         <div className="flex flex-col items-center justify-center mt-8 text-gray-600">
@@ -113,6 +114,7 @@ const CodeComponent = ({ codeComponents }) => {
                         <LiveProvider code={component.code} key={component._id}>
                           <div className="absolute inset-0 flex items-center justify-center text-neutral-950">
                             <LivePreview />
+                            <LiveError />
                           </div>
                         </LiveProvider>
                       </div>

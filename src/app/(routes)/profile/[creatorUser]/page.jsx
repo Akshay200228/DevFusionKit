@@ -59,7 +59,7 @@ const CreatorUser = ({ params }) => {
 
   return (
     <Container>
-      <div className="flex flex-col p-4 mx-auto mt-8">
+      <div className="flex flex-col p-2 mx-auto mt-8 md:p-4">
         {isLoading ? (
           <p>Loading...</p>
         ) : error && error.message === 'User not found' ? (
@@ -81,53 +81,96 @@ const CreatorUser = ({ params }) => {
             </div>
 
             {/* Right Column - User Works */}
-            <div className="md:w-2/3">
+            <div className="w-full">
               {/* Code Components Section */}
-              <div>
-                <h2 className="mb-4 text-2xl font-semibold text-gray-800">Code Components</h2>
-                <div className="grid w-full grid-cols-1 gap-4 md:w-3/4 lg:grid-cols-2 xl:grid-cols-3">
-                  {codeComponents.length === 0 ? (
-                    <p>No code components found</p>
-                  ) : (
-                    codeComponents.map((component, index) => (
-                      <div key={index} className="mb-6">
-                        <div className="p-2 bg-white border rounded-lg shadow-md">
-                          <h4 className="mb-1 text-lg font-semibold text-blue-600">{component.title}</h4>
-                          <div className="h-[40vh] bg-blue-200 relative overflow-hidden rounded-lg">
-                            <LiveProvider code={component.code} key={component._id}>
-                              <div className="absolute inset-0 flex items-center justify-center text-neutral-950">
-                                <LivePreview />
-                              </div>
-                            </LiveProvider>
-                          </div>
-                          <div className="flex justify-center mt-2 md:mt-4">
-                            {/* Explore Button (Left Side) */}
-                            <Link href={`/component/${component._id}`}>
-                              <button className="px-4 py-2 text-white transition-transform duration-300 ease-in-out bg-blue-500 rounded-full hover:bg-blue-600">
-                                <FaCode className="text-xl md:text-3xl" />
-                              </button>
-                            </Link>
-                          </div>
+              <h2 className="mb-8 text-3xl font-extrabold tracking-wider text-center text-gray-800 uppercase">
+                Code Components
+              </h2>
+              <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
+                {codeComponents.length === 0 ? (
+                  <div className="flex items-center justify-center h-40 col-span-full">
+                    <div className="text-center">
+                      <h4 className="text-lg font-bold text-gray-600">
+                        Oh no! The creativity well is temporarily dry for this user's code components.
+                        <span className="ml-2" role="img" aria-label="sad-face">
+                          😢
+                        </span>
+                        <span className="ml-1" role="img" aria-label="empty-canvas">
+                          🎨
+                        </span>
+                      </h4>
+                      <p className="mt-2 text-sm text-gray-500">
+                        Don't worry, every artist needs a break! Encourage them to sprinkle some magic soon.
+                        <span className="ml-1" role="img" aria-label="sparkles">
+                          ✨
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  codeComponents.map((component, index) => (
+                    <div key={index} className="mb-6">
+                      <div className="p-2 bg-white border rounded-lg shadow-md">
+                        <h4 className="mb-1 text-lg font-semibold text-blue-600">{component.title}</h4>
+                        <div className="h-[40vh] bg-blue-200 relative overflow-hidden rounded-lg">
+                          <LiveProvider code={component.code} key={component._id}>
+                            <div className="absolute inset-0 flex items-center justify-center text-neutral-950">
+                              <LivePreview />
+                            </div>
+                          </LiveProvider>
+                        </div>
+                        <div className="flex justify-center mt-2 md:mt-4">
+                          {/* Explore Button (Left Side) */}
+                          <Link href={`/component/${component._id}`}>
+                            <button className="px-4 py-2 text-white transition-transform duration-300 ease-in-out bg-blue-500 rounded-full hover:bg-blue-600">
+                              <FaCode className="text-xl md:text-3xl" />
+                            </button>
+                          </Link>
                         </div>
                       </div>
-                    ))
-                  )}
-                </div>
+                    </div>
+                  ))
+                )}
               </div>
+              {/* Horizontal line */}
+              <hr className="my-12 border-t border-gray-300" />
 
               {/* Web Templates Section */}
               <>
-                <h2 className="mb-4 text-2xl font-semibold text-gray-800">Web Templates</h2>
-                <div className="grid w-full grid-cols-1 gap-4 md:w-3/4 lg:grid-cols-2 xl:grid-cols-3">
+                <h2 className="mb-8 text-3xl font-extrabold tracking-wider text-center text-gray-800 uppercase">
+                  Web Templates
+                </h2>
+                <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
                   {webTemplates.length === 0 ? (
-                    <p>No web templates found</p>
+                    <div className="flex items-center justify-center h-40 col-span-full">
+                      <div className="text-center">
+                        <h4 className="text-lg font-bold text-gray-600">
+                          Oh no! The creativity well is temporarily dry for this user's web templates.
+                          <span className="ml-2" role="img" aria-label="sad-face">
+                            😢
+                          </span>
+                          <span className="ml-1" role="img" aria-label="empty-canvas">
+                            🎨
+                          </span>
+                        </h4>
+                        <p className="mt-2 text-sm text-gray-500">
+                          Don't worry, every artist needs a break! Encourage them to sprinkle some magic soon.
+                          <span className="ml-1" role="img" aria-label="sparkles">
+                            ✨
+                          </span>
+                        </p>
+                      </div>
+                    </div>
                   ) : (
                     webTemplates.map((template, index) => (
                       <div key={index} className="mb-4">
                         <div className="p-2 bg-white border rounded-lg shadow-md">
-                          <img src={template.templateImage} alt="templateImage" className="mb-4 rounded-md" />
+                          <img
+                            src={template.templateImage}
+                            alt="templateImage"
+                            className="object-cover w-full mb-4 rounded-md aspect-w-16 aspect-h-9 h-96"
+                          />
                           <h4 className="mb-2 text-xl font-semibold">{template.title}</h4>
-                          <p className="text-gray-600">{template.description}</p>
                           <div className="flex items-center justify-center mt-4">
                             <Link href={`/templates/${template._id}`}>
                               <button
