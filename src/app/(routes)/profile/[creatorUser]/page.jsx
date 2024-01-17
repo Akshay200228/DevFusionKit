@@ -6,6 +6,7 @@ import { LivePreview, LiveProvider } from "react-live";
 import axios from 'axios';
 import { FaCode } from 'react-icons/fa';
 import Container from '@/components/homeLayout/Container';
+import Loader from '@/components/Loader';
 
 const CreatorUser = ({ params }) => {
   const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
@@ -61,9 +62,10 @@ const CreatorUser = ({ params }) => {
     <Container>
       <div className="flex flex-col p-2 mx-auto mt-8 md:p-4">
         {isLoading ? (
-          <div className='flex items-center justify-center h-screen'>
-            <p className='text-4xl'>Loading...</p>
-          </div>
+          // <div className='flex items-center justify-center h-screen'>
+          //   <p className='text-4xl'>Loading...</p>
+          // </div>
+          <Loader />
         ) : error && error.message === 'User not found' ? (
           <h2>User not found</h2>
         ) : (
