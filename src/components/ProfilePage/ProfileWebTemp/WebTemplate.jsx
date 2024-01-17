@@ -25,8 +25,9 @@ const WebTemplate = ({ webTemplates }) => {
 
   return (
     <div className="mt-10 text-center">
-      <h3 className="mb-8 text-3xl font-bold text-gray-800">Web Templates</h3>
-
+      <h2 className="mb-8 text-3xl font-extrabold tracking-wider text-center text-gray-800 uppercase">
+        Web Templates
+      </h2>
       {webTemplates.length === 0 ? (
         <div className="flex flex-col items-center justify-center mt-8 text-gray-600">
           <p className="mb-4 text-2xl font-bold text-center">No web templates found for this user.</p>
@@ -69,12 +70,11 @@ const WebTemplate = ({ webTemplates }) => {
               >
                 {webTemplates.map((template) => (
                   <SwiperSlide key={template._id}>
-                    <div className="p-4 mb-8 border rounded shadow-md">
+                    <div className="p-2 mb-8 border rounded shadow-md">
                       <div className="relative h-96">
-                        <img src={template.templateImage} alt="templateImage" className="object-cover w-full h-full rounded-t-lg" />
+                        <img src={template.templateImage} alt="templateImage" className="object-cover w-full h-full rounded-lg" />
                       </div>
                       <h4 className="mb-2 text-xl font-semibold">{template.title}</h4>
-                      <p className="text-gray-600">{template.description}</p>
 
                       <div className="flex justify-between mt-2 md:mt-4">
                         <Link href={`/templates/${template._id}`}>

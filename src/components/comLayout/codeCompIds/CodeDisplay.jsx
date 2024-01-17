@@ -12,7 +12,7 @@ const CodeDisplay = ({ code }) => {
         setLiveCode(code);
     }, [code]);
 
-    const handleEditorChange = (newValue, event) => {
+    const handleEditorChange = (newValue) => {
         // Update the code in LiveProvider when the Editor changes
         setLiveCode(newValue);
     };

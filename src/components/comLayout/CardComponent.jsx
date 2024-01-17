@@ -56,7 +56,6 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
     const handleNextPage = () => {
         const nextPage = page + 1;
         router.push(`/component?page=${nextPage}`);
-
     };
 
     const handlePrevPage = () => {
