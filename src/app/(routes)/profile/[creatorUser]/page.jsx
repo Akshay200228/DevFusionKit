@@ -61,7 +61,9 @@ const CreatorUser = ({ params }) => {
     <Container>
       <div className="flex flex-col p-2 mx-auto mt-8 md:p-4">
         {isLoading ? (
-          <p>Loading...</p>
+          <div className='flex items-center justify-center h-screen'>
+            <p className='text-4xl'>Loading...</p>
+          </div>
         ) : error && error.message === 'User not found' ? (
           <h2>User not found</h2>
         ) : (
@@ -91,7 +93,7 @@ const CreatorUser = ({ params }) => {
                   <div className="flex items-center justify-center h-40 col-span-full">
                     <div className="text-center">
                       <h4 className="text-lg font-bold text-gray-600">
-                        Oh no! The creativity well is temporarily dry for this user's code components.
+                        Oh no! The creativity well is temporarily dry for this user&apos;s code components.
                         <span className="ml-2" role="img" aria-label="sad-face">
                           😢
                         </span>
@@ -100,7 +102,7 @@ const CreatorUser = ({ params }) => {
                         </span>
                       </h4>
                       <p className="mt-2 text-sm text-gray-500">
-                        Don't worry, every artist needs a break! Encourage them to sprinkle some magic soon.
+                        Don&apos;t worry, every artist needs a break! Encourage them to sprinkle some magic soon.
                         <span className="ml-1" role="img" aria-label="sparkles">
                           ✨
                         </span>
@@ -145,7 +147,7 @@ const CreatorUser = ({ params }) => {
                     <div className="flex items-center justify-center h-40 col-span-full">
                       <div className="text-center">
                         <h4 className="text-lg font-bold text-gray-600">
-                          Oh no! The creativity well is temporarily dry for this user's web templates.
+                          Oh no! The creativity well is temporarily dry for this user&apos;s web templates.
                           <span className="ml-2" role="img" aria-label="sad-face">
                             😢
                           </span>
@@ -154,7 +156,7 @@ const CreatorUser = ({ params }) => {
                           </span>
                         </h4>
                         <p className="mt-2 text-sm text-gray-500">
-                          Don't worry, every artist needs a break! Encourage them to sprinkle some magic soon.
+                          Don&apos;t worry, every artist needs a break! Encourage them to sprinkle some magic soon.
                           <span className="ml-1" role="img" aria-label="sparkles">
                             ✨
                           </span>
