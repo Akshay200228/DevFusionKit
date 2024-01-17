@@ -62,9 +62,6 @@ const CreatorUser = ({ params }) => {
     <Container>
       <div className="flex flex-col p-2 mx-auto mt-8 md:p-4">
         {isLoading ? (
-          // <div className='flex items-center justify-center h-screen'>
-          //   <p className='text-4xl'>Loading...</p>
-          // </div>
           <Loader />
         ) : error && error.message === 'User not found' ? (
           <h2>User not found</h2>
