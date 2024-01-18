@@ -14,8 +14,9 @@ import useAvatarUpload from '@/hooks/useAvatarUpload';
 import { RiDeleteBinLine } from "react-icons/ri";
 import CustomModal from './CustomModal';
 import { MdCloudUpload } from "react-icons/md";
-import { FaEdit } from 'react-icons/fa';
+import { FaEdit, FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { IoClose } from 'react-icons/io5';
+import Link from 'next/link';
 
 
 const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplatesData }) => {
@@ -24,8 +25,8 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
     const [isAvatarLoading, setIsAvatarLoading] = useState(false);
     const [confirmDelete, setConfirmDelete] = useState(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [isImageModalOpen, setIsImageModalOpen] = useState(false);
     const [modalImageUrl, setModalImageUrl] = useState('');
+    const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
     const openImageModal = (imageUrl) => {
         setModalImageUrl(imageUrl);
@@ -202,8 +203,8 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
                                 onClick={() => openImageModal(cloudinaryUrl || user.avatar || defaultAvatar)}
                             />
                             {isImageModalOpen && (
-                                <div className="fixed left-0 z-20 flex items-center justify-center w-full h-full top-12">
-                                    <div className="absolute z-30 mt-12 top-4 right-4">
+                                <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center h-[70vh] w-96">
+                                    <div className="absolute z-30 top-2 right-2">
                                         <button
                                             onClick={closeImageModal}
                                             className="p-2 text-white bg-blue-500 rounded-full hover:text-gray-300 focus:outline-none"
@@ -214,11 +215,12 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
                                     <img
                                         src={modalImageUrl}
                                         alt="Avatar"
-                                        className="max-w-full max-h-full cursor-pointer"
+                                        className="w-full h-full rounded-lg cursor-pointer"
                                         onClick={closeImageModal}
                                     />
                                 </div>
                             )}
+
                             {/* Edit button with dropdown */}
                             <div className="absolute bottom-0 right-0 flex items-center">
                                 <button
@@ -290,15 +292,15 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
 
                 {/* Social media links */}
                 <div className="flex justify-center space-x-4 md:justify-start">
-                    <a href={socialMediaLinks.twitter} target="_blank" rel="noopener noreferrer">
-                        Twitter
-                    </a>
-                    <a href={socialMediaLinks.github} target="_blank" rel="noopener noreferrer">
-                        GitHub
-                    </a>
-                    <a href={socialMediaLinks.linkedin} target="_blank" rel="noopener noreferrer">
-                        LinkedIn
-                    </a>
+                    <Link href={socialMediaLinks.twitter} target="_blank" rel="noopener noreferrer">
+                        <FaTwitter className="text-2xl" />
+                    </Link>
+                    <Link href={socialMediaLinks.github} target="_blank" rel="noopener noreferrer">
+                        <FaGithub className="text-2xl" />
+                    </Link>
+                    <Link href={socialMediaLinks.linkedin} target="_blank" rel="noopener noreferrer">
+                        <FaLinkedin className="text-2xl" />
+                    </Link>
                 </div>
             </div>
             {/* Right Column - User Works */}

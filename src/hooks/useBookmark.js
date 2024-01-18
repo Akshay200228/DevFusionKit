@@ -4,6 +4,7 @@ import getCookie from './getCookie';
 
 const useBookmark = (initialBookmarks, updateBookmarkCount) => {
   const [bookmarkStates, setBookmarkStates] = useState({}); // Change the initial state to an empty object
+  const [countUpdateLoading, setCountUpdateLoading] = useState(false);
 
   useEffect(() => {
     if (initialBookmarks) {
@@ -41,6 +42,7 @@ const useBookmark = (initialBookmarks, updateBookmarkCount) => {
             [codeComponentId]: false,
           }));
           // Update bookmark count
+          setCountUpdateLoading(true); 
           updateBookmarkCount(codeComponentId, false);
         } else {
           console.error('Error removing bookmark:', removeData.error);
@@ -65,6 +67,7 @@ const useBookmark = (initialBookmarks, updateBookmarkCount) => {
             [codeComponentId]: true,
           }));
           // Update bookmark count
+          setCountUpdateLoading(true); 
           updateBookmarkCount(codeComponentId, true);
         } else {
           console.error('Error adding bookmark:', addData.error);
@@ -72,10 +75,14 @@ const useBookmark = (initialBookmarks, updateBookmarkCount) => {
       }
     } catch (error) {
       console.error('Error handling bookmark:', error);
+    } finally {
+      setCountUpdateLoading(false); 
     }
   };
 
-  return { bookmarkStates, handleAddBookmark };
+  return {
+    bookmarkStates, countUpdateLoading,handleAddBookmark
+  };
 };
 
 export default useBookmark;

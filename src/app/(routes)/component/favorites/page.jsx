@@ -10,6 +10,7 @@ import { FaCode } from 'react-icons/fa';
 import { IoBookmark } from 'react-icons/io5';
 import getCookie from '@/hooks/getCookie';
 import { useSearch } from '@/context/SearchContext';
+import UserAvatar from '@/components/UserAvatar';
 
 const MyFavorites = () => {
     const { user, error, isLoading } = useAuth();
@@ -110,22 +111,9 @@ const MyFavorites = () => {
 
                             <div className="flex items-center justify-between px-2 mb-4">
                                 <div className="flex items-center space-x-3">
-                                    <Link
-                                        href={userId === bookmark.createdBy ? `/profile` : `/profile/${bookmark.createdBy}`}
-                                        className="w-8 h-8 overflow-hidden rounded-full sm:w-12 sm:h-12"
-                                    >
-                                        <motion.img
-                                            src={bookmark.creatorAvatar || "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75"}
-                                            alt="User Image"
-                                            width={48}
-                                            height={48}
-                                            className="object-cover w-full h-full rounded-full p-0.5 border-2 border-blue-600"
-                                            initial={{ rotateY: -10, rotateX: 10 }}
-                                            animate={{ rotateY: 0, rotateX: 0 }}
-                                            whileHover={{ rotate: 5 }}
-                                            transition={{ duration: 0.3, ease: 'easeInOut' }}
-                                        />
-                                    </Link>
+                                    {/* User Avatar */}
+                                    <UserAvatar createdBy={bookmark.createdBy} creatorAvatar={bookmark.creatorAvatar} />
+
                                     <div>
                                         <motion.div
                                             className="text-lg font-semibold text-gray-800 md:text-2xl "

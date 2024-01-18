@@ -6,6 +6,8 @@ import { LivePreview, LiveProvider } from "react-live";
 import axios from 'axios';
 import { FaCode } from 'react-icons/fa';
 import Container from '@/components/homeLayout/Container';
+import Loader from '@/components/Loader';
+import { IoClose } from 'react-icons/io5';
 
 const CreatorUser = ({ params }) => {
   const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
@@ -15,6 +17,19 @@ const CreatorUser = ({ params }) => {
   const [webTemplates, setWebTemplates] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const [modalImageUrl, setModalImageUrl] = useState('');
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
+
+  const openImageModal = (imageUrl) => {
+    setModalImageUrl(imageUrl);
+    setIsImageModalOpen(true);
+  };
+
+  const closeImageModal = () => {
+    setIsImageModalOpen(false);
+    setModalImageUrl('');
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,9 +76,7 @@ const CreatorUser = ({ params }) => {
     <Container>
       <div className="flex flex-col p-2 mx-auto mt-8 md:p-4">
         {isLoading ? (
-          <div className='flex items-center justify-center h-screen'>
-            <p className='text-4xl'>Loading...</p>
-          </div>
+          <Loader />
         ) : error && error.message === 'User not found' ? (
           <h2>User not found</h2>
         ) : (
@@ -75,7 +88,26 @@ const CreatorUser = ({ params }) => {
                   src={creatorData?.avatar || defaultAvatar}
                   alt={creatorData?.name}
                   className="object-cover w-full h-full p-1 rounded-full"
+                  onClick={() => openImageModal(creatorData.avatar || defaultAvatar)}
                 />
+                {isImageModalOpen && (
+                  <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center h-[70vh] w-96">
+                    <div className="absolute z-30 top-2 right-2">
+                      <button
+                        onClick={closeImageModal}
+                        className="p-2 text-white bg-blue-500 rounded-full hover:text-gray-300 focus:outline-none"
+                      >
+                        <IoClose className="text-2xl" />
+                      </button>
+                    </div>
+                    <img
+                      src={modalImageUrl}
+                      alt="Avatar"
+                      className="w-full h-full rounded-lg cursor-pointer"
+                      onClick={closeImageModal}
+                    />
+                  </div>
+                )}
               </div>
               <h1 className="mb-2 text-2xl font-semibold text-center md:text-left">{creatorData.name}</h1>
               <p className="mb-2 text-center text-gray-600 md:text-left">{creatorData.username}</p>
