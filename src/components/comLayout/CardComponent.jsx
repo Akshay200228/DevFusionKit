@@ -1,8 +1,8 @@
 "use client";
 import axios from 'axios';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { LivePreview, LiveProvider } from 'react-live';
 import NavigationButtons from './NavigationButtons';
@@ -10,7 +10,7 @@ import { CardSkeleton } from '../SkeltonLoading';
 import useBookmark from '@/hooks/useBookmark';
 import { IoBookmark } from "react-icons/io5";
 import { FaCode } from 'react-icons/fa';
-
+import UserAvatar from '../UserAvatar';
 
 export default function CardComponent({ user, userId, apiUrl, page }) {
     const router = useRouter()
@@ -95,22 +95,9 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
 
                             <div className="flex items-center justify-between px-2 mb-2">
                                 <div className="flex items-center space-x-3">
-                                    <Link
-                                        href={userId === card.createdBy ? `/profile` : `/profile/${card.createdBy}`}
-                                        className="w-12 h-12 overflow-hidden rounded-full sm:w-12 sm:h-12"
-                                    >
-                                        <motion.img
-                                            src={card.creatorAvatar || defaultAvatar}
-                                            alt="User Image"
-                                            width={48}
-                                            height={48}
-                                            className="object-cover w-full h-full rounded-full border-2 border-blue-600 p-0.5"
-                                            initial={{ rotateY: -10, rotateX: 10 }}
-                                            animate={{ rotateY: 0, rotateX: 0 }}
-                                            whileHover={{ rotate: 5 }}
-                                            transition={{ duration: 0.3, ease: 'easeInOut' }}
-                                        />
-                                    </Link>
+                                    {/* User avatar */}
+                                    <UserAvatar createdBy={card.createdBy} creatorAvatar={card.creatorAvatar} />
+
                                     <div>
                                         <motion.div
                                             className="text-lg font-semibold text-gray-800 md:text-2xl "

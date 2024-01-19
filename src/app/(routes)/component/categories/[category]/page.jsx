@@ -10,6 +10,7 @@ import useBookmark from '@/hooks/useBookmark';
 import { IoBookmark } from 'react-icons/io5';
 import { useAuth } from '@/hooks/useAuth';
 import { useSearch } from '@/context/SearchContext';
+import UserAvatar from '@/components/UserAvatar';
 
 const CompCategory = ({ params }) => {
   const { searchQuery } = useSearch();
@@ -99,19 +100,8 @@ const CompCategory = ({ params }) => {
 
               <div className="flex items-center justify-between px-2 mb-4">
                 <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 overflow-hidden rounded-full">
-                    <motion.img
-                      src={card.creatorAvatar || "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75"}
-                      alt="User Image"
-                      width={48}
-                      height={48}
-                      className="object-cover w-full h-full rounded-full p-0.5 border-2 border-blue-600"
-                      initial={{ rotateY: -10, rotateX: 10 }}
-                      animate={{ rotateY: 0, rotateX: 0 }}
-                      whileHover={{ rotate: 5 }}
-                      transition={{ duration: 0.3, ease: 'easeInOut' }}
-                    />
-                  </div>
+                  {/* User Avatar */}
+                  <UserAvatar createdBy={card.createdBy} creatorAvatar={card.creatorAvatar} />
                   <div>
                     <motion.div
                       className="text-2xl font-semibold text-gray-800"
