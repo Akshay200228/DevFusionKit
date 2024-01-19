@@ -23,11 +23,22 @@ export default function Templates() {
           </p>
 
           {/* Button for creating a template */}
-          <Link href="/create-template">
+          {/* <Link href="/create-template">
             <button className="px-6 py-3 mt-8 text-white bg-blue-500 rounded-full hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
               Create Your Own Templates
             </button>
-          </Link>
+          </Link> */}
+          {/* svg icon */}
+          <div className="flex items-center justify-center">
+            <svg
+              className="w-6 h-6 my-4 animate-bounce"
+              fill='none'
+              viewBox='0 0 24 24'
+              stroke='currentColor'
+            >
+              <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M19 9l-7 7-7-7' />
+            </svg>
+          </div>
         </div>
       </div>
 
