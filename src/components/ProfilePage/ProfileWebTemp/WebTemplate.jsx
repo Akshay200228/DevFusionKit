@@ -34,7 +34,7 @@ const WebTemplate = ({ webTemplates }) => {
           <p className="mb-4 text-lg text-center text-gray-500">
             Explore amazing templates or create your first one now!
           </p>
-          <CreateButton navigateTo="/create-template" text="Create WebTemplate" />
+          <CreateButton navigateTo="/templates" text="Create WebTemplate" />
         </div>
       ) : (
         <div>
