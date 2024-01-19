@@ -68,7 +68,7 @@ const CodeComponent = ({ codeComponents }) => {
           <p className="mb-4 text-lg text-center text-gray-500">
             Explore amazing Components or create your first one now!
           </p>
-          <CreateButton navigateTo="/code-comp" text="Create Code-Comp" />
+          <CreateButton navigateTo="/component" text="Create Code-Comp" />
         </div>
       ) : (
         <div>
