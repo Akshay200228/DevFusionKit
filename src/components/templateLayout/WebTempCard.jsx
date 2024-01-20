@@ -24,7 +24,7 @@ const WebTempCard = ({ webtemp, index }) => {
         delay: isStaggered ? index * stagger : 0, // Apply stagger only if it's not the first card
         ease: "easeInOut",
       }}
-      className="rounded-lg shadow-lg bg-blue-50"
+      className="mx-4 rounded-lg bg-blue-50"
     >
       <div className="relative h-96">
         <img

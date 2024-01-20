@@ -1,12 +1,12 @@
 "use client"
 // Signup.js
-import Image from 'next/image';
 import { useState } from "react";
 import Link from 'next/link';
+import Image from 'next/image';
 import useSignup from "@/hooks/useSignup";
+import VerificationPopup from '@/components/VerificationPopup';
 import Message from "@/components/comLayout/create-code-comp/Message";
 import { devLogo } from "@/images";
-import VerificationPopup from '@/components/VerificationPopup';
 import { FaSpinner } from 'react-icons/fa';
 
 function Signup() {
@@ -56,11 +56,11 @@ function Signup() {
         )}
 
         {otpSent && showOtpInput && (
-          <form onSubmit={handleVerifyOTP} className="mb-4">
-            <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="otp">
-              OTP:
+          <form onSubmit={handleVerifyOTP} className="p-6 mb-4 bg-white rounded-md shadow-md">
+            <label className="block mb-4 text-sm font-bold text-gray-700" htmlFor="otp">
+              Enter the 6-digit OTP sent to your email:
             </label>
-            <div className="flex items-center">
+            <div className="relative flex items-center mb-4">
               <input
                 type="text"
                 name="otp"
@@ -69,17 +69,20 @@ function Signup() {
                 pattern="[0-9]*"
                 inputMode="numeric"
                 maxLength="6"
-                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter 6-digit OTP"
+                className="w-full px-4 py-2 text-gray-700 placeholder-gray-500 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="e.g., 123456"
                 required
               />
               <button
                 type="submit"
-                className="px-4 py-2 ml-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="absolute right-0 px-6 py-3 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 Verify
               </button>
             </div>
+            <p className="text-sm text-gray-600">
+              <span className='font-bold text-red-500'>Note:</span> If the OTP email isn&apos;t visible in your inbox, kindly check your spam or junk folder to ensure a smooth authentication process.
+            </p>
           </form>
         )}
 
@@ -155,13 +158,6 @@ function Signup() {
                 required
               />
             </div>
-
-            {/* <button
-              type="submit"
-              className="w-full py-3 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              Sign Up
-            </button> */}
             <button
               type="submit"
               className={`flex items-center justify-center w-full py-3 text-white rounded-md ${loading ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500'}`}

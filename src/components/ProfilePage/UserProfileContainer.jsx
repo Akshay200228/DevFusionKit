@@ -127,8 +127,9 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
     // Delete current avatar
     const currentDeleteAvatar = async () => {
         try {
+            const userAvatar = user.avatar;
             setIsAvatarLoading(true)
-            const currentImageUrl = cloudinaryUrl;
+            const currentImageUrl = userAvatar || cloudinaryUrl;
             if (currentImageUrl) {
                 await deletePreviousAvatar(currentImageUrl, token);
                 localStorage.removeItem('userAvatar');
