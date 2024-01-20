@@ -81,7 +81,7 @@ function Signup() {
               </button>
             </div>
             <p className="text-sm text-gray-600">
-              <span className='font-bold text-red-500'>Note:</span> If the OTP email isn't visible in your inbox, kindly check your spam or junk folder to ensure a smooth authentication process.
+              <span className='font-bold text-red-500'>Note:</span> If the OTP email isn&apos;t visible in your inbox, kindly check your spam or junk folder to ensure a smooth authentication process.
             </p>
           </form>
         )}

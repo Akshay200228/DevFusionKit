@@ -31,9 +31,6 @@ const About = () => {
           Welcome to our community! Learn more about the people behind our
           platform.
         </p>
-        <div className="relative h-96">
-          <img src="./template.png" alt="tempimg" className="object-cover w-full h-full rounded-t-lg" />
-        </div>
         <div className="grid grid-cols-1 gap-8 mt-12 md:grid-cols-2 lg:grid-cols-2">
           {members.map((member) => (
             <MemberCard key={member.id} {...member} />
