@@ -1,5 +1,6 @@
 "use client"
 
+import Container from "../homeLayout/Container"
 import InfiniteLoader from "./InfiniteLoader"
 
 export default function TemplateCards() {
@@ -9,7 +10,9 @@ export default function TemplateCards() {
       <h1 className="mb-4 text-3xl font-bold text-center">
         All Web temp
       </h1>
-      <InfiniteLoader />
+      <Container>
+        <InfiniteLoader />
+      </Container>
     </div>
   )
 }
