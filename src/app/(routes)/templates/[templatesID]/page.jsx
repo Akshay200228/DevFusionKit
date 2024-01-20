@@ -6,9 +6,16 @@ import useApiFetch from '@/hooks/useApiFetch';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { WebTemplatesDetailsSkeleton } from '@/components/SkeltonLoading';
 import GoBackButton from '@/components/comLayout/codeCompIds/GoBackButton';
+import { useState } from 'react';
 
 
 const WebTemplatesDetails = ({ params }) => {
+    const [isInteraction, setIsInteraction] = useState(false);
+
+    const handleInteraction = () => {
+        setIsInteraction(!isInteraction);
+    };
+
     const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
     const WebTempApiUrl = `${apiUrl}/api/web-templates/${params.templatesID}`;
 
@@ -40,18 +47,27 @@ const WebTemplatesDetails = ({ params }) => {
             >
                 {/* Left side (templateImage) */}
                 <motion.div
-                    className="pr-8 md:w-1/3"
+                    className="bg-purple-400 cursor-pointer mx-2 mb-8 md:mb-0 md:w-1/3 h-[50vh] overflow-y-hidden scrollbar-thin scrollbar-thumb-blue-50 relative"
                     initial={{ x: -100, opacity: 0, rotate: -45 }}
                     animate={{ opacity: 1, x: 0, rotate: 0 }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 1 }}
                     whileTap={{ scale: 0.9 }}
-
+                    onTap={handleInteraction}
+                    onHoverStart={() => setIsInteraction(true)}
+                    onHoverEnd={() => setIsInteraction(false)}
                 >
-                    <img
+                    <motion.img
                         src={webTemplate.templateImage}
                         alt={`Card Image ${webTemplate._id}`}
-                        className="object-cover w-full h-auto rounded-lg"
+                        className="w-full h-auto transform rounded-lg"
+                        style={{
+                            transform: isInteraction ? 'translateY(-75%)' : 'translateY(0%)',
+                            transition: 'transform 10s ease-in-out',
+                            willChange: 'transform', // Added for performance optimization
+                        }}
+                        transition={{ yoyo: Infinity }} // Repeat the animation indefinitely
                     />
+
                 </motion.div>
 
                 {/* Right side (title, description, links) */}
