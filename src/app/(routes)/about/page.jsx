@@ -9,7 +9,7 @@ const members = [
     name: "Akshay Sankpal",
     role: "Founder",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit....",
-    image: "/dboy.png",
+    image: "https://res.cloudinary.com/daqvbo5ys/image/upload/v1704980512/yi58e7mip89h5yvholbd",
     link: "https://www.linkedin.com/in/akshay-sankpal-a12426259/",
   },
   {
@@ -17,7 +17,7 @@ const members = [
     name: "Sahil Wagh",
     role: "Co-Founder",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ...",
-    image: "/Members/sahil.jpg",
+    image: "https://res.cloudinary.com/daqvbo5ys/image/upload/v1704980512/edwk9y1s52jj5be3pp5l",
     link: "https://www.linkedin.com/in/sahil-wagh-665a31248/",
   },
 ];

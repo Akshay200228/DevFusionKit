@@ -47,7 +47,7 @@ const WebTemplatesDetails = ({ params }) => {
             >
                 {/* Left side (templateImage) */}
                 <motion.div
-                    className="bg-purple-400 cursor-pointer mx-2 mb-8 md:mb-0 md:w-1/3 h-[50vh] overflow-y-hidden scrollbar-thin scrollbar-thumb-blue-50 relative"
+                    className="bg-purple-400 cursor-pointer mx-2 mb-8 md:mb-0 w-96 h-[50vh] overflow-y-hidden relative"
                     initial={{ x: -100, opacity: 0, rotate: -45 }}
                     animate={{ opacity: 1, x: 0, rotate: 0 }}
                     transition={{ duration: 1 }}
