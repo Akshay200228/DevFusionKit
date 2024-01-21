@@ -20,8 +20,6 @@ export function useAuth() {
 
   const fetchUserData = async (token) => {
     try {
-      // const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL || "http://localhost:8000";
-      // const apiUrl = "https://devnexus-server.onrender.com";
       const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
 
       const response = await axios.get(`${apiUrl}/api/users/authUser`, {

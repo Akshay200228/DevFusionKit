@@ -91,7 +91,7 @@ const CreatorUser = ({ params }) => {
                   onClick={() => openImageModal(creatorData.avatar || defaultAvatar)}
                 />
                 {isImageModalOpen && (
-                  <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center h-[70vh] w-96">
+                  <div className="fixed bg-slate-700 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center h-[70vh] w-96">
                     <div className="absolute z-30 top-2 right-2">
                       <button
                         onClick={closeImageModal}
