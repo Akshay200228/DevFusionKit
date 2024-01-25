@@ -10,6 +10,7 @@ export default function TemplateCards() {
       <h1 className="mb-4 text-3xl font-bold text-center">
         All Web temp
       </h1>
+      <hr className="my-4 border-t border-gray-300" />
       <Container>
         <InfiniteLoader />
       </Container>

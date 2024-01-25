@@ -8,34 +8,32 @@ export function useAuth() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const token = getCookie('token'); // Get the user's token from cookies
+    const fetchData = async () => {
+      try {
+        const token = getCookie('token');
+        if (token) {
+          const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
+          const response = await axios.get(`${apiUrl}/api/users/authUser`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          setUser(response.data);
+          setIsLoading(false);
+        } else {
+          setUser(null);
+          setIsLoading(false);
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+        setError(error);
+        setIsLoading(false);
+      }
+    };
 
-    if (token) {
-      fetchUserData(token);
-    } else {
-      setUser(null);
-      setIsLoading(false);
-    }
+    fetchData();
   }, []);
 
-  const fetchUserData = async (token) => {
-    try {
-      const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
-
-      const response = await axios.get(`${apiUrl}/api/users/authUser`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      console.log("response user data: ", response.data)
-      setUser(response.data);
-      setIsLoading(false);
-    } catch (error) {
-      console.error('Error fetching user data:', error);
-      setError(error);
-      setIsLoading(false);
-    }
-  };
 
   return { user, error, isLoading };
 }

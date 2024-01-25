@@ -1,4 +1,3 @@
-
 import Header from "@/components/homeLayout/Header";
 import Footer from "@/components/homeLayout/Footer";
 import "./globals.css";
@@ -6,7 +5,7 @@ import "./globals.css";
 export const metadata = {
   title: {
     template: '%s | DevNexus',
-    default: 'DevNexus - Web Components, Code, Animations, and APIs'
+    default: 'DevNexus - Web Components, Code, Animations, and APIs',
   },
   description: 'Explore a world of web development possibilities with DevNexus. Discover web application components, code snippets, animations, and backend APIs to supercharge your projects.',
   keywords: ['web development, web components, code snippets, web animations, backend APIs, DevNexus'],
@@ -24,4 +23,4 @@ export default function RootLayout({ children }) {
       </body>
     </html>
   );
-}
+};

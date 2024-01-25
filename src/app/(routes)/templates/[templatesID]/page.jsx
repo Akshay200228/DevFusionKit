@@ -63,14 +63,13 @@ const WebTemplatesDetails = ({ params }) => {
                         style={{
                             transform: isInteraction ? 'translateY(-75%)' : 'translateY(0%)',
                             transition: 'transform 10s ease-in-out',
-                            willChange: 'transform', // Added for performance optimization
+                            willChange: 'transform',
                         }}
-                        transition={{ yoyo: Infinity }} // Repeat the animation indefinitely
+                        transition={{ yoyo: Infinity }}
                     />
-
                 </motion.div>
 
-                {/* Right side (title, description, links) */}
+                {/* Right side (title, description, links, etc,.) */}
                 <motion.div
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
