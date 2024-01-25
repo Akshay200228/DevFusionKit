@@ -25,7 +25,9 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
                 if (card._id === codeComponentId) {
                     return {
                         ...card,
-                        bookmarks: isBookmarkAdded ? [...card.bookmarks, userId] : card.bookmarks.filter((id) => id !== userId),
+                        bookmarks: isBookmarkAdded
+                            ? [...card.bookmarks, userId]
+                            : card.bookmarks.filter((id) => id !== userId),
                     };
                 }
                 return card;
@@ -41,10 +43,9 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
                 setIsLoading(true);
                 const response = await axios.get(apiUrl);
                 setCardData(response.data);
-                setIsLoading(false);
-                console.log("response: ", response.data)
             } catch (error) {
                 setError(error);
+            } finally {
                 setIsLoading(false);
             }
         };

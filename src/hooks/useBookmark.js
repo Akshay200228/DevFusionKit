@@ -42,7 +42,7 @@ const useBookmark = (initialBookmarks, updateBookmarkCount) => {
             [codeComponentId]: false,
           }));
           // Update bookmark count
-          setCountUpdateLoading(true); 
+          setCountUpdateLoading(true);
           updateBookmarkCount(codeComponentId, false);
         } else {
           console.error('Error removing bookmark:', removeData.error);
@@ -67,7 +67,7 @@ const useBookmark = (initialBookmarks, updateBookmarkCount) => {
             [codeComponentId]: true,
           }));
           // Update bookmark count
-          setCountUpdateLoading(true); 
+          setCountUpdateLoading(true);
           updateBookmarkCount(codeComponentId, true);
         } else {
           console.error('Error adding bookmark:', addData.error);
@@ -76,12 +76,14 @@ const useBookmark = (initialBookmarks, updateBookmarkCount) => {
     } catch (error) {
       console.error('Error handling bookmark:', error);
     } finally {
-      setCountUpdateLoading(false); 
+      setCountUpdateLoading(false);
     }
   };
 
   return {
-    bookmarkStates, countUpdateLoading,handleAddBookmark
+    bookmarkStates,
+    countUpdateLoading,
+    handleAddBookmark
   };
 };
 

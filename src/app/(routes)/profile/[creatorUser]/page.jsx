@@ -8,6 +8,8 @@ import { FaCode } from 'react-icons/fa';
 import Container from '@/components/homeLayout/Container';
 import Loader from '@/components/Loader';
 import { IoClose } from 'react-icons/io5';
+import getCookie from '@/hooks/getCookie';
+import { useAuth } from '@/hooks/useAuth';
 
 const CreatorUser = ({ params }) => {
   const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
@@ -17,6 +19,7 @@ const CreatorUser = ({ params }) => {
   const [webTemplates, setWebTemplates] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isFollowing, setIsFollowing] = useState(false);
 
   const [modalImageUrl, setModalImageUrl] = useState('');
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
@@ -29,6 +32,29 @@ const CreatorUser = ({ params }) => {
   const closeImageModal = () => {
     setIsImageModalOpen(false);
     setModalImageUrl('');
+  };
+
+  const checkFollowingStatus = async () => {
+    try {
+      const token = getCookie('token');
+      if (token) {
+        const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
+        const response = await axios.get(`${apiUrl}/api/users/authUser`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        console.log("Responese babe: ", response.data)
+        const currentUserFollowing = response.data.following || [];
+        setIsFollowing(currentUserFollowing.includes(params.creatorUser));
+      } else {
+        setIsFollowing(false);
+      }
+    } catch (error) {
+      console.error('Error checking following status:', error);
+      setIsFollowing(false);
+    }
   };
 
   useEffect(() => {
@@ -60,6 +86,9 @@ const CreatorUser = ({ params }) => {
         } else {
           setWebTemplates([]);
         }
+
+        // Check if the current user is following the displayed user
+        await checkFollowingStatus();
       } catch (error) {
         setError(error);
       } finally {
@@ -69,6 +98,51 @@ const CreatorUser = ({ params }) => {
 
     fetchData();
   }, [apiUrl, params.creatorUser]);
+
+  // Function to handle follow action
+  const handleFollow = async () => {
+    const token = getCookie('token');
+    try {
+      const headers = {
+        'Authorization': `Bearer ${token}`,
+      };
+
+      await axios.post(
+        `${apiUrl}/api/users/follow`,
+        { followUserId: params.creatorUser },
+        { headers }
+      );
+
+      setIsFollowing(true);
+      // Check and update following status after following
+      await checkFollowingStatus();
+    } catch (error) {
+      console.error('Error while following user:', error);
+      // Handle error
+    }
+  };
+
+  const handleUnfollow = async () => {
+    try {
+      const token = getCookie('token');
+      const headers = {
+        'Authorization': `Bearer ${token}`,
+      };
+
+      await axios.post(
+        `${apiUrl}/api/users/unfollow`,
+        { unfollowUserId: params.creatorUser },
+        { headers }
+      );
+
+      setIsFollowing(false);
+      // Check and update following status after unfollowing
+      await checkFollowingStatus();
+    } catch (error) {
+      console.error('Error while unfollowing user:', error);
+    }
+  };
+
 
   const defaultAvatar = "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75";
 
@@ -109,6 +183,17 @@ const CreatorUser = ({ params }) => {
                   </div>
                 )}
               </div>
+              {/* Follow Button */}
+              {isFollowing ? (
+                <button onClick={handleUnfollow} className="w-full px-4 py-2 font-bold text-white bg-red-800 rounded-full hover:bg-blue-600">
+                  Unfollow
+                </button>
+              ) : (
+                <button onClick={handleFollow} className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600">
+                  Follow
+                </button>
+              )}
+
               <h1 className="mb-2 text-2xl font-semibold text-center md:text-left">{creatorData.name}</h1>
               <p className="mb-2 text-center text-gray-600 md:text-left">{creatorData.username}</p>
               <p className="mb-2 text-center text-gray-600 md:text-left">{creatorData.email}</p>
