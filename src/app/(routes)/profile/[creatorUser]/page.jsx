@@ -20,6 +20,8 @@ const CreatorUser = ({ params }) => {
   const [isFollowing, setIsFollowing] = useState(false);
   const [modalImageUrl, setModalImageUrl] = useState('');
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
+  const [followerCount, setFollowerCount] = useState(0);
+  const [followingCount, setFollowingCount] = useState(0);
 
   const openImageModal = (imageUrl) => {
     setModalImageUrl(imageUrl);
@@ -61,9 +63,11 @@ const CreatorUser = ({ params }) => {
           setIsLoading(false);
           return;
         }
-
+        console.log("creatorResponse: ", creatorResponse.data)
         setCreatorData(creatorResponse.data);
-
+        setFollowerCount(creatorResponse.data.followerCount || 0);
+        setFollowingCount(creatorResponse.data.following.length || 0); 
+        
         if (creatorResponse.data.codeComponents) {
           const codeComponentsResponse = await axios.get(`${apiUrl}/api/code-components/ids/${creatorResponse.data.codeComponents}`);
           setCodeComponents(codeComponentsResponse.data);
@@ -149,6 +153,8 @@ const CreatorUser = ({ params }) => {
               isFollowing={isFollowing}
               onFollow={handleFollow}
               onUnfollow={handleUnfollow}
+              followerCount={followerCount}
+              followingCount={followingCount} 
             />
             <div className="w-full">
               {/* Code Components Section */}
