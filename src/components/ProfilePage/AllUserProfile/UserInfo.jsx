@@ -10,15 +10,18 @@ const UserInfo = ({ avatar, name, username, email, openImageModal, isFollowing, 
                 onClick={() => openImageModal(avatar)}
             />
         </div>
+
         <FollowButton
             isFollowing={isFollowing}
             onFollow={onFollow}
             onUnfollow={onUnfollow}
         />
-        {/* Other user information */}
-        <h1 className="mb-2 text-2xl font-semibold text-center md:text-left">{name}</h1>
+
+        {/* Other user information place start */}
+        <h1 className="mt-2 mb-2 text-2xl font-semibold text-center md:text-left">{name}</h1>
         <p className="mb-2 text-center text-gray-600 md:text-left">{username}</p>
         <p className="mb-2 text-center text-gray-600 md:text-left">{email}</p>
+
         {/* Display follower and following count */}
         <p className="mb-2 text-center text-gray-600 md:text-left">
             Followers: {followerCount} | Following: {followingCount}
