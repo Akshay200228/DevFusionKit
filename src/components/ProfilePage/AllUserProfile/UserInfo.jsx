@@ -1,7 +1,8 @@
 import Link from 'next/link';
-import { FaUsers, FaEnvelope, FaLink } from 'react-icons/fa';
+import { FaEnvelope, FaLink } from 'react-icons/fa';
 import FollowButton from "./FollowButton";
 import { MdEditLocation } from 'react-icons/md';
+import { HiMiniUsers } from "react-icons/hi2";
 
 const UserInfo = ({ avatar, name, username, email, openImageModal, isFollowing, onFollow, onUnfollow, followerCount, followingCount }) => (
     <div className="flex-shrink-0 w-full mb-8 md:w-1/3 lg:w-1/4 xl:w-1/5 md:pr-8 md:mb-0">
@@ -26,15 +27,15 @@ const UserInfo = ({ avatar, name, username, email, openImageModal, isFollowing, 
         />
 
         {/* Display follower and following count with icons */}
-        <div className="flex items-center my-4 justify-evenly">
+        <div className="flex items-center justify-start my-4">
             <div className="flex items-center space-x-2">
-                <FaUsers className="text-xl text-blue-500" />
+                <HiMiniUsers className="text-xl text-blue-500" />
+                {/* <FaUsers className="text-xl text-blue-500" /> */}
                 <span className="font-bold text-gray-700">{followerCount}</span>
                 <span className="text-gray-500">Followers</span>
             </div>
-            <div className="h-6 border-l-2 border-gray-300" />
+            <div className="h-6 mx-2 border-l-2 border-gray-300" />
             <div className="flex items-center space-x-2">
-                <FaUsers className="text-xl text-blue-500" />
                 <span className="font-bold text-gray-700">{followingCount}</span>
                 <span className="text-gray-500">Following</span>
             </div>

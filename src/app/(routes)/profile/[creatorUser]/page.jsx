@@ -9,6 +9,7 @@ import AvatarModal from '@/components/ProfilePage/AllUserProfile/AvatarModal';
 import UserInfo from '@/components/ProfilePage/AllUserProfile/UserInfo';
 import CodeComponent from '@/components/ProfilePage/AllUserProfile/CodeComponent';
 import WebTemplate from '@/components/ProfilePage/AllUserProfile/WebTemplate';
+import useFollowerFollowing from '@/hooks/useFollowerFollowing';
 
 const CreatorUser = ({ params }) => {
   const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
@@ -20,8 +21,9 @@ const CreatorUser = ({ params }) => {
   const [isFollowing, setIsFollowing] = useState(false);
   const [modalImageUrl, setModalImageUrl] = useState('');
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
-  const [followerCount, setFollowerCount] = useState(0);
-  const [followingCount, setFollowingCount] = useState(0);
+  // const [followerCount, setFollowerCount] = useState(0);
+  // const [followingCount, setFollowingCount] = useState(0);
+  const { followerCount, followingCount, updateCounts } = useFollowerFollowing();
 
   const openImageModal = (imageUrl) => {
     setModalImageUrl(imageUrl);
@@ -65,9 +67,10 @@ const CreatorUser = ({ params }) => {
         }
         console.log("creatorResponse: ", creatorResponse.data)
         setCreatorData(creatorResponse.data);
-        setFollowerCount(creatorResponse.data.followerCount || 0);
-        setFollowingCount(creatorResponse.data.following.length || 0); 
-        
+        // setFollowerCount(creatorResponse.data.followerCount || 0);
+        // setFollowingCount(creatorResponse.data.following.length || 0);
+        updateCounts(creatorResponse.data.followerCount || 0, creatorResponse.data.following.length || 0);
+
         if (creatorResponse.data.codeComponents) {
           const codeComponentsResponse = await axios.get(`${apiUrl}/api/code-components/ids/${creatorResponse.data.codeComponents}`);
           setCodeComponents(codeComponentsResponse.data);
@@ -94,8 +97,10 @@ const CreatorUser = ({ params }) => {
   }, [apiUrl, params.creatorUser]);
 
   const handleFollow = async () => {
-    const token = getCookie('token');
     try {
+      setIsFollowing(true);
+
+      const token = getCookie('token');
       const headers = {
         'Authorization': `Bearer ${token}`,
       };
@@ -105,16 +110,22 @@ const CreatorUser = ({ params }) => {
         { followUserId: params.creatorUser },
         { headers }
       );
-
-      setIsFollowing(true);
+      // Recheck following status to ensure accuracy
       await checkFollowingStatus();
+      // updateCounts((prevCount) => prevCount + 1);
+      updateCounts(followerCount + 1, followingCount);
     } catch (error) {
       console.error('Error while following user:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleUnfollow = async () => {
     try {
+      // Update local state immediately
+      setIsFollowing(false);
+      
       const token = getCookie('token');
       const headers = {
         'Authorization': `Bearer ${token}`,
@@ -126,10 +137,13 @@ const CreatorUser = ({ params }) => {
         { headers }
       );
 
-      setIsFollowing(false);
       await checkFollowingStatus();
+      // updateCounts((prevCount) => Math.max(prevCount - 1, 0));
+      updateCounts(Math.max(followerCount - 1, 0), followingCount);
     } catch (error) {
       console.error('Error while unfollowing user:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -154,7 +168,7 @@ const CreatorUser = ({ params }) => {
               onFollow={handleFollow}
               onUnfollow={handleUnfollow}
               followerCount={followerCount}
-              followingCount={followingCount} 
+              followingCount={followingCount}
             />
             <div className="w-full">
               {/* Code Components Section */}
@@ -184,7 +198,6 @@ const CreatorUser = ({ params }) => {
                     templateImage={template.templateImage}
                     title={template.title}
                     templateId={template._id}
-                    onClickExplore={() => { } /* Add your logic for Explore button */}
                   />
                 ))}
               </div>
