@@ -17,9 +17,10 @@ import { MdCloudUpload } from "react-icons/md";
 import { FaEdit, FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { IoClose } from 'react-icons/io5';
 import Link from 'next/link';
+import { HiMiniUsers } from 'react-icons/hi2';
 
 
-const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplatesData }) => {
+const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplatesData, followerCount, followingCount }) => {
     const [avatarFile, setAvatarFile] = useState(null);
     const [cloudinaryUrl, setCloudinaryUrl] = useState(localStorage.getItem('userAvatar') || null);
     const [isAvatarLoading, setIsAvatarLoading] = useState(false);
@@ -280,19 +281,34 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
                     )}
                 </div>
 
-                <h1 className="mb-2 text-2xl font-semibold text-center md:text-left">{user.name}</h1>
-                <p className="mb-2 text-center text-gray-600 md:text-left">{user.username}</p>
-                <Button variant="blueOutline" color="outline" href="#" className="w-full my-4 font-bold hover:bg-blue-100 active:bg-blue-400">
+                <h1 className="text-2xl font-semibold text-center md:text-left">{user.name}</h1>
+                <p className="my-2 text-center text-gray-600 md:text-left">{user.username}</p>
+                <Button variant="blueOutline" color="outline" href="#" className="w-full mb-4 font-bold hover:bg-blue-100 active:bg-blue-400">
                     Edit Profile
                 </Button>
+                <div className="flex items-center justify-start">
+                    <div className="flex items-center space-x-2">
+                        <HiMiniUsers className="text-xl text-blue-500" />
+                        {/* <FaUsers className="text-xl text-blue-500" /> */}
+                        <span className="font-bold text-gray-700">{followerCount}</span>
+                        <span className="text-gray-500">Followers</span>
+                    </div>
+                    <div className="h-6 mx-2 border-l-2 border-gray-300" />
+                    <div className="flex items-center space-x-2">
+                        <span className="font-bold text-gray-700">{followingCount}</span>
+                        <span className="text-gray-500">Following</span>
+                    </div>
+                </div>
 
-                <p className="mb-2 text-center text-gray-600 md:text-left">{user.email}</p>
+                <hr className="my-2 border-t border-gray-300" />
+
                 {/* Additional user details */}
-                <p className="mb-2 text-center text-gray-600 md:text-left">{location}</p>
-                <p className="mb-2 text-center text-gray-600 md:text-left">{followers} followers</p>
-
+                <div className='space-y-2 text-start'>
+                    <p className="text-gray-600 md:text-left">{user.email}</p>
+                    <p className="text-gray-600 md:text-left">{location}</p>
+                </div>
                 {/* Social media links */}
-                <div className="flex justify-center space-x-4 md:justify-start">
+                <div className="flex justify-start mt-4 space-x-4">
                     <Link href={socialMediaLinks.twitter} target="_blank" rel="noopener noreferrer">
                         <FaTwitter className="text-2xl" />
                     </Link>
@@ -303,6 +319,7 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
                         <FaLinkedin className="text-2xl" />
                     </Link>
                 </div>
+
             </div>
             {/* Right Column - User Works */}
             <div className="w-full md:w-3/4">

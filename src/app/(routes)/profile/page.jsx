@@ -5,12 +5,14 @@ import { useAuth } from "@/hooks/useAuth";
 import axios from 'axios';
 import Loader from '@/components/Loader';
 import UserProfileContainer from '@/components/ProfilePage/UserProfileContainer';
+import useFollowerFollowing from '@/hooks/useFollowerFollowing';
 
 export default function UserProfile() {
     const { user, error, isLoading } = useAuth();
     const [userData, setUserData] = useState(null);
     const [codeComponentsData, setCodeComponentsData] = useState([]);
     const [webTemplatesData, setWebTemplatesData] = useState([]);
+    const { followerCount, followingCount, updateCounts } = useFollowerFollowing();
 
     useEffect(() => {
         const fetchUserDetails = async () => {
@@ -41,6 +43,8 @@ export default function UserProfile() {
                     } else {
                         console.log('No web template IDs to fetch');
                     }
+                    // Update follower and following counts
+                    updateCounts(userResponse.data.followerCount || 0, userResponse.data.following.length || 0);
                 } catch (error) {
                     console.error('Error fetching user details:', error);
                 }
@@ -48,7 +52,7 @@ export default function UserProfile() {
         };
 
         fetchUserDetails();
-    }, [user]);
+    }, [user, updateCounts]);
 
     return (
         <Container>
@@ -64,6 +68,8 @@ export default function UserProfile() {
                     userData={userData}
                     codeComponentsData={codeComponentsData}
                     webTemplatesData={webTemplatesData}
+                    followerCount={followerCount}
+                    followingCount={followingCount}
                     loading={isLoading}
                 />
             )}
