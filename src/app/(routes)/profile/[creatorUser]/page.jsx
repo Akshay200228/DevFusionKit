@@ -21,9 +21,7 @@ const CreatorUser = ({ params }) => {
   const [isFollowing, setIsFollowing] = useState(false);
   const [modalImageUrl, setModalImageUrl] = useState('');
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
-  // const [followerCount, setFollowerCount] = useState(0);
-  // const [followingCount, setFollowingCount] = useState(0);
-  const { followerCount, followingCount, updateCounts } = useFollowerFollowing();
+  const { followerCount, followingCount, updateCounts, loadingCounts } = useFollowerFollowing();
 
   const openImageModal = (imageUrl) => {
     setModalImageUrl(imageUrl);
@@ -67,8 +65,6 @@ const CreatorUser = ({ params }) => {
         }
         console.log("creatorResponse: ", creatorResponse.data)
         setCreatorData(creatorResponse.data);
-        // setFollowerCount(creatorResponse.data.followerCount || 0);
-        // setFollowingCount(creatorResponse.data.following.length || 0);
         updateCounts(creatorResponse.data.followerCount || 0, creatorResponse.data.following.length || 0);
 
         if (creatorResponse.data.codeComponents) {
@@ -112,7 +108,7 @@ const CreatorUser = ({ params }) => {
       );
       // Recheck following status to ensure accuracy
       await checkFollowingStatus();
-      // updateCounts((prevCount) => prevCount + 1);
+
       updateCounts(followerCount + 1, followingCount);
     } catch (error) {
       console.error('Error while following user:', error);
@@ -125,7 +121,7 @@ const CreatorUser = ({ params }) => {
     try {
       // Update local state immediately
       setIsFollowing(false);
-      
+
       const token = getCookie('token');
       const headers = {
         'Authorization': `Bearer ${token}`,
@@ -138,7 +134,6 @@ const CreatorUser = ({ params }) => {
       );
 
       await checkFollowingStatus();
-      // updateCounts((prevCount) => Math.max(prevCount - 1, 0));
       updateCounts(Math.max(followerCount - 1, 0), followingCount);
     } catch (error) {
       console.error('Error while unfollowing user:', error);
@@ -202,6 +197,13 @@ const CreatorUser = ({ params }) => {
                 ))}
               </div>
             </div>
+          </div>
+
+        )}
+        {loadingCounts && (
+          <div className="flex items-center justify-center mt-4">
+            <div className="w-8 h-8 border-t-2 border-blue-500 border-solid rounded-full animate-spin"></div>
+            <span className="ml-2 text-gray-500">Updating counts...</span>
           </div>
         )}
       </div>
