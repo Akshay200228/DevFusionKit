@@ -1,4 +1,5 @@
-import { FaUserMinus, FaUserCheck, FaComment } from 'react-icons/fa';
+import { AiFillMessage } from 'react-icons/ai';
+import { FaUserMinus, FaUserCheck } from 'react-icons/fa';
 
 const FollowButton = ({ isFollowing, onFollow, onUnfollow }) => {
     return (
@@ -22,7 +23,7 @@ const FollowButton = ({ isFollowing, onFollow, onUnfollow }) => {
             <button
                 className="flex items-center justify-center w-full px-4 py-2 font-bold text-white transition duration-300 ease-in-out transform bg-green-500 rounded-full md:w-1/2 hover:bg-green-600 "
             >
-                <FaComment className="mr-2" /> Message
+                <AiFillMessage className="mr-2" /> Message
             </button>
         </div>
     )
