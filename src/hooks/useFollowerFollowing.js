@@ -4,20 +4,13 @@ import { useState } from 'react';
 const useFollowerFollowing = () => {
     const [followerCount, setFollowerCount] = useState(0);
     const [followingCount, setFollowingCount] = useState(0);
-    const [loadingCounts, setLoadingCounts] = useState(false);
 
-    const updateCounts = async (newFollowerCount, newFollowingCount) => {
-        try {
-            setLoadingCounts(true);
-            setFollowerCount(newFollowerCount);
-            setFollowingCount(newFollowingCount);
-        } finally {
-            setLoadingCounts(false);
-        }
+    const updateCounts = (newFollowerCount, newFollowingCount) => {
+        setFollowerCount(newFollowerCount);
+        setFollowingCount(newFollowingCount);
     };
 
-    return { followerCount, followingCount, updateCounts, loadingCounts };
+    return { followerCount, followingCount, updateCounts };
 };
 
 export default useFollowerFollowing;
-

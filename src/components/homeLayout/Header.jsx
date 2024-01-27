@@ -16,7 +16,7 @@ import Cookies from "js-cookie";
 import { ProfileSkeltonLoading } from "../SkeltonLoading";
 import Drawer from "./Drawer";
 import Notification from "../Notification/Notification";
-
+import MessageBox from "../MessageBox/MessageBox";
 
 const MobileNavLink = ({ children, ...props }) => {
   return (
@@ -93,6 +93,9 @@ const Header = ({ userId }) => {
               <>
                 <Drawer text="Notification">
                   <Notification />
+                </Drawer>
+                <Drawer text="Message">
+                  <MessageBox />
                 </Drawer>
                 <Drawer text="Profile">
                   <div
