@@ -12,7 +12,7 @@ export default function UserProfile() {
     const [userData, setUserData] = useState(null);
     const [codeComponentsData, setCodeComponentsData] = useState([]);
     const [webTemplatesData, setWebTemplatesData] = useState([]);
-    const { followerCount, followingCount, updateCounts } = useFollowerFollowing();
+    const { followerCount, followingCount, updateCounts, loadingCounts } = useFollowerFollowing();
 
     useEffect(() => {
         const fetchUserDetails = async () => {
@@ -56,7 +56,7 @@ export default function UserProfile() {
 
     return (
         <Container>
-            {isLoading ? (
+            {isLoading || loadingCounts ? (
                 <Loader />
             ) : error ? (
                 <div className="mt-8 text-center text-red-600">
