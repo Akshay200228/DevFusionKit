@@ -45,7 +45,7 @@ const Notification = () => {
                         animate="visible"
                         exit="hidden"
                         transition={{ duration: 0.3, ease: "easeOut" }}
-                        className="absolute right-0 mt-2 overflow-x-hidden overflow-y-auto bg-white border border-gray-300 rounded-md shadow-md w-72 h-96"
+                        className="absolute right-0 mt-2 overflow-x-hidden overflow-y-auto bg-white border border-gray-300 rounded-md shadow-md scrollbar-thin w-72 h-96"
                     >
                         {/* Static data in the dropdown */}
                         <h1 className="flex items-center gap-2 p-3 text-xl font-bold text-blue-500"><IoNotificationsOutline /> Recent Notifications:</h1>

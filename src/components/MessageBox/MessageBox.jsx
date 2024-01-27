@@ -10,7 +10,7 @@ const MessageBox = () => {
   };
 
   return (
-    <div className="relative rounded-xl lg:block">
+    <div className="relative hidden rounded-xl lg:block">
       <AiOutlineMessage
         onClick={toggleDropdown}
         className="p-0.5 w-10 h-10 text-blue-600 cursor-pointer"
