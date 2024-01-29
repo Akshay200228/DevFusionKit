@@ -15,7 +15,7 @@ const MessageBox = () => {
         onClick={toggleDropdown}
         className="p-0.5 w-10 h-10 text-blue-600 cursor-pointer"
       />
-      {isDropdownOpen && (
+      {/* {isDropdownOpen && (
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -23,7 +23,6 @@ const MessageBox = () => {
           transition={{ duration: 0.3 }}
           className="absolute right-0 w-64 p-2 mt-2 bg-white border border-gray-300 rounded-md shadow-md"
         >
-          {/* Static data in the dropdown */}
           <p className="mb-2 font-bold">Recent Messages:</p>
           <ul className="list-none">
             <motion.li whileHover={{ scale: 1.05 }} className="mb-1 cursor-pointer">
@@ -37,7 +36,7 @@ const MessageBox = () => {
             </motion.li>
           </ul>
         </motion.div>
-      )}
+      )} */}
     </div>
   );
 };

@@ -4,7 +4,7 @@ import { FaUserMinus, FaUserCheck } from 'react-icons/fa';
 const FollowButton = ({ isFollowing, onFollow, onUnfollow }) => {
     return (
         // <div className="flex flex-col items-center justify-between gap-2 md:flex-row">
-        <div className="flex flex-row items-center justify-between gap-2">
+        <div className="flex flex-row items-center justify-between gap-2 text-sm">
             {isFollowing ? (
                 <button
                     onClick={onUnfollow}
