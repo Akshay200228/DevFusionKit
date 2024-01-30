@@ -3,9 +3,7 @@
 import { motion } from 'framer-motion';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
-const NavigationButtons = ({ handlePrevPage, handleNextPage, page, cardData }) => {
-    const isFirstPage = page === 1;
-    const isLastPage = cardData.length < 12;
+const NavigationButtons = ({ handlePrevPage, handleNextPage, isFirstPage, isLastPage  }) => {
 
     return (
         <div className="flex justify-between mx-4 my-4 md:my-10">

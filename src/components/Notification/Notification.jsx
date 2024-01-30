@@ -87,7 +87,7 @@ const Notification = () => {
                         <hr className="my-2 border-t border-gray-300" />
 
                         <motion.ul className="list-none" variants={dropdownVariants}>
-                            {[...Array(20)].map((_, index) => (
+                            {[...Array(10)].map((_, index) => (
                                 <motion.li
                                     key={index}
                                     variants={notificationItemVariants}
