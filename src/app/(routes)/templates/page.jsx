@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import TemplateCards from "@/components/templateLayout/TemplateCards";
 
 export const metadata = {

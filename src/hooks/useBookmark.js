@@ -35,7 +35,6 @@ const useBookmark = (initialBookmarks, updateBookmarkCount) => {
         const removeData = await removeResponse.json();
 
         if (removeResponse.ok) {
-          console.log('Bookmark removed successfully:', removeData);
           // Update the UI to show the "Add Bookmark" button
           setBookmarkStates((prevStates) => ({
             ...prevStates,
@@ -60,7 +59,6 @@ const useBookmark = (initialBookmarks, updateBookmarkCount) => {
         const addData = await addResponse.json();
 
         if (addResponse.ok) {
-          console.log('Bookmark added successfully:', addData);
           // Update the UI to show the "Remove Bookmark" button
           setBookmarkStates((prevStates) => ({
             ...prevStates,

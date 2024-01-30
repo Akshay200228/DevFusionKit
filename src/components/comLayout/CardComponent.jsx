@@ -53,6 +53,8 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
         fetchData();
     }, [apiUrl, page]);
 
+    const isFirstPage = page === 1;
+    const isLastPage = cardData.length < 12;
 
     const handleNextPage = () => {
         const nextPage = page + 1;
@@ -63,7 +65,6 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
         const prevPage = page - 1;
         router.push(`/component?page=${prevPage}`);
     };
-
     return (
         <div className="w-full pt-4 text-white">
             {isLoading ? (
@@ -186,8 +187,8 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
             <NavigationButtons
                 handlePrevPage={handlePrevPage}
                 handleNextPage={handleNextPage}
-                page={page}
-                cardData={cardData}
+                isFirstPage={isFirstPage}
+                isLastPage={isLastPage}
             />
         </div>
     );
