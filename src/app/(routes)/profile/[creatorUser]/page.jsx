@@ -21,8 +21,7 @@ const CreatorUser = ({ params }) => {
   const [isFollowing, setIsFollowing] = useState(false);
   const [modalImageUrl, setModalImageUrl] = useState('');
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
-  // const [followerCount, setFollowerCount] = useState(0);
-  // const [followingCount, setFollowingCount] = useState(0);
+  const [followUnfollowLoading, setFollowUnfollowLoading] = useState(false);
   const { followerCount, followingCount, updateCounts } = useFollowerFollowing();
 
   const openImageModal = (imageUrl) => {
@@ -59,6 +58,8 @@ const CreatorUser = ({ params }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setFollowUnfollowLoading(false);
+
         const creatorResponse = await axios.get(`${apiUrl}/api/users/${params.creatorUser}`);
         if (!creatorResponse.data) {
           setError({ message: 'User not found' });
@@ -98,6 +99,7 @@ const CreatorUser = ({ params }) => {
 
   const handleFollow = async () => {
     try {
+      setFollowUnfollowLoading(true);
       setIsFollowing(true);
 
       const token = getCookie('token');
@@ -117,13 +119,14 @@ const CreatorUser = ({ params }) => {
     } catch (error) {
       console.error('Error while following user:', error);
     } finally {
-      setIsLoading(false);
+      setFollowUnfollowLoading(false);
     }
   };
 
   const handleUnfollow = async () => {
     try {
       // Update local state immediately
+      setFollowUnfollowLoading(true)
       setIsFollowing(false);
       
       const token = getCookie('token');
@@ -143,7 +146,7 @@ const CreatorUser = ({ params }) => {
     } catch (error) {
       console.error('Error while unfollowing user:', error);
     } finally {
-      setIsLoading(false);
+      setFollowUnfollowLoading(false);
     }
   };
 
@@ -169,6 +172,7 @@ const CreatorUser = ({ params }) => {
               onUnfollow={handleUnfollow}
               followerCount={followerCount}
               followingCount={followingCount}
+              followUnfollowLoading={followUnfollowLoading}
             />
             <div className="w-full">
               {/* Code Components Section */}
