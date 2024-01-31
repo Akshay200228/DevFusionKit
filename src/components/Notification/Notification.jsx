@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Notification = () => {
     const [isRinging, setIsRinging] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(0);
     const dropdownRef = useRef(null);
 
     const toggleDropdown = () => {
@@ -35,6 +36,34 @@ const Notification = () => {
             setIsDropdownOpen(false);
         };
 
+        const handleKeyDown = (e) => {
+            if (isDropdownOpen) {
+                if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    setSelectedItem((prev) => Math.max(prev - 1, 0));
+                    scrollIfNeeded();
+                } else if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    setSelectedItem((prev) => Math.min(prev + 1, 9)); // Assuming there are 10 notifications
+                    scrollIfNeeded();
+                }
+            }
+        };
+
+        const scrollIfNeeded = () => {
+            const listItem = dropdownRef.current.querySelector(`#notification-item-${selectedItem}`);
+            if (listItem) {
+                const listRect = dropdownRef.current.getBoundingClientRect();
+                const itemRect = listItem.getBoundingClientRect();
+
+                if (itemRect.bottom > listRect.bottom) {
+                    dropdownRef.current.scrollTop += itemRect.bottom - listRect.bottom;
+                } else if (itemRect.top < listRect.top) {
+                    dropdownRef.current.scrollTop -= listRect.top - itemRect.top;
+                }
+            }
+        };
+
         const handleClickOutside = (e) => {
             if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
                 closeDropdown();
@@ -44,14 +73,17 @@ const Notification = () => {
         if (isDropdownOpen) {
             setIsRinging(false);
             document.addEventListener('mousedown', handleClickOutside);
+            document.addEventListener('keydown', handleKeyDown);
         } else {
             document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('keydown', handleKeyDown);
         }
 
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('keydown', handleKeyDown);
         };
-    }, [isDropdownOpen]);
+    }, [isDropdownOpen, selectedItem]);
 
     const dropdownVariants = {
         hidden: { opacity: 0, y: -10 },
@@ -89,10 +121,13 @@ const Notification = () => {
                         <motion.ul className="list-none" variants={dropdownVariants}>
                             {[...Array(10)].map((_, index) => (
                                 <motion.li
+                                    id={`notification-item-${index}`}
                                     key={index}
                                     variants={notificationItemVariants}
                                     whileHover={{ scale: 1.05 }}
-                                    className="p-3 mb-1 text-blue-700 cursor-pointer hover:bg-blue-100"
+                                    className={`p-3 mb-1 text-blue-700 cursor-pointer hover:bg-blue-100 ${
+                                        selectedItem === index ? 'bg-blue-100' : ''
+                                    }`}
                                 >
                                     Notification {index + 1}
                                 </motion.li>
