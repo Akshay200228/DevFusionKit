@@ -38,13 +38,14 @@ const Notification = () => {
 
         const handleKeyDown = (e) => {
             if (isDropdownOpen) {
+                // Assuming there are 10 notifications
                 if (e.key === 'ArrowUp') {
                     e.preventDefault();
                     setSelectedItem((prev) => Math.max(prev - 1, 0));
                     scrollIfNeeded();
                 } else if (e.key === 'ArrowDown') {
                     e.preventDefault();
-                    setSelectedItem((prev) => Math.min(prev + 1, 9)); // Assuming there are 10 notifications
+                    setSelectedItem((prev) => Math.min(prev + 1, 9));
                     scrollIfNeeded();
                 }
             }
@@ -84,6 +85,10 @@ const Notification = () => {
             document.removeEventListener('keydown', handleKeyDown);
         };
     }, [isDropdownOpen, selectedItem]);
+
+    const handleNotificationClick = (index) => {
+        setSelectedItem(index);
+    };
 
     const dropdownVariants = {
         hidden: { opacity: 0, y: -10 },
@@ -125,9 +130,9 @@ const Notification = () => {
                                     key={index}
                                     variants={notificationItemVariants}
                                     whileHover={{ scale: 1.05 }}
-                                    className={`p-3 mb-1 text-blue-700 cursor-pointer hover:bg-blue-100 ${
-                                        selectedItem === index ? 'bg-blue-100' : ''
-                                    }`}
+                                    onClick={() => handleNotificationClick(index)} // Add this line
+                                    className={`p-3 mb-1 text-blue-700 cursor-pointer hover:bg-blue-100 ${selectedItem === index ? 'bg-blue-100' : ''
+                                        }`}
                                 >
                                     Notification {index + 1}
                                 </motion.li>

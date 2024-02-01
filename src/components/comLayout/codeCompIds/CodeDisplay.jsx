@@ -65,8 +65,8 @@ const CodeDisplay = ({ code }) => {
                     <div className="relative col-span-1">
                         <Editor
                             height="50vh"
-                            language="javascript" // Set the language according to your code
-                            theme="vs-dark" // Set the theme according to your preference
+                            language="javascript"
+                            theme="vs-dark"
                             value={code}
                             onChange={handleEditorChange}
                             options={{
@@ -76,6 +76,11 @@ const CodeDisplay = ({ code }) => {
                                 scrollbar: {
                                     vertical: 'visible',
                                 },
+                                wordWrap: 'on', // Enable word wrap
+                                lineNumbers: 'on', // Show line numbers
+                                glyphMargin: true, // Show the folding icons
+                                folding: true, // Enable code folding
+                                lineDecorationsWidth: '10px',
                             }}
                             // Set the editorRef
                             onMount={(editor) => {
