@@ -4,10 +4,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 import useLogin from "@/hooks/useLogin";
 import { devLogo } from "@/images";
-import { FaSpinner } from "react-icons/fa";
+import { FaSpinner, FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useState } from 'react';
 
 function Login() {
   const { loading, credentials, error, handleChange, handleSubmit } = useLogin();
+  const [showPassword, setShowPassword] = useState(false);
+
+  // Function to toggle show/hide password
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -40,15 +47,24 @@ function Login() {
             <label className="block text-sm font-bold text-gray-700" htmlFor="password">
               Password:
             </label>
-            <input
-              type="password"
-              name="password"
-              value={credentials.password}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter your password"
-              required
-            />
+            <div className="relative flex items-center mb-4">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                value={credentials.password}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter your password"
+                required
+              />
+              <button
+                type="button"
+                onClick={toggleShowPassword}
+                className="absolute right-0 px-4 py-2 text-gray-600 focus:outline-none"
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
           </div>
           <button
             type="submit"

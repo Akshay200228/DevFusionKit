@@ -6,7 +6,7 @@ import Reviews from "@/components/homeLayout/Reviews";
 
 export default function Home() {
   return (
-    <main>
+    <main className="scroll-smooth">
       <Hero />
       <CodeEditor />
       <Reviews />

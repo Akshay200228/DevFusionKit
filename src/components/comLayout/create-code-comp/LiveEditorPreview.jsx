@@ -16,10 +16,6 @@ const LiveEditorPreview = ({ Input, handleChange }) => {
         {/* Live preview using react-live */}
         <div className="h-[70vh] overflow-auto scrollbar-thin scrollbar-thumb-blue-200 scrollbar-track-gray-200">
           <div className='h-full'>
-            {/* <LiveEditor
-              onChange={handleChange}
-              className="overflow-y-auto bg-[#011627] h-[70vh]"
-            /> */}
             <Editor
               height="70vh"
               language="javascript" // Set the language according to your code
@@ -30,6 +26,14 @@ const LiveEditorPreview = ({ Input, handleChange }) => {
                 minimap: {
                   enabled: false,
                 },
+                scrollbar: {
+                  vertical: 'visible',
+                },
+                wordWrap: 'on', // Enable word wrap
+                lineNumbers: 'on', // Show line numbers
+                glyphMargin: true, // Show the folding icons
+                folding: true, // Enable code folding
+                lineDecorationsWidth: '10px',
               }}
             />
           </div>
