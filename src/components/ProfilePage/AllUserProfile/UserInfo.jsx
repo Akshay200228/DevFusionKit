@@ -4,7 +4,24 @@ import FollowButton from "./FollowButton";
 import { MdEditLocation } from 'react-icons/md';
 import { HiMiniUsers } from "react-icons/hi2";
 
-const UserInfo = ({ avatar, name, username, email, openImageModal, isFollowing, onFollow, onUnfollow, followerCount, followingCount, followUnfollowLoading }) => (
+const UserInfo = ({
+    avatar,
+    name,
+    username,
+    email,
+    openImageModal,
+    isFollowing,
+    onFollow,
+    onUnfollow,
+    followerCount,
+    followingCount,
+    followUnfollowLoading,
+    portfolio,
+    linkedin,
+    github,
+    stateName,
+    cityName
+}) => (
     <div className="flex-shrink-0 w-full mb-8 md:w-1/3 lg:w-1/4 xl:w-1/5 md:pr-8 md:mb-0">
         <div className="relative mx-auto mb-4 overflow-visible border-4 border-blue-500 rounded-full w-36 h-36 md:w-44 md:h-44 lg:w-56 lg:h-56 xl:w-64 xl:h-64">
             <img
@@ -50,17 +67,20 @@ const UserInfo = ({ avatar, name, username, email, openImageModal, isFollowing, 
                 <FaEnvelope className="mr-2" />
                 {email}
             </div>
-            <div className="flex items-center text-sm text-gray-600">
-                <MdEditLocation className="mr-2" />
-                Location: Mumbai
-            </div>
-            {/* Link */}
-            <div className="flex items-center text-sm text-gray-600">
-                <FaLink className="mr-2" />
-                <Link href="https://personal-portfolio-theta-nine.vercel.app/" className='text-blue-500 underline'>
-                    Personal Portfolio
-                </Link>
-            </div>
+            {(cityName || stateName) && (
+                <div className="flex items-center text-sm text-gray-600">
+                    <MdEditLocation className="mr-2" />
+                    {cityName && stateName ? `${cityName}, ${stateName}` : (cityName || stateName)}
+                </div>
+            )}
+            {portfolio && (
+                <div className="flex items-center text-sm text-gray-600">
+                    <FaLink className="mr-2" />
+                    <Link href={portfolio} className='text-blue-500 underline'>
+                        Personal Portfolio
+                    </Link>
+                </div>
+            )}
         </div>
     </div>
 );

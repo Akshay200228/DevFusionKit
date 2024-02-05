@@ -7,7 +7,7 @@ import useSignup from "@/hooks/useSignup";
 import VerificationPopup from '@/components/VerificationPopup';
 import Message from "@/components/comLayout/create-code-comp/Message";
 import { devLogo } from "@/images";
-import { FaSpinner } from 'react-icons/fa';
+import { FaSpinner, FaEye, FaEyeSlash } from 'react-icons/fa';
 
 function Signup() {
   const {
@@ -26,6 +26,18 @@ function Signup() {
   } = useSignup();
 
   const [message, setMessage] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  // Function to toggle show/hide password
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  // Function to toggle show/hide confirm password
+  const toggleShowConfirmPassword = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
 
   // Function to close the message
   const closeMessage = () => {
@@ -35,8 +47,9 @@ function Signup() {
   const getTitle = () => (otpSent && showOtpInput ? 'Verify Account' : 'Sign Up');
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-6 mx-2 bg-white border-t-4 border-blue-600 rounded-lg shadow-lg sm:mx-0">
+    <div className="relative flex items-center justify-center min-h-screen overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-animation" />
+      <div className="z-10 w-full max-w-md p-6 bg-white border-t-4 border-blue-600 rounded-lg shadow-lg">
         <div className="flex items-center justify-center mb-6">
           <Image
             src={devLogo}
@@ -134,29 +147,47 @@ function Signup() {
               <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="password">
                 Password:
               </label>
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter your password"
-                required
-              />
+              <div className="relative flex items-center mb-4">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Enter your password"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={toggleShowPassword}
+                  className="absolute right-0 px-4 py-2 text-gray-600 focus:outline-none"
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
             </div>
             <div className="mb-6">
               <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="confirmPassword">
                 Confirm Password:
               </label>
-              <input
-                type="password"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Confirm your password"
-                required
-              />
+              <div className="relative flex items-center mb-4">
+                <input
+                  type={showConfirmPassword ? 'text' : 'password'}
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Confirm your password"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={toggleShowConfirmPassword}
+                  className="absolute right-0 px-4 py-2 text-gray-600 focus:outline-none"
+                >
+                  {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
             </div>
             <button
               type="submit"
@@ -174,6 +205,7 @@ function Signup() {
             </button>
           </form>
         )}
+
         {otpSent && (
           <div className="text-right">
             <button
@@ -184,6 +216,7 @@ function Signup() {
             </button>
           </div>
         )}
+
         {!otpSent && (
           <p className="mt-4 text-sm text-center text-gray-700">
             If you already registered?{' '}
@@ -192,6 +225,7 @@ function Signup() {
             </Link>
           </p>
         )}
+
         {showVerificationPopup && (
           <VerificationPopup onClose={closeVerificationPopup} />
         )}
@@ -201,5 +235,3 @@ function Signup() {
 }
 
 export default Signup;
-
-
