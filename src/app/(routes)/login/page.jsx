@@ -17,8 +17,9 @@ function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-6 bg-white border-t-4 border-blue-600 rounded-lg shadow-lg">
+    <div className="relative flex items-center justify-center min-h-screen overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-animation" />
+      <div className="z-10 w-full max-w-md p-6 bg-white border-t-4 border-blue-600 rounded-lg shadow-lg">
         <div className="flex items-center justify-center mb-6">
           <Image
             src={devLogo}

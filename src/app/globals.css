@@ -83,3 +83,26 @@
 .ringing {
     animation: ring 0.5s ease-in-out;
 }
+
+/* Background Signup animation */
+.bg-gradient-animation {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, #87cefa, #ffffff);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 100% 0%;
+    }
+
+    100% {
+        background-position: 0% 0%;
+    }
+}

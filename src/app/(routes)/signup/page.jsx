@@ -38,7 +38,7 @@ function Signup() {
   const toggleShowConfirmPassword = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
-  
+
   // Function to close the message
   const closeMessage = () => {
     setMessage(null);
@@ -47,8 +47,9 @@ function Signup() {
   const getTitle = () => (otpSent && showOtpInput ? 'Verify Account' : 'Sign Up');
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-6 mx-2 bg-white border-t-4 border-blue-600 rounded-lg shadow-lg sm:mx-0">
+    <div className="relative flex items-center justify-center min-h-screen overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-animation" />
+      <div className="z-10 w-full max-w-md p-6 bg-white border-t-4 border-blue-600 rounded-lg shadow-lg">
         <div className="flex items-center justify-center mb-6">
           <Image
             src={devLogo}
@@ -181,7 +182,7 @@ function Signup() {
                 />
                 <button
                   type="button"
-                  onClick={toggleShowConfirmPassword }
+                  onClick={toggleShowConfirmPassword}
                   className="absolute right-0 px-4 py-2 text-gray-600 focus:outline-none"
                 >
                   {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}

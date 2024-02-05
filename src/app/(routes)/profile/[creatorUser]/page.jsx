@@ -166,6 +166,11 @@ const CreatorUser = ({ params }) => {
               name={creatorData.name}
               username={creatorData.username}
               email={creatorData.email}
+              portfolio={creatorData.portfolio}
+              linkedin={creatorData.linkedin}
+              github={creatorData.github}
+              cityName={creatorData.cityName}
+              stateName={creatorData.stateName}
               openImageModal={openImageModal}
               isFollowing={isFollowing}
               onFollow={handleFollow}
