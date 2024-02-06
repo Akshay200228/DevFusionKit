@@ -31,7 +31,7 @@ const EditProfileForm = ({
     const handleEditProfileSubmit = async () => {
         try {
             // Make a request to update user details
-            const response = await axios.put('http://localhost:8000/api/users/update', editProfileData, {
+            const response = await axios.put(`${process.env.NEXT_PUBLIC_NEXUS_URL}/api/users/update`, editProfileData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
