@@ -16,7 +16,7 @@ export default function UserProfile() {
 
     useEffect(() => {
         const fetchUserDetails = async () => {
-            if (user && user._id) {
+            if (user && user._id && !userData) { // Add condition to fetch data only if userData is null
                 try {
                     const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL || "https://devnexus-server.onrender.com";
                     const userResponse = await axios.get(`${apiUrl}/api/users/${user._id}`);
@@ -24,26 +24,23 @@ export default function UserProfile() {
 
                     // Fetch detailed data for code components
                     const codeCompIds = userResponse.data.codeComponents.join(',');
-                    // Check if there are code components IDs to fetch
                     if (codeCompIds) {
                         const codeComponentsResponse = await axios.get(`${apiUrl}/api/code-components/ids/${codeCompIds}`);
                         const codeComponentsData = codeComponentsResponse.data;
-                        setCodeComponentsData(codeComponentsData.filter(Boolean)); // Filter out null values
+                        setCodeComponentsData(codeComponentsData.filter(Boolean));
                     } else {
                         console.log('No code components IDs to fetch');
                     }
 
                     // Fetch detailed data for web templates
                     const webTemplateIds = userResponse.data.webTemplates.join(',');
-                    // Check if there are web template IDs to fetch
                     if (webTemplateIds) {
                         const webTemplatesResponse = await axios.get(`${apiUrl}/api/web-templates/details/${webTemplateIds}`);
                         const webTemplatesData = webTemplatesResponse.data;
-                        setWebTemplatesData(webTemplatesData.filter(Boolean)); // Filter out null values
+                        setWebTemplatesData(webTemplatesData.filter(Boolean));
                     } else {
                         console.log('No web template IDs to fetch');
                     }
-                    // Update follower and following counts
                     updateCounts(userResponse.data.followerCount || 0, userResponse.data.following.length || 0);
                 } catch (error) {
                     console.error('Error fetching user details:', error);
@@ -52,7 +49,7 @@ export default function UserProfile() {
         };
 
         fetchUserDetails();
-    }, [user, updateCounts]);
+    }, [user, userData, updateCounts]); // Add userData to dependencies to prevent re-fetching
 
     return (
         <Container>
