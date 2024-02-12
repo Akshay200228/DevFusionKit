@@ -1,4 +1,3 @@
-import React from "react";
 import { TextField } from "./Fields";
 import Button from "./Button";
 import Container from "./Container";
@@ -12,7 +11,7 @@ const Footer = () => {
           <div className="mb-6 md:w-1/2 md:pr-8 md:mb-0">
             <h2 className="mb-2 text-lg font-semibold">Subscribe to Our Newsletter</h2>
             <p className="mb-4 text-sm text-gray-300">
-              Don't miss out on our latest updates and offers. Subscribe now!
+              Don&apos;t miss out on our latest updates and offers. Subscribe now!
             </p>
             <form className="flex flex-col items-center w-full md:flex-row">
               <TextField
