@@ -28,8 +28,8 @@ export const navData = [
   },
   {
     _id: 104,
-    title: "About",
-    href: "/about",
+    title: "Top Posts",
+    href: "/top-posts",
   },
 ];
 
