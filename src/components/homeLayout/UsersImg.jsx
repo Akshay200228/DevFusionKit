@@ -7,12 +7,13 @@ import { UserImgSkeleton } from '../SkeltonLoading';
 
 const UsersImg = () => {
     const [users, setUsers] = useState([]);
-    const [isLoading, setIsLoading] = useState(true); // State for loading indicator
+    const [isLoading, setIsLoading] = useState(true);
+    const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
 
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/api/users');
+                const response = await axios.get(`${apiUrl}/api/users`);
                 if (response.status !== 200) {
                     throw new Error('Failed to fetch users');
                 }
@@ -49,12 +50,10 @@ const UsersImg = () => {
     }
 
     return (
-        <motion.div
-            className="flex items-start justify-start mt-8"
-        >
+        <motion.div className="flex items-start justify-start mt-8">
             {getRandomUsers().map((user, index) => (
-                <>
-                    <Link key={user._id} href={`/profile/${user._id}`} className={`relative ${index !== 0 ? '-ml-4' : ''}`}>
+                <div key={user._id}>
+                    <Link href={`/profile/${user._id}`} className={`relative ${index !== 0 ? '-ml-4' : ''}`}>
                         <motion.img
                             whileHover={{ scale: 1.1 }}
                             transition={{ duration: 0.2 }}
@@ -70,7 +69,7 @@ const UsersImg = () => {
                             </div>
                         </div>
                     )}
-                </>
+                </div>
             ))}
         </motion.div>
     );
