@@ -29,7 +29,7 @@ const CompCategory = ({ params }) => {
   const { bookmarkStates, handleAddBookmark } = useBookmark(user ? user.bookmarks : []);
 
   return (
-    <>
+    <div className='min-h-screen'>
       {isLoading ? (
         <CardSkeleton count={9} />
       ) : error ? (
@@ -148,7 +148,7 @@ const CompCategory = ({ params }) => {
       ) : (
         <div>No code components found for the specified category.</div>
       )}
-    </>
+    </div>
   );
 };
 

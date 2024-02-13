@@ -81,7 +81,6 @@ const CodeCompDetails = ({ params }) => {
                     <Breadcrumbs pathname={pathname} shortenedId={shortId} />
                     <div className="flex items-center justify-between mb-4">
                         <GoBackButton />
-                        {/* <CopyCodeButton onCopy={handleCopyCode} /> */}
                     </div>
 
                     <CodeDisplay code={codeComponent.code} liveEditorRef={liveEditorRef} />

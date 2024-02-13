@@ -26,12 +26,11 @@ const CountBar = () => {
                     <div className="flex items-center justify-center">
                         <CountUp
                             start={0} end={value} duration={4}
-                            className={`text-4xl font-bold font-palanquin text-coral-red`}
+                            className={`text-4xl font-bold font-palanquin`}
                         /> <span className='text-[38px] font-semibold font-palanquin text-gray-400'>+</span>
                     </div>
                     {/* Label */}
                     <p className={`leading-7 font-montserrat text-slate-gray mt-2`}>{label}</p>
-                    {/* Information */}
                 </motion.div>
             ))}
         </motion.div>
