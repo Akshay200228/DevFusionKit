@@ -5,11 +5,17 @@ import Link from 'next/link';
 import useLogin from "@/hooks/useLogin";
 import { devLogo } from "@/images";
 import { FaSpinner, FaEye, FaEyeSlash } from 'react-icons/fa';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 function Login() {
   const { loading, credentials, error, handleChange, handleSubmit } = useLogin();
   const [showPassword, setShowPassword] = useState(false);
+  const usernameOrEmailInputRef = useRef(null);
+
+  useEffect(() => {
+    // Focus on the username or email input field when the component mounts
+    usernameOrEmailInputRef.current.focus();
+  }, []);
 
   // Function to toggle show/hide password
   const toggleShowPassword = () => {
@@ -35,6 +41,7 @@ function Login() {
               Username or Email:
             </label>
             <input
+              ref={usernameOrEmailInputRef} // Add ref here
               type="text"
               name="usernameOrEmail"
               value={credentials.usernameOrEmail}

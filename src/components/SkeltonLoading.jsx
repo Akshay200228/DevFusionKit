@@ -174,7 +174,7 @@ export const UserProfileSkeleton = () => {
 
 export const UserProfileAvatarSkeleton = () => {
     return (
-        <div className="relative w-40 h-40 mx-auto mb-4 overflow-hidden rounded-full animate-pulse">
+        <div className="relative mx-auto overflow-hidden rounded-full w-44 h-44 animate-pulse">
             <div className="w-full h-full bg-gray-300 rounded-full" />
         </div>
     );
