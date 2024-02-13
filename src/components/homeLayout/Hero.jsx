@@ -7,6 +7,9 @@ import BackgroundDesign from "./BackgroundDesign";
 import { dboy } from "@/images";
 import ExtraLogos from "./ExtraLogos";
 
+import CountBar from "./CountBar";
+import UsersImg from "./UsersImg";
+
 const Hero = () => {
   return (
     <section
@@ -33,6 +36,7 @@ const Hero = () => {
                 <span className="ml-2.5">Watch the video</span>
               </Button>
             </div>
+            <UsersImg />
           </div>
           {/* Left side */}
           <div className="relative mt-10 sm:mt-20 lg:col-span-5 lg:row-span-2 lg:mt-0 xl:col-span-6">
@@ -53,7 +57,8 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        <ExtraLogos />
+        {/* <ExtraLogos /> */}
+        <CountBar />
       </Container>
     </section>
   );

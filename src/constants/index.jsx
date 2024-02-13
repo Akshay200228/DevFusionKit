@@ -122,3 +122,9 @@ export const reviews = [
     rating: 5,
   },
 ];
+
+export const statistics = [
+  { value: '30', label: 'Components' },
+  { value: '20', label: 'Templates' },
+  { value: '15', label: 'Users' },
+];

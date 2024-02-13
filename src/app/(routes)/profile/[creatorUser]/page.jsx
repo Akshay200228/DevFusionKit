@@ -154,7 +154,7 @@ const CreatorUser = ({ params }) => {
 
   return (
     <Container>
-      <div className="flex flex-col p-2 mx-auto mt-8 md:p-4">
+      <div className="flex flex-col min-h-screen p-2 mx-auto mt-8 md:p-4">
         {isLoading ? (
           <Loader />
         ) : error && error.message === 'User not found' ? (
