@@ -50,13 +50,15 @@ const UsersImg = () => {
     }
 
     return (
-        <motion.div className="flex items-start justify-start mt-8">
+        <motion.div
+            className="flex items-start justify-start mt-4"
+        >
             {getRandomUsers().map((user, index) => (
-                <div key={user._id}>
-                    <Link href={`/profile/${user._id}`} className={`relative ${index !== 0 ? '-ml-4' : ''}`}>
+                <>
+                    <Link key={user._id} href={`/profile/${user._id}`} className={`relative ${index !== 0 ? '-ml-4' : ''}`}>
                         <motion.img
-                            whileHover={{ scale: 1.1 }}
-                            transition={{ duration: 0.2 }}
+                            whileHover={{ scale: 1.1 }} // Add hover effect
+                            transition={{ duration: 0.2 }} // Smooth transition
                             src={user.avatar || "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75"}
                             alt={user.username || "User Avatar"}
                             className="w-12 h-12 bg-white border-2 border-white rounded-full shadow-lg hover:shadow-xl"
@@ -69,7 +71,7 @@ const UsersImg = () => {
                             </div>
                         </div>
                     )}
-                </div>
+                </>
             ))}
         </motion.div>
     );
