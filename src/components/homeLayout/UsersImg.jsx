@@ -52,8 +52,8 @@ const UsersImg = () => {
     return (
         <motion.div className="flex items-start justify-start mt-8">
             {getRandomUsers().map((user, index) => (
-                <div key={user._id}>
-                    <Link href={`/profile/${user._id}`} className={`relative ${index !== 0 ? '-ml-4' : ''}`}>
+                <>
+                    <Link key={user._id} href={`/profile/${user._id}`} className={`relative ${index !== 0 ? '-ml-4' : ''}`}>
                         <motion.img
                             whileHover={{ scale: 1.1 }}
                             transition={{ duration: 0.2 }}
@@ -69,7 +69,7 @@ const UsersImg = () => {
                             </div>
                         </div>
                     )}
-                </div>
+                </>
             ))}
         </motion.div>
     );
