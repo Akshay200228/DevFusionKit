@@ -1,4 +1,5 @@
 # DevNexus
+Deploy Link: https://dev-nexus.vercel.app/
 
 🚀 Ignite Your Web Dev Creativity!
 
@@ -21,7 +22,7 @@ To get started with DevNexus, follow these steps:
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/DevNexus.git
+   git clone https://github.com/Akshay200228/DevNexus
 
 2. Install the required dependencies:
     cd DevNexus
