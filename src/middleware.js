@@ -29,6 +29,13 @@ export default function middleware(request) {
     return NextResponse.redirect(url);
   }
 
+  // Redirect unauthenticated users away from the profile page
+  if (path.startsWith('/profile/') && !token) {
+    const url = request.nextUrl.clone();
+    url.pathname = '/login';
+    return NextResponse.redirect(url);
+  }
+
   // Allow access if authorized
   return NextResponse.next();
 }
@@ -38,13 +45,12 @@ export const config = {
     '/login',
     '/signup',
     '/component',
-    '/component/[category]',
-    '/component/[codeCompIds]',
     '/templates',
-    '/templates/[templatesID]',
-    '/animations',
     '/code-comp',
     '/profile',
+    '/component/[category]',
+    '/component/[codeCompIds]',
+    '/templates/[templatesID]',
     '/profile/[creatorUser]',
   ]
 };
