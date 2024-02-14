@@ -58,7 +58,7 @@ const CompCategory = ({ params }) => {
                   whileHover={{ rotateY: 5, rotateX: 5 }}
                   transition={{ duration: 0.5, ease: 'easeInOut' }}
                 >
-                  <div className="absolute inset-0 text-neutral-950">
+                  <div className="absolute inset-0 overflow-auto text-neutral-950 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-blue-200">
                     <LivePreview />
                   </div>
                 </motion.div>

@@ -88,7 +88,7 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
                             className="relative flex flex-col h-auto bg-white rounded-lg shadow-xl transform-style-preserve-3d hover:shadow-2xl"
                         >
                             <LiveProvider code={card.code}>
-                                <div className="min-h-[50vh] mb-4 bg-gradient-to-r from-blue-300 to-blue-200 relative overflow-auto rounded-t-lg transform-style-preserve-3d">
+                                <div className="min-h-[50vh] mb-4 bg-gradient-to-r from-blue-300 to-blue-200 relative rounded-t-lg transform-style-preserve-3d">
                                     <div className="absolute inset-0 overflow-auto text-neutral-950 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-blue-200">
                                         <LivePreview />
                                     </div>

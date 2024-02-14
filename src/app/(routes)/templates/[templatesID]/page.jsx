@@ -34,7 +34,7 @@ const WebTemplatesDetails = ({ params }) => {
     }
 
     return (
-        <Container>
+        <Container className='min-h-screen'>
             <div className="flex items-center justify-between mb-4">
                 <GoBackButton />
             </div>

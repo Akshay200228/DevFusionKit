@@ -118,7 +118,7 @@ const MyFavorites = (context) => {
                                     <div
                                         className="min-h-[50vh] mb-4 bg-gradient-to-r from-blue-300 to-blue-200 relative overflow-hidden rounded-t-lg transform-style-preserve-3d"
                                     >
-                                        <div className="absolute inset-0 text-neutral-950">
+                                        <div className="absolute inset-0 overflow-auto text-neutral-950 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-blue-200">
                                             <LivePreview />
                                         </div>
                                     </div>
