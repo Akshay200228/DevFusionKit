@@ -182,7 +182,7 @@ export const UserProfileAvatarSkeleton = () => {
 
 export const UserImgSkeleton = () => {
     return (
-        <div className="flex items-start justify-start mt-4 md:mt-0">
+        <div className="flex items-start justify-start mt-8">
             {[...Array(5)].map((_, index) => (
                 <div key={index} className={`relative ${index !== 0 ? '-ml-4' : ''}`}>
                     <div className="w-12 h-12 bg-gray-300 rounded-full skeleton-shimmer" />

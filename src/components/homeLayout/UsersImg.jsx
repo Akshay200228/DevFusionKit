@@ -1,14 +1,18 @@
 'use client';
+import React from 'react'
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import axios from 'axios';
 import { UserImgSkeleton } from '../SkeltonLoading';
+import { useAuth } from '@/hooks/useAuth';
 
 const UsersImg = () => {
     const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
+    const authData = useAuth();
+    const userId = authData.user ? authData.user._id : null;
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -50,26 +54,32 @@ const UsersImg = () => {
     }
 
     return (
-        <motion.div className="flex items-start justify-start mt-8">
+        <motion.div
+            className="flex items-start justify-start mt-8"
+        >
             {getRandomUsers().map((user, index) => (
-                <>
-                    <Link key={user._id} href={`/profile/${user._id}`} className={`relative ${index !== 0 ? '-ml-4' : ''}`}>
+                <React.Fragment key={user._id}>
+                    <Link
+                        // href={`/profile/${user._id}`}
+                        href={userId === user._id ? `/profile` : `/profile/${user._id}`}
+                        className={`relative ${index !== 0 ? '-ml-5' : ''}`}
+                    >
                         <motion.img
-                            whileHover={{ scale: 1.1 }}
-                            transition={{ duration: 0.2 }}
+                            whileHover={{ scale: 1.1 }} // Add hover effect
+                            transition={{ duration: 0.2 }} // Smooth transition
                             src={user.avatar || "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75"}
                             alt={user.username || "User Avatar"}
-                            className="w-12 h-12 bg-white border-2 border-white rounded-full shadow-lg hover:shadow-xl"
+                            className="w-14 h-14 bg-white border-2 border-blue-500 p-0.5 rounded-full shadow-lg hover:shadow-xl"
                         />
                     </Link>
                     {index === 4 && (
                         <div className="relative ml-4">
-                            <div className="flex items-center justify-center w-12 h-12 -ml-8 bg-gray-300 border-2 border-white rounded-full shadow-lg cursor-pointer">
+                            <div className="flex items-center justify-center -ml-8 bg-gray-300 border-2 border-white rounded-full shadow-lg cursor-pointer w-14 h-14">
                                 <span className="font-semibold text-gray-800">10+</span>
                             </div>
                         </div>
                     )}
-                </>
+                </React.Fragment>
             ))}
         </motion.div>
     );
