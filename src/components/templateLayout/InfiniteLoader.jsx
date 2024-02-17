@@ -61,7 +61,7 @@ export default function InfiniteLoader() {
                 </div >
             )}
 
-            {allDataLoaded && (
+            {!loading && allDataLoaded && (
                 <h3 className="mt-4 text-xl text-center">Thank you for viewing!</h3>
             )}
         </>
