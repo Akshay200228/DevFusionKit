@@ -14,9 +14,11 @@ function ForgotPasswordForm() {
     const [showPassword, setShowPassword] = useState(false);
     const router = useRouter();
 
+    const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
+    
     const handleForgotPassword = async () => {
         try {
-            const response = await axios.post('http://localhost:8000/api/users/forgot-password', { email });
+            const response = await axios.post(`${apiUrl}/api/users/forgot-password`, { email });
             setMessage(response.data.message);
         } catch (error) {
             setError(error.response.data.error);
@@ -25,7 +27,7 @@ function ForgotPasswordForm() {
 
     const handleResetPassword = async () => {
         try {
-            const response = await axios.post('http://localhost:8000/api/users/reset-password', { email, otp, newPassword });
+            const response = await axios.post(`${apiUrl}/api/users/reset-password`, { email, otp, newPassword });
             setMessage(response.data.message);
             setTimeout(() => {
                 setMessage('');
