@@ -1,11 +1,11 @@
 "use client"
 // Login.js
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import useLogin from "@/hooks/useLogin";
 import { devLogo } from "@/images";
 import { FaSpinner, FaEye, FaEyeSlash } from 'react-icons/fa';
-import { useEffect, useRef, useState } from 'react';
 
 function Login() {
   const { loading, credentials, error, handleChange, handleSubmit } = useLogin();
@@ -22,10 +22,11 @@ function Login() {
     setShowPassword(!showPassword);
   };
 
+
   return (
     <div className="relative flex items-center justify-center min-h-screen overflow-hidden">
       <div className="absolute inset-0 bg-gradient-animation" />
-      <div className="z-10 w-full max-w-md p-6 bg-white border-t-4 border-blue-600 rounded-lg shadow-lg">
+      <div className="z-10 w-full max-w-md p-6 mx-2 bg-white border-t-4 border-blue-600 rounded-lg shadow-lg">
         <div className="flex items-center justify-center mb-6">
           <Image
             src={devLogo}
@@ -35,6 +36,7 @@ function Login() {
           />
           <h2 className="text-3xl font-extrabold text-blue-500">Login</h2>
         </div>
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="mb-4">
             <label className="block text-sm font-bold text-gray-700" htmlFor="usernameOrEmail">
@@ -73,6 +75,11 @@ function Login() {
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
             </div>
+
+            <p className="mt-2 text-sm text-blue-500 underline cursor-pointer text-end">
+              <Link href="/forgot-password">Forgot Password?</Link>
+            </p>
+
           </div>
           <button
             type="submit"

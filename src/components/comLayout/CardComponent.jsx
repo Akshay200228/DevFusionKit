@@ -66,7 +66,7 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
         router.push(`/component?page=${prevPage}`);
     };
     return (
-        <div className="w-full pt-4 text-white">
+        <div className="w-full min-h-screen pt-4 text-white">
             {isLoading ? (
                 <CardSkeleton count={9} />
             ) : error ? (

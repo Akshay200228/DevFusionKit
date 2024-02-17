@@ -6,11 +6,15 @@ import useApiFetch from '@/hooks/useApiFetch';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { WebTemplatesDetailsSkeleton } from '@/components/SkeltonLoading';
 import GoBackButton from '@/components/comLayout/codeCompIds/GoBackButton';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 const WebTemplatesDetails = ({ params }) => {
     const [isInteraction, setIsInteraction] = useState(false);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const handleInteraction = () => {
         setIsInteraction(!isInteraction);
