@@ -1,6 +1,6 @@
 // useSignup.js
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
@@ -12,7 +12,6 @@ const useSignup = () => {
     password: '',
     confirmPassword: '',
     otp: '',
-    expirationTime: null,
   });
   const [successMessage, setSuccessMessage] = useState('');
   const [error, setError] = useState(null);
@@ -20,8 +19,33 @@ const useSignup = () => {
   const [otpSent, setOtpSent] = useState(false);
   const [showOtpInput, setShowOtpInput] = useState(false);
   const [showVerificationPopup, setShowVerificationPopup] = useState(false);
+  const [remainingTime, setRemainingTime] = useState(null);
+
 
   const router = useRouter();
+
+  useEffect(() => {
+    let timer;
+    if (otpSent) {
+      const expirationTime = Date.now() + 120000; // 2 minutes in milliseconds
+      timer = setInterval(() => {
+        const currentTime = Date.now();
+        const timeDifference = expirationTime - currentTime;
+        if (timeDifference <= 0) {
+          clearInterval(timer);
+          setOtpSent(false);
+          setShowOtpInput(false);
+          setError({ message: 'OTP expired. Please resend OTP.' });
+        } else {
+          const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+          setRemainingTime({ minutes, seconds });
+        }
+      }, 1000);
+    }
+
+    return () => clearInterval(timer);
+  }, [otpSent]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,6 +63,7 @@ const useSignup = () => {
       setOtpSent(true);
       setSuccessMessage('OTP resent successfully!');
       setShowOtpInput(true);
+      setRemainingTime(null); 
     } catch (error) {
       console.error(error);
       setError(error);
@@ -56,8 +81,6 @@ const useSignup = () => {
 
     try {
       setLoading(true);
-      // const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL || "http://localhost:8000";
-      // const apiUrl = "https://devnexus-server.onrender.com";
       const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
       const response = await axios.post(`${apiUrl}/api/users/signup`, { ...formData, otp }, {
         headers: {
@@ -65,11 +88,9 @@ const useSignup = () => {
         },
       });
 
-      console.log("Response create user data: ", response)
-
       // Check if the response contains a valid structure
       if (response.data) {
-        setSuccessMessage('User registered successfully! Moye Moye');
+        setSuccessMessage('User registered successfully!');
         // If registration is successful, show OTP input
         setOtpSent(true);
         setShowOtpInput(true);
@@ -143,13 +164,13 @@ const useSignup = () => {
     otpSent,
     showOtpInput,
     showVerificationPopup,
+    remainingTime,
     loading,
     handleChange,
     handleSubmit,
     handleVerifyOTP,
     handleResendOTP,
     closeVerificationPopup,
-
   };
 };
 

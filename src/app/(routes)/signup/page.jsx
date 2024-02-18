@@ -1,6 +1,6 @@
 "use client"
 // Signup.js
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from 'next/link';
 import Image from 'next/image';
 import useSignup from "@/hooks/useSignup";
@@ -18,6 +18,7 @@ function Signup() {
     otpSent,
     showOtpInput,
     showVerificationPopup,
+    remainingTime,
     handleChange,
     handleResendOTP,
     handleVerifyOTP,
@@ -43,6 +44,34 @@ function Signup() {
   const closeMessage = () => {
     setMessage(null);
   };
+
+  useEffect(() => {
+    if (error) {
+      setTimeout(() => {
+        setError(null);
+      }, 5000);
+    }
+  }, [error]);
+
+  const renderRemainingTime = () => {
+    if (remainingTime) {
+      const { minutes, seconds } = remainingTime;
+      return (
+        <div className="flex items-center justify-end mt-4">
+          <p className="text-sm text-gray-600">Remaining Time:</p>
+          <div className="flex items-center ml-2">
+            <span className="text-sm font-semibold text-red-500">{minutes}</span>
+            <span className="mx-1 text-gray-600">:</span>
+            <span className="text-sm font-semibold text-red-500">
+              {seconds < 10 ? `0${seconds}` : seconds}
+            </span>
+          </div>
+        </div>
+      );
+    }
+    return null;
+  };
+
 
   const getTitle = () => (otpSent && showOtpInput ? 'Verify Account' : 'Sign Up');
 
@@ -93,6 +122,10 @@ function Signup() {
                 Verify
               </button>
             </div>
+
+            {/* Display remaining time countdown if OTP is sent */}
+            {renderRemainingTime()}
+
             <p className="text-sm text-gray-600">
               <span className='font-bold text-red-500'>Note:</span> If the OTP email isn&apos;t visible in your inbox, kindly check your spam or junk folder to ensure a smooth authentication process.
             </p>
@@ -206,11 +239,13 @@ function Signup() {
           </form>
         )}
 
+        {/* Display the "Resend OTP" button if OTP is sent */}
         {otpSent && (
           <div className="text-right">
             <button
               onClick={handleResendOTP}
-              className="text-sm text-blue-500 hover:underline focus:outline-none"
+              disabled={!!remainingTime} // Disable if remainingTime exists
+              className={`text-sm text-blue-500 hover:underline focus:outline-none ${!!remainingTime ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               Resend OTP
             </button>

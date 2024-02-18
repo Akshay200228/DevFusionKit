@@ -53,7 +53,6 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
     };
 
     const token = getCookie('token');
-    const defaultAvatar = "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75";
 
     // Function to delete the previous avatar
     const deletePreviousAvatar = async (previousImageUrl) => {
@@ -93,7 +92,6 @@ const UserProfileContainer = ({ user, userData, codeComponentsData, webTemplates
                 // Pass the token to deletePreviousAvatar
                 await deletePreviousAvatar(previousImageUrl, token);
             }
-
 
             const formData = new FormData();
             formData.append('file', file);
