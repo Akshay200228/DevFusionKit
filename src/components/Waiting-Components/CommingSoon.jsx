@@ -1,10 +1,9 @@
-"use client"
-
+'use client';
 import { motion } from "framer-motion";
 
-const TopPosts = () => {
-    return (
-        <div className="flex items-center justify-center min-h-screen overflow-hidden bg-gradient-to-r from-blue-300 to-blue-200">
+const CommingSoon = () => {
+  return (
+    <div className="flex items-center justify-center min-h-screen overflow-hidden bg-gradient-to-r from-blue-300 to-blue-200">
             <motion.div
                 className="relative flex flex-col items-center justify-center w-full h-full"
                 initial={{ opacity: 0, y: -20 }}
@@ -44,7 +43,7 @@ const TopPosts = () => {
                 </motion.p>
             </motion.div>
         </div>
-    )
+  )
 }
 
-export default TopPosts;
+export default CommingSoon

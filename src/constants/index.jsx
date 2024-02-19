@@ -7,8 +7,6 @@ import {
   DeviceChartIcon,
 } from "@/components/homeLayout/StockLogos";
 
-import templateImage from '@/images/template.png';
-
 
 export const navData = [
   {
@@ -28,8 +26,8 @@ export const navData = [
   },
   {
     _id: 104,
-    title: "Top Posts",
-    href: "/top-posts",
+    title: "Spotlight",
+    href: "/spotlight",
   },
 ];
 

@@ -18,4 +18,3 @@ export async function fetchWebTemp(currentPage) {
         return null;
     }
 }
-

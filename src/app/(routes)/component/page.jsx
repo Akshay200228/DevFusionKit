@@ -5,12 +5,13 @@ import { useAuth } from "@/hooks/useAuth";
 
 export default function Component(context) {
   const page = parseInt(context.searchParams.page) || 1;
+  const limit = 12;
 
   const authData = useAuth();
   const user = authData.user;
   const userId = user ? user._id : null;
   const { searchQuery } = useSearch();
-  const apiUrl = `${process.env.NEXT_PUBLIC_NEXUS_URL}/api/code-components?page=${page}&title=${searchQuery}`;
+  const apiUrl = `${process.env.NEXT_PUBLIC_NEXUS_URL}/api/code-components?page=${page}&title=${searchQuery}&limit=${limit}`;
 
   return (
     <div className="w-full bg-white">
