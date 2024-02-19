@@ -25,7 +25,7 @@ const members = [
 const About = () => {
   return (
     <Container>
-      <section className="h-screen pt-6 md:pt-10">
+      <section className="min-h-screen pt-6 my-4 md:pt-10">
         <h1 className="mb-8 text-4xl font-bold">About Us</h1>
         <p className="text-gray-600">
           Welcome to our community! Learn more about the people behind our

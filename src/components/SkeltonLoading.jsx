@@ -25,6 +25,28 @@ export const CardSkeleton = ({ count }) => {
     );
 };
 
+export const SpotlightSkeleton = ({ count }) => {
+    return (
+        <div className="grid grid-cols-1 gap-8 px-4 py-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {[...Array(count)].map((_, index) => (
+                <div key={index} className="relative transition duration-300 bg-white rounded-lg shadow-xl animate-pulse">
+                    <div className="min-h-[50vh] bg-gray-300 relative rounded-t-lg skeleton-shimmer">
+                        {/* LivePreview Skeleton */}
+                        <div className="absolute inset-0 overflow-auto text-neutral-950 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-blue-200">
+                            <div className="w-full h-full bg-gray-300 animate-pulse" />
+                        </div>
+                    </div>
+                    <div className="flex items-center justify-center p-4">
+                        {/* Button Skeleton */}
+                        <div className="w-1/4 h-10 px-4 py-2 bg-gray-300 rounded-full skeleton-shimmer" />
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
+};
+
+
 // Profile Skelton Loader
 export const ProfileSkeltonLoading = () => {
     return (
