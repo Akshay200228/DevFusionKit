@@ -1,6 +1,7 @@
 import { FaCode } from 'react-icons/fa';
 import { LivePreview, LiveProvider } from 'react-live';
 import Link from 'next/link';
+import ExploreButton from '@/components/Reusable-Comp/ExploreButton';
 
 const CodeComponent = ({ title, code, componentId }) => (
     <div className="mb-6">
@@ -14,11 +15,11 @@ const CodeComponent = ({ title, code, componentId }) => (
                 </LiveProvider>
             </div>
             <div className="flex justify-center mt-2 md:mt-4">
-                <Link href={`/component/${componentId}`}>
-                    <button className="px-4 py-2 text-white transition-transform duration-300 ease-in-out bg-blue-500 rounded-full hover:bg-blue-600">
-                        <FaCode className="text-xl md:text-3xl" />
-                    </button>
-                </Link>
+                <ExploreButton
+                    text="Explore"
+                    icon={<FaCode className="text-xl md:text-3xl" />}
+                    href={`/component/${componentId}`}
+                />
             </div>
         </div>
     </div>

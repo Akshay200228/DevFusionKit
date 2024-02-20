@@ -46,6 +46,29 @@ export const SpotlightSkeleton = ({ count }) => {
     );
 };
 
+export const TopCreatorsCardSkeleton = ({ count }) => {
+    return (
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {[...Array(count)].map((_, index) => (
+                <div key={index} className="flex overflow-hidden transition duration-300 bg-white rounded-lg shadow-xl hover:shadow-2xl animate-pulse">
+                    <div className="h-44 w-44 skeleton-shimmer">
+                        <div className="w-full h-full bg-gray-300 rounded"></div>
+                    </div>
+                    <div className="w-2/3 p-6">
+                        <div className="h-8 mb-4 bg-gray-300 rounded skeleton-shimmer" />
+                        <div className="h-6 mb-6 bg-gray-300 rounded skeleton-shimmer" />
+                        <div className="flex justify-between text-gray-600">
+                            <div className="flex items-center">
+                                <div className="w-8 h-8 mr-2 bg-gray-300 rounded-full skeleton-shimmer" />
+                                <span className="inline-block w-20 h-4 bg-gray-300 rounded skeleton-shimmer" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
+};
 
 // Profile Skelton Loader
 export const ProfileSkeltonLoading = () => {

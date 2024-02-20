@@ -1,7 +1,7 @@
 // WebTempCard.jsx
 import { motion } from 'framer-motion';
 import { FaCode } from 'react-icons/fa';
-import Link from 'next/link';
+import ExploreButton from '../Reusable-Comp/ExploreButton';
 
 const stagger = 0.2;
 
@@ -12,6 +12,9 @@ const variants = {
 
 const WebTempCard = ({ webtemp, index }) => {
   const isStaggered = index > 0 && index % 12 !== 0; // Skip stagger for the first card and multiples of 12
+
+  // Shorten the description to 34 characters
+  const shortDescription = webtemp.description.substring(0, 34) + (webtemp.description.length > 34 ? '...' : '');
 
   return (
     <motion.div
@@ -35,30 +38,15 @@ const WebTempCard = ({ webtemp, index }) => {
       </div>
       <div className="p-4">
         <h2 className="text-xl font-semibold text-gray-900">{webtemp.title}</h2>
-        <p className="mt-2 text-gray-500">{webtemp.description}</p>
+        <p className="mt-2 text-gray-500">{shortDescription}</p>
 
         {/* Links */}
         <div className="flex justify-center mt-4">
-          <Link href={`/templates/${webtemp._id}`}>
-            <motion.button
-              whileTap={{ scale: 0.9 }}
-              initial={{ scale: 1, opacity: 0.9 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-              className="px-6 py-2 text-white transition-transform duration-300 ease-in-out rounded-full bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-indigo-500 hover:to-purple-500 hover:shadow-2xl focus:outline-none focus:ring focus:border-blue-300 transform-style-preserve-3d"
-            >
-              <div className="flex items-center space-x-2">
-                <motion.div
-                  initial={{ scale: 0.8, rotateY: -10, rotateX: 10, rotateZ: -10 }}
-                  animate={{ scale: 1, rotateY: 0, rotateX: 0, rotateZ: 0 }}
-                  transition={{ yoyo: Infinity, duration: 1.5 }}
-                >
-                  <FaCode className="text-3xl" />
-                </motion.div>
-                <span className="text-lg">Explore</span>
-              </div>
-            </motion.button>
-          </Link>
+          <ExploreButton
+            text="Explore"
+            icon={<FaCode className="text-xl md:text-3xl" />}
+            href={`/templates/${webtemp._id}`}
+          />
         </div>
       </div>
     </motion.div>
