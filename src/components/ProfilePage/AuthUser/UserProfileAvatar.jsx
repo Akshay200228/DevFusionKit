@@ -19,7 +19,7 @@ const UserProfileAvatar = ({
     handleDelete,
     cloudinaryUrl
 }) => {
-    const defaultAvatar = 'https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75';
+    const defaultAvatar = 'https://res.cloudinary.com/daqvbo5ys/image/upload/v1704980512/e0gfxbxy6oyep4qt9ice';
 
     return (
         <>

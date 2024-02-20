@@ -11,6 +11,7 @@ import { CodeCompDetailsSkeleton } from '@/components/SkeltonLoading';
 import { useAuth } from '@/hooks/useAuth';
 import Breadcrumbs from '@/components/comLayout/codeCompIds/Breadcrumbs';
 import { usePathname } from 'next/navigation';
+import { IoBookmark } from 'react-icons/io5';
 
 const CodeCompDetails = ({ params }) => {
     const liveEditorRef = useRef(null);
@@ -29,15 +30,15 @@ const CodeCompDetails = ({ params }) => {
 
     const { data: codeComponent, isLoading, error } = useApiFetch(CompApiUrl);
 
-
     const closeMessage = () => {
         setMessage(null);
     };
+
     const pathname = usePathname();
     const shortId = params.codeCompIds.slice(0, 5); // Extract the first 4 characters of the ID
 
     return (
-        <div className="container p-8 mx-auto mt-8 bg-white rounded-lg shadow-lg">
+        <div className="container p-8 mx-auto my-8 bg-white rounded-lg shadow-lg">
             {isLoading ? (
                 <CodeCompDetailsSkeleton />
             ) : error ? (
@@ -51,16 +52,23 @@ const CodeCompDetails = ({ params }) => {
 
                     <CodeDisplay code={codeComponent.code} liveEditorRef={liveEditorRef} />
 
-                    <div className="flex items-center mt-4">
-                        <Link href={userId === codeComponent.createdBy ? `/profile` : `/profile/${codeComponent.createdBy}`}>
-                            <img
-                                src={codeComponent.creatorAvatar || "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75"}
-                                alt="User Image"
-                                className="w-14 h-14 p-0.5 mr-2 border-2 border-blue-600 rounded-full"
-                            />
-                        </Link>
-                        <div>
-                            <p className="text-lg font-bold text-gray-500">{codeComponent.title}</p>
+                    <div className="flex items-center justify-between mt-4">
+                        <div className="flex items-center">
+                            <Link href={userId === codeComponent.createdBy ? `/profile` : `/profile/${codeComponent.createdBy}`}>
+                                <img
+                                    src={codeComponent.creatorAvatar || "https://dev-nexus.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FdevLogo.8d21b413.png&w=640&q=75"}
+                                    alt="User Image"
+                                    className="w-14 h-14 p-0.5 mr-2 border-2 border-blue-600 rounded-full cursor-pointer"
+                                />
+                            </Link>
+                            <div>
+                                <p className="text-lg font-bold text-gray-500">{codeComponent.title}</p>
+                            </div>
+                        </div>
+                        {/* Bookmark button and count */}
+                        <div className="flex items-center space-x-2">
+                            <IoBookmark className="w-6 h-6 text-blue-500" />
+                            <span className="text-gray-500">{codeComponent.bookmarks.length}</span>
                         </div>
                     </div>
 
