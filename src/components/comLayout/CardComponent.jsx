@@ -1,6 +1,5 @@
 "use client";
 import axios from 'axios';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -11,6 +10,7 @@ import useBookmark from '@/hooks/useBookmark';
 import { IoBookmark } from "react-icons/io5";
 import { FaCode } from 'react-icons/fa';
 import UserAvatar from '../UserAvatar';
+import ExploreButton from '../Reusable-Comp/ExploreButton';
 
 export default function CardComponent({ user, userId, apiUrl, page }) {
     const router = useRouter()
@@ -159,26 +159,11 @@ export default function CardComponent({ user, userId, apiUrl, page }) {
                                     </motion.button>
                                 )}
 
-                                <Link href={`/component/${card._id}`}>
-                                    <motion.button
-                                        whileTap={{ scale: 0.9 }}
-                                        initial={{ scale: 1, opacity: 0.9 }}
-                                        animate={{ opacity: 1 }}
-                                        transition={{ duration: 0.3 }}
-                                        className="px-4 py-2 text-white transition-transform duration-300 ease-in-out rounded-full bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-indigo-500 hover:to-purple-500 hover:shadow-2xl focus:outline-none focus:ring focus:border-blue-300 transform-style-preserve-3d"
-                                    >
-                                        <div className="flex items-center space-x-2">
-                                            <motion.div
-                                                initial={{ scale: 0.8, rotateY: -10, rotateX: 10 }}
-                                                animate={{ scale: 1, rotateY: 0, rotateX: 0 }}
-                                                transition={{ yoyo: Infinity, duration: 1.5 }}
-                                            >
-                                                <FaCode className="text-xl md:text-3xl" />
-                                            </motion.div>
-                                            <span className="text-lg">Explore</span>
-                                        </div>
-                                    </motion.button>
-                                </Link>
+                                <ExploreButton
+                                    text="Explore"
+                                    icon={<FaCode className="text-xl md:text-3xl" />}
+                                    href={`/component/${card._id}`}
+                                />
                             </div>
                         </motion.div>
                     ))}

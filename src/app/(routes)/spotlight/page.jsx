@@ -4,6 +4,7 @@ import useApiFetch from "@/hooks/useApiFetch";
 import { SpotlightSkeleton, TopCreatorsCardSkeleton } from '@/components/SkeltonLoading';
 import TopPostsCard from '@/components/Spotlight-Comp/TopPostsCard';
 import TopCreatorsCard from '@/components/Spotlight-Comp/TopCreatorsCard';
+import ExploreButton from '@/components/Reusable-Comp/ExploreButton';
 
 const Spotlight = () => {
     // Define the API URL
@@ -21,7 +22,7 @@ const Spotlight = () => {
         // Sort code components based on the number of bookmarks (descending order)
         const sortedData = data.sort((a, b) => b.bookmarks.length - a.bookmarks.length);
         // Slice the top 6 code components
-        return sortedData.slice(0, 8);
+        return sortedData.slice(0, 6);
     };
 
     // Function to get the top 8 users with the largest number of followers
@@ -39,6 +40,7 @@ const Spotlight = () => {
     const topFollowersUsers = userLoading ? [] : getTopFollowersUsers(userData.users);
 
     const defaultAvatar = 'https://res.cloudinary.com/daqvbo5ys/image/upload/v1704980512/e0gfxbxy6oyep4qt9ice';
+
     return (
         <Container>
             <div className="min-h-screen px-4 py-8">
@@ -51,12 +53,21 @@ const Spotlight = () => {
                 {cardLoading ? (
                     <SpotlightSkeleton count={8} />
                 ) : (
-                    <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                    <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                         {topBookmarkedCodeComps.map((card) => (
                             <TopPostsCard key={card._id} card={card} />
                         ))}
                     </div>
                 )}
+
+                {/* View more button */}
+                <div className="flex justify-center mt-8">
+                    <ExploreButton
+                        text="View All"
+                        href="/component"
+                    />
+                </div>
+
 
                 <hr className="my-12 border-t border-gray-300" />
 

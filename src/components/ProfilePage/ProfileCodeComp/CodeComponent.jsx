@@ -13,6 +13,7 @@ import Message from "../../comLayout/create-code-comp/Message";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
+import ExploreButton from "@/components/Reusable-Comp/ExploreButton";
 
 
 const CodeComponent = ({ codeComponents }) => {
@@ -121,12 +122,12 @@ const CodeComponent = ({ codeComponents }) => {
 
                       {/* Buttons */}
                       <div className="flex justify-between mt-2 md:mt-4">
-                        {/* Explore Button (Left Side) */}
-                        <Link href={`/component/${component._id}`}>
-                          <button className="px-4 py-2 text-white transition-transform duration-300 ease-in-out rounded-full bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-indigo-500 hover:to-purple-500 hover:shadow-2xl focus:outline-none focus:ring focus:border-blue-300 transform-style-preserve-3d">
-                            <FaCode className="text-xl md:text-3xl" />
-                          </button>
-                        </Link>
+                        {/* Explore Button*/}
+                        <ExploreButton
+                          text="Explore"
+                          icon={<FaCode className="text-xl" />}
+                          href={`/component/${component._id}`}
+                        />
 
                         {/* Edit and Delete Buttons (Right Side) */}
                         <div className="flex space-x-2">

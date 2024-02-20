@@ -1,7 +1,7 @@
-import Link from 'next/link';
 import { FaCode } from "react-icons/fa";
 import { IoBookmark } from 'react-icons/io5';
 import { LivePreview, LiveProvider } from 'react-live';
+import ExploreButton from '../Reusable-Comp/ExploreButton';
 
 const TopPostsCard = ({ card }) => {
     return (
@@ -14,14 +14,11 @@ const TopPostsCard = ({ card }) => {
                 </div>
             </LiveProvider>
             <div className="flex items-center justify-between p-4">
-                <Link href={`/component/${card._id}`}>
-                    <button className="px-4 py-2 text-white rounded-full bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-indigo-500 hover:to-purple-500 focus:outline-none focus:ring focus:border-blue-300">
-                        <div className="flex items-center space-x-2">
-                            <FaCode className="text-xl" />
-                            <span className="text-lg">Explore</span>
-                        </div>
-                    </button>
-                </Link>
+                <ExploreButton
+                    text="Explore"
+                    icon={<FaCode className="text-xl" />}
+                    href={`/component/${card._id}`}
+                />
                 {/* Bookmark count */}
                 <div className="flex items-center space-x-1">
                     <IoBookmark className="w-6 h-6 text-blue-500" />

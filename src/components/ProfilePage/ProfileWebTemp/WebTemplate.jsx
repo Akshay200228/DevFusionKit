@@ -10,6 +10,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import useComponent from '@/hooks/useComponent';
+import ExploreButton from '@/components/Reusable-Comp/ExploreButton';
 
 const WebTemplate = ({ webTemplates }) => {
   const {
@@ -77,13 +78,11 @@ const WebTemplate = ({ webTemplates }) => {
                       <h4 className="mb-2 text-xl font-semibold">{template.title}</h4>
 
                       <div className="flex justify-between mt-2 md:mt-4">
-                        <Link href={`/templates/${template._id}`}>
-                          <button
-                            className="px-4 py-2 text-white transition-transform duration-300 ease-in-out rounded-full bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-indigo-500 hover:to-purple-500 hover:shadow-2xl focus:outline-none focus:ring focus:border-blue-300 transform-style-preserve-3d"
-                          >
-                            <FaCode className="text-3xl" />
-                          </button>
-                        </Link>
+                        <ExploreButton
+                          text="Explore"
+                          icon={<FaCode className="text-xl" />}
+                          href={`/templates/${template._id}`}
+                        />
                         <div className="flex space-x-2">
                           <button
                             onClick={() => handleEdit(template)}
