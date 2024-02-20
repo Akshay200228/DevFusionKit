@@ -31,7 +31,7 @@ const Hero = () => {
                 <span className="ml-2.5">Get Started</span>
               </Button>
               {/* Btn 2 */}
-              <Button variant="outline" href="/">
+              <Button variant="outline" href="https://www.youtube.com/watch?v=u6AhW2iYLbw">
                 <BsPlayCircle className="text-xl" />
                 <span className="ml-2.5">Watch the video</span>
               </Button>
