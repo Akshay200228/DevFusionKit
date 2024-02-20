@@ -54,10 +54,21 @@ const Spotlight = () => {
                     <SpotlightSkeleton count={8} />
                 ) : (
                     <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-                        {topBookmarkedCodeComps.map((card) => (
-                            <TopPostsCard key={card._id} card={card} />
-                        ))}
+                        {topBookmarkedCodeComps.map((card, index) => {
+                            let suffix = '';
+                            if (index + 1 === 1) {
+                                suffix = 'st';
+                            } else if (index + 1 === 2) {
+                                suffix = 'nd';
+                            } else if (index + 1 === 3) {
+                                suffix = 'rd';
+                            } else {
+                                suffix = 'th';
+                            }
+                            return <TopPostsCard key={card._id} card={card} batch={`${index + 1}${suffix}`} />;
+                        })}
                     </div>
+
                 )}
 
                 {/* View more button */}
