@@ -44,13 +44,10 @@ export const config = {
   matcher: [
     '/login',
     '/signup',
-    '/component',
-    '/templates',
     '/code-comp',
     '/profile',
-    '/component/[category]',
-    '/component/[codeCompIds]',
-    '/templates/[templatesID]',
-    '/profile/[creatorUser]',
+    '/component/:path*',
+    '/templates/:path*',
+    '/profile/:path*',
   ]
 };
