@@ -66,10 +66,7 @@ const CreatorUser = ({ params }) => {
           setIsLoading(false);
           return;
         }
-        console.log("creatorResponse: ", creatorResponse.data)
         setCreatorData(creatorResponse.data);
-        // setFollowerCount(creatorResponse.data.followerCount || 0);
-        // setFollowingCount(creatorResponse.data.following.length || 0);
         updateCounts(creatorResponse.data.followerCount || 0, creatorResponse.data.following.length || 0);
 
         if (creatorResponse.data.codeComponents) {
@@ -128,7 +125,7 @@ const CreatorUser = ({ params }) => {
       // Update local state immediately
       setFollowUnfollowLoading(true)
       setIsFollowing(false);
-      
+
       const token = getCookie('token');
       const headers = {
         'Authorization': `Bearer ${token}`,
