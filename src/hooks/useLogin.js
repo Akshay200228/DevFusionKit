@@ -35,6 +35,7 @@ const useLogin = () => {
             document.cookie = `token=${token}; expires=${expirationDate.toUTCString()}; path=/`;
 
             router.replace('/');
+            window.location.reload();
         } catch (error) {
             console.error(error);
             setError(error);

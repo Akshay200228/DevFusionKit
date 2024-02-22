@@ -68,7 +68,6 @@ const Spotlight = () => {
                             return <TopPostsCard key={card._id} card={card} batch={`${index + 1}${suffix}`} />;
                         })}
                     </div>
-
                 )}
 
                 {/* View more button */}
