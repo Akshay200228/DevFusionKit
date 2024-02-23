@@ -9,8 +9,8 @@ export default function Home() {
     <main className="scroll-smooth">
       <Hero />
       <CodeEditor />
-      <Reviews />
       <Account />
+      <Reviews />
       <CallToAction />
     </main>
   );
