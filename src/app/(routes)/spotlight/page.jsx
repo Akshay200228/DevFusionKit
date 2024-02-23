@@ -78,7 +78,6 @@ const Spotlight = () => {
                     />
                 </div>
 
-
                 <hr className="my-12 border-t border-gray-300" />
 
                 <h1 className="mb-4 text-4xl font-bold text-center text-slate-800">
