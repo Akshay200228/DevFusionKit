@@ -1,6 +1,7 @@
 import Header from "@/components/homeLayout/Header";
 import Footer from "@/components/homeLayout/Footer";
 import "./globals.css";
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 export const metadata = {
   title: {
@@ -16,11 +17,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="scrollbar-none scroll-smooth">
-        <Header />
-        <main>{children}</main>
-        <Footer />
-      </body>
+      <GoogleOAuthProvider clientId={"1074299599837-4lbh376sv07rpk6295tsemmgrnhkkga4.apps.googleusercontent.com"}>
+        <body className="scrollbar-none scroll-smooth">
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </body>
+      </GoogleOAuthProvider>
     </html>
   );
 };

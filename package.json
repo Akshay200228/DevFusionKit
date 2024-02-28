@@ -11,6 +11,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.16",
     "@monaco-editor/react": "^4.6.0",
+    "@react-oauth/google": "^0.12.1",
     "autoprefixer": "10.4.14",
     "axios": "^1.5.1",
     "clsx": "^2.0.0",
