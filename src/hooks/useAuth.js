@@ -11,6 +11,7 @@ export function useAuth() {
     const fetchData = async () => {
       try {
         const token = getCookie('token');
+        console.log("object: ", token)
         if (token) {
           const apiUrl = process.env.NEXT_PUBLIC_NEXUS_URL;
           const response = await axios.get(`${apiUrl}/api/users/authUser`, {
