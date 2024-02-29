@@ -1,3 +1,4 @@
+"use client";
 // SearchContext.js
 import { useRouter } from 'next/navigation';
 import { createContext, useContext, useState } from 'react';

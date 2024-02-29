@@ -53,3 +53,4 @@ const TopCreatorsCard = ({ user, defaultAvatar }) => {
 };
 
 export default TopCreatorsCard;
+

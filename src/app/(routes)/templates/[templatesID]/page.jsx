@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Container from '@/components/homeLayout/Container';
@@ -6,7 +7,6 @@ import useApiFetch from '@/hooks/useApiFetch';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { WebTemplatesDetailsSkeleton } from '@/components/SkeltonLoading';
 import GoBackButton from '@/components/comLayout/codeCompIds/GoBackButton';
-import { useEffect, useState } from 'react';
 
 
 const WebTemplatesDetails = ({ params }) => {
