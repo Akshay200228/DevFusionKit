@@ -4,6 +4,12 @@ export const metadata = {
   title: 'Web Templates'
 }
 
+// export async function generateMetadata({ params }) {
+//   return {
+//     title: 'Web Templates'
+//   }
+// }
+
 export default function Templates() {
   return (
     <div className="w-full h-auto bg-white">

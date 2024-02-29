@@ -1,6 +1,6 @@
 import { FaCode, FaMedal } from 'react-icons/fa'; // Import FaMedal for the gold medal icon
 import { LivePreview, LiveProvider } from 'react-live';
-import ExploreButton from '../Reusable-Comp/ExploreButton';
+import ExploreButton from '../../Reusable-Comp/ExploreButton';
 import { IoBookmark } from 'react-icons/io5';
 import { motion } from 'framer-motion';
 

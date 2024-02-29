@@ -5,6 +5,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 
 export const metadata = {
   title: {
+    default: 'DevNexus',
     template: '%s | DevNexus',
     default: 'DevNexus - Web Components, Code, Animations, and APIs',
   },

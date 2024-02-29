@@ -76,11 +76,9 @@ const Header = ({ userId }) => {
       <nav>
         <div className="relative z-40 flex justify-between py-4 mx-2 md:mx-6">
           {/* Logo */}
-          <Drawer text="DevNexus">
-            <div className="relative z-10 flex items-center gap-16">
+            <div className="z-10 flex items-center gap-16">
               <Logo />
             </div>
-          </Drawer>
           {/* NavLinks */}
           <div className="items-center hidden lg:flex lg:gap-10">
             <NavLinks />
