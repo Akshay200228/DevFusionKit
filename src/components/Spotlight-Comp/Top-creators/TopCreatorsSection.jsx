@@ -1,8 +1,10 @@
 "use client";
 
+import { TopCreatorsCardSkeleton } from "@/components/SkeltonLoading";
 import useApiFetch from "@/hooks/useApiFetch";
-import { TopCreatorsCardSkeleton } from "../../SkeltonLoading";
 import TopCreatorsCard from "./TopCreatorsCard";
+
+
 
 const TopCreatorsSection = () => {
     const userApiUrl = process.env.NEXT_PUBLIC_NEXUS_URL + "/api/users";
