@@ -1,8 +1,8 @@
-import { FaCode, FaMedal } from 'react-icons/fa'; // Import FaMedal for the gold medal icon
+import { FaCode } from 'react-icons/fa';
 import { LivePreview, LiveProvider } from 'react-live';
-import ExploreButton from '../../Reusable-Comp/ExploreButton';
 import { IoBookmark } from 'react-icons/io5';
 import { motion } from 'framer-motion';
+import ExploreButton from '@/components/Reusable-Comp/ExploreButton';
 
 const TopPostsCard = ({ card, batch }) => {
     // Function to select the appropriate icon based on batch
