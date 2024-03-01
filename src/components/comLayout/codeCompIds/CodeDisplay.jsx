@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import CopyCodeButton from './CopyCodeButton';
 
 const CodeDisplay = ({ code }) => {
+    const liveEditorRef = useRef(null);
     const [liveCode, setLiveCode] = useState(code);
     const [isCopySuccess, setIsCopySuccess] = useState(false);
 

@@ -11,9 +11,17 @@ import { IoBookmark } from "react-icons/io5";
 import { FaCode } from 'react-icons/fa';
 import UserAvatar from '../UserAvatar';
 import ExploreButton from '../Reusable-Comp/ExploreButton';
+import { useAuth } from '@/hooks/useAuth';
+import { useSearch } from '@/context/SearchContext';
 
-export default function CardComponent({ user, userId, apiUrl, page }) {
+export default function CardComponent({ limit, page }) {
     const router = useRouter()
+
+    const authData = useAuth();
+    const user = authData.user;
+    const userId = user ? user._id : null;
+    const { searchQuery } = useSearch();
+    const apiUrl = `${process.env.NEXT_PUBLIC_NEXUS_URL}/api/code-components?page=${page}&title=${searchQuery}&limit=${limit}`;
 
     const [cardData, setCardData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
