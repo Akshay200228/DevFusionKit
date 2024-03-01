@@ -5,8 +5,6 @@ import useApiFetch from "@/hooks/useApiFetch";
 import TopPostsCard from "./TopPostsCard";
 import ExploreButton from "@/components/Reusable-Comp/ExploreButton";
 
-
-
 const TopPostsSection = () => {
     const compApiUrl = process.env.NEXT_PUBLIC_NEXUS_URL + "/api/code-components";
     const { data: cardData, isLoading: cardLoading } = useApiFetch(compApiUrl);
