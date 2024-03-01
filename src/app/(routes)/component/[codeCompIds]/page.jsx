@@ -20,6 +20,9 @@ export async function generateMetadata({ params }) {
             description: comp.description,
             creatorId: comp._id,
         },
+        alternates: {
+            canonical: `https://dev-nexus.vercel.app/component/${comp._id}`
+        }
     }
 }
 
