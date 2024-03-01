@@ -18,15 +18,15 @@ const CountBar = () => {
 
     return (
         <motion.div
-            className='flex flex-wrap items-start justify-start w-full gap-16'
+            className='flex-wrap items-start justify-start hidden w-full gap-16 md:flex'
             variants={fadeInUpVariants}
             initial="hidden"
             animate="visible"
         >
-            {statistics.map(({ label, value, info }, index) => (
+            {statistics.map(({ label, value }) => (
                 <motion.div
                     key={label}
-                    className="flex flex-col items-center justify-center"
+                    className="z-40 flex flex-col items-center justify-center"
                     whileHover="hover"
                     whileTap="tap"
                     variants={scaleVariants}
