@@ -6,11 +6,12 @@ export async function generateMetadata({ params }) {
     const response = await fetch(`${apiUrl}/api/code-components/${params.codeCompIds}`);
     const comp = await response.json();
 
-    if (!comp)
+    if (!comp) {
         return {
             title: "Not Found",
             description: "The page is not found",
         };
+    }
 
     return {
         title: comp.title,
